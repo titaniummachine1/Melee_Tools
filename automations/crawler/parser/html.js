@@ -33,6 +33,20 @@ export function parseDocumentationPage(html, url) {
 		page.title = extractText(titleMatch[1]);
 	}
 
+	// Derive class/library from URL if present
+	try {
+		const urlObj = new URL(url);
+		const path = urlObj.pathname.replace(/^\/+|\/+$/g, '');
+		const segments = path.split('/');
+		const last = segments[segments.length - 1] || segments[segments.length - 2] || '';
+		if (path.toLowerCase().includes('lua_classes') && last) {
+			page.classes.push(last.replace(/[^A-Za-z0-9_]/g, ''));
+		}
+		if (path.toLowerCase().includes('lua_libraries') && last) {
+			page.libraries.push(last.replace(/[^A-Za-z0-9_]/g, ''));
+		}
+	} catch { }
+
 	// Extract main content
 	const contentMatch = html.match(/<(main|article|div[^>]*class="[^"]*content[^"]*")[^>]*>([\s\S]*?)<\/(main|article|div)>/i);
 	if (contentMatch) {
@@ -42,6 +56,11 @@ export function parseDocumentationPage(html, url) {
 		if (bodyMatch) {
 			page.content = bodyMatch[1];
 		}
+	}
+
+	// Fallback: if content looks empty, use full HTML
+	if (!page.content || page.content.length < 50) {
+		page.content = html;
 	}
 
 	// Extract links (<a href>)
@@ -100,10 +119,11 @@ export function parseDocumentationPage(html, url) {
 	const h3Matches = page.content.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
 	for (const match of h3Matches) {
 		const heading = extractText(match[1]);
-		const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/);
+		// Accept headings with or without explicit params
+		const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
 		if (funcMatch) {
 			const funcName = funcMatch[1];
-			const paramsStr = funcMatch[2].trim();
+			const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
 
 			const params = [];
 			if (paramsStr) {
@@ -122,6 +142,28 @@ export function parseDocumentationPage(html, url) {
 				params: params,
 				section: heading
 			});
+		}
+	}
+
+	// Fallback: if no functions parsed, scan full HTML for h3 headings
+	if (page.functions.length === 0) {
+		const h3All = html.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
+		for (const match of h3All) {
+			const heading = extractText(match[1]);
+			const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
+			if (funcMatch) {
+				const funcName = funcMatch[1];
+				const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+				const params = [];
+				if (paramsStr) {
+					const paramPattern = /\[?(\w+):(\w+)\]?/g;
+					let paramMatch;
+					while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
+						params.push({ name: paramMatch[1], type: paramMatch[2] });
+					}
+				}
+				page.functions.push({ name: funcName, params, section: heading });
+			}
 		}
 	}
 

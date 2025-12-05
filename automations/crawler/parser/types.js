@@ -1,8 +1,22 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { TYPES_DIR, API_BASE_URL } from '../config.js';
+import { TYPES_DIR, API_BASE_URL, CACHE_DIR } from '../config.js';
 import { buildFolderPath } from '../utils/paths.js';
 import { db } from '../database/queries.js';
+import { parseDocumentationPage } from './html.js';
+
+async function walkCache(dir, results = []) {
+	const entries = await fs.readdir(dir, { withFileTypes: true });
+	for (const entry of entries) {
+		const full = path.join(dir, entry.name);
+		if (entry.isDirectory()) {
+			await walkCache(full, results);
+		} else if (entry.isFile() && entry.name.endsWith('.html')) {
+			results.push(full);
+		}
+	}
+	return results;
+}
 
 function mapTypeToLua(docType) {
 	const typeMap = {
@@ -113,6 +127,26 @@ function generateTypeDefinition(page) {
 		}
 	}
 
+	// Fallback: global functions when no classes/libraries
+	if ((!page.classes || page.classes.length === 0) && (!page.libraries || page.libraries.length === 0)) {
+		if (page.functions && page.functions.length > 0) {
+			for (const func of page.functions) {
+				func.params.forEach(param => {
+					const luaType = mapTypeToLua(param.type);
+					content += `---@param ${param.name} ${luaType}\n`;
+				});
+
+				const returnType = inferReturnType(func.name, func.params);
+				if (returnType !== 'void') {
+					content += `---@return ${returnType}\n`;
+				}
+
+				const paramList = func.params.map(p => p.name).join(', ');
+				content += `function ${func.name}(${paramList}) end\n\n`;
+			}
+		}
+	}
+
 	// Generate constants
 	if (page.constants && page.constants.length > 0) {
 		content += `-- Constants:\n`;
@@ -137,13 +171,12 @@ export async function generateTypesByShortestPath() {
 	// Use all pages that have parsed data (even if path not computed)
 	const pages = db.getAllPagesWithParsedData();
 	if (!pages || pages.length === 0) {
-		console.log('[TypeGenerator] No pages with parsed data, skipping.');
-		return 0;
+		console.log('[TypeGenerator] No pages with parsed data, will fall back to cache crawl.');
 	}
 
 	let generated = 0;
 
-	for (const page of pages) {
+	const processPage = async (page) => {
 		// Determine output path
 		const pagePath = page.path || buildPathFromUrl(page.url);
 		const dirPath = path.dirname(pagePath) || '.';
@@ -182,10 +215,94 @@ export async function generateTypesByShortestPath() {
 			}
 		}
 
+		// Fallback: if functions/examples/constants are empty, try re-parsing cached HTML
+		const needsEnrich = (!parsedData.functions || parsedData.functions.length === 0) ||
+			(!parsedData.constants || parsedData.constants.length === 0) ||
+			(!parsedData.examples || parsedData.examples.length === 0);
+		if (needsEnrich) {
+			try {
+				const relative = page.url.replace(API_BASE_URL, '').replace(/\/$/, '') || 'index';
+				const cachePath = path.join(CACHE_DIR, relative + '.html');
+				const html = await fs.readFile(cachePath, 'utf8');
+				const reparsed = parseDocumentationPage(html, page.url);
+
+				// Fallback function extraction directly from HTML if still empty
+				if (!reparsed.functions || reparsed.functions.length === 0) {
+					const funcMatches = html.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
+					const funcs = [];
+					for (const m of funcMatches) {
+						const raw = m[1];
+						const text = raw.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+						const fm = text.match(/^(\w+)\s*\(([^)]*)\)/);
+						if (fm) {
+							const name = fm[1];
+							const paramsStr = fm[2].trim();
+							const params = [];
+							if (paramsStr) {
+								const paramPattern = /\[?(\w+):(\w+)\]?/g;
+								let pm;
+								while ((pm = paramPattern.exec(paramsStr)) !== null) {
+									params.push({ name: pm[1], type: pm[2] });
+								}
+							}
+							funcs.push({ name, params, section: text });
+						}
+					}
+					if (funcs.length > 0) {
+						reparsed.functions = funcs;
+					}
+				}
+
+				parsedData = {
+					...parsedData,
+					title: parsedData.title || reparsed.title,
+					examples: parsedData.examples?.length ? parsedData.examples : (reparsed.examples || []),
+					libraries: parsedData.libraries?.length ? parsedData.libraries : (reparsed.libraries || []),
+					classes: parsedData.classes?.length ? parsedData.classes : (reparsed.classes || []),
+					functions: parsedData.functions?.length ? parsedData.functions : (reparsed.functions || []),
+					constants: parsedData.constants?.length ? parsedData.constants : (reparsed.constants || [])
+				};
+			} catch (e) {
+				console.warn(`[TypeGenerator] Could not enrich from cache for ${page.url}: ${e.message}`);
+			}
+		}
+
 		const content = generateTypeDefinition(parsedData);
 		await fs.writeFile(filePath, content, 'utf8');
 		db.saveTypeDefinition(page.url, pagePath, content);
 		generated++;
+	};
+
+	if (pages && pages.length > 0) {
+		for (const page of pages) {
+			await processPage(page);
+		}
+	} else {
+		// Fallback: crawl cache HTML files directly
+		const htmlFiles = await walkCache(CACHE_DIR);
+		for (const file of htmlFiles) {
+			const relativeHtml = path.relative(CACHE_DIR, file).replace(/\\/g, '/');
+			const url = new URL('./' + relativeHtml.replace(/\.html$/, ''), API_BASE_URL).href;
+			const page = {
+				url,
+				path: relativeHtml.replace(/\.html$/, ''),
+				title: path.basename(relativeHtml, '.html'),
+				parsed_data: null
+			};
+			// Skip non-api files like assets if any
+			if (!url.startsWith(API_BASE_URL)) continue;
+
+			// Re-parse HTML
+			try {
+				const html = await fs.readFile(file, 'utf8');
+				const parsed = parseDocumentationPage(html, url);
+				page.parsed_data = parsed;
+				page.title = parsed.title || page.title;
+			} catch (e) {
+				console.warn(`[TypeGenerator] Cache parse failed for ${file}: ${e.message}`);
+			}
+			await processPage(page);
+		}
 	}
 
 	console.log(`[TypeGenerator] Generated ${generated} type definition files`);

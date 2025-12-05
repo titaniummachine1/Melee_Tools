@@ -1,0 +1,55 @@
+---@meta
+
+-- Lmaobox Lua API: BitBuffer - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/BitBuffer/
+-- Path: Lua_Classes/BitBuffer
+-- Last updated: 2025-12-05T03:32:42.174Z
+
+---@class BitBuffer
+---@return any
+---@field BitBuffer fun(self: BitBuffer): any
+---@return number
+---@field GetDataBitsLength fun(self: BitBuffer): number
+---@return number
+---@field GetDataBytesLength fun(self: BitBuffer): number
+---@return any
+---@field Reset fun(self: BitBuffer): any
+---@return any
+---@field ReadByte fun(self: BitBuffer): any
+---@return any
+---@field ReadBit fun(self: BitBuffer): any
+---@param bitLength number
+---@return any
+---@field ReadFloat fun(self: BitBuffer, bitLength: number): any
+---@param bitLength number
+---@return number
+---@field ReadInt fun(self: BitBuffer, bitLength: number): number
+---@param maxlen number
+---@return string
+---@field ReadString fun(self: BitBuffer, maxlen: number): string
+---@return any
+---@field GetCurBit fun(self: BitBuffer): any
+---@param bit number
+---@return any
+---@field SetCurBit fun(self: BitBuffer, bit: number): any
+---@param bit number
+---@return any
+---@field WriteBit fun(self: BitBuffer, bit: number): any
+---@param byte number
+---@return any
+---@field WriteByte fun(self: BitBuffer, byte: number): any
+---@param str string
+---@return string
+---@field WriteString fun(self: BitBuffer, str: string): string
+---@param int number
+---@param bitLength number
+---@return number
+---@field WriteInt fun(self: BitBuffer, int: number, bitLength: number): number
+---@param value number
+---@param bitLength number
+---@return any
+---@field WriteFloat fun(self: BitBuffer, value: number, bitLength: number): any
+---@return any
+---@field Delete fun(self: BitBuffer): any
+local BitBuffer = {}
+
