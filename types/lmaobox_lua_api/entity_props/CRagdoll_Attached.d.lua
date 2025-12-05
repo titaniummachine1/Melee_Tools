@@ -2,7 +2,7 @@
 
 -- Entity Props: CRagdoll_Attached
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:23.847Z
+-- Last updated: 2025-12-05T11:43:36.511Z
 
 ---@class CRagdoll_Attached
 ---@field m_boneIndexAttached number

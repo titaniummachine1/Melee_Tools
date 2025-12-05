@@ -3,9 +3,12 @@
 -- Lmaobox Lua API: PhysicsCollisionModel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsCollisionModel/
 -- Path: Lua_Classes/PhysicsCollisionModel
--- Last updated: 2025-12-05T11:20:20.746Z
+-- Last updated: 2025-12-05T11:43:55.610Z
+
+-- Represents a collision model for a physics object.
 
 ---@class PhysicsCollisionModel
+-- Returns the mass center of the collision model as a Vector3 .
 ---@return any
 ---@field GetMassCenter fun(self: PhysicsCollisionModel): any
 local PhysicsCollisionModel = {}

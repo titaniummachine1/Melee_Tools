@@ -2,7 +2,7 @@
 
 -- Entity Props: CColorCorrectionVolume
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:25.044Z
+-- Last updated: 2025-12-05T11:43:36.708Z
 
 ---@class CColorCorrectionVolume
 ---@field m_Weight number

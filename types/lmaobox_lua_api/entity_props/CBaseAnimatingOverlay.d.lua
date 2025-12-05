@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseAnimatingOverlay
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:25.227Z
+-- Last updated: 2025-12-05T11:43:36.727Z
 
 ---@class CBaseAnimatingOverlay
 ---@field lengthprop15 number

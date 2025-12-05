@@ -3,7 +3,9 @@
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-05T11:20:20.581Z
+-- Last updated: 2025-12-05T11:43:32.957Z
+
+-- Callbacks are the functions that are called when certain events happen. They are usually the most key parts of your scripts, and include functions like Draw() , which is called every frame - and as such is useful for drawing. Different callbacks are called in different situations, and you can use them to add custom functionality to your scripts.
 
 ---@return any
 function Draw() end

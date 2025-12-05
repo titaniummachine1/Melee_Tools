@@ -2,7 +2,7 @@
 
 -- Constants: E_LifeState
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:20:25.980Z
+-- Last updated: 2025-12-05T11:43:33.992Z
 
 ---@type any
 LIFE_ALIVE = 0

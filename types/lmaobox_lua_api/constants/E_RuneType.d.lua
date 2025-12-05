@@ -2,7 +2,7 @@
 
 -- Constants: E_RuneType
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:20:26.080Z
+-- Last updated: 2025-12-05T11:43:34.045Z
 
 ---@type any
 RUNETYPE_TEMP_NONE = 0

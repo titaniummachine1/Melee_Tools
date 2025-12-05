@@ -3,39 +3,58 @@
 -- Lmaobox Lua API: Vector3 - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Vector3/
 -- Path: Lua_Classes/Vector3
--- Last updated: 2025-12-05T11:20:20.857Z
+-- Last updated: 2025-12-05T11:44:10.474Z
+
+-- Represents a point in 3D space. X and Y are the horizontal coordinates, Z is the vertical coordinate.
 
 ---@class Vector3
----@return any
----@field x fun(self: Vector3): any
----@return any
----@field y fun(self: Vector3): any
----@return any
----@field z fun(self: Vector3): any
+---@field x number
+---@field y number
+---@field z number
+---@param x any
+---@param y any
+---@param z any
+---@return Vector3
+---@field Vector3 fun(self: Vector3, x: any, y: any, z: any): Vector3
+-- Returns the X, Y, and Z coordinates as a separate variables.
 ---@return any
 ---@field Unpack fun(self: Vector3): any
+-- The length of the vector.
 ---@return number
 ---@field Length fun(self: Vector3): number
+-- The squared length of the vector.
 ---@return number
 ---@field LengthSqr fun(self: Vector3): number
+-- The length of the vector in 2D.
 ---@return number
 ---@field Length2D fun(self: Vector3): number
+-- The squared length of the vector in 2D.
 ---@return number
 ---@field Length2DSqr fun(self: Vector3): number
+-- The dot product of the vector and the given vector.
+---@param Vector3 any
 ---@return any
----@field Dot fun(self: Vector3): any
+---@field Dot fun(self: Vector3, Vector3: any): any
+-- The cross product of the vector and the given vector.
+---@param Vector3 any
 ---@return any
----@field Cross fun(self: Vector3): any
+---@field Cross fun(self: Vector3, Vector3: any): any
+-- Clears the vector to 0,0,0
 ---@field Clear fun(self: Vector3)
+-- Normalizes the vector.
 ---@return any
 ---@field Normalize fun(self: Vector3): any
+-- Returns the right vector of the vector.
 ---@return any
 ---@field Right fun(self: Vector3): any
+-- Returns the up vector of the vector.
 ---@return any
 ---@field Up fun(self: Vector3): any
+-- Returns the angles of the vector.
 ---@return Vector3
 ---@field Angles fun(self: Vector3): Vector3
----@return Vector3
----@field Vectors fun(self: Vector3): Vector3
+-- Returns the forward, right, and up vectors as 3 return values.
+---@return Vector3, Vector3, Vector3
+---@field Vectors fun(self: Vector3): Vector3, Vector3, Vector3
 local Vector3 = {}
 

@@ -3,11 +3,31 @@
 -- Lmaobox Lua API: WeaponData - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/WeaponData/
 -- Path: Lua_Classes/WeaponData
--- Last updated: 2025-12-05T11:20:20.873Z
+-- Last updated: 2025-12-05T11:44:12.532Z
+
+-- Contains variables related to specifications of a weapon, such as firing speed, number of projectiles, etc. Some of them may not be used, or may be wrong.
 
 ---@class WeaponData
+---@field damage number
+---@field bulletsPerShot number
+---@field range number
+---@field spread number
+---@field punchAngle number
+---@field timeFireDelay number
+---@field timeIdle number
+---@field timeIdleEmpty number
+---@field timeReloadStart number
+---@field timeReload number
+---@field drawCrosshair number
+---@field projectile number
+---@field ammoPerShot number
+---@field projectileSpeed number
+---@field smackDelay number
+---@field useRapidFireCrits boolean
+-- integer
 ---@return any
 ---@field damage fun(self: WeaponData): any
+-- integer
 ---@return any
 ---@field bulletsPerShot fun(self: WeaponData): any
 ---@return any
@@ -28,8 +48,10 @@
 ---@field timeReload fun(self: WeaponData): any
 ---@return any
 ---@field drawCrosshair fun(self: WeaponData): any
+-- integer Represents projectile id
 ---@return any
 ---@field projectile fun(self: WeaponData): any
+-- integer
 ---@return any
 ---@field ammoPerShot fun(self: WeaponData): any
 ---@return any

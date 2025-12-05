@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFObjectiveResource
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:22.983Z
+-- Last updated: 2025-12-05T11:43:36.404Z
 
 ---@class CTFObjectiveResource
 ---@field m_nMannVsMachineMaxWaveCount number

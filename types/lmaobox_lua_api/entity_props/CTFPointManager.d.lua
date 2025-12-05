@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFPointManager
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:22.687Z
+-- Last updated: 2025-12-05T11:43:36.315Z
 
 ---@class CTFPointManager
 ---@field m_nRandomSeed number

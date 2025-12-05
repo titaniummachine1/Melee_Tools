@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEMetalSparks
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:25.922Z
+-- Last updated: 2025-12-05T11:43:36.936Z
 
 ---@class CTEMetalSparks
 ---@field m_vecPos Vector3

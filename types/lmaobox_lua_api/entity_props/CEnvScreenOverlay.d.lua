@@ -2,7 +2,7 @@
 
 -- Entity Props: CEnvScreenOverlay
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:20:25.012Z
+-- Last updated: 2025-12-05T11:43:36.665Z
 
 ---@class CEnvScreenOverlay
 ---@field m_iszOverlayNames any

@@ -3,72 +3,97 @@
 -- Lmaobox Lua API: NetChannel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetChannel/
 -- Path: Lua_Classes/NetChannel
--- Last updated: 2025-12-05T11:20:20.723Z
+-- Last updated: 2025-12-05T11:43:52.357Z
+
+-- The NetChannel object is used to get information about the network channel.
 
 ---@class NetChannel
+-- Returns the name of the channel.
 ---@return string
 ---@field GetName fun(self: NetChannel): string
----@return any
----@field GetAddress fun(self: NetChannel): any
+-- Returns the IP address of the server.
+---@return string
+---@field GetAddress fun(self: NetChannel): string
+-- Returns the time the client connected to the server.
 ---@return number
 ---@field GetConnectTime fun(self: NetChannel): number
+-- Returns the time since the last tick was received.
 ---@return number
 ---@field GetTimeSinceLastReceived fun(self: NetChannel): number
----@param flow integer
+-- Returns the latency of the specified flow. Use E_Flows contants.
+---@param flow number
 ---@return any
----@field GetLatency fun(self: NetChannel, flow: integer): any
----@param flow integer
+---@field GetLatency fun(self: NetChannel, flow: number): any
+-- Returns the average latency of the specified flow. Use E_Flows contants.
+---@param flow number
 ---@return any
----@field GetAvgLatency fun(self: NetChannel, flow: integer): any
----@param flow integer
+---@field GetAvgLatency fun(self: NetChannel, flow: number): any
+-- Returns the average choke of the specified flow. Use E_Flows contants.
+---@param flow number
 ---@return any
----@field GetAvgChoke fun(self: NetChannel, flow: integer): any
----@param flow integer
+---@field GetAvgChoke fun(self: NetChannel, flow: number): any
+-- Returns the average loss of the specified flow. Use E_Flows contants.
+---@param flow number
 ---@return any
----@field GetAvgLoss fun(self: NetChannel, flow: integer): any
----@param flow integer
+---@field GetAvgLoss fun(self: NetChannel, flow: number): any
+-- Returns the average data of the specified flow. Use E_Flows contants.
+---@param flow number
 ---@return any
----@field GetAvgData fun(self: NetChannel, flow: integer): any
+---@field GetAvgData fun(self: NetChannel, flow: number): any
+-- Returns the current net time.
 ---@return number
 ---@field GetTime fun(self: NetChannel): number
+-- Returns the time when channel connected to the server.
 ---@return number
 ---@field GetTimeConnected fun(self: NetChannel): number
+-- Returns the size of the buffer.
 ---@return number
 ---@field GetBufferSize fun(self: NetChannel): number
+-- Returns the current data rate.
 ---@return any
 ---@field GetDataRate fun(self: NetChannel): any
+-- Returns true if the channel is loopback.
 ---@return boolean
 ---@field IsLoopback fun(self: NetChannel): boolean
+-- Returns true if the channel is timing out.
 ---@return boolean
 ---@field IsTimingOut fun(self: NetChannel): boolean
+-- Returns true if the channel is a demo playback.
 ---@return boolean
 ---@field IsPlayback fun(self: NetChannel): boolean
+-- Sets the data rate.
 ---@param rate number
 ---@field SetDataRate fun(self: NetChannel, rate: number)
+-- Sets the channel timeout time.
 ---@param seconds number
----@return number
----@field SetTimeout fun(self: NetChannel, seconds: number): number
+---@field SetTimeout fun(self: NetChannel, seconds: number)
+-- Sets the challenge number.
 ---@param challenge number
 ---@field SetChallengeNr fun(self: NetChannel, challenge: number)
+-- Sends a network message, msg is of type NetMessage .
 ---@param msg NetMessage
 ---@param forceReliable boolean
 ---@param voice boolean
 ---@return any
 ---@field SendNetMsg fun(self: NetChannel, msg: NetMessage, forceReliable: boolean, voice: boolean): any
----@param data BitBuffer
+-- Sends data, data is of type BitBuffer .
+---@param data any
 ---@param reliable boolean
 ---@return any
----@field SendData fun(self: NetChannel, data: BitBuffer, reliable: boolean): any
+---@field SendData fun(self: NetChannel, data: any, reliable: boolean): any
+-- Gets the sequence data. Returns 3 values: outSequenceNr, inSequenceNr, outSequenceNrAck.
 ---@return any
 ---@field GetSequenceData fun(self: NetChannel): any
----@param outSequenceNr integer
----@param inSequenceNr integer
----@param outSequenceNrAck integer
----@field SetSequenceData fun(self: NetChannel, outSequenceNr: integer, inSequenceNr: integer, outSequenceNrAck: integer)
+-- Sets the sequence data.
+---@param outSequenceNr number
+---@param inSequenceNr number
+---@param outSequenceNrAck number
+---@field SetSequenceData fun(self: NetChannel, outSequenceNr: number, inSequenceNr: number, outSequenceNrAck: number)
+-- Sets the interpolation amount.
 ---@param interp number
+---@field SetInterpolationAmount fun(self: NetChannel, interp: number)
+-- Returns the challenge number.
 ---@return number
----@field SetInterpolationAmount fun(self: NetChannel, interp: number): number
----@return any
----@field GetChallengeNr fun(self: NetChannel): any
+---@field GetChallengeNr fun(self: NetChannel): number
 local NetChannel = {}
 
