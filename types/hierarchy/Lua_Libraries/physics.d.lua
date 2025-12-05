@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: physics - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/physics/
 -- Path: Lua_Libraries/physics
--- Last updated: 2025-12-05T04:07:53.885Z
+-- Last updated: 2025-12-05T04:14:10.698Z
 
 ---@class physics
 physics = {}
@@ -35,11 +35,4 @@ function physics.ParseModelByName(modelName) end
 
 ---@return any
 function physics.DefaultObjectParameters() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

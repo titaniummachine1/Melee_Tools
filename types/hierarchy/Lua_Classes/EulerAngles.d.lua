@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: EulerAngles - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/EulerAngles/
 -- Path: Lua_Classes/EulerAngles
--- Last updated: 2025-12-05T04:07:53.708Z
+-- Last updated: 2025-12-05T04:14:10.510Z
 
 ---@class EulerAngles
 ---@return any
@@ -31,11 +31,4 @@
 ---@return Vector3
 ---@field Vectors fun(self: EulerAngles): Vector3
 local EulerAngles = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -2,7 +2,7 @@
 
 -- Entity Props: CPointCamera
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:07:54.440Z
+-- Last updated: 2025-12-05T04:14:11.243Z
 
 ---@class CPointCamera
 ---@field m_FOV number

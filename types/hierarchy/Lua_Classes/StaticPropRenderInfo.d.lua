@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StaticPropRenderInfo - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StaticPropRenderInfo/
 -- Path: Lua_Classes/StaticPropRenderInfo
--- Last updated: 2025-12-05T04:07:53.766Z
+-- Last updated: 2025-12-05T04:14:10.580Z
 
 ---@class StaticPropRenderInfo
 ---@return any
@@ -22,11 +22,4 @@
 ---@return any
 ---@field StudioSetAlphaModulation fun(self: StaticPropRenderInfo, alpha: number): any
 local StaticPropRenderInfo = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

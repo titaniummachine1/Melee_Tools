@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: WeaponData - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/WeaponData/
 -- Path: Lua_Classes/WeaponData
--- Last updated: 2025-12-05T04:07:53.806Z
+-- Last updated: 2025-12-05T04:14:10.616Z
 
 ---@class WeaponData
 ---@return any
@@ -43,11 +43,4 @@
 ---@return any
 ---@field useRapidFireCrits fun(self: WeaponData): any
 local WeaponData = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

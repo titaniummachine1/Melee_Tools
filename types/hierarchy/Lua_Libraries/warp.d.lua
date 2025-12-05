@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: warp - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/warp/
 -- Path: Lua_Libraries/warp
--- Last updated: 2025-12-05T04:07:53.902Z
+-- Last updated: 2025-12-05T04:14:10.723Z
 
 ---@class warp
 warp = {}
@@ -35,11 +35,4 @@ function warp.TriggerDoubleTap() end
 
 ---@return any
 function warp.TriggerCharge() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

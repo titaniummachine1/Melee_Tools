@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: render - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/render/
 -- Path: Lua_Libraries/render
--- Last updated: 2025-12-05T04:07:53.893Z
+-- Last updated: 2025-12-05T04:14:10.711Z
 
 ---@class render
 render = {}
@@ -165,11 +165,4 @@ function render.SetColorModulation(r, g, b) end
 
 ---@return any
 function render.GetColorModulation() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

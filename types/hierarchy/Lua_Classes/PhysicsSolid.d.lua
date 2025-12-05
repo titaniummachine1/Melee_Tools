@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsSolid - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsSolid/
 -- Path: Lua_Classes/PhysicsSolid
--- Last updated: 2025-12-05T04:07:53.762Z
+-- Last updated: 2025-12-05T04:14:10.576Z
 
 ---@class PhysicsSolid
 ---@return any
@@ -15,11 +15,4 @@
 ---@return any
 ---@field GetObjectParameters fun(self: PhysicsSolid): any
 local PhysicsSolid = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

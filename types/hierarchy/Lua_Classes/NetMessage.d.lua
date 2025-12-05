@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: NetMessage - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetMessage/
 -- Path: Lua_Classes/NetMessage
--- Last updated: 2025-12-05T04:07:53.739Z
+-- Last updated: 2025-12-05T04:14:10.547Z
 
 ---@class NetMessage
 ---@return any
@@ -32,11 +32,4 @@
 ---@return any
 ---@field ReadFromBitBuffer fun(self: NetMessage, bitBuffer: any): any
 local NetMessage = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

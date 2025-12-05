@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PartyMemberActivity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PartyMemberActivity/
 -- Path: Lua_Classes/PartyMemberActivity
--- Last updated: 2025-12-05T04:07:53.742Z
+-- Last updated: 2025-12-05T04:14:10.549Z
 
 ---@class PartyMemberActivity
 ---@return any
@@ -17,11 +17,4 @@
 ---@return any
 ---@field GetClientVersion fun(self: PartyMemberActivity): any
 local PartyMemberActivity = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

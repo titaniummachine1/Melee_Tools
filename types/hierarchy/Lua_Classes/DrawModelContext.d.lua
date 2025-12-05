@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: DrawModelContext - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/DrawModelContext/
 -- Path: Lua_Classes/DrawModelContext
--- Last updated: 2025-12-05T04:07:53.679Z
+-- Last updated: 2025-12-05T04:14:10.499Z
 
 ---@class DrawModelContext
 ---@return any
@@ -39,11 +39,4 @@
 ---@return boolean
 ---@field IsDrawingGlow fun(self: DrawModelContext): boolean
 local DrawModelContext = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

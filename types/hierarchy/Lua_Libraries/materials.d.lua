@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: materials - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/materials/
 -- Path: Lua_Libraries/materials
--- Last updated: 2025-12-05T04:07:53.870Z
+-- Last updated: 2025-12-05T04:14:10.685Z
 
 ---@class materials
 materials = {}
@@ -37,11 +37,4 @@ function materials.CreateTextureRenderTarget(name, width, height) end
 ---@param complain boolean
 ---@return string
 function materials.FindTexture(name, groupName, complain) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: draw - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/draw/
 -- Path: Lua_Libraries/draw
--- Last updated: 2025-12-05T04:07:53.838Z
+-- Last updated: 2025-12-05T04:14:10.647Z
 
 ---@class draw
 draw = {}
@@ -132,17 +132,4 @@ function draw.TexturedPolygon(textureId, vertices, clipVertices) end
 ---@param textureId number
 ---@return string
 function draw.DeleteTexture(textureId) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
-
----@type any
-TTF = nil
-
----@type any
-RGBA = nil
 

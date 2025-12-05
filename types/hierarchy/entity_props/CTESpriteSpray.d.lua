@@ -2,7 +2,7 @@
 
 -- Entity Props: CTESpriteSpray
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:07:54.473Z
+-- Last updated: 2025-12-05T04:14:11.297Z
 
 ---@class CTESpriteSpray
 ---@field m_vecOrigin Vector3

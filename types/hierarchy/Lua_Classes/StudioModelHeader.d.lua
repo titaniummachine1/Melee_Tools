@@ -3,9 +3,13 @@
 -- Lmaobox Lua API: StudioModelHeader - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StudioModelHeader/
 -- Path: Lua_Classes/StudioModelHeader
--- Last updated: 2025-12-05T04:07:53.786Z
+-- Last updated: 2025-12-05T04:14:10.596Z
 
 ---@class StudioModelHeader
+---@return any
+---@field Methods fun(self: StudioModelHeader): any
+---@return any
+---@field Examples fun(self: StudioModelHeader): any
 ---@return string
 ---@field GetName fun(self: StudioModelHeader): string
 ---@param index number
@@ -14,11 +18,4 @@
 ---@return any
 ---@field GetAllHitboxSets fun(self: StudioModelHeader): any
 local StudioModelHeader = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

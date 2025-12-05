@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
 -- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T04:07:53.748Z
+-- Last updated: 2025-12-05T04:14:10.561Z
 
 ---@class PhysicsEnvironment
 ---@return any
@@ -43,11 +43,4 @@
 ---@return any
 ---@field DestroyObject fun(self: PhysicsEnvironment, object: any): any
 local PhysicsEnvironment = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

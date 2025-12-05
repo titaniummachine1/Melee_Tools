@@ -3,10 +3,16 @@
 -- Lmaobox Lua API: gui - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gui/
 -- Path: Lua_Libraries/gui
--- Last updated: 2025-12-05T04:07:53.866Z
+-- Last updated: 2025-12-05T04:14:10.679Z
 
 ---@class gui
 gui = {}
+
+---@return any
+function gui.Functions() end
+
+---@return any
+function gui.Examples() end
 
 ---@param msg string
 ---@return any
@@ -24,11 +30,4 @@ function gui.SetValue(msg, msg) end
 
 ---@return boolean
 function gui.IsMenuOpen() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

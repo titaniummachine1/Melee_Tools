@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: party - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/party/
 -- Path: Lua_Libraries/party
--- Last updated: 2025-12-05T04:07:53.881Z
+-- Last updated: 2025-12-05T04:14:10.695Z
 
 ---@class party
 party = {}
@@ -79,11 +79,4 @@ function party.IsCasualMapSelected(map) end
 ---@param selected boolean
 ---@return any
 function party.SetCasualMapSelected(map, selected) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

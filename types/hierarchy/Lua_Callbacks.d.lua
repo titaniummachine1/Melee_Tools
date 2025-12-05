@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-05T04:07:53.657Z
+-- Last updated: 2025-12-05T04:14:10.482Z
 
 ---@return any
 function Draw() end
@@ -92,17 +92,4 @@ function ProcessTempEntities(Table< TempEntity, EventInfo > entEvtTable) end
 
 ---@return any
 function Unload() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
-
----@type any
-GCS = nil
-
----@type any
-GCR = nil
 

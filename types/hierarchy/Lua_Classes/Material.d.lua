@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Material - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Material/
 -- Path: Lua_Classes/Material
--- Last updated: 2025-12-05T04:07:53.723Z
+-- Last updated: 2025-12-05T04:14:10.530Z
 
 ---@class Material
 ---@return any
@@ -31,11 +31,4 @@
 ---@return any
 ---@field SetShaderParam fun(self: Material, param: string, value: any): any
 local Material = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: gamecoordinator - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gamecoordinator/
 -- Path: Lua_Libraries/gamecoordinator
--- Last updated: 2025-12-05T04:07:53.852Z
+-- Last updated: 2025-12-05T04:14:10.666Z
 
 ---@class gamecoordinator
 gamecoordinator = {}
@@ -54,14 +54,4 @@ function gamecoordinator.GetGameServerLobby() end
 ---@param data any
 ---@return any
 function gamecoordinator.GCSendMessage(typeID, data) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
-
----@type any
-GCS = nil
 

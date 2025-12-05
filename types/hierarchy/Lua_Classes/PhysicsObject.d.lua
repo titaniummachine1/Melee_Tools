@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsObject - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObject/
 -- Path: Lua_Classes/PhysicsObject
--- Last updated: 2025-12-05T04:07:53.753Z
+-- Last updated: 2025-12-05T04:14:10.565Z
 
 ---@class PhysicsObject
 ---@return any
@@ -32,11 +32,4 @@
 ---@return any
 ---@field OutputDebugInfo fun(self: PhysicsObject): any
 local PhysicsObject = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

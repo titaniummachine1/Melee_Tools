@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: entities - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/entities/
 -- Path: Lua_Libraries/entities
--- Last updated: 2025-12-05T04:07:53.845Z
+-- Last updated: 2025-12-05T04:14:10.660Z
 
 ---@class entities
 entities = {}
@@ -42,11 +42,4 @@ function entities.CreateEntityByName(className) end
 ---@param className string
 ---@return string
 function entities.CreateTempEntityByName(className) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,9 +3,13 @@
 -- Lmaobox Lua API: TempEntity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/TempEntity/
 -- Path: Lua_Classes/TempEntity
--- Last updated: 2025-12-05T04:07:53.790Z
+-- Last updated: 2025-12-05T04:14:10.599Z
 
 ---@class TempEntity
+---@return any
+---@field Methods fun(self: TempEntity): any
+---@return any
+---@field Examples fun(self: TempEntity): any
 ---@return string
 ---@field GetNetworkName fun(self: TempEntity): string
 ---@return any
@@ -65,11 +69,4 @@
 ---@return Entity|nil
 ---@field SetPropDataTableEntity fun(self: TempEntity, value: Entity|nil, index: number): Entity|nil
 local TempEntity = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

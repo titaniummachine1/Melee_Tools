@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Entity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Entity/
 -- Path: Lua_Classes/Entity
--- Last updated: 2025-12-05T04:07:53.693Z
+-- Last updated: 2025-12-05T04:14:10.503Z
 
 ---@class Entity
 ---@return any
@@ -255,11 +255,4 @@
 ---@return Entity|nil
 ---@field GetWeaponDamageStats fun(self: Entity): Entity|nil
 local Entity = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: BitBuffer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/BitBuffer/
 -- Path: Lua_Classes/BitBuffer
--- Last updated: 2025-12-05T04:07:53.666Z
+-- Last updated: 2025-12-05T04:14:10.495Z
 
 ---@class BitBuffer
 ---@return any
@@ -60,11 +60,4 @@
 ---@return any
 ---@field Delete fun(self: BitBuffer): any
 local BitBuffer = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

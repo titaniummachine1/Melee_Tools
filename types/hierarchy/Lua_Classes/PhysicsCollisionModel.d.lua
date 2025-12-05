@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsCollisionModel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsCollisionModel/
 -- Path: Lua_Classes/PhysicsCollisionModel
--- Last updated: 2025-12-05T04:07:53.746Z
+-- Last updated: 2025-12-05T04:14:10.555Z
 
 ---@class PhysicsCollisionModel
 ---@return any
@@ -11,11 +11,4 @@
 ---@return any
 ---@field GetMassCenter fun(self: PhysicsCollisionModel): any
 local PhysicsCollisionModel = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

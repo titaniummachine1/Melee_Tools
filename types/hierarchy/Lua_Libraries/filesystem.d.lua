@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: filesystem - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/filesystem/
 -- Path: Lua_Libraries/filesystem
--- Last updated: 2025-12-05T04:07:53.848Z
+-- Last updated: 2025-12-05T04:14:10.663Z
 
 ---@class filesystem
 filesystem = {}
@@ -36,11 +36,4 @@ function filesystem.GetFileAttributes(string) end
 ---@param integer any
 ---@return any
 function filesystem.SetFileAttributes(string, integer) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

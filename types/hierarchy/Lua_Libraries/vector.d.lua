@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: vector - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/vector/
 -- Path: Lua_Libraries/vector
--- Last updated: 2025-12-05T04:07:53.899Z
+-- Last updated: 2025-12-05T04:14:10.718Z
 
 ---@class vector
 vector = {}
@@ -55,11 +55,4 @@ function vector.AngleVectors() end
 
 ---@return any
 function vector.AngleNormalize() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

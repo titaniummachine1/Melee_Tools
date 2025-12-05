@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: AttributeDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/
 -- Path: Lua_Classes/AttributeDefinition
--- Last updated: 2025-12-05T04:07:53.662Z
+-- Last updated: 2025-12-05T04:14:10.490Z
 
 ---@class AttributeDefinition
 ---@return any
@@ -17,11 +17,4 @@
 ---@return boolean
 ---@field IsStoredAsInteger fun(self: AttributeDefinition): boolean
 local AttributeDefinition = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: playerlist - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/playerlist/
 -- Path: Lua_Libraries/playerlist
--- Last updated: 2025-12-05T04:07:53.889Z
+-- Last updated: 2025-12-05T04:14:10.704Z
 
 ---@class playerlist
 playerlist = {}
@@ -67,11 +67,4 @@ function playerlist.SetColor(userID, color) end
 ---@param color number
 ---@return any
 function playerlist.SetColor(steamID, color) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

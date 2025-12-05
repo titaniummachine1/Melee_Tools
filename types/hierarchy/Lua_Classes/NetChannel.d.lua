@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: NetChannel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetChannel/
 -- Path: Lua_Classes/NetChannel
--- Last updated: 2025-12-05T04:07:53.735Z
+-- Last updated: 2025-12-05T04:14:10.541Z
 
 ---@class NetChannel
 ---@return any
@@ -78,11 +78,4 @@
 ---@return any
 ---@field GetChallengeNr fun(self: NetChannel): any
 local NetChannel = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

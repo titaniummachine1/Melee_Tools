@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: client - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/client/
 -- Path: Lua_Libraries/client
--- Last updated: 2025-12-05T04:07:53.831Z
+-- Last updated: 2025-12-05T04:14:10.636Z
 
 ---@class client
 client = {}
@@ -86,11 +86,4 @@ function client.ChatPrintf(msg) end
 ---@param key string
 ---@return any
 function client.Localize(key) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

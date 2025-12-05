@@ -100,28 +100,17 @@ function parseConstantsByCategory(html) {
 	const sections = [];
 
 	// Find h3 headings (these are the constant category names like E_UserCmd, E_ButtonCode, etc.)
-	// Try with id first (more specific)
-	const h3Regex = /<h3[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h3>/gi;
+	// Try with id first (more specific) - handle both with and without id
+	const h3Regex = /<h3[^>]*(?:id="([^"]+)")?[^>]*>([\s\S]*?)<\/h3>/gi;
 	let h3Match;
 	const h3Positions = [];
 	while ((h3Match = h3Regex.exec(html)) !== null) {
-		const id = h3Match[1].trim();
-		const name = h3Match[2].replace(/<[^>]+>/g, '').trim();
-		if (name) {
+		const id = h3Match[1] ? h3Match[1].trim() : null;
+		let name = h3Match[2].replace(/<[^>]+>/g, '').trim();
+		// Clean up name - remove extra whitespace and normalize
+		name = name.replace(/\s+/g, ' ').trim();
+		if (name && name.length > 0) {
 			h3Positions.push({ id, name, index: h3Match.index });
-		}
-	}
-
-	// If no h3 with id found, try h3 without id (fallback)
-	if (h3Positions.length === 0) {
-		const h3SimpleRegex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
-		// Reset regex lastIndex
-		h3SimpleRegex.lastIndex = 0;
-		while ((h3Match = h3SimpleRegex.exec(html)) !== null) {
-			const name = h3Match[1].replace(/<[^>]+>/g, '').trim();
-			if (name) {
-				h3Positions.push({ id: null, name, index: h3Match.index });
-			}
 		}
 	}
 

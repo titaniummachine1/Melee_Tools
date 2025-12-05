@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: steam - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/steam/
 -- Path: Lua_Libraries/steam
--- Last updated: 2025-12-05T04:07:53.896Z
+-- Last updated: 2025-12-05T04:14:10.714Z
 
 ---@class steam
 steam = {}
@@ -28,11 +28,4 @@ function steam.GetFriends() end
 ---@param steamid string
 ---@return any
 function steam.ToSteamID64(steamid) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

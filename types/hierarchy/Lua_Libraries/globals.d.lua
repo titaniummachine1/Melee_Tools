@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: globals - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/globals/
 -- Path: Lua_Libraries/globals
--- Last updated: 2025-12-05T04:07:53.863Z
+-- Last updated: 2025-12-05T04:14:10.675Z
 
 ---@class globals
 globals = {}
@@ -37,11 +37,4 @@ function globals.AbsoluteFrameTime() end
 
 ---@return any
 function globals.MaxClients() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

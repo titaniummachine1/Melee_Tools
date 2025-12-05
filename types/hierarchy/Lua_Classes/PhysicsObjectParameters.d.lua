@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsObjectParameters - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObjectParameters/
 -- Path: Lua_Classes/PhysicsObjectParameters
--- Last updated: 2025-12-05T04:07:53.759Z
+-- Last updated: 2025-12-05T04:14:10.571Z
 
 ---@class PhysicsObjectParameters
 ---@return any
@@ -25,11 +25,4 @@
 ---@return any
 ---@field enableCollisions fun(self: PhysicsObjectParameters): any
 local PhysicsObjectParameters = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: ViewSetup - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ViewSetup/
 -- Path: Lua_Classes/ViewSetup
--- Last updated: 2025-12-05T04:07:53.801Z
+-- Last updated: 2025-12-05T04:14:10.613Z
 
 ---@class ViewSetup
 ---@return any
@@ -51,11 +51,4 @@
 ---@return any
 ---@field aspectRatio fun(self: ViewSetup): any
 local ViewSetup = {}
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

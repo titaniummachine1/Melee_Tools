@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: engine - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/engine/
 -- Path: Lua_Libraries/engine
--- Last updated: 2025-12-05T04:07:53.842Z
+-- Last updated: 2025-12-05T04:14:10.656Z
 
 ---@class engine
 engine = {}
@@ -96,17 +96,4 @@ function engine.RandomInt(min, max) end
 ---@param exponent number
 ---@return any
 function engine.RandomFloatExp(min, max, exponent) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
-
----@type any
-UIV = nil
-
----@type any
-FFF = nil
 

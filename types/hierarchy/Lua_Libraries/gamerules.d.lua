@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: gamerules - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gamerules/
 -- Path: Lua_Libraries/gamerules
--- Last updated: 2025-12-05T04:07:53.860Z
+-- Last updated: 2025-12-05T04:14:10.671Z
 
 ---@class gamerules
 gamerules = {}
@@ -50,11 +50,4 @@ function gamerules.GetPlayerVoteState(playerIndex) end
 
 ---@return any
 function gamerules.GetRoundState() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

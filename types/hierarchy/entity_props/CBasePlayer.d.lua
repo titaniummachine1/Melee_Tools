@@ -2,7 +2,7 @@
 
 -- Entity Props: CBasePlayer
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:07:54.456Z
+-- Last updated: 2025-12-05T04:14:11.271Z
 
 ---@class CBasePlayer
 ---@field m_iFOV number

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: clientstate - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/clientstate/
 -- Path: Lua_Libraries/clientstate
--- Last updated: 2025-12-05T04:07:53.834Z
+-- Last updated: 2025-12-05T04:14:10.644Z
 
 ---@class clientstate
 clientstate = {}
@@ -34,11 +34,4 @@ function clientstate.GetLastCommandAck() end
 
 ---@return any
 function clientstate.GetNetChannel() end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 

@@ -2,7 +2,7 @@
 
 -- Constants: E_TeamNumber
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T04:07:54.545Z
+-- Last updated: 2025-12-05T04:14:11.402Z
 
 ---@type any
 TEAM_UNASSIGNED = 0

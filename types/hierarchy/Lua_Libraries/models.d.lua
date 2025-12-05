@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: models - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/models/
 -- Path: Lua_Libraries/models
--- Last updated: 2025-12-05T04:07:53.876Z
+-- Last updated: 2025-12-05T04:14:10.691Z
 
 ---@class models
 models = {}
@@ -41,11 +41,4 @@ function models.GetModelRenderBounds(model) end
 ---@param model any
 ---@return any
 function models.GetModelBounds(model) end
-
--- Constants:
----@type any
-API_ = nil
-
----@type any
-API = nil
 
