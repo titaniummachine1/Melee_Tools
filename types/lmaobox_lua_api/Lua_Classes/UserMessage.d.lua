@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: UserMessage - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/UserMessage/
 -- Path: Lua_Classes/UserMessage
--- Last updated: 2025-12-05T11:09:57.354Z
+-- Last updated: 2025-12-05T11:20:20.849Z
 
 ---@class UserMessage
 -- Reading starts at the beginning of the message (curBit = 0). Each call to Read*() advances the read cursor by the number of bits read. Reading past the end of the message will cause an error.

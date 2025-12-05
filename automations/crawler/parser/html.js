@@ -168,9 +168,10 @@ export function parseDocumentationPage(html, url) {
 	// Process all headings in order to maintain section context
 
 	// Process all headings in order to maintain section context
+	// Use full HTML to preserve heading IDs and attributes
 	const allHeadings = [];
 	for (const pattern of headingPatterns) {
-		const matches = page.content.matchAll(pattern);
+		const matches = html.matchAll(pattern);
 		for (const match of matches) {
 			const text = extractText(match[1]);
 			allHeadings.push({ text, index: match.index, level: match[0].includes('<h2') ? 2 : (match[0].includes('<h3') ? 3 : 4), match });
@@ -182,29 +183,32 @@ export function parseDocumentationPage(html, url) {
 	let currentSection = null;
 	const skipHeadings = new Set(['Functions', 'Examples', 'Methods', 'Fields', 'Constructor']);
 
-	for (const heading of allHeadings) {
-		const headingText = heading.text;
-		const isH2 = heading.level === 2;
-
-		// Track section headers
-		if (isH2 && skipHeadings.has(headingText)) {
-			currentSection = headingText;
-			continue;
-		}
-
-		// Only match if it looks like a function signature (has parentheses) or is a single word
-		const funcMatch = headingText.match(/^(\w+)\s*\(([^)]*)\)/) || headingText.match(/^(\w+)\s*$/);
-		if (funcMatch) {
-			const funcName = funcMatch[1];
-			const hasParams = funcMatch[2] !== undefined;
+		for (const heading of allHeadings) {
+			const headingText = heading.text;
+			const isH2 = heading.level === 2;
+			
+			// Extract heading ID from the match if available
+			const headingIdMatch = heading.match[0].match(/id="([^"]*)"/i);
+			const headingId = headingIdMatch ? headingIdMatch[1] : null;
+			
+			// Track section headers
+			if (isH2 && skipHeadings.has(headingText)) {
+				currentSection = headingText;
+				continue;
+			}
+			
+			// Only match if it looks like a function signature (has parentheses) or is a single word
+			const funcMatch = headingText.match(/^(\w+)\s*\(([^)]*)\)/) || headingText.match(/^(\w+)\s*$/);
+			if (funcMatch) {
+				const funcName = funcMatch[1];
+				const hasParams = funcMatch[2] !== undefined;
 
 			// Skip section headings (only if they don't have parentheses - constructors have params)
-			// Also skip if it's a section header even with empty params like "Functions()"
-			if ((!hasParams || paramsStr === '') && skipHeadings.has(funcName)) {
+			if (!hasParams && skipHeadings.has(funcName)) {
 				currentSection = funcName;
 				continue;
 			}
-
+			
 			// If we're in a Fields section and this has no params, it's a field, not a function
 			if (currentSection === 'Fields' && !hasParams) {
 				// Extract field type from description
@@ -324,10 +328,17 @@ export function parseDocumentationPage(html, url) {
 			// Only extract if this is a real function (has params or is h3/h4, not a section header)
 			let description = '';
 			if (hasParams || heading.level === 3 || heading.level === 4) {
+				// Since we're matching from full HTML, we can use the match index directly
 				const headingEnd = heading.index + heading.match[0].length;
-				const afterHeading = html.slice(headingEnd, headingEnd + 1000);
+				const afterHeading = html.slice(headingEnd, headingEnd + 1500);
+				
 				// Try to get all consecutive <p> tags (description might span multiple paragraphs)
-				const pMatches = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+				// Stop at next heading
+				const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
+				const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
+				const searchArea = afterHeading.slice(0, searchLimit);
+				
+				const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
 				if (pMatches && pMatches.length > 0) {
 					// Combine all paragraphs
 					description = pMatches.map(p => extractText(p)).join(' ').trim();

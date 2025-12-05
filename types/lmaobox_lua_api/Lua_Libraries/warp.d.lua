@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: warp - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/warp/
 -- Path: Lua_Libraries/warp
--- Last updated: 2025-12-05T11:09:57.471Z
+-- Last updated: 2025-12-05T11:20:21.074Z
 
 ---@class warp
 warp = {}

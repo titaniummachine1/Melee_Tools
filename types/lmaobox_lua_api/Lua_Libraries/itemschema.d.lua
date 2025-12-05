@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: itemschema - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/itemschema/
 -- Path: Lua_Libraries/itemschema
--- Last updated: 2025-12-05T11:09:57.441Z
+-- Last updated: 2025-12-05T11:20:21.009Z
 
 ---@class itemschema
 itemschema = {}

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEClientProjectile
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.498Z
+-- Last updated: 2025-12-05T11:20:25.839Z
 
 ---@class CTEClientProjectile
 ---@field m_vecOrigin Vector3

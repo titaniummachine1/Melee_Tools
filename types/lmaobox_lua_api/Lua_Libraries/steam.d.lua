@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: steam - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/steam/
 -- Path: Lua_Libraries/steam
--- Last updated: 2025-12-05T11:09:57.465Z
+-- Last updated: 2025-12-05T11:20:21.060Z
 
 ---@class steam
 steam = {}

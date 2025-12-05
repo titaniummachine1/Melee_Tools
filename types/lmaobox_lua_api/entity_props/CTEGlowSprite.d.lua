@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEGlowSprite
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.490Z
+-- Last updated: 2025-12-05T11:20:25.774Z
 
 ---@class CTEGlowSprite
 ---@field m_vecOrigin Vector3

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEDynamicLight
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.496Z
+-- Last updated: 2025-12-05T11:20:25.828Z
 
 ---@class CTEDynamicLight
 ---@field m_vecOrigin Vector3

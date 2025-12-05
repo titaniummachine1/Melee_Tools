@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: gui - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gui/
 -- Path: Lua_Libraries/gui
--- Last updated: 2025-12-05T11:09:57.419Z
+-- Last updated: 2025-12-05T11:20:20.983Z
 
 ---@class gui
 gui = {}

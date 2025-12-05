@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: MatchGroup - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/MatchGroup/
 -- Path: Lua_Classes/MatchGroup
--- Last updated: 2025-12-05T11:09:57.251Z
+-- Last updated: 2025-12-05T11:20:20.694Z
 
 ---@class MatchGroup
 ---@return any

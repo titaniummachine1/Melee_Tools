@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseEntity
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.451Z
+-- Last updated: 2025-12-05T11:20:25.161Z
 
 ---@class CBaseEntity
 ---@field m_flAnimTime number

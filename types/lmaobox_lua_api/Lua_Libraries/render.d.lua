@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: render - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/render/
 -- Path: Lua_Libraries/render
--- Last updated: 2025-12-05T11:09:57.462Z
+-- Last updated: 2025-12-05T11:20:21.056Z
 
 ---@class render
 render = {}

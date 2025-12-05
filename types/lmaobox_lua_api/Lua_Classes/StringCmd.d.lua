@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StringCmd - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StringCmd/
 -- Path: Lua_Classes/StringCmd
--- Last updated: 2025-12-05T11:09:57.319Z
+-- Last updated: 2025-12-05T11:20:20.786Z
 
 ---@class StringCmd
 ---@return any

@@ -2,7 +2,7 @@
 
 -- Entity Props: CSprite
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.310Z
+-- Last updated: 2025-12-05T11:20:23.846Z
 
 ---@class CSprite
 ---@field m_hAttachedToEntity number

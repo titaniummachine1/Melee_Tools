@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
 -- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T11:09:57.296Z
+-- Last updated: 2025-12-05T11:20:20.754Z
 
 ---@class PhysicsEnvironment
 ---@param gravity Vector3

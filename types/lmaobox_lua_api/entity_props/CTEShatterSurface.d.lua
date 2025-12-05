@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEShatterSurface
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:09:58.491Z
+-- Last updated: 2025-12-05T11:20:25.779Z
 
 ---@class CTEShatterSurface
 ---@field m_vecOrigin Vector3

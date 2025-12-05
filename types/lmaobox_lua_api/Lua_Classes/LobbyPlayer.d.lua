@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: LobbyPlayer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/LobbyPlayer/
 -- Path: Lua_Classes/LobbyPlayer
--- Last updated: 2025-12-05T11:09:57.246Z
+-- Last updated: 2025-12-05T11:20:20.689Z
 
 ---@class LobbyPlayer
 -- Returns the SteamID of the player as a string.

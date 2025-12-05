@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: GameServerLobby - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/GameServerLobby/
 -- Path: Lua_Classes/GameServerLobby
--- Last updated: 2025-12-05T11:09:57.234Z
+-- Last updated: 2025-12-05T11:20:20.660Z
 
 ---@class GameServerLobby
 -- Returns the group ID of the current lobby.

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: UserCmd - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/UserCmd/
 -- Path: Lua_Classes/UserCmd
--- Last updated: 2025-12-05T11:09:57.350Z
+-- Last updated: 2025-12-05T11:20:20.841Z
 
 ---@class UserCmd
 -- Fields are modifiable directly.

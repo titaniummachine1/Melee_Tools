@@ -2,7 +2,7 @@
 
 -- Constants: E_LoadoutSlot
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:09:58.590Z
+-- Last updated: 2025-12-05T11:20:26.042Z
 
 ---@type any
 LOADOUT_POSITION_PRIMARY = 0

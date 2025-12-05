@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lua Globals - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Globals/
 -- Path: Lua_Globals
--- Last updated: 2025-12-05T11:09:57.373Z
+-- Last updated: 2025-12-05T11:20:20.889Z
 
 ---@param msg any
 ---@return any
