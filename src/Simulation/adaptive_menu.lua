@@ -1,8 +1,23 @@
 -- Imports
-local G = require("Cheater_Detection.Utils.Globals")
-local Config = require("Cheater_Detection.Utils.Config")
-local ClassState = require("Simulation.class_state")
-local TimMenu = require("TimMenu")
+local okG, G = pcall(require, "Cheater_Detection.Utils.Globals")
+if not okG or not G then
+	error("AdaptiveMenu: failed to load Globals")
+end
+
+local okConfig, Config = pcall(require, "Cheater_Detection.Utils.Config")
+if not okConfig or not Config then
+	error("AdaptiveMenu: failed to load Config")
+end
+
+local okClassState, ClassState = pcall(require, "Simulation.class_state")
+if not okClassState or not ClassState then
+	error("AdaptiveMenu: failed to load ClassState")
+end
+
+local okTimMenu, TimMenu = pcall(require, "TimMenu")
+if not okTimMenu or not TimMenu then
+	error("AdaptiveMenu: TimMenu not found, please install it!")
+end
 
 -- Module declaration
 local AdaptiveMenu = {}
@@ -116,7 +131,15 @@ end
 
 -- Public API ----
 function AdaptiveMenu.OnDraw()
-	local menuMelee = getMeleeConfig()
+	if not G or not G.Menu or not G.Menu.Melee then
+		return
+	end
+
+	local ok, menuMelee = pcall(getMeleeConfig)
+	if not ok or not menuMelee then
+		return
+	end
+
 	if not menuMelee.Adaptive.Enabled then
 		return
 	end
@@ -126,6 +149,7 @@ function AdaptiveMenu.OnDraw()
 	end
 end
 
+-- Register Draw callback - TimMenu needs to be called every tick
 callbacks.Register("Draw", "AdaptiveMelee_Menu_Draw", AdaptiveMenu.OnDraw)
 
 -- Self-init (optional) ---

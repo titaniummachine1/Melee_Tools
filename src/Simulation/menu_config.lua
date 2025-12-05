@@ -1,6 +1,13 @@
 -- Imports
-local G = require("Cheater_Detection.Utils.Globals")
-local ClassState = require("Simulation.class_state")
+local okG, G = pcall(require, "Cheater_Detection.Utils.Globals")
+if not okG or not G then
+	error("MenuConfig: failed to load Globals")
+end
+
+local okClassState, ClassState = pcall(require, "Simulation.class_state")
+if not okClassState or not ClassState then
+	error("MenuConfig: failed to load ClassState")
+end
 
 -- Module declaration
 local MenuConfig = {}
