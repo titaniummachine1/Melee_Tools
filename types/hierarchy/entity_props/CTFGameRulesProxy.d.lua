@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFGameRulesProxy
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.569Z
+-- Last updated: 2025-12-05T04:04:19.817Z
 
 ---@class CTFGameRulesProxy
 ---@field m_nGameType number

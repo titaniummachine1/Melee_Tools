@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: EventInfo - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/EventInfo/
 -- Path: Lua_Classes/EventInfo
--- Last updated: 2025-12-05T03:55:13.762Z
+-- Last updated: 2025-12-05T04:04:19.160Z
 
 ---@class EventInfo
 ---@return any

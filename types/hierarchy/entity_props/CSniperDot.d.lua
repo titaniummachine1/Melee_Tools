@@ -2,7 +2,7 @@
 
 -- Entity Props: CSniperDot
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.352Z
+-- Last updated: 2025-12-05T04:04:19.779Z
 
 ---@class CSniperDot
 ---@field m_flChargeStartTime number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEPhysicsProp
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.904Z
+-- Last updated: 2025-12-05T04:04:19.926Z
 
 ---@class CTEPhysicsProp
 ---@field m_vecOrigin Vector3

@@ -2,7 +2,7 @@
 
 -- Entity Props: CDetailController
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.794Z
+-- Last updated: 2025-12-05T04:04:19.857Z
 
 ---@class CDetailController
 ---@field m_flFadeStartDist number

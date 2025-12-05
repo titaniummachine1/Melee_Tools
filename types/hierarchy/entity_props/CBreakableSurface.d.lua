@@ -2,7 +2,7 @@
 
 -- Entity Props: CBreakableSurface
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.852Z
+-- Last updated: 2025-12-05T04:04:19.892Z
 
 ---@class CBreakableSurface
 ---@field m_nNumWide number

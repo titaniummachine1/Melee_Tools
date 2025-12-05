@@ -2,7 +2,7 @@
 
 -- Entity Props: CTESmoke
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.895Z
+-- Last updated: 2025-12-05T04:04:19.924Z
 
 ---@class CTESmoke
 ---@field m_vecOrigin Vector3

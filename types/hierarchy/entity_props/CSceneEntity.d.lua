@@ -2,7 +2,7 @@
 
 -- Entity Props: CSceneEntity
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.808Z
+-- Last updated: 2025-12-05T04:04:19.872Z
 
 ---@class CSceneEntity
 ---@field m_nSceneStringIndex number

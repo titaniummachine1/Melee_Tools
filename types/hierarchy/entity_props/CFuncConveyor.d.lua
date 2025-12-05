@@ -2,7 +2,7 @@
 
 -- Entity Props: CFuncConveyor
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.851Z
+-- Last updated: 2025-12-05T04:04:19.891Z
 
 ---@class CFuncConveyor
 ---@field m_flConveyorSpeed number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CMerasmus
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.425Z
+-- Last updated: 2025-12-05T04:04:19.801Z
 
 ---@class CMerasmus
 ---@field m_bRevealed number

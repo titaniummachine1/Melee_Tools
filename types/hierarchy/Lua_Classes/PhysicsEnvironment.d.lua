@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
 -- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T03:55:13.799Z
+-- Last updated: 2025-12-05T04:04:19.207Z
 
 ---@class PhysicsEnvironment
 ---@return any

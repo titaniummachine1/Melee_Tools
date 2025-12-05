@@ -2,7 +2,7 @@
 
 -- Entity Props: CSmokeTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.713Z
+-- Last updated: 2025-12-05T04:04:19.838Z
 
 ---@class CSmokeTrail
 ---@field m_SpawnRate number

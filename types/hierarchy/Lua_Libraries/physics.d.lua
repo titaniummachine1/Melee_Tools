@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: physics - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/physics/
 -- Path: Lua_Libraries/physics
--- Last updated: 2025-12-05T03:55:13.911Z
+-- Last updated: 2025-12-05T04:04:19.432Z
 
 ---@class physics
 physics = {}

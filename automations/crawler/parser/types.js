@@ -98,58 +98,65 @@ function parseEntityPropsFromHtml(html) {
 
 function parseConstantsByCategory(html) {
 	const sections = [];
-	
+
 	// Find h3 headings (these are the constant category names like E_UserCmd, E_ButtonCode, etc.)
-	const h3Regex = /<h3[^>]*id="([^"]+)"[^>]*>([^<]+)<\/h3>/gi;
+	// Try with id first (more specific)
+	const h3Regex = /<h3[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h3>/gi;
 	let h3Match;
 	const h3Positions = [];
 	while ((h3Match = h3Regex.exec(html)) !== null) {
 		const id = h3Match[1].trim();
-		const name = h3Match[2].trim();
-		h3Positions.push({ id, name, index: h3Match.index });
-	}
-	
-	// If no h3 with id found, try h3 without id
-	if (h3Positions.length === 0) {
-		const h3SimpleRegex = /<h3[^>]*>([^<]+)<\/h3>/gi;
-		while ((h3Match = h3SimpleRegex.exec(html)) !== null) {
-			const name = h3Match[1].trim();
-			h3Positions.push({ id: null, name, index: h3Match.index });
+		const name = h3Match[2].replace(/<[^>]+>/g, '').trim();
+		if (name) {
+			h3Positions.push({ id, name, index: h3Match.index });
 		}
 	}
-	
+
+	// If no h3 with id found, try h3 without id (fallback)
+	if (h3Positions.length === 0) {
+		const h3SimpleRegex = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
+		// Reset regex lastIndex
+		h3SimpleRegex.lastIndex = 0;
+		while ((h3Match = h3SimpleRegex.exec(html)) !== null) {
+			const name = h3Match[1].replace(/<[^>]+>/g, '').trim();
+			if (name) {
+				h3Positions.push({ id: null, name, index: h3Match.index });
+			}
+		}
+	}
+
 	// Process each h3 section
 	for (let i = 0; i < h3Positions.length; i++) {
 		const current = h3Positions[i];
 		const end = i + 1 < h3Positions.length ? h3Positions[i + 1].index : html.length;
 		const section = html.slice(current.index, end);
-		
+
 		const constants = [];
-		
-		// Find the table after the h3 heading
-		const tableMatch = section.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
+
+		// Find the table after the h3 heading (use non-greedy but ensure we get the full table)
+		const tableMatch = section.match(/<table[^>]*>([\s\S]*?)<\/table>/is);
 		if (tableMatch) {
 			const tableContent = tableMatch[1];
-			
+
 			// Extract table rows (skip the header row)
 			const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
 			let rowMatch;
 			let isFirstRow = true;
-			
+
 			while ((rowMatch = rowRegex.exec(tableContent)) !== null) {
 				// Skip header row
 				if (isFirstRow) {
 					isFirstRow = false;
 					continue;
 				}
-				
+
 				const rowContent = rowMatch[1];
-				
+
 				// Extract table cells
 				const cellRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
 				const cells = [];
 				let cellMatch;
-				
+
 				while ((cellMatch = cellRegex.exec(rowContent)) !== null) {
 					let cellText = cellMatch[1]
 						.replace(/<[^>]+>/g, '')
@@ -162,18 +169,18 @@ function parseConstantsByCategory(html) {
 						.trim();
 					cells.push(cellText);
 				}
-				
+
 				// First cell is name, second cell is value
 				if (cells.length >= 2) {
 					const name = cells[0].trim();
 					let value = cells[1].trim();
-					
+
 					// Clean up the value - handle HTML entities and expressions
 					value = value
 						.replace(/&lt;/g, '<')
 						.replace(/&gt;/g, '>')
 						.replace(/&amp;/g, '&');
-					
+
 					// Only add if name looks like a constant (uppercase with underscores)
 					if (name && /^[A-Z_][A-Z0-9_]*$/.test(name)) {
 						constants.push({ name, value });
@@ -181,7 +188,7 @@ function parseConstantsByCategory(html) {
 				}
 			}
 		}
-		
+
 		// Fallback: try to extract from text if no table found
 		if (constants.length === 0) {
 			const sectionText = section
@@ -202,13 +209,13 @@ function parseConstantsByCategory(html) {
 				}
 			}
 		}
-		
+
 		if (constants.length > 0) {
 			const cleanName = current.name.replace(/[^A-Za-z0-9_]/g, '_') || 'constants';
 			sections.push({ name: cleanName, constants });
 		}
 	}
-	
+
 	return sections;
 }
 
@@ -355,6 +362,36 @@ export async function generateTypeForPage(parsedDataInput) {
 		return { filePath: null };
 	}
 
+	// Special case: constants page emits many per-category files
+	if (parsedDataInput.url && parsedDataInput.url.toLowerCase().includes('lua_constants')) {
+		try {
+			const rel = parsedDataInput.url.replace(API_BASE_URL, '').replace(/\/$/, '') || 'Lua_Constants';
+			const cachePath = path.join(CACHE_DIR, rel + '.html');
+			const html = await fs.readFile(cachePath, 'utf8');
+			const sections = parseConstantsByCategory(html);
+			if (sections.length > 0) {
+				const baseDir = path.join(TYPES_DIR, 'hierarchy', 'constants');
+				await fs.mkdir(baseDir, { recursive: true });
+				for (const sec of sections) {
+					let content = `---@meta\n\n`;
+					content += `-- Constants: ${sec.name}\n`;
+					content += `-- Auto-generated from: ${parsedDataInput.url}\n`;
+					content += `-- Last updated: ${new Date().toISOString()}\n\n`;
+					for (const c of sec.constants) {
+						content += `---@type any\n`;
+						content += `${c.name} = ${c.value}\n\n`;
+					}
+					const filePath = path.join(baseDir, `${sec.name}.d.lua`);
+					await fs.writeFile(filePath, content, 'utf8');
+				}
+			}
+		} catch (e) {
+			console.warn(`[TypeGenerator] Constants generation failed: ${e.message}`);
+		}
+		// Do not write a single monolith file for Lua_Constants; handled above
+		return { filePath: null };
+	}
+
 	const pagePath = parsedDataInput.path || buildPathFromUrl(parsedDataInput.url);
 	const dirPath = path.dirname(pagePath) || '.';
 	const sanitizedDir = buildFolderPath(dirPath);
@@ -429,6 +466,16 @@ export async function generateConstantsByCategoryFromCache() {
 			await fs.writeFile(filePath, content, 'utf8');
 			count++;
 		}
+
+		// Delete the old main Lua_Constants.d.lua file if it exists (we use folder structure now)
+		const oldMainFile = path.join(TYPES_DIR, 'hierarchy', 'Lua_Constants.d.lua');
+		try {
+			await fs.unlink(oldMainFile);
+			console.log(`[TypeGenerator] Removed old main constants file: ${oldMainFile}`);
+		} catch (e) {
+			// File doesn't exist, that's fine
+		}
+
 		console.log(`[TypeGenerator] Generated ${count} constants files`);
 		return count;
 	} catch (e) {

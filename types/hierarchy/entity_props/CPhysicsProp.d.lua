@@ -2,7 +2,7 @@
 
 -- Entity Props: CPhysicsProp
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.826Z
+-- Last updated: 2025-12-05T04:04:19.885Z
 
 ---@class CPhysicsProp
 ---@field m_bAwake number

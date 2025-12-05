@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: WeaponData - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/WeaponData/
 -- Path: Lua_Classes/WeaponData
--- Last updated: 2025-12-05T03:55:13.845Z
+-- Last updated: 2025-12-05T04:04:19.302Z
 
 ---@class WeaponData
 ---@return any

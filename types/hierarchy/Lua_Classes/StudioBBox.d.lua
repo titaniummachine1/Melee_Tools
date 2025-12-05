@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StudioBBox - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StudioBBox/
 -- Path: Lua_Classes/StudioBBox
--- Last updated: 2025-12-05T03:55:13.818Z
+-- Last updated: 2025-12-05T04:04:19.251Z
 
 ---@class StudioBBox
 ---@return any

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Model - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Model/
 -- Path: Lua_Classes/Model
--- Last updated: 2025-12-05T03:55:13.772Z
+-- Last updated: 2025-12-05T04:04:19.178Z
 
 ---@class Model
 local Model = {}

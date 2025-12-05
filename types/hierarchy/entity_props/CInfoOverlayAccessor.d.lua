@@ -2,7 +2,7 @@
 
 -- Entity Props: CInfoOverlayAccessor
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.831Z
+-- Last updated: 2025-12-05T04:04:19.888Z
 
 ---@class CInfoOverlayAccessor
 ---@field m_iTextureFrameIndex number

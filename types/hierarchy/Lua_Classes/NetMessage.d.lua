@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: NetMessage - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetMessage/
 -- Path: Lua_Classes/NetMessage
--- Last updated: 2025-12-05T03:55:13.784Z
+-- Last updated: 2025-12-05T04:04:19.192Z
 
 ---@class NetMessage
 ---@return any

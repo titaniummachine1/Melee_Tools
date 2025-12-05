@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFProjectile_Pipebomb
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.367Z
+-- Last updated: 2025-12-05T04:04:19.786Z
 
 ---@class CTFProjectile_Pipebomb
 ---@field m_bTouched number

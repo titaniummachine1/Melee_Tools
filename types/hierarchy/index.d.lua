@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/
 -- Path: index
--- Last updated: 2025-12-05T03:55:13.723Z
+-- Last updated: 2025-12-05T04:04:19.080Z
 
 ---@return any
 function Community() end

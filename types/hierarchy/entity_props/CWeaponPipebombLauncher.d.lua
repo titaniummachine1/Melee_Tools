@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponPipebombLauncher
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.360Z
+-- Last updated: 2025-12-05T04:04:19.783Z
 
 ---@class CWeaponPipebombLauncher
 ---@field m_iPipebombCount number

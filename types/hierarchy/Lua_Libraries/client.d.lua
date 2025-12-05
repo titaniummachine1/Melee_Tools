@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: client - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/client/
 -- Path: Lua_Libraries/client
--- Last updated: 2025-12-05T03:55:13.863Z
+-- Last updated: 2025-12-05T04:04:19.324Z
 
 ---@class client
 client = {}

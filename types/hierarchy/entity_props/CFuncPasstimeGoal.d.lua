@@ -2,7 +2,7 @@
 
 -- Entity Props: CFuncPasstimeGoal
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.672Z
+-- Last updated: 2025-12-05T04:04:19.830Z
 
 ---@class CFuncPasstimeGoal
 ---@field m_bTriggerDisabled number

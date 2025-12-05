@@ -240,26 +240,26 @@ export function parseDocumentationPage(html, url) {
 	const tableMatches = page.content.matchAll(/<table[^>]*>([\s\S]*?)<\/table>/gi);
 	for (const tableMatch of tableMatches) {
 		const tableContent = tableMatch[1];
-		
+
 		// Extract table rows (skip the header row)
 		const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
 		let rowMatch;
 		let isFirstRow = true;
-		
+
 		while ((rowMatch = rowRegex.exec(tableContent)) !== null) {
 			// Skip header row
 			if (isFirstRow) {
 				isFirstRow = false;
 				continue;
 			}
-			
+
 			const rowContent = rowMatch[1];
-			
+
 			// Extract table cells
 			const cellRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
 			const cells = [];
 			let cellMatch;
-			
+
 			while ((cellMatch = cellRegex.exec(rowContent)) !== null) {
 				let cellText = cellMatch[1]
 					.replace(/<[^>]+>/g, '')
@@ -272,18 +272,18 @@ export function parseDocumentationPage(html, url) {
 					.trim();
 				cells.push(cellText);
 			}
-			
+
 			// First cell is name, second cell is value
 			if (cells.length >= 2) {
 				const name = cells[0].trim();
 				let value = cells[1].trim();
-				
+
 				// Clean up the value - handle HTML entities and expressions
 				value = value
 					.replace(/&lt;/g, '<')
 					.replace(/&gt;/g, '>')
 					.replace(/&amp;/g, '&');
-				
+
 				// Only add if name looks like a constant (uppercase with underscores)
 				if (name && /^[A-Z_][A-Z0-9_]*$/.test(name)) {
 					page.constants.push({ name, value });

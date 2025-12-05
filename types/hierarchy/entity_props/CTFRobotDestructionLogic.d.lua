@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFRobotDestructionLogic
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T03:55:14.480Z
+-- Last updated: 2025-12-05T04:04:19.809Z
 
 ---@class CTFRobotDestructionLogic
 ---@field m_nMaxPoints number
