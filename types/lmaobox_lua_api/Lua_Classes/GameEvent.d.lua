@@ -1,0 +1,41 @@
+---@meta
+
+-- Lmaobox Lua API: GameEvent - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/GameEvent/
+-- Path: Lua_Classes/GameEvent
+-- Last updated: 2025-12-05T09:48:47.710Z
+
+---@class GameEvent
+---@return any
+---@field Methods fun(self: GameEvent): any
+---@return any
+---@field Examples fun(self: GameEvent): any
+---@return string
+---@field GetName fun(self: GameEvent): string
+---@param fieldName string
+---@return string
+---@field GetString fun(self: GameEvent, fieldName: string): string
+---@param fieldName string
+---@return number
+---@field GetInt fun(self: GameEvent, fieldName: string): number
+---@param fieldName string
+---@return any
+---@field GetFloat fun(self: GameEvent, fieldName: string): any
+---@param fieldName string
+---@param value string
+---@return string
+---@field SetString fun(self: GameEvent, fieldName: string, value: string): string
+---@param fieldName string
+---@param value number
+---@return number
+---@field SetInt fun(self: GameEvent, fieldName: string, value: number): number
+---@param fieldName string
+---@param value number
+---@return any
+---@field SetFloat fun(self: GameEvent, fieldName: string, value: number): any
+---@param fieldName string
+---@param value boolean
+---@return any
+---@field SetBool fun(self: GameEvent, fieldName: string, value: boolean): any
+local GameEvent = {}
+

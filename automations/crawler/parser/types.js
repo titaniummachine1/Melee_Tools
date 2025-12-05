@@ -187,6 +187,14 @@ export function parseConstantsByCategory(html) {
 						.replace(/&gt;/g, '>')
 						.replace(/&amp;/g, '&');
 
+					// Normalize stray parentheses that break Lua parsing
+					// Many table cells start with "(" but omit the closing ")"
+					if (value.startsWith('(') && value.endsWith(')')) {
+						value = value.slice(1, -1).trim();
+					} else if (value.startsWith('(') && !value.includes(')')) {
+						value = value.slice(1).trim();
+					}
+
 					// Only add if name looks like a constant
 					// Accept: UPPER_CASE, PascalCase, k_Prefix, or single letters
 					if (name && /^[A-Za-z_]/.test(name)) {

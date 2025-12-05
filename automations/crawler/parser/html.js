@@ -208,6 +208,16 @@ export function parseDocumentationPage(html, url) {
 			if (paramsStr) {
 				const parts = paramsStr.split(',').map(p => p.trim()).filter(Boolean);
 				for (const part of parts) {
+					// Handle generic-style params like "Table< TempEntity, EventInfo > entEvtTable"
+					const genericMatch = part.match(/^(.+)\s+([A-Za-z_][A-Za-z0-9_]*)$/);
+					if (!part.includes(':') && genericMatch) {
+						const rawType = genericMatch[1].replace(/\s+/g, '');
+						const cleanType = rawType.replace(/^Table</, 'table<');
+						const pName = genericMatch[2];
+						params.push({ name: pName, type: cleanType });
+						continue;
+					}
+
 					const pm = part.match(/^([^:]+):(.+)$/);
 					if (pm) {
 						const tLeft = pm[1].trim();

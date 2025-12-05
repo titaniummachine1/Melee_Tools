@@ -1,0 +1,54 @@
+---@meta
+
+-- Lmaobox Lua API: ViewSetup - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ViewSetup/
+-- Path: Lua_Classes/ViewSetup
+-- Last updated: 2025-12-05T09:48:48.374Z
+
+---@class ViewSetup
+---@return any
+---@field Fields fun(self: ViewSetup): any
+---@return any
+---@field Examples fun(self: ViewSetup): any
+---@return any
+---@field x fun(self: ViewSetup): any
+---@return any
+---@field unscaledX fun(self: ViewSetup): any
+---@return any
+---@field y fun(self: ViewSetup): any
+---@return any
+---@field unscaledY fun(self: ViewSetup): any
+---@return any
+---@field width fun(self: ViewSetup): any
+---@return any
+---@field unscaledWidth fun(self: ViewSetup): any
+---@return any
+---@field height fun(self: ViewSetup): any
+---@return any
+---@field unscaledHeight fun(self: ViewSetup): any
+---@return any
+---@field ortho fun(self: ViewSetup): any
+---@return any
+---@field orthoLeft fun(self: ViewSetup): any
+---@return any
+---@field orthoTop fun(self: ViewSetup): any
+---@return any
+---@field orthoRight fun(self: ViewSetup): any
+---@return any
+---@field orthoBottom fun(self: ViewSetup): any
+---@return any
+---@field fov fun(self: ViewSetup): any
+---@return any
+---@field fovViewmodel fun(self: ViewSetup): any
+---@return any
+---@field origin fun(self: ViewSetup): any
+---@return any
+---@field angles fun(self: ViewSetup): any
+---@return any
+---@field zNear fun(self: ViewSetup): any
+---@return any
+---@field zFar fun(self: ViewSetup): any
+---@return any
+---@field aspectRatio fun(self: ViewSetup): any
+local ViewSetup = {}
+
