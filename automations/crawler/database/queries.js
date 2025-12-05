@@ -4,23 +4,39 @@ export const db = {
 	// Pages
 	insertPage(page) {
 		const db = getDatabase();
+		const existing = this.getPage(page.url);
+
+		// Preserve existing fields if not provided (especially parsed_data/path)
+		const parsedDataValue = page.parsed_data !== undefined ? page.parsed_data : existing?.parsed_data || null;
+		const pathValue = page.path !== undefined ? page.path : existing?.path || null;
+		const titleValue = page.title !== undefined ? page.title : existing?.title || null;
+		const contentHashValue = page.content_hash !== undefined ? page.content_hash : existing?.content_hash || null;
+		const lastFetchedValue = page.last_fetched !== undefined ? page.last_fetched : existing?.last_fetched || null;
+		const fetchCountValue = page.fetch_count !== undefined ? page.fetch_count : existing?.fetch_count || 0;
+		const pageTypeValue = page.page_type !== undefined ? page.page_type : existing?.page_type || null;
+		const parentUrlValue = page.parent_url !== undefined ? page.parent_url : existing?.parent_url || null;
+		const depthValue = page.depth !== undefined ? page.depth : existing?.depth || 0;
+		const sitemapOrderValue = page.sitemap_order !== undefined ? page.sitemap_order : existing?.sitemap_order || null;
+
 		const stmt = db.prepare(`
 			INSERT OR REPLACE INTO pages 
 			(url, path, title, content_hash, last_fetched, fetch_count, page_type, parent_url, depth, sitemap_order, parsed_data)
 			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		`);
+		const parsedDataJson = typeof parsedDataValue === 'string' ? parsedDataValue : (parsedDataValue ? JSON.stringify(parsedDataValue) : null);
+
 		return stmt.run(
 			page.url,
-			page.path || null,
-			page.title || null,
-			page.content_hash || null,
-			page.last_fetched || Date.now(),
-			page.fetch_count || 0,
-			page.page_type || null,
-			page.parent_url || null,
-			page.depth || 0,
-			page.sitemap_order || null,
-			page.parsed_data ? JSON.stringify(page.parsed_data) : null
+			pathValue,
+			titleValue,
+			contentHashValue,
+			lastFetchedValue || Date.now(),
+			fetchCountValue,
+			pageTypeValue,
+			parentUrlValue,
+			depthValue,
+			sitemapOrderValue,
+			parsedDataJson
 		);
 	},
 
@@ -37,6 +53,11 @@ export const db = {
 	getAllPagesWithPaths() {
 		const db = getDatabase();
 		return db.prepare('SELECT * FROM pages WHERE path IS NOT NULL ORDER BY path').all();
+	},
+
+	getAllPagesWithParsedData() {
+		const db = getDatabase();
+		return db.prepare('SELECT * FROM pages WHERE parsed_data IS NOT NULL ORDER BY url').all();
 	},
 
 	updatePagePath(url, pathInfo) {

@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { TYPES_DIR } from '../config.js';
+import { TYPES_DIR, API_BASE_URL } from '../config.js';
 import { buildFolderPath } from '../utils/paths.js';
 import { db } from '../database/queries.js';
 
@@ -125,70 +125,67 @@ function generateTypeDefinition(page) {
 	return content;
 }
 
+function buildPathFromUrl(url) {
+	const relative = url.replace(API_BASE_URL, '').replace(/\/+$/, '');
+	if (!relative) return 'index';
+	return relative;
+}
+
 export async function generateTypesByShortestPath() {
 	console.log('[TypeGenerator] Generating type definitions by shortest path...');
 
-	const pages = db.getAllPagesWithPaths();
-
-	// Group by directory path
-	const pagesByDir = {};
-	for (const page of pages) {
-		if (!page.path) continue;
-
-		const dirPath = path.dirname(page.path) || '.';
-		const sanitizedDir = buildFolderPath(dirPath);
-
-		if (!pagesByDir[sanitizedDir]) {
-			pagesByDir[sanitizedDir] = [];
-		}
-		pagesByDir[sanitizedDir].push(page);
+	// Use all pages that have parsed data (even if path not computed)
+	const pages = db.getAllPagesWithParsedData();
+	if (!pages || pages.length === 0) {
+		console.log('[TypeGenerator] No pages with parsed data, skipping.');
+		return 0;
 	}
 
-	// Generate type files
 	let generated = 0;
-	for (const [dirPath, dirPages] of Object.entries(pagesByDir)) {
-		const typeDir = path.join(TYPES_DIR, 'hierarchy', dirPath === '.' ? '' : dirPath);
+
+	for (const page of pages) {
+		// Determine output path
+		const pagePath = page.path || buildPathFromUrl(page.url);
+		const dirPath = path.dirname(pagePath) || '.';
+		const sanitizedDir = buildFolderPath(dirPath);
+		const typeDir = path.join(TYPES_DIR, 'hierarchy', sanitizedDir === '.' ? '' : sanitizedDir);
 		await fs.mkdir(typeDir, { recursive: true });
 
-		// Generate one file per page (or merge pages in same dir if preferred)
-		for (const page of dirPages) {
-			const fileName = path.basename(page.path) + '.d.lua';
-			const filePath = path.join(typeDir, fileName);
+		const fileName = path.basename(pagePath) + '.d.lua';
+		const filePath = path.join(typeDir, fileName);
 
-			// Get parsed page data from database
-			let parsedData = {
-				url: page.url,
-				title: page.title,
-				path: page.path,
-				examples: [],
-				libraries: [],
-				classes: [],
-				functions: [],
-				constants: []
-			};
+		// Get parsed page data from database
+		let parsedData = {
+			url: page.url,
+			title: page.title,
+			path: pagePath,
+			examples: [],
+			libraries: [],
+			classes: [],
+			functions: [],
+			constants: []
+		};
 
-			// Try to load parsed data from database
-			if (page.parsed_data) {
-				try {
-					const parsed = JSON.parse(page.parsed_data);
-					parsedData = {
-						...parsedData,
-						examples: parsed.examples || [],
-						libraries: parsed.libraries || [],
-						classes: parsed.classes || [],
-						functions: parsed.functions || [],
-						constants: parsed.constants || []
-					};
-				} catch (e) {
-					console.warn(`[TypeGenerator] Failed to parse stored data for ${page.url}: ${e.message}`);
-				}
+		if (page.parsed_data) {
+			try {
+				const parsed = JSON.parse(page.parsed_data);
+				parsedData = {
+					...parsedData,
+					examples: parsed.examples || [],
+					libraries: parsed.libraries || [],
+					classes: parsed.classes || [],
+					functions: parsed.functions || [],
+					constants: parsed.constants || []
+				};
+			} catch (e) {
+				console.warn(`[TypeGenerator] Failed to parse stored data for ${page.url}: ${e.message}`);
 			}
-
-			const content = generateTypeDefinition(parsedData);
-			await fs.writeFile(filePath, content, 'utf8');
-			db.saveTypeDefinition(page.url, page.path, content);
-			generated++;
 		}
+
+		const content = generateTypeDefinition(parsedData);
+		await fs.writeFile(filePath, content, 'utf8');
+		db.saveTypeDefinition(page.url, pagePath, content);
+		generated++;
 	}
 
 	console.log(`[TypeGenerator] Generated ${generated} type definition files`);

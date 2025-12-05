@@ -60,11 +60,32 @@ export async function runCrawler(force = false) {
 		let changed = 0;
 
 		console.log('\n[Crawler] Fetching pages (with 1s rate limit and session cache)...');
-		const pagesToProcess = new Set(urls);
-		const processedUrls = new Set();
 
-		// Process pages, following links (BFS-style)
-		const queue = [...urls];
+		// Track planned/processed pages
+		const pagesToProcess = new Set();
+		const processedUrls = new Set();
+		const queuedUrls = new Set();
+
+		// Helper: enqueue with priority for new/unknown pages
+		const enqueue = (targetUrl, priority = false) => {
+			if (processedUrls.has(targetUrl) || queuedUrls.has(targetUrl)) return;
+			queuedUrls.add(targetUrl);
+			pagesToProcess.add(targetUrl);
+			if (priority) {
+				queue.unshift(targetUrl);
+			} else {
+				queue.push(targetUrl);
+			}
+		};
+
+		// Process pages, following links (BFS-style) with prioritization
+		const queue = [];
+
+		// Seed queue: prioritize newly discovered URLs or URLs not yet in DB
+		for (const url of urls) {
+			const isNew = newUrls.includes(url) || !db.getPage(url);
+			enqueue(url, isNew);
+		}
 
 		while (queue.length > 0) {
 			const url = queue.shift();
@@ -82,7 +103,7 @@ export async function runCrawler(force = false) {
 			}
 
 			const shouldFetch = await pageNeedsFetch(url);
-			if (shouldFetch || newUrls.includes(url)) {
+			if (force || shouldFetch || newUrls.includes(url)) {
 				const result = await fetchPage(url, force);
 				if (result) {
 					if (result.fetched) fetched++;
@@ -107,12 +128,12 @@ export async function runCrawler(force = false) {
 
 					// Add linked pages to queue if they're in our scope and not yet processed
 					for (const link of parsed.links) {
-						if (link.to_url.startsWith(API_BASE_URL) &&
-							!processedUrls.has(link.to_url) &&
-							!queue.includes(link.to_url)) {
-							pagesToProcess.add(link.to_url);
-							queue.push(link.to_url);
+						if (!link.to_url.startsWith(API_BASE_URL)) {
+							continue;
 						}
+
+						const isNewLink = newUrls.includes(link.to_url) || !db.getPage(link.to_url);
+						enqueue(link.to_url, isNewLink);
 					}
 				}
 			}

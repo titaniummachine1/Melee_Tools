@@ -11,4 +11,5 @@ export const TYPES_DIR = path.join(WORKSPACE_ROOT, 'types');
 export const CACHE_DIR = path.join(WORKSPACE_ROOT, '.cache', 'docs');
 export const DB_PATH = path.join(WORKSPACE_ROOT, '.cache', 'docs-graph.db');
 export const LAST_UPDATE_FILE = path.join(WORKSPACE_ROOT, '.cache', 'last-update.json');
+export const SESSION_FILE = path.join(TYPES_DIR, '.session');
 export const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;

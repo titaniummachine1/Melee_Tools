@@ -12,7 +12,22 @@
 import { runCrawler } from './crawler/index.js';
 import { generateDocsIndex } from './crawler/parser/docs-index.js';
 
+// Check if dependencies are installed
+async function checkDependencies() {
+	try {
+		await import('better-sqlite3');
+	} catch (error) {
+		console.error('❌ Missing dependencies!');
+		console.error('Please run: cd automations && npm install');
+		console.error('\nOr use the VS Code task: Ctrl+Shift+P → Tasks: Run Task → 🔄 Refresh Documentation Types');
+		process.exit(1);
+	}
+}
+
 async function main() {
+	// Check dependencies first
+	await checkDependencies();
+
 	console.log('═══════════════════════════════════════════════════════════');
 	console.log('  🔄 Refreshing Documentation Types');
 	console.log('═══════════════════════════════════════════════════════════\n');

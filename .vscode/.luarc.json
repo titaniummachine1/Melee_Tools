@@ -40,6 +40,25 @@
     "Lua.hint.paramName": "All",
     "Lua.hint.setType": true,
     "Lua.hint.arrayIndex": "Enable",
-    "Lua.telemetry.enable": false
+    "Lua.telemetry.enable": false,
+    "Lua.diagnostics": {
+        "globals": [
+            "KEY_LSHIFT",
+            "KEY_NONE",
+            "KEY_RSHIFT",
+            "Lua__fileName",
+            "callbacks",
+            "client",
+            "draw",
+            "engine",
+            "entities",
+            "filesystem",
+            "globals",
+            "gui",
+            "input",
+            "printc",
+            "render",
+            "warp"
+        ]
+    }
 }
-

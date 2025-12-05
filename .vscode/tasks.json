@@ -24,7 +24,10 @@
         {
             "label": "🔄 Refresh Documentation Types",
             "type": "shell",
-            "command": "node ${workspaceFolder}/automations/refresh-docs.js",
+            "command": "npm install; node refresh-docs.js",
+            "options": {
+                "cwd": "${workspaceFolder}/automations"
+            },
             "group": "test",
             "presentation": {
                 "reveal": "always",
