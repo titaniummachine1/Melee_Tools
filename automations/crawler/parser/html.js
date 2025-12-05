@@ -330,7 +330,9 @@ export function parseDocumentationPage(html, url) {
 			// Always try to extract description for h3/h4 headings (functions)
 			if (heading.level === 3 || heading.level === 4) {
 				// Since we're matching from full HTML, we can use the match index directly
-				const headingEnd = heading.index + heading.match[0].length;
+				// heading.match is the matchAll result, match[0] is the full match string
+				const matchString = heading.match[0];
+				const headingEnd = heading.index + matchString.length;
 				const afterHeading = html.slice(headingEnd, headingEnd + 1500);
 
 				// Try to get all consecutive <p> tags (description might span multiple paragraphs)

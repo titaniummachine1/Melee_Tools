@@ -56,6 +56,14 @@ async function runSinglePage(target) {
 		console.log(`[Single] Generating type for: ${parsed.path}`);
 		console.log(`[Single] Description: ${parsed.description || '(none)'}`);
 		console.log(`[Single] Functions: ${parsed.functions.length}`);
+		const funcsWithDesc = parsed.functions.filter(f => f.description && f.description.length > 0);
+		console.log(`[Single] Functions with descriptions: ${funcsWithDesc.length}`);
+		if (funcsWithDesc.length > 0) {
+			console.log(`[Single] Sample descriptions:`);
+			funcsWithDesc.slice(0, 3).forEach(f => {
+				console.log(`  - ${f.name}: "${f.description.substring(0, 50)}..."`);
+			});
+		}
 		console.log(`[Single] Examples: ${parsed.examples.length}`);
 
 		const result = await generateTypeForPage(parsed);

@@ -60,8 +60,8 @@ async function main() {
 
 			// Stage all changes
 			try {
-				execSync('git add -A', { 
-					cwd: workspaceRoot, 
+				execSync('git add -A', {
+					cwd: workspaceRoot,
 					stdio: ['ignore', 'pipe', 'pipe'],
 					encoding: 'utf8'
 				});
@@ -72,7 +72,7 @@ async function main() {
 					encoding: 'utf8',
 					stdio: ['ignore', 'pipe', 'ignore']
 				});
-				
+
 				if (!stagedCheck || stagedCheck.trim() === '') {
 					// No staged files, so the error is real
 					throw new Error(`git add -A failed: ${error.message}`);
