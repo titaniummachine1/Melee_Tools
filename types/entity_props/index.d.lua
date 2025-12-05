@@ -1,0 +1,16 @@
+---@meta
+
+-- Entity Properties Index
+-- All entity property definitions are automatically loaded by the Lua Language Server
+-- when ${workspace}/types is included in Lua.workspace.library
+--
+-- File organization:
+-- - entity_base.d.lua - Base entity properties (CBaseEntity)
+-- - entity_player.d.lua - Player entity properties (CTFPlayer)
+-- - entity_weapons.d.lua - Weapon entity properties
+-- - entity_projectiles.d.lua - Projectile entity properties
+-- - entity_buildings.d.lua - Building entity properties
+-- - entity_items.d.lua - Item entity properties
+--
+-- Auto-updating to latest Lua 5.4.x syntax
+-- API Documentation: http://lmaobox.net/lua/sitemap.xml

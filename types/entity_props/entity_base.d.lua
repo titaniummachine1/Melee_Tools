@@ -1,0 +1,58 @@
+---@meta
+
+-- Base Entity Properties
+-- Auto-updating to latest Lua 5.4.x syntax
+-- API Documentation: http://lmaobox.net/lua/sitemap.xml
+
+---@class Entity
+---@field GetIndex fun(self: Entity): number
+---@field GetName fun(self: Entity): string
+---@field IsAlive fun(self: Entity): boolean
+---@field IsDormant fun(self: Entity): boolean
+---@field GetAbsOrigin fun(self: Entity): Vector3
+---@field GetHealth fun(self: Entity): number
+---@field GetTeamNumber fun(self: Entity): number
+---@field GetClassID fun(self: Entity): number
+---@field GetProp fun(self: Entity, propName: string): any
+---@field GetPropInt fun(self: Entity, propName: string): number
+---@field GetPropFloat fun(self: Entity, propName: string): number
+---@field GetPropBool fun(self: Entity, propName: string): boolean
+---@field GetPropString fun(self: Entity, propName: string): string
+---@field GetPropVector fun(self: Entity, propName: string): Vector3
+---@field SetProp fun(self: Entity, propName: string, value: any): void
+---@field SetPropInt fun(self: Entity, propName: string, value: number): void
+---@field SetPropFloat fun(self: Entity, propName: string, value: number): void
+---@field SetPropBool fun(self: Entity, propName: string, value: boolean): void
+---@field SetPropString fun(self: Entity, propName: string, value: string): void
+---@field SetPropVector fun(self: Entity, propName: string, value: Vector3): void
+local Entity = {}
+
+-- Base entity properties (CBaseEntity)
+---@class CBaseEntity : Entity
+---@field m_flAnimTime number
+---@field m_flSimulationTime number
+---@field m_ubInterpolationFrame number
+---@field m_vecOrigin Vector3
+---@field m_angRotation Vector3
+---@field m_nModelIndex number
+---@field m_fEffects number
+---@field m_nRenderMode number
+---@field m_nRenderFX number
+---@field m_clrRender number
+---@field m_iTeamNum number
+---@field m_CollisionGroup number
+---@field m_flElasticity number
+---@field m_flShadowCastDistance number
+---@field m_hOwnerEntity number
+---@field m_hEffectEntity number
+---@field moveparent number
+---@field m_iParentAttachment number
+---@field movetype number
+---@field movecollide number
+---@field m_iTextureFrameIndex number
+---@field m_bSimulatedEveryTick number
+---@field m_bAnimatedEveryTick number
+---@field m_bAlternateSorting number
+---@field m_nModelIndexOverrides number[]
+---@field m_PredictableID number
+---@field m_bIsPlayerSimulated number

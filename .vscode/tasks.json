@@ -9,6 +9,17 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Check Type Definitions",
+            "type": "shell",
+            "command": "node ${workspaceFolder}/automations/update-types.js",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
         }
     ]
 }

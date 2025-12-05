@@ -1,0 +1,63 @@
+---@meta
+
+-- Building Entity Properties
+-- Auto-updating to latest Lua 5.4.x syntax
+-- API Documentation: http://lmaobox.net/lua/sitemap.xml
+
+---@class CBaseObject : Entity
+---@field m_iHealth number
+---@field m_iMaxHealth number
+---@field m_bHasSapper number
+---@field m_iObjectType number
+---@field m_bBuilding number
+---@field m_bPlacing number
+---@field m_bCarried number
+---@field m_bCarryDeploy number
+---@field m_bMiniBuilding number
+---@field m_flPercentageConstructed number
+---@field m_fObjectFlags number
+---@field m_hBuiltOnEntity number
+---@field m_bDisabled number
+---@field m_hBuilder number
+---@field m_vecBuildMaxs Vector3
+---@field m_vecBuildMins Vector3
+---@field m_iDesiredBuildRotations number
+---@field m_bServerOverridePlacement number
+---@field m_iUpgradeLevel number
+---@field m_iUpgradeMetal number
+---@field m_iUpgradeMetalRequired number
+---@field m_iHighestUpgradeLevel number
+---@field m_iObjectMode number
+---@field m_bDisposableBuilding number
+---@field m_bWasMapPlaced number
+---@field m_bPlasmaDisable number
+
+---@class CObjectSentrygun : CBaseObject
+---@field m_iAmmoShells number
+---@field m_iAmmoRockets number
+---@field m_iState number
+---@field m_bPlayerControlled number
+---@field m_nShieldLevel number
+---@field m_bShielded number
+---@field m_hEnemy number
+---@field m_hAutoAimTarget number
+---@field SentrygunLocalData SentrygunLocalData
+
+---@class SentrygunLocalData
+---@field m_iKills number
+---@field m_iAssists number
+
+---@class CObjectDispenser : CBaseObject
+---@field m_iState number
+---@field m_iAmmoMetal number
+---@field m_iMiniBombCounter number
+---@field healing_array_element number
+---@field healing_array number[]
+
+---@class CObjectTeleporter : CBaseObject
+---@field m_iState number
+---@field m_flRechargeTime number
+---@field m_flCurrentRechargeDuration number
+---@field m_iTimesUsed number
+---@field m_flYawToExit number
+---@field m_bMatchBuilding number
