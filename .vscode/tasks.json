@@ -20,6 +20,19 @@
                 "panel": "new"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "🔄 Refresh Documentation Types",
+            "type": "shell",
+            "command": "node ${workspaceFolder}/automations/refresh-docs.js",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+                "clear": true
+            },
+            "problemMatcher": []
         }
     ]
 }

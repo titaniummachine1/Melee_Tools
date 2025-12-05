@@ -76,6 +76,11 @@ export async function runCrawler(force = false) {
 			const progress = `[${processedUrls.size + 1}/${pagesToProcess.size}]`;
 			processedUrls.add(url);
 
+			// Show progress every 10 pages or on first page
+			if (processedUrls.size % 10 === 1 || processedUrls.size === 1) {
+				console.log(`${progress} Processing: ${url.substring(API_BASE_URL.length)}`);
+			}
+
 			const shouldFetch = await pageNeedsFetch(url);
 			if (shouldFetch || newUrls.includes(url)) {
 				const result = await fetchPage(url, force);
