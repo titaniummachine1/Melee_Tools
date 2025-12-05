@@ -1,0 +1,25 @@
+---@meta
+
+-- Lmaobox Lua API Type Definitions Index
+--
+-- All .d.lua files in this directory are automatically loaded by the Lua Language Server
+-- when ${workspace}/types is included in Lua.workspace.library
+--
+-- File organization:
+-- - lmaobox.d.lua - Core API type definitions
+-- - lmaobox_constants.d.lua - General constants (keys, input, teams, etc.)
+-- - lmaobox_constants_tf2.d.lua - TF2 condition flags
+-- - lmaobox_constants_weapons.d.lua - Weapon IDs and loadout slots
+-- - lmaobox_constants_misc.d.lua - Player flags, round states, projectiles, etc.
+-- - lmaobox_constants_trace.d.lua - Trace/contents flags and masks
+-- - lmaobox_constants_kill_effects.d.lua - Custom kill effects
+-- - lmaobox_constants_rendering.d.lua - Font, material, and rendering flags
+-- - lmaobox_constants_system.d.lua - File attributes and system constants
+--
+-- Auto-updating to latest Lua 5.4.x syntax
+-- API Documentation: http://lmaobox.net/lua/sitemap.xml
+--
+-- To update constants from the API:
+-- 1. Check http://lmaobox.net/lua/sitemap.xml for latest API
+-- 2. Update the relevant constant file(s) with new values
+-- 3. Reload VS Code window for changes to take effect
