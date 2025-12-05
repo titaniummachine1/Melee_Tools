@@ -165,6 +165,22 @@ function buildPathFromUrl(url) {
 	return relative;
 }
 
+export async function generateTypeForPage(parsedDataInput) {
+	const pagePath = parsedDataInput.path || buildPathFromUrl(parsedDataInput.url);
+	const dirPath = path.dirname(pagePath) || '.';
+	const sanitizedDir = buildFolderPath(dirPath);
+	const typeDir = path.join(TYPES_DIR, 'hierarchy', sanitizedDir === '.' ? '' : sanitizedDir);
+	await fs.mkdir(typeDir, { recursive: true });
+
+	const fileName = path.basename(pagePath) + '.d.lua';
+	const filePath = path.join(typeDir, fileName);
+
+	const content = generateTypeDefinition(parsedDataInput);
+	await fs.writeFile(filePath, content, 'utf8');
+	db.saveTypeDefinition(parsedDataInput.url, pagePath, content);
+	return { filePath };
+}
+
 export async function generateTypesByShortestPath() {
 	console.log('[TypeGenerator] Generating type definitions by shortest path...');
 

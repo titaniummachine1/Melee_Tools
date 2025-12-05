@@ -5,7 +5,7 @@ import { analyzeLinks, calculateShortestPaths } from './graph/analyzer.js';
 import { generateFolderHierarchy } from './graph/hierarchy.js';
 import { fetchPage, needsFetch as pageNeedsFetch, clearSessionCache } from './fetcher/incremental.js';
 import { parseDocumentationPage } from './parser/html.js';
-import { generateTypesByShortestPath } from './parser/types.js';
+import { generateTypesByShortestPath, generateTypeForPage } from './parser/types.js';
 import { db } from './database/queries.js';
 import { updateLuarcGlobals } from './utils/luarc-updater.js';
 
@@ -112,11 +112,15 @@ export async function runCrawler(force = false) {
 					// Parse page
 					const parsed = parseDocumentationPage(result.html, url);
 
+					// Derive path from URL immediately (URL hierarchy)
+					const relativePath = url.replace(API_BASE_URL, '').replace(/\/$/, '') || 'index';
+
 					// Update page in DB with parsed data
 					db.insertPage({
 						url: url,
 						title: parsed.title,
 						page_type: inferPageType(url),
+						path: relativePath,
 						parsed_data: parsed
 					});
 
@@ -125,6 +129,16 @@ export async function runCrawler(force = false) {
 
 					// Store links
 					await analyzeLinks(url, parsed.links);
+
+					// Generate type immediately for this page
+					try {
+						await generateTypeForPage({
+							...parsed,
+							path: relativePath
+						});
+					} catch (e) {
+						console.warn(`[Crawler] Type generation failed for ${url}: ${e.message}`);
+					}
 
 					// Add linked pages to queue if they're in our scope and not yet processed
 					for (const link of parsed.links) {
