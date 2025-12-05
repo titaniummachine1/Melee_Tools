@@ -18,6 +18,46 @@ async function walkCache(dir, results = []) {
 	return results;
 }
 
+// Lua reserved keywords that cannot be used as parameter names
+const LUA_RESERVED_KEYWORDS = new Set([
+	'and', 'break', 'do', 'else', 'elseif', 'end', 'false', 'for', 'function',
+	'goto', 'if', 'in', 'local', 'nil', 'not', 'or', 'repeat', 'return',
+	'then', 'true', 'until', 'while'
+]);
+
+// Map reserved keywords to safe alternatives
+function sanitizeParameterName(name) {
+	if (LUA_RESERVED_KEYWORDS.has(name.toLowerCase())) {
+		// Map common reserved keywords to safe alternatives
+		const replacements = {
+			'function': 'callback',
+			'end': 'endValue',
+			'local': 'localValue',
+			'return': 'returnValue',
+			'true': 'trueValue',
+			'false': 'falseValue',
+			'nil': 'nilValue',
+			'and': 'andValue',
+			'or': 'orValue',
+			'not': 'notValue',
+			'if': 'ifValue',
+			'then': 'thenValue',
+			'else': 'elseValue',
+			'elseif': 'elseifValue',
+			'while': 'whileValue',
+			'for': 'forValue',
+			'do': 'doValue',
+			'break': 'breakValue',
+			'repeat': 'repeatValue',
+			'until': 'untilValue',
+			'goto': 'gotoValue',
+			'in': 'inValue'
+		};
+		return replacements[name.toLowerCase()] || name + 'Value';
+	}
+	return name;
+}
+
 function mapTypeToLua(docType) {
 	const typeMap = {
 		'integer': 'number', 'int': 'number', 'number': 'number', 'float': 'number',
@@ -357,8 +397,9 @@ function generateTypeDefinition(page) {
 					}
 
 					func.params.forEach(param => {
+						const sanitizedName = sanitizeParameterName(param.name);
 						const luaType = mapTypeToLua(param.type);
-						content += `---@param ${param.name} ${luaType}\n`;
+						content += `---@param ${sanitizedName} ${luaType}\n`;
 					});
 
 					const returnType = inferReturnType(func.name, func.params, func.description || '');
@@ -366,7 +407,7 @@ function generateTypeDefinition(page) {
 						content += `---@return ${returnType}\n`;
 					}
 
-					const paramList = func.params.map(p => p.name).join(', ');
+					const paramList = func.params.map(p => sanitizeParameterName(p.name)).join(', ');
 					content += `function ${libName}.${func.name}(${paramList}) end\n\n`;
 				});
 			}
@@ -394,9 +435,10 @@ function generateTypeDefinition(page) {
 					}
 
 					func.params.forEach(param => {
+						const sanitizedName = sanitizeParameterName(param.name);
 						const luaType = param.type || mapTypeToLua(param.type);
 						const optional = param.optional ? '?' : '';
-						content += `---@param ${param.name}${optional} ${luaType}\n`;
+						content += `---@param ${sanitizedName}${optional} ${luaType}\n`;
 					});
 
 					const returnType = inferReturnType(func.name, func.params, func.description || '');
@@ -405,8 +447,9 @@ function generateTypeDefinition(page) {
 					}
 
 					const paramTypes = func.params.map(p => {
+						const sanitizedName = sanitizeParameterName(p.name);
 						const pType = p.type || mapTypeToLua(p.type);
-						return `${p.name}: ${pType}`;
+						return `${sanitizedName}: ${pType}`;
 					}).join(', ');
 					content += `---@field ${func.name} fun(self: ${className}${func.params.length > 0 ? ', ' : ''}${paramTypes})${returnType !== 'void' ? `: ${returnType}` : ''}\n`;
 				});
@@ -426,9 +469,10 @@ function generateTypeDefinition(page) {
 				}
 
 				func.params.forEach(param => {
+					const sanitizedName = sanitizeParameterName(param.name);
 					const luaType = param.type || mapTypeToLua(param.type);
 					const optional = param.optional ? '?' : '';
-					content += `---@param ${param.name}${optional} ${luaType}\n`;
+					content += `---@param ${sanitizedName}${optional} ${luaType}\n`;
 				});
 
 				const returnType = inferReturnType(func.name, func.params, func.description || '');
@@ -436,7 +480,7 @@ function generateTypeDefinition(page) {
 					content += `---@return ${returnType}\n`;
 				}
 
-				const paramList = func.params.map(p => p.name).join(', ');
+				const paramList = func.params.map(p => sanitizeParameterName(p.name)).join(', ');
 				content += `function ${func.name}(${paramList}) end\n\n`;
 			}
 		}
