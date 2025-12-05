@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFPlayerDestructionLogic
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:53.713Z
+-- Last updated: 2025-12-05T09:57:54.690Z
 
 ---@class CTFPlayerDestructionLogic
 ---@field m_hRedTeamLeader number

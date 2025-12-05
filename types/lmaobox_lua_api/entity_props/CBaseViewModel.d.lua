@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseViewModel
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.910Z
+-- Last updated: 2025-12-05T09:57:55.737Z
 
 ---@class CBaseViewModel
 ---@field m_nModelIndex number

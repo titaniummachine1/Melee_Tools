@@ -2,7 +2,7 @@
 
 -- Constants: E_KillEffect
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T09:48:55.645Z
+-- Last updated: 2025-12-05T09:57:55.971Z
 
 ---@type any
 TF_CUSTOM_AIM_HEADSHOT = 1

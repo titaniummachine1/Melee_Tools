@@ -2,7 +2,7 @@
 
 -- Entity Props: CEnvWind
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.143Z
+-- Last updated: 2025-12-05T09:57:55.004Z
 
 ---@class CEnvWind
 ---@field m_iMinWind number

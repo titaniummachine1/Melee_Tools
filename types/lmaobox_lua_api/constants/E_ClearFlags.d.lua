@@ -2,7 +2,7 @@
 
 -- Constants: E_ClearFlags
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T09:48:55.760Z
+-- Last updated: 2025-12-05T09:57:56.085Z
 
 ---@type any
 VIEW_CLEAR_COLOR = 0x1

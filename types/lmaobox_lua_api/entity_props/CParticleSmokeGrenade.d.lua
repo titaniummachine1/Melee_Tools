@@ -2,7 +2,7 @@
 
 -- Entity Props: CParticleSmokeGrenade
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.115Z
+-- Last updated: 2025-12-05T09:57:54.968Z
 
 ---@class CParticleSmokeGrenade
 ---@field m_flSpawnTime number

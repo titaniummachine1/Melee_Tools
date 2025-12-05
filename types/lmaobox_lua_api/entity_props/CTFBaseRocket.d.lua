@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFBaseRocket
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:53.573Z
+-- Last updated: 2025-12-05T09:57:53.632Z
 
 ---@class CTFBaseRocket
 ---@field m_vInitialVelocity Vector3

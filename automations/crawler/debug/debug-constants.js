@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { parseConstantsByCategory } from './crawler/parser/types.js';
-import { WORKSPACE_ROOT } from './crawler/config.js';
+import { parseConstantsByCategory } from '../parser/types.js';
+import { WORKSPACE_ROOT } from '../config.js';
 
 async function main() {
 	const htmlPath = path.join(WORKSPACE_ROOT, '.cache', 'docs', 'Lua_Constants.html');

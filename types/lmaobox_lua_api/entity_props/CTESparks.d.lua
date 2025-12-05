@@ -2,7 +2,7 @@
 
 -- Entity Props: CTESparks
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:55.181Z
+-- Last updated: 2025-12-05T09:57:55.783Z
 
 ---@class CTESparks
 ---@field m_nMagnitude number

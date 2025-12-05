@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-05T09:48:47.546Z
+-- Last updated: 2025-12-05T09:57:52.810Z
 
 ---@return any
 function Draw() end
@@ -85,9 +85,11 @@ function SendNetMsg(msg, reliable, voice) end
 ---@return any
 function DoPostScreenSpaceEffects() end
 
----@param entEvtTable table<TempEntity,EventInfo>
+---@param TempEntity any
+---@param entEvtTable any
 ---@return any
-function ProcessTempEntities(entEvtTable) end
+function ProcessTempEntities(TempEntity, entEvtTable) end
 
 ---@return any
 function Unload() end
+

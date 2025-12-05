@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PartyMemberActivity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PartyMemberActivity/
 -- Path: Lua_Classes/PartyMemberActivity
--- Last updated: 2025-12-05T09:48:47.879Z
+-- Last updated: 2025-12-05T09:57:52.865Z
 
 ---@class PartyMemberActivity
 ---@return any

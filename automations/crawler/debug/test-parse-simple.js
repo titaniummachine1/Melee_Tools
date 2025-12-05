@@ -1,7 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { WORKSPACE_ROOT } from '../config.js';
 
-const htmlPath = join(process.cwd(), '..', '.cache', 'docs', 'Lua_Constants.html');
+const htmlPath = join(WORKSPACE_ROOT, '.cache', 'docs', 'Lua_Constants.html');
 const html = readFileSync(htmlPath, 'utf8');
 
 // Test h3 regex

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Vector3 - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Vector3/
 -- Path: Lua_Classes/Vector3
--- Last updated: 2025-12-05T09:48:48.364Z
+-- Last updated: 2025-12-05T09:57:52.920Z
 
 ---@class Vector3
 ---@return any

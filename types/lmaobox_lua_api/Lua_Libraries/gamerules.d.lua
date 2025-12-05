@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: gamerules - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gamerules/
 -- Path: Lua_Libraries/gamerules
--- Last updated: 2025-12-05T09:48:49.215Z
+-- Last updated: 2025-12-05T09:57:52.968Z
 
 ---@class gamerules
 gamerules = {}

@@ -2,7 +2,7 @@
 
 -- Constants: E_DataUpdateType
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T09:48:55.772Z
+-- Last updated: 2025-12-05T09:57:56.091Z
 
 ---@type any
 DATA_UPDATE_CREATED = 0

@@ -2,7 +2,7 @@
 
 -- Entity Props: CPasstimeBall
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:53.913Z
+-- Last updated: 2025-12-05T09:57:54.884Z
 
 ---@class CPasstimeBall
 ---@field m_iCollisionCount number

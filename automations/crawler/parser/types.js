@@ -375,6 +375,15 @@ function buildPathFromUrl(url) {
 }
 
 export async function generateTypeForPage(parsedDataInput) {
+	// Skip non-actionable top-level pages that pollute output
+	const skipNames = new Set(['index', 'API_changelog']);
+	if (parsedDataInput.path) {
+		const base = path.basename(parsedDataInput.path);
+		if (skipNames.has(base)) {
+			return { filePath: null };
+		}
+	}
+
 	// Special case: entity props page emits many per-entity files
 	if (parsedDataInput.url && parsedDataInput.url.toLowerCase().includes('tf2_props')) {
 		try {

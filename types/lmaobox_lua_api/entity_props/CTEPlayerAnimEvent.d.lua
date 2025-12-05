@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEPlayerAnimEvent
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:55.024Z
+-- Last updated: 2025-12-05T09:57:55.762Z
 
 ---@class CTEPlayerAnimEvent
 ---@field m_hPlayer number

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: GameEvent - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/GameEvent/
 -- Path: Lua_Classes/GameEvent
--- Last updated: 2025-12-05T09:48:47.710Z
+-- Last updated: 2025-12-05T09:57:52.846Z
 
 ---@class GameEvent
 ---@return any

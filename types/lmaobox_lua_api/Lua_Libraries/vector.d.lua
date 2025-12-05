@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: vector - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/vector/
 -- Path: Lua_Libraries/vector
--- Last updated: 2025-12-05T09:48:49.701Z
+-- Last updated: 2025-12-05T09:57:53.016Z
 
 ---@class vector
 vector = {}

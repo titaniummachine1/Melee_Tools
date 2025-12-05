@@ -2,7 +2,7 @@
 
 -- Constants: E_FontFlag
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T09:48:55.690Z
+-- Last updated: 2025-12-05T09:57:56.019Z
 
 ---@type any
 FONTFLAG_NONE = 0

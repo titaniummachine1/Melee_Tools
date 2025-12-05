@@ -2,7 +2,7 @@
 
 -- Entity Props: CBotNPC
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:53.676Z
+-- Last updated: 2025-12-05T09:57:54.640Z
 
 ---@class CBotNPC
 ---@field m_laserTarget number

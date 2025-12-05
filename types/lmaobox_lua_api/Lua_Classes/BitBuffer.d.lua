@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: BitBuffer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/BitBuffer/
 -- Path: Lua_Classes/BitBuffer
--- Last updated: 2025-12-05T09:48:47.572Z
+-- Last updated: 2025-12-05T09:57:52.820Z
 
 ---@class BitBuffer
 ---@return any

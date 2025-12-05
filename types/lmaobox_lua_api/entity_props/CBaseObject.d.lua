@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseObject
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.028Z
+-- Last updated: 2025-12-05T09:57:54.934Z
 
 ---@class CBaseObject
 ---@field m_iHealth number

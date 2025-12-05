@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: engine - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/engine/
 -- Path: Lua_Libraries/engine
--- Last updated: 2025-12-05T09:48:49.056Z
+-- Last updated: 2025-12-05T09:57:52.956Z
 
 ---@class engine
 engine = {}

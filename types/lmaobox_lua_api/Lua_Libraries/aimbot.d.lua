@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: aimbot - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/aimbot/
 -- Path: Lua_Libraries/aimbot
--- Last updated: 2025-12-05T09:48:48.852Z
+-- Last updated: 2025-12-05T09:57:52.939Z
 
 ---@class aimbot
 aimbot = {}

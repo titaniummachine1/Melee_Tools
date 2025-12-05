@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: EulerAngles - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/EulerAngles/
 -- Path: Lua_Classes/EulerAngles
--- Last updated: 2025-12-05T09:48:47.651Z
+-- Last updated: 2025-12-05T09:57:52.836Z
 
 ---@class EulerAngles
 ---@return any

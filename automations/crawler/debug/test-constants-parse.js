@@ -1,10 +1,11 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { parseConstantsByCategory } from '../parser/types.js';
+import { WORKSPACE_ROOT } from '../config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const WORKSPACE_ROOT = path.resolve(__dirname, '..');
 
 // Copy the parseConstantsByCategory function here for testing
 function parseConstantsByCategory(html) {

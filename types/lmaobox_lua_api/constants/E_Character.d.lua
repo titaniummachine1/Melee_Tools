@@ -2,7 +2,7 @@
 
 -- Constants: E_Character
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T09:48:55.660Z
+-- Last updated: 2025-12-05T09:57:55.973Z
 
 ---@type any
 TF2_Scout = 1

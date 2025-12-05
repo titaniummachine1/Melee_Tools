@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBloodStream
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:55.411Z
+-- Last updated: 2025-12-05T09:57:55.838Z
 
 ---@class CTEBloodStream
 ---@field m_vecDirection Vector3

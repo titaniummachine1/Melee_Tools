@@ -2,7 +2,7 @@
 
 -- Entity Props: CCaptureFlag
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:53.893Z
+-- Last updated: 2025-12-05T09:57:54.846Z
 
 ---@class CCaptureFlag
 ---@field m_bDisabled number

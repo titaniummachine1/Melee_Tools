@@ -2,7 +2,7 @@
 
 -- Entity Props: CMaterialModifyControl
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.642Z
+-- Last updated: 2025-12-05T09:57:55.294Z
 
 ---@class CMaterialModifyControl
 ---@field m_szMaterialName string

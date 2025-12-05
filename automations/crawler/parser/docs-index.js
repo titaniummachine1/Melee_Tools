@@ -11,6 +11,8 @@ export async function generateDocsIndex() {
 
 	for (const page of pages) {
 		if (!page.path) continue;
+		const base = path.basename(page.path);
+		if (base === 'index' || base === 'API_changelog') continue;
 
 		const key = path.basename(page.path) || 'index';
 		const typeDef = db.getTypeDefinition(page.url);

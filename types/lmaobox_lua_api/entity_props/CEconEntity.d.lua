@@ -2,7 +2,7 @@
 
 -- Entity Props: CEconEntity
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:48:54.151Z
+-- Last updated: 2025-12-05T09:57:55.075Z
 
 ---@class CEconEntity
 ---@field m_hOuter number
