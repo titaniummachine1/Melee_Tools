@@ -1,17 +1,27 @@
 #!/usr/bin/env node
-
 /**
  * Refresh Documentation Types
- * 
+ *
  * Manually triggers the crawler to fetch latest docs and generate type definitions.
  * This bypasses the 24-hour rate limit and forces a full refresh.
- * 
- * Usage: node automations/refresh-docs.js
+ *
+ * Usage:
+ *   node automations/refresh-docs.js
+ *   node automations/refresh-docs.js --url=https://lmaobox.net/lua/Lua_Constants/   # single-page debug
  */
+
+import path from 'path';
+import { promises as fs } from 'fs';
 
 import { runCrawler } from './crawler/index.js';
 import { generateDocsIndex } from './crawler/parser/docs-index.js';
-import { generateEntityPropsFromCache, generateConstantsByCategoryFromCache } from './crawler/parser/types.js';
+import {
+	generateEntityPropsFromCache,
+	generateConstantsByCategoryFromCache,
+	generateTypeForPage
+} from './crawler/parser/types.js';
+import { parseDocumentationPage } from './crawler/parser/html.js';
+import { API_BASE_URL, CACHE_DIR } from './crawler/config.js';
 
 // Check if dependencies are installed
 async function checkDependencies() {
@@ -25,7 +35,52 @@ async function checkDependencies() {
 	}
 }
 
+async function runSinglePage(target) {
+	const targetUrl = target.startsWith('http')
+		? target
+		: new URL(target, API_BASE_URL).href;
+
+	const rel = targetUrl.replace(API_BASE_URL, '').replace(/\/$/, '') || 'index';
+	const cachePath = path.join(CACHE_DIR, rel + '.html');
+
+	try {
+		const html = await fs.readFile(cachePath, 'utf8');
+		const parsed = parseDocumentationPage(html, targetUrl);
+		parsed.url = targetUrl;
+		parsed.path = rel;
+
+		console.log('═══════════════════════════════════════════════════════════');
+		console.log('  🔍 Single-page generation (debug mode)');
+		console.log('═══════════════════════════════════════════════════════════\n');
+		console.log(`[Single] Using cache: ${cachePath}`);
+		console.log(`[Single] Generating type for: ${parsed.path}`);
+
+		await generateTypeForPage(parsed);
+		await generateDocsIndex();
+
+		console.log('\n[Single] ✅ Done.');
+		console.log('═══════════════════════════════════════════════════════════');
+		return;
+	} catch (error) {
+		console.error(`[Single] ❌ Could not process ${targetUrl}: ${error.message}`);
+		process.exit(1);
+	}
+}
+
 async function main() {
+	// Optional debug mode: generate types for a single page from cache
+	const singleArg = process.argv.find(arg => arg.startsWith('--url=') || arg.startsWith('--page='));
+	if (singleArg) {
+		const target = singleArg.split('=')[1];
+		if (!target) {
+			console.error('[Single] ❌ Missing value for --url= or --page=');
+			process.exit(1);
+		}
+		await checkDependencies();
+		await runSinglePage(target);
+		return;
+	}
+
 	// Check dependencies first
 	await checkDependencies();
 
