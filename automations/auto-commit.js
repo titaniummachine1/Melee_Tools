@@ -59,7 +59,27 @@ async function main() {
 			console.log('[AutoCommit] Changes exceed 10 lines, auto-committing...');
 
 			// Stage all changes
-			execSync('git add -A', { cwd: workspaceRoot, stdio: 'ignore' });
+			try {
+				execSync('git add -A', { 
+					cwd: workspaceRoot, 
+					stdio: ['ignore', 'pipe', 'pipe'],
+					encoding: 'utf8'
+				});
+			} catch (error) {
+				// If git add fails, check if files are already staged
+				const stagedCheck = execSync('git diff --cached --numstat', {
+					cwd: workspaceRoot,
+					encoding: 'utf8',
+					stdio: ['ignore', 'pipe', 'ignore']
+				});
+				
+				if (!stagedCheck || stagedCheck.trim() === '') {
+					// No staged files, so the error is real
+					throw new Error(`git add -A failed: ${error.message}`);
+				}
+				// Files are already staged, continue
+				console.log('[AutoCommit] Files already staged, continuing...');
+			}
 
 			// Get changed files with their line counts
 			const changedFilesOutput = execSync('git diff --cached --numstat', {

@@ -19,6 +19,8 @@ function PathSimulation.simulateDash(params)
 	assert(params.startPos and params.startVel and params.wishdir, "simulateDash: missing vectors")
 	assert(params.ticks and params.ticks > 0, "simulateDash: ticks must be > 0")
 
+	SimConstants.refresh()
+
 	local tickInterval = params.tickInterval or globals.TickInterval() or SimConstants.TICK_INTERVAL_DEFAULT
 	local gravity = params.gravity or SimConstants.DEFAULT_GRAVITY
 	local maxSpeed = params.maxSpeed
@@ -119,6 +121,8 @@ function PathSimulation.simulateBonusTicks(params)
 		params.startPos and params.startVel and params.enemyPos and params.enemyBack,
 		"simulateBonusTicks: missing vectors"
 	)
+
+	SimConstants.refresh()
 
 	local tickInterval = params.tickInterval or globals.TickInterval() or SimConstants.TICK_INTERVAL_DEFAULT
 	local maxBonusTicks = params.maxBonusTicks or SMOOTH_WARP.BONUS_TICKS

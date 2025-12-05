@@ -55,19 +55,16 @@ SimConstants.DEFAULT_CLASS_MAX_SPEEDS = CLASS_MAX_SPEEDS
 
 function SimConstants.refresh()
 	local tick = globals and globals.TickInterval and globals.TickInterval()
-	if tick and tick > 0 then
-		SimConstants.TICK_INTERVAL_DEFAULT = tick
-	end
+	assert(tick and tick > 0, "SimConstants.refresh: TickInterval unavailable")
+	SimConstants.TICK_INTERVAL_DEFAULT = tick
 
 	local grav = readConVar("sv_gravity")
-	if grav and grav > 0 then
-		SimConstants.DEFAULT_GRAVITY = grav
-	end
+	assert(grav and grav > 0, "SimConstants.refresh: sv_gravity unavailable")
+	SimConstants.DEFAULT_GRAVITY = grav
 
 	local step = readStepSize()
-	if step and step > 0 then
-		SimConstants.DEFAULT_STEP_SIZE = step
-	end
+	assert(step and step > 0, "SimConstants.refresh: step size unavailable")
+	SimConstants.DEFAULT_STEP_SIZE = step
 end
 
 -- Self-init (optional) ---
