@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: inventory - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/inventory/
 -- Path: Lua_Libraries/inventory
--- Last updated: 2025-12-05T11:44:38.838Z
+-- Last updated: 2025-12-05T12:04:26.088Z
 
 ---@class inventory
 inventory = {}

@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponLunchBox
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:45.607Z
+-- Last updated: 2025-12-05T12:04:27.593Z
 
 ---@class CWeaponLunchBox
 ---@field m_bBroken number

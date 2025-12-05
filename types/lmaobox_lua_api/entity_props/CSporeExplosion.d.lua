@@ -2,7 +2,7 @@
 
 -- Entity Props: CSporeExplosion
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:47.016Z
+-- Last updated: 2025-12-05T12:04:28.021Z
 
 ---@class CSporeExplosion
 ---@field m_flSpawnRate number

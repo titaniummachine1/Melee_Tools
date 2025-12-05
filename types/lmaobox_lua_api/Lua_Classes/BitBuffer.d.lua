@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: BitBuffer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/BitBuffer/
 -- Path: Lua_Classes/BitBuffer
--- Last updated: 2025-12-05T11:44:38.248Z
+-- Last updated: 2025-12-05T12:04:25.764Z
 
 ---@class BitBuffer
 -- Creates a new BitBuffer object with an empty buffer. You can write to it using methods below or have some other functions write to it for you, such as NetMessage::WriteToBitBuffer .

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StudioModelHeader - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StudioModelHeader/
 -- Path: Lua_Classes/StudioModelHeader
--- Last updated: 2025-12-05T11:44:38.562Z
+-- Last updated: 2025-12-05T12:04:25.952Z
 
 ---@class StudioModelHeader
 ---@return string

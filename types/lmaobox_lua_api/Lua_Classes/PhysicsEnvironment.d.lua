@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
 -- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T11:44:38.474Z
+-- Last updated: 2025-12-05T12:04:25.911Z
 
 ---@class PhysicsEnvironment
 -- Sets the gravity of the physics environment.

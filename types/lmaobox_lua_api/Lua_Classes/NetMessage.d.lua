@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: NetMessage - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetMessage/
 -- Path: Lua_Classes/NetMessage
--- Last updated: 2025-12-05T11:44:38.441Z
+-- Last updated: 2025-12-05T12:04:25.896Z
 
 ---@class NetMessage
 -- Returns the message group.

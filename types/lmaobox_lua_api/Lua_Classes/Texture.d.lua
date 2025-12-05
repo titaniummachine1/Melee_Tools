@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Texture - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Texture/
 -- Path: Lua_Classes/Texture
--- Last updated: 2025-12-05T11:44:38.581Z
+-- Last updated: 2025-12-05T12:04:25.962Z
 
 ---@class Texture
 ---@return string

@@ -2,7 +2,7 @@
 
 -- Entity Props: CRopeKeyframe
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:47.673Z
+-- Last updated: 2025-12-05T12:04:28.162Z
 
 ---@class CRopeKeyframe
 ---@field m_iRopeMaterialModelIndex number

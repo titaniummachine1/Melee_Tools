@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Material - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Material/
 -- Path: Lua_Classes/Material
--- Last updated: 2025-12-05T11:44:38.404Z
+-- Last updated: 2025-12-05T12:04:25.884Z
 
 ---@class Material
 -- Returns the material name

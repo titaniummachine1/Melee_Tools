@@ -2,7 +2,7 @@
 
 -- Constants: E_RoundState
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:44:48.762Z
+-- Last updated: 2025-12-05T12:04:28.497Z
 
 ---@type any
 ROUND_INIT = 0

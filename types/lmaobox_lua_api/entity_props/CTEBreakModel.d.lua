@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBreakModel
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:43.949Z
+-- Last updated: 2025-12-05T12:04:28.354Z
 
 ---@class CTEBreakModel
 ---@field m_vecOrigin Vector3

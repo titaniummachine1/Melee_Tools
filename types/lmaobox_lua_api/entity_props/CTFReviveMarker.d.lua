@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFReviveMarker
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:46.090Z
+-- Last updated: 2025-12-05T12:04:27.771Z
 
 ---@class CTFReviveMarker
 ---@field m_hOwner number

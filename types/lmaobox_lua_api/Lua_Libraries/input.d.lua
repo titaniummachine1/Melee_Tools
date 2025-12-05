@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: input - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/input/
 -- Path: Lua_Libraries/input
--- Last updated: 2025-12-05T11:44:38.830Z
+-- Last updated: 2025-12-05T12:04:26.080Z
 
 ---@class input
 input = {}

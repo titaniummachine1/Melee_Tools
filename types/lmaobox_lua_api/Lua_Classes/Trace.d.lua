@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Trace - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Trace/
 -- Path: Lua_Classes/Trace
--- Last updated: 2025-12-05T11:44:38.593Z
+-- Last updated: 2025-12-05T12:04:25.965Z
 
 ---@class Trace
 -- Fields are non-modifiable.

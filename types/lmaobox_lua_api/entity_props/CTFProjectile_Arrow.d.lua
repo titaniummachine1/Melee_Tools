@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFProjectile_Arrow
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:45.647Z
+-- Last updated: 2025-12-05T12:04:27.674Z
 
 ---@class CTFProjectile_Arrow
 ---@field m_bArrowAlight number

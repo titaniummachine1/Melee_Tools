@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: playerlist - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/playerlist/
 -- Path: Lua_Libraries/playerlist
--- Last updated: 2025-12-05T11:44:38.964Z
+-- Last updated: 2025-12-05T12:04:26.115Z
 
 ---@class playerlist
 playerlist = {}

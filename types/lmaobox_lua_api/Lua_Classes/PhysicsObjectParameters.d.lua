@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsObjectParameters - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObjectParameters/
 -- Path: Lua_Classes/PhysicsObjectParameters
--- Last updated: 2025-12-05T11:44:38.500Z
+-- Last updated: 2025-12-05T12:04:25.919Z
 
 ---@class PhysicsObjectParameters
 -- number The mass of the physics object.

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEMuzzleFlash
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:43.693Z
+-- Last updated: 2025-12-05T12:04:28.295Z
 
 ---@class CTEMuzzleFlash
 ---@field m_vecOrigin Vector3

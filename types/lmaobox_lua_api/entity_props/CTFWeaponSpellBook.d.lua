@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponSpellBook
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:45.681Z
+-- Last updated: 2025-12-05T12:04:27.700Z
 
 ---@class CTFWeaponSpellBook
 ---@field m_iSelectedSpellIndex number

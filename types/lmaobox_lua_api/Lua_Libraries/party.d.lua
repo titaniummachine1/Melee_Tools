@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: party - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/party/
 -- Path: Lua_Libraries/party
--- Last updated: 2025-12-05T11:44:38.947Z
+-- Last updated: 2025-12-05T12:04:26.107Z
 
 ---@class party
 party = {}

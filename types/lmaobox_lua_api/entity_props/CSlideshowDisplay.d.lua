@@ -2,7 +2,7 @@
 
 -- Entity Props: CSlideshowDisplay
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:47.589Z
+-- Last updated: 2025-12-05T12:04:28.150Z
 
 ---@class CSlideshowDisplay
 ---@field m_bEnabled number

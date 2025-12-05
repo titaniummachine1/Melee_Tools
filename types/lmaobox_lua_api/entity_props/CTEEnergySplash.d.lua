@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEEnergySplash
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:43.800Z
+-- Last updated: 2025-12-05T12:04:28.319Z
 
 ---@class CTEEnergySplash
 ---@field m_vecPos Vector3

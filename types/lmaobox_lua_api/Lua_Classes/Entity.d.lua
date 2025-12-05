@@ -3,244 +3,360 @@
 -- Lmaobox Lua API: Entity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Entity/
 -- Path: Lua_Classes/Entity
--- Last updated: 2025-12-05T11:44:38.289Z
+-- Last updated: 2025-12-05T12:04:25.826Z
 
 ---@class Entity
+-- Returns whether the entity is valid. This is done automatically and all other functions will return nil if the entity is invalid.
 ---@return boolean
 ---@field IsValid fun(self: Entity): boolean
+-- Returns the name string of the entity if its a player
 ---@return string
 ---@field GetName fun(self: Entity): string
----@return any
----@field GetClass fun(self: Entity): any
+-- Returns the class string of the entity i.e. CTFPlayer
+---@return string
+---@field GetClass fun(self: Entity): string
+-- Returns entity index
 ---@return number
 ---@field GetIndex fun(self: Entity): number
----@return any
----@field GetTeamNumber fun(self: Entity): any
+-- Returns the team number of the entity
+---@return number
+---@field GetTeamNumber fun(self: Entity): number
+-- Returns the absolute position of the entity
 ---@return Vector3
 ---@field GetAbsOrigin fun(self: Entity): Vector3
+-- Sets the absolute position of the entity
 ---@param origin Vector3
----@return Vector3
----@field SetAbsOrigin fun(self: Entity, origin: Vector3): Vector3
+---@field SetAbsOrigin fun(self: Entity, origin: Vector3)
+-- Returns the absolute angles of the entity
 ---@return Vector3
 ---@field GetAbsAngles fun(self: Entity): Vector3
+-- Sets the absolute angles of the entity
 ---@param angles Vector3
----@return Vector3
----@field SetAbsAngles fun(self: Entity, angles: Vector3): Vector3
+---@field SetAbsAngles fun(self: Entity, angles: Vector3)
+-- Returns mins of the entity, must be combined with origin
 ---@return any
 ---@field GetMins fun(self: Entity): any
+-- Returns maxs of the entity, must be combined with origin
 ---@return any
 ---@field GetMaxs fun(self: Entity): any
+-- Returns the health of the entity
 ---@return any
 ---@field GetHealth fun(self: Entity): any
+-- Returns the max health of the entity
 ---@return any
 ---@field GetMaxHealth fun(self: Entity): any
+-- Returns the Entity, which is a move child of this entity. This is a start of a peer list of attachments usually.
 ---@return any
 ---@field GetMoveChild fun(self: Entity): any
+-- Return the Entity, which is a move peer of this entity. This is a next entity in a peer list of attachments usually.
 ---@return any
 ---@field GetMovePeer fun(self: Entity): any
+-- Returns true if the entity is a player
 ---@return boolean
 ---@field IsPlayer fun(self: Entity): boolean
+-- Returns true if the entity is a weapon
 ---@return boolean
 ---@field IsWeapon fun(self: Entity): boolean
+-- Returns true if the entity is alive
 ---@return boolean
 ---@field IsAlive fun(self: Entity): boolean
+-- Returns the estimated absolute velocity of the entity as Vector3
 ---@return Vector3
 ---@field EstimateAbsVelocity fun(self: Entity): Vector3
+-- Returns the move type of the entity (the netvar propr does not work)
 ---@return any
 ---@field GetMoveType fun(self: Entity): any
+-- Returns the hitbox surrounding box of the entity as table of Vector3 mins and maxs
 ---@return any
 ---@field HitboxSurroundingBox fun(self: Entity): any
+-- Returns the hitbox surrounding box of the entity in entity space as table of Vector3 mins and maxs
 ---@return Entity|nil
 ---@field EntitySpaceHitboxSurroundingBox fun(self: Entity): Entity|nil
----@param boneMask integer
----@param currentTime number
----@field SetupBones fun(self: Entity, boneMask: integer, currentTime: number)
----@param currentTime number
+-- Sets up the bones of the entity, boneMask is optional, by default 0x7FF00, and can be changed if you want to only setup certain bones. The currentTime argument is optional, by default 0, and can be changed if you want the transform to be based on a different time. Returns a table of at most 128 entries of a 3x4 matrix (table) of float numbers, representing the bone transforms.
+---@param boneMask? number
+---@param currentTime? number
+---@return number
+---@field SetupBones fun(self: Entity, boneMask: number, currentTime: number): number
+-- Returns world-transformed hitboxes of the entity as table of tables, each containing 2 entries of Vector3 : mins and maxs positions of each hitbox. The currentTime argument is optional, by default 0, and can be changed if you want the transform to be based on a different time. Example returned table:
+---@param currentTime? number
 ---@return any
 ---@field GetHitboxes fun(self: Entity, currentTime: number): any
+-- Sets the model of the entity, returns true if successful
 ---@param modelPath string
----@field SetModel fun(self: Entity, modelPath: string)
+---@return boolean
+---@field SetModel fun(self: Entity, modelPath: string): boolean
+-- Returns the model of the entity
 ---@return any
 ---@field GetModel fun(self: Entity): any
+-- Retruns true if this entity should be drawn right now
 ---@return any
 ---@field ShouldDraw fun(self: Entity): any
+-- Returns the float value of the entity invisibility value
 ---@return any
 ---@field GetInvisibility fun(self: Entity): any
----@param value float
----@field SetInvisibility fun(self: Entity, value: float)
----@param drawFlags integer
+-- Sets the entity invisibility value
+---@param value number
+---@field SetInvisibility fun(self: Entity, value: number)
+-- Draws the model of the entity The most commonly used flag is STUDIO_RENDER
+---@param drawFlags number
 ---@return any
----@field DrawModel fun(self: Entity, drawFlags: integer): any
+---@field DrawModel fun(self: Entity, drawFlags: number): any
+-- Releases the entity, making it invalid. Calling this for networkable entities will kick you from the server. This is only useful for non-networkable entities created with entities.CreateEntityByName
 ---@return any
 ---@field Release fun(self: Entity): any
+-- Returns true if the entity is dormant (not being updated). Dormant entities are not drawn and shouldn't be interacted with.
 ---@return boolean
 ---@field IsDormant fun(self: Entity): boolean
+-- If the entity is an item that can be in player's inventory, such as a wearable or a weapon, returns the inventory item as Item
 ---@return any
 ---@field ToInventoryItem fun(self: Entity): any
+---@return any
+---@field Attributes fun(self: Entity): any
+-- Returns the number value of the attribute present on the entity, defaultValue is by default 1.0
 ---@param name string
----@param defaultValue number
+---@param defaultValue? number
 ---@return number
 ---@field AttributeHookFloat fun(self: Entity, name: string, defaultValue: number): number
+-- Returns the integer value of the attribute present on the entity,defaultValue is by default 1
 ---@param name string
----@param defaultValue integer
+---@param defaultValue? number
 ---@return number
----@field AttributeHookInt fun(self: Entity, name: string, defaultValue: integer): number
+---@field AttributeHookInt fun(self: Entity, name: string, defaultValue: number): number
+-- Returns the float value of the given netvar
+---@param propName any
 ---@return number
----@field GetPropFloat fun(self: Entity): number
+---@field GetPropFloat fun(self: Entity, propName: any): number
+-- Returns the int value of the given netvar
+---@param propName any
 ---@return number
----@field GetPropInt fun(self: Entity): number
+---@field GetPropInt fun(self: Entity, propName: any): number
+-- Returns the bool value of the given netvar
+---@param propName any
 ---@return any
----@field GetPropBool fun(self: Entity): any
+---@field GetPropBool fun(self: Entity, propName: any): any
+-- Returns the string value of the given netvar
+---@param propName any
 ---@return string
----@field GetPropString fun(self: Entity): string
+---@field GetPropString fun(self: Entity, propName: any): string
+-- Returns the vector value of the given netvar
+---@param propName any
 ---@return Vector3
----@field GetPropVector fun(self: Entity): Vector3
+---@field GetPropVector fun(self: Entity, propName: any): Vector3
+-- For entity handle props (m_hXXXXX)
+---@param propName any
 ---@return Entity|nil
----@field GetPropEntity fun(self: Entity): Entity|nil
+---@field GetPropEntity fun(self: Entity, propName: any): Entity|nil
+-- Sets the float value of the given netvar.
 ---@param value number
----@return number
----@field SetPropFloat fun(self: Entity, value: number): number
----@param value integer
----@return number
----@field SetPropInt fun(self: Entity, value: integer): number
----@param value bool
----@field SetPropBool fun(self: Entity, value: bool)
----@param value Entity
+---@param propName any
+---@field SetPropFloat fun(self: Entity, value: number, propName: any)
+-- Sets the int value of the given netvar.
+---@param value number
+---@param propName any
+---@field SetPropInt fun(self: Entity, value: number, propName: any)
+-- Sets the bool value of the given netvar.
+---@param value boolean
+---@param propName any
+---@field SetPropBool fun(self: Entity, value: boolean, propName: any)
+-- Set the entity value of the given netvar.
+---@param value Entity|nil
+---@param propName any
 ---@return Entity|nil
----@field SetPropEntity fun(self: Entity, value: Entity): Entity|nil
+---@field SetPropEntity fun(self: Entity, value: Entity|nil, propName: any): Entity|nil
+-- Set the vector value of the given netvar.
 ---@param value Vector3
+---@param propName any
 ---@return Vector3
----@field SetPropVector fun(self: Entity, value: Vector3): Vector3
+---@field SetPropVector fun(self: Entity, value: Vector3, propName: any): Vector3
+-- Returns a table of floats, index them with integers based on context of the netvar
+---@param propName any
 ---@return number
----@field GetPropDataTableFloat fun(self: Entity): number
----@return any
----@field GetPropDataTableBool fun(self: Entity): any
+---@field GetPropDataTableFloat fun(self: Entity, propName: any): number
+-- Returns a table of bools, index them with integers based on context of the netvar
+---@param propName any
 ---@return number
----@field GetPropDataTableInt fun(self: Entity): number
----@return Entity|nil
----@field GetPropDataTableEntity fun(self: Entity): Entity|nil
+---@field GetPropDataTableBool fun(self: Entity, propName: any): number
+-- Returns a table of ints, index them with integers based on context of the netvar
+---@param propName any
+---@return number
+---@field GetPropDataTableInt fun(self: Entity, propName: any): number
+-- Returns a table of entities, index them with integers based on context of the netvar
+---@param propName any
+---@return number
+---@field GetPropDataTableEntity fun(self: Entity, propName: any): number
+-- Sets the number value of the given netvar at the given index.
 ---@param value number
----@param index integer
----@return number
----@field SetPropDataTableFloat fun(self: Entity, value: number, index: integer): number
----@param value integer
----@param index integer
----@field SetPropDataTableBool fun(self: Entity, value: integer, index: integer)
----@param value integer
----@param index integer
----@return number
----@field SetPropDataTableInt fun(self: Entity, value: integer, index: integer): number
----@param value Entity
----@param index integer
----@return Entity|nil
----@field SetPropDataTableEntity fun(self: Entity, value: Entity, index: integer): Entity|nil
----@param condition integer
+---@param index number
+---@param propName any
+---@field SetPropDataTableFloat fun(self: Entity, value: number, index: number, propName: any)
+-- Sets the bool value of the given netvar at the given index.
+---@param value number
+---@param index number
+---@param propName any
+---@field SetPropDataTableBool fun(self: Entity, value: number, index: number, propName: any)
+-- Sets the integer value of the given netvar at the given index.
+---@param value number
+---@param index number
+---@param propName any
+---@field SetPropDataTableInt fun(self: Entity, value: number, index: number, propName: any)
+-- Sets the Entity value of the given netvar at the given index.
+---@param value Entity|nil
+---@param index number
+---@param propName any
+---@field SetPropDataTableEntity fun(self: Entity, value: Entity|nil, index: number, propName: any)
+-- Returns whether the player is in the specified condition. List of conditions in TF2 can be found
+---@param condition number
+---@return boolean
+---@field InCond fun(self: Entity, condition: number): boolean
+-- Adds the specified condition to the player, duration is optional (defaults to -1, which means infinite)
+---@param condition number
+---@param duration? number
 ---@return any
----@field InCond fun(self: Entity, condition: integer): any
----@param condition integer
----@param duration number
+---@field AddCond fun(self: Entity, condition: number, duration: number): any
+-- Removes the specified condition from the player
+---@param condition number
 ---@return any
----@field AddCond fun(self: Entity, condition: integer, duration: number): any
----@param condition integer
----@return any
----@field RemoveCond fun(self: Entity, condition: integer): any
+---@field RemoveCond fun(self: Entity, condition: number): any
+-- Whether the player is currently crit boosted by an external source
 ---@return boolean
 ---@field IsCritBoosted fun(self: Entity): boolean
----@return any
----@field GetCritMult fun(self: Entity): any
+-- Returns the current crit multiplier of the player. See TF2 Crit Wiki for more info
+---@return string
+---@field GetCritMult fun(self: Entity): string
+-- For game mode where players can carry runes, returns the type of rune the player is carrying
 ---@return any
 ---@field GetCarryingRuneType fun(self: Entity): any
+-- Returns the max health of the player, including any buffs from items or medics
 ---@return any
 ---@field GetMaxBuffedHealth fun(self: Entity): any
----@param slot integer
+-- Returns the entity for the specified loadout slot. This can be used to get the hat entity for the slot, or the weapon entity for the slot
+---@param slot number
 ---@return Entity|nil
----@field GetEntityForLoadoutSlot fun(self: Entity, slot: integer): Entity|nil
+---@field GetEntityForLoadoutSlot fun(self: Entity, slot: number): Entity|nil
+-- Whether the player is currently in a freezecam after death
 ---@return boolean
 ---@field IsInFreezecam fun(self: Entity): boolean
+-- Returns the third person view angles of the player, as a Vector3
 ---@return Vector3
 ---@field GetVAngles fun(self: Entity): Vector3
+-- Sets the third person view angles of the player, only really effective on the localplayer and on FrameStageNotify callback in stage FRAME_RENDER_START
 ---@param vecAngles Vector3
----@return Vector3
----@field SetVAngles fun(self: Entity, vecAngles: Vector3): Vector3
+---@field SetVAngles fun(self: Entity, vecAngles: Vector3)
+-- Returns whether the weapon is a weapon that can shoot projectiles or hitscan.
 ---@return boolean
 ---@field IsShootingWeapon fun(self: Entity): boolean
+-- Returns whether the weapon is a melee weapon.
 ---@return boolean
 ---@field IsMeleeWeapon fun(self: Entity): boolean
+-- Returns whether the weapon is a medigun, supports all types of mediguns.
 ---@return boolean
 ---@field IsMedigun fun(self: Entity): boolean
+-- Returns whether the weapon can randomly crit in general, not in it's current state.
 ---@return boolean
 ---@field CanRandomCrit fun(self: Entity): boolean
+-- Returns the loadout slot ID of the weapon.
 ---@return any
 ---@field GetLoadoutSlot fun(self: Entity): any
+-- Returns the weapon ID of the weapon.
 ---@return Entity|nil
 ---@field GetWeaponID fun(self: Entity): Entity|nil
+-- Returns whether the weapon's view model is flipped.
 ---@return boolean
 ---@field IsViewModelFlipped fun(self: Entity): boolean
+-- Returns data about the weapon
 ---@return Entity|nil
 ---@field GetWeaponData fun(self: Entity): Entity|nil
----@param player entity
+-- Returns vecSrc as Vector3 and angForward as Vector3. vecSrc is the starting position of the projectile, angForward is the direction of the projectile. vecOffset is the offset of the projectile from the player's eye position. bHitTeammates is whether the projectile can hit teammates. flEndDist is the distance the projectile can travel before it disappears.
+---@param player Entity|nil
 ---@param vecOffset Vector3
----@param bHitTeammates bool
+---@param bHitTeammates boolean
 ---@param flEndDist number
----@return any
----@field GetProjectileFireSetup fun(self: Entity, player: entity, vecOffset: Vector3, bHitTeammates: bool, flEndDist: number): any
+---@return boolean
+---@field GetProjectileFireSetup fun(self: Entity, player: Entity|nil, vecOffset: Vector3, bHitTeammates: boolean, flEndDist: number): boolean
+-- Returns the projectile type of the weapon, returns nil if the weapon is not a projectile weapon.
 ---@return Entity|nil
 ---@field GetWeaponProjectileType fun(self: Entity): Entity|nil
+-- Returns the spread of the weapon, returns nil if the weapon is not a gun weapon.
 ---@return Entity|nil
 ---@field GetWeaponSpread fun(self: Entity): Entity|nil
+-- Returns the projectile speed of the weapon, returns nil if the weapon is not a projectile weapon. Can return 0 if the weapon has the speed hardcoded somewhere else. In that case its up to you to figure out the speed.
 ---@return any
 ---@field GetProjectileSpeed fun(self: Entity): any
+-- Returns the projectile gravity of the weapon, returns nil if the weapon is not a projectile weapon. Can return 0 if the weapon has the gravity hardcoded somewhere else. In that case its up to you to figure out the gravity.
 ---@return any
 ---@field GetProjectileGravity fun(self: Entity): any
+-- Returns the projectile spread of the weapon, returns nil if the weapon is not a projectile weapon.
 ---@return any
 ---@field GetProjectileSpread fun(self: Entity): any
+-- Returns whether the weapon can be charged up.
 ---@return boolean
 ---@field CanCharge fun(self: Entity): boolean
+-- Returns the time the weapon started charging up, returns nil if the weapon is not a charge up weapon.
 ---@return number
 ---@field GetChargeBeginTime fun(self: Entity): number
+-- Returns the max charge time of the weapon, returns nil if the weapon is not a charge up weapon.
 ---@return number
 ---@field GetChargeMaxTime fun(self: Entity): number
+-- Returns the current charge of the weapon, returns nil if the weapon is not a charge up weapon.
 ---@return any
 ---@field GetCurrentCharge fun(self: Entity): any
+-- Returns the swing range of the weapon, returns nil if the weapon is not a melee weapon.
 ---@return any
 ---@field GetSwingRange fun(self: Entity): any
+-- Returns the Trace object result of the weapon's swing. In simple terms, it simulates what would weapon hit if it was swung.
 ---@return any
 ---@field DoSwingTrace fun(self: Entity): any
+-- Returns the heal rate of the medigun, returns nil if the weapon is not a medigun.
 ---@return any
 ---@field GetMedigunHealRate fun(self: Entity): any
+-- Returns the healing stick range of the medigun, returns nil if the weapon is not a medigun.
 ---@return any
 ---@field GetMedigunHealingStickRange fun(self: Entity): any
+-- Returns the healing range of the medigun, returns nil if the weapon is not a medigun.
 ---@return any
 ---@field GetMedigunHealingRange fun(self: Entity): any
----@param target Entity
+-- Returns whether the medigun is allowed to heal the target, returns nil if the weapon is not a medigun.
+---@param target Entity|nil
 ---@return boolean
----@field IsMedigunAllowedToHealTarget fun(self: Entity, target: Entity): boolean
+---@field IsMedigunAllowedToHealTarget fun(self: Entity, target: Entity|nil): boolean
+-- Returns the current crit token bucket value.
 ---@return any
 ---@field GetCritTokenBucket fun(self: Entity): any
+-- Returns the current crit check count.
 ---@return number
 ---@field GetCritCheckCount fun(self: Entity): number
+-- Returns the current crit seed request count.
 ---@return number
 ---@field GetCritSeedRequestCount fun(self: Entity): number
+-- Returns the current crit seed.
 ---@return any
 ---@field GetCurrentCritSeed fun(self: Entity): any
+-- Returns the time until the current rapid fire crit is over.
 ---@return number
 ---@field GetRapidFireCritTime fun(self: Entity): number
+-- Returns the time of the last rapid fire crit check.
 ---@return number
 ---@field GetLastRapidFireCritCheckTime fun(self: Entity): number
+-- Returns the base damage of the weapon.
 ---@return Entity|nil
 ---@field GetWeaponBaseDamage fun(self: Entity): Entity|nil
----@return any
----@field GetCritChance fun(self: Entity): any
+-- Returns the weapon's current crit chance as a number from 0 to 1. This crit chance changes during gameplay based on player's recently dealt damage.
+---@return number
+---@field GetCritChance fun(self: Entity): number
+-- Calculates the cost of a crit based on the given crit parameters. You can either use the GetCritTokenBucket(), GetCritCheckCount(), and GetCritSeedRequestCount() methods to get the current crit parameters, or you can pass your own if you are simulating crits.
 ---@param tokenBucket number
 ---@param critSeedRequestCount number
 ---@param critCheckCount number
 ---@return any
 ---@field GetCritCost fun(self: Entity, tokenBucket: number, critSeedRequestCount: number, critCheckCount: number): any
+-- This function estimates the observed crit chance. The observed crit chance is calculated on the server from the damage you deal across a game round. It is only rarely sent to the client, but is important for crit calculations.
 ---@return any
 ---@field CalcObservedCritChance fun(self: Entity): any
----@param commandNumber integer
+-- Returns whether the given command number would result in a crit.
+---@param commandNumber number
 ---@return boolean
----@field IsAttackCritical fun(self: Entity, commandNumber: integer): boolean
+---@field IsAttackCritical fun(self: Entity, commandNumber: number): boolean
+-- Returns the current damage stats as a following table:
 ---@return Entity|nil
 ---@field GetWeaponDamageStats fun(self: Entity): Entity|nil
 local Entity = {}

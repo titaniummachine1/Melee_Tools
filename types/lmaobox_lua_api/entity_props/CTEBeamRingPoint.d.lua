@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBeamRingPoint
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:44.009Z
+-- Last updated: 2025-12-05T12:04:28.380Z
 
 ---@class CTEBeamRingPoint
 ---@field m_vecCenter Vector3

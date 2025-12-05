@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PartyMemberActivity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PartyMemberActivity/
 -- Path: Lua_Classes/PartyMemberActivity
--- Last updated: 2025-12-05T11:44:38.449Z
+-- Last updated: 2025-12-05T12:04:25.903Z
 
 ---@class PartyMemberActivity
 -- Returns the lobby ID of the party member. This can be used to find out whether the party member is currently in a matchmade game.

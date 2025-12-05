@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEDust
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:44:44.207Z
+-- Last updated: 2025-12-05T12:04:28.401Z
 
 ---@class CTEDust
 ---@field m_flSize number

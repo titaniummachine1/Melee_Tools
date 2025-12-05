@@ -92,6 +92,30 @@ local Default_Config = {
 			ApiKey = "",
 		},
 	},
+
+	Melee = {
+		Adaptive = {
+			Enabled = true,
+			ManualProfile = 0, -- 0=Auto,1=Spy,2=Demoknight
+			Keybind = KEY_NONE,
+			ShowVisuals = true,
+		},
+
+		Spy = {
+			TrickstabAssist = true,
+			MoveAssist = true,
+			SmoothWarp = true,
+			VisualizePoints = true,
+		},
+
+		Demoknight = {
+			ChargePrediction = true,
+			SwingPrediction = true,
+			LateCharge = true,
+			WarpOnAttack = true,
+			VisualizePath = true,
+		},
+	},
 }
 
 return Default_Config

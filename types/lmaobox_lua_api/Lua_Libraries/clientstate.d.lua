@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: clientstate - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/clientstate/
 -- Path: Lua_Libraries/clientstate
--- Last updated: 2025-12-05T11:44:38.713Z
+-- Last updated: 2025-12-05T12:04:26.037Z
 
 ---@class clientstate
 clientstate = {}

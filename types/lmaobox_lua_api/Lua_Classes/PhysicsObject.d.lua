@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsObject - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObject/
 -- Path: Lua_Classes/PhysicsObject
--- Last updated: 2025-12-05T11:44:38.492Z
+-- Last updated: 2025-12-05T12:04:25.915Z
 
 ---@class PhysicsObject
 -- Wakes up the physics object. It will become active in the physics environment and will be simulated in time if the physics environment is simulating.

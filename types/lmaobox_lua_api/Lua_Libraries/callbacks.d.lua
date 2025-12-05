@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/callbacks/
 -- Path: Lua_Libraries/callbacks
--- Last updated: 2025-12-05T11:44:38.682Z
+-- Last updated: 2025-12-05T12:04:26.013Z
 
 ---@class callbacks
 callbacks = {}
@@ -26,3 +26,4 @@ function callbacks.Register(id, unique, callback) end
 ---@param unique any
 ---@return any
 function callbacks.Unregister(id, unique) end
+
