@@ -255,17 +255,20 @@ function generateTypeDefinition(page) {
 	content += `-- Path: ${page.path}\n`;
 	content += `-- Last updated: ${new Date().toISOString()}\n\n`;
 
+	// Add class/page description if available
+	if (page.description) {
+		content += `-- ${page.description}\n\n`;
+	}
+
+	// Include all examples (not just first 2) for better AI context
 	if (page.examples && page.examples.length > 0) {
 		content += `-- Examples:\n`;
-		page.examples.slice(0, 2).forEach((example, idx) => {
+		page.examples.forEach((example, idx) => {
 			content += `-- Example ${idx + 1}:\n`;
-			const lines = example.split('\n').slice(0, 6);
+			const lines = example.split('\n');
 			lines.forEach(line => {
 				content += `-- ${line}\n`;
 			});
-			if (example.split('\n').length > 6) {
-				content += `-- ...\n`;
-			}
 			content += `\n`;
 		});
 	}
@@ -278,6 +281,11 @@ function generateTypeDefinition(page) {
 
 			if (page.functions && page.functions.length > 0) {
 				page.functions.forEach(func => {
+					// Add function description if available
+					if (func.description) {
+						content += `-- ${func.description}\n`;
+					}
+
 					func.params.forEach(param => {
 						const luaType = mapTypeToLua(param.type);
 						content += `---@param ${param.name} ${luaType}\n`;
@@ -302,6 +310,11 @@ function generateTypeDefinition(page) {
 
 			if (page.functions && page.functions.length > 0) {
 				page.functions.forEach(func => {
+					// Add function description if available
+					if (func.description) {
+						content += `-- ${func.description}\n`;
+					}
+
 					func.params.forEach(param => {
 						const luaType = mapTypeToLua(param.type);
 						content += `---@param ${param.name} ${luaType}\n`;
@@ -325,6 +338,11 @@ function generateTypeDefinition(page) {
 	if ((!page.classes || page.classes.length === 0) && (!page.libraries || page.libraries.length === 0)) {
 		if (page.functions && page.functions.length > 0) {
 			for (const func of page.functions) {
+				// Add function description if available
+				if (func.description) {
+					content += `-- ${func.description}\n`;
+				}
+
 				func.params.forEach(param => {
 					const luaType = mapTypeToLua(param.type);
 					content += `---@param ${param.name} ${luaType}\n`;

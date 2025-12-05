@@ -102,6 +102,17 @@ export function parseDocumentationPage(html, url) {
 		}
 	}
 
+	// Extract class/library description from h1
+	const h1Match = html.match(/<h1[^>]*id="[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
+	if (h1Match) {
+		const h1End = h1Match.index + h1Match[0].length;
+		const afterH1 = html.slice(h1End, h1End + 500);
+		const descMatch = afterH1.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+		if (descMatch) {
+			page.description = extractText(descMatch[1]).trim();
+		}
+	}
+
 	// Extract headings
 	const h2Matches = page.content.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi);
 	for (const match of h2Matches) {
@@ -145,10 +156,24 @@ export function parseDocumentationPage(html, url) {
 					}
 				}
 
+				// Extract description: find the next <p> tag after this heading in the full HTML
+				let description = '';
+				const headingEnd = match.index + match[0].length;
+				const afterHeading = html.slice(headingEnd, headingEnd + 500);
+				const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+				if (pMatch) {
+					description = extractText(pMatch[1]).trim();
+					// Limit description length
+					if (description.length > 300) {
+						description = description.slice(0, 297) + '...';
+					}
+				}
+
 				page.functions.push({
 					name: funcName,
 					params: params,
-					section: heading
+					section: heading,
+					description: description
 				});
 			}
 		}
@@ -231,7 +256,20 @@ export function parseDocumentationPage(html, url) {
 					}
 				}
 			}
-			cbFuncs.push({ name, params, section: headingRaw });
+
+			// Extract description for callback
+			let description = '';
+			const headingEnd = match.index + match[0].length;
+			const afterHeading = page.content.slice(headingEnd, headingEnd + 500);
+			const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+			if (pMatch) {
+				description = extractText(pMatch[1]).trim();
+				if (description.length > 200) {
+					description = description.slice(0, 197) + '...';
+				}
+			}
+
+			cbFuncs.push({ name, params, section: headingRaw, description });
 		}
 		if (cbFuncs.length > 0) {
 			page.functions = cbFuncs;
