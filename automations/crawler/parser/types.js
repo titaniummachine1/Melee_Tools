@@ -127,53 +127,70 @@ function generateTypeDefinition(page) {
 
 export async function generateTypesByShortestPath() {
 	console.log('[TypeGenerator] Generating type definitions by shortest path...');
-	
+
 	const pages = db.getAllPagesWithPaths();
-	
+
 	// Group by directory path
 	const pagesByDir = {};
 	for (const page of pages) {
 		if (!page.path) continue;
-		
+
 		const dirPath = path.dirname(page.path) || '.';
 		const sanitizedDir = buildFolderPath(dirPath);
-		
+
 		if (!pagesByDir[sanitizedDir]) {
 			pagesByDir[sanitizedDir] = [];
 		}
 		pagesByDir[sanitizedDir].push(page);
 	}
-	
+
 	// Generate type files
 	let generated = 0;
 	for (const [dirPath, dirPages] of Object.entries(pagesByDir)) {
 		const typeDir = path.join(TYPES_DIR, 'hierarchy', dirPath === '.' ? '' : dirPath);
 		await fs.mkdir(typeDir, { recursive: true });
-		
+
 		// Generate one file per page (or merge pages in same dir if preferred)
 		for (const page of dirPages) {
 			const fileName = path.basename(page.path) + '.d.lua';
 			const filePath = path.join(typeDir, fileName);
-			
-			// Get parsed page data (we'll need to store this or re-parse)
-			// For now, generate basic type definition
-			const content = generateTypeDefinition({
+
+			// Get parsed page data from database
+			let parsedData = {
 				url: page.url,
 				title: page.title,
 				path: page.path,
-				examples: [], // Will be populated from parsed data
+				examples: [],
 				libraries: [],
 				classes: [],
 				functions: [],
 				constants: []
-			});
-			
+			};
+
+			// Try to load parsed data from database
+			if (page.parsed_data) {
+				try {
+					const parsed = JSON.parse(page.parsed_data);
+					parsedData = {
+						...parsedData,
+						examples: parsed.examples || [],
+						libraries: parsed.libraries || [],
+						classes: parsed.classes || [],
+						functions: parsed.functions || [],
+						constants: parsed.constants || []
+					};
+				} catch (e) {
+					console.warn(`[TypeGenerator] Failed to parse stored data for ${page.url}: ${e.message}`);
+				}
+			}
+
+			const content = generateTypeDefinition(parsedData);
 			await fs.writeFile(filePath, content, 'utf8');
 			db.saveTypeDefinition(page.url, page.path, content);
 			generated++;
 		}
 	}
-	
+
 	console.log(`[TypeGenerator] Generated ${generated} type definition files`);
 	return generated;
 }

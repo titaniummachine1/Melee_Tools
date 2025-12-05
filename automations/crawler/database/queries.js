@@ -63,26 +63,33 @@ export const db = {
 
 	getAllGlobals() {
 		const db = getDatabase();
-		const pages = db.prepare('SELECT parsed_data FROM pages WHERE parsed_data IS NOT NULL').all();
+		const pages = db.prepare('SELECT url, title, parsed_data FROM pages WHERE parsed_data IS NOT NULL').all();
 		const globals = new Set();
 
 		for (const page of pages) {
 			try {
 				const parsed = JSON.parse(page.parsed_data);
+				const url = page.url.toLowerCase();
+				const title = (page.title || '').toLowerCase();
+
+				// Check if this is a globals page
+				const isGlobalsPage = url.includes('global') || title.includes('global') ||
+					url.includes('lua-globals') || title.includes('lua globals');
+
 				// Functions that are not part of a class or library are globals
 				if (parsed.functions && parsed.functions.length > 0) {
-					// Check if page has libraries or classes - if not, functions are globals
 					const hasLibraries = parsed.libraries && parsed.libraries.length > 0;
 					const hasClasses = parsed.classes && parsed.classes.length > 0;
 
-					if (!hasLibraries && !hasClasses) {
-						// These are global functions
+					// If it's a globals page, or has no libraries/classes, functions are globals
+					if (isGlobalsPage || (!hasLibraries && !hasClasses)) {
 						for (const func of parsed.functions) {
 							globals.add(func.name);
 						}
 					}
 				}
-				// Constants are also globals
+
+				// Constants are always globals
 				if (parsed.constants && parsed.constants.length > 0) {
 					for (const constant of parsed.constants) {
 						globals.add(constant.name);
