@@ -151,7 +151,7 @@ function generateTypeDefinition(page) {
 	if (page.constants && page.constants.length > 0) {
 		content += `-- Constants:\n`;
 		for (const constant of page.constants) {
-			content += `---@type number\n`;
+			content += `---@type any\n`;
 			content += `${constant.name} = ${constant.value}\n\n`;
 		}
 	}

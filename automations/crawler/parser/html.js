@@ -116,41 +116,63 @@ export function parseDocumentationPage(html, url) {
 	}
 
 	// Extract function signatures (h3 headings)
-	const h3Matches = page.content.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
-	for (const match of h3Matches) {
-		const heading = extractText(match[1]);
-		// Accept headings with or without explicit params
-		const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
-		if (funcMatch) {
-			const funcName = funcMatch[1];
-			const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+	const headingPatterns = [
+		/<h2[^>]*>(.*?)<\/h2>/gi,
+		/<h3[^>]*>(.*?)<\/h3>/gi,
+		/<h4[^>]*>(.*?)<\/h4>/gi
+	];
 
-			const params = [];
-			if (paramsStr) {
-				const paramPattern = /\[?(\w+):(\w+)\]?/g;
-				let paramMatch;
-				while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
-					params.push({
-						name: paramMatch[1],
-						type: paramMatch[2]
-					});
+	function tryExtractFunctions(sourceMatches) {
+		for (const match of sourceMatches) {
+			const heading = extractText(match[1]);
+			const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
+			if (funcMatch) {
+				const funcName = funcMatch[1];
+				const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+
+				const params = [];
+				if (paramsStr) {
+					const paramPattern = /\[?(\w+):(\w+)\]?/g;
+					let paramMatch;
+					while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
+						// Support both name:type and Type:name forms
+						const left = paramMatch[1];
+						const right = paramMatch[2];
+						const isTypeFirst = /^[A-Z]/.test(left) && (right === '' || /^[a-z]/.test(right));
+						const name = isTypeFirst ? (right || 'param') : left;
+						const type = isTypeFirst ? left : (right || 'any');
+						params.push({ name, type });
+					}
 				}
-			}
 
-			page.functions.push({
-				name: funcName,
-				params: params,
-				section: heading
-			});
+				page.functions.push({
+					name: funcName,
+					params: params,
+					section: heading
+				});
+			}
 		}
 	}
 
-	// Fallback: if no functions parsed, scan full HTML for h3 headings
+	for (const pattern of headingPatterns) {
+		const matches = page.content.matchAll(pattern);
+		tryExtractFunctions(matches);
+	}
+
+	// Fallback: scan full HTML headings if still empty
 	if (page.functions.length === 0) {
-		const h3All = html.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
-		for (const match of h3All) {
-			const heading = extractText(match[1]);
-			const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
+		for (const pattern of headingPatterns) {
+			const matches = html.matchAll(pattern);
+			tryExtractFunctions(matches);
+		}
+	}
+
+	// Additional fallback: code tags that look like signatures
+	if (page.functions.length === 0) {
+		const codeMatches = page.content.matchAll(/<code[^>]*>(.*?)<\/code>/gi);
+		for (const match of codeMatches) {
+			const text = extractText(match[1]);
+			const funcMatch = text.match(/^(\w+)\s*\(([^)]*)\)/);
 			if (funcMatch) {
 				const funcName = funcMatch[1];
 				const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
@@ -159,11 +181,52 @@ export function parseDocumentationPage(html, url) {
 					const paramPattern = /\[?(\w+):(\w+)\]?/g;
 					let paramMatch;
 					while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
-						params.push({ name: paramMatch[1], type: paramMatch[2] });
+						const left = paramMatch[1];
+						const right = paramMatch[2];
+						const isTypeFirst = /^[A-Z]/.test(left) && (right === '' || /^[a-z]/.test(right));
+						const name = isTypeFirst ? (right || 'param') : left;
+						const type = isTypeFirst ? left : (right || 'any');
+						params.push({ name, type });
 					}
 				}
-				page.functions.push({ name: funcName, params, section: heading });
+				page.functions.push({ name: funcName, params, section: text });
 			}
+		}
+	}
+
+	// Special handling for callbacks page: rebuild functions from h3 headings
+	if (url.toLowerCase().includes('lua_callbacks')) {
+		const cbFuncs = [];
+		const h3All = html.matchAll(/<h3[^>]*>(.*?)<\/h3>/gi);
+		for (const match of h3All) {
+			const headingRaw = extractText(match[1]);
+			const fm = headingRaw.match(/^(\w+)\s*\(([^)]*)\)/) || headingRaw.match(/^(\w+)\s*$/);
+			if (!fm) continue;
+			const name = fm[1];
+			const paramsStr = fm[2] ? fm[2].trim() : '';
+			const params = [];
+			if (paramsStr) {
+				const parts = paramsStr.split(',').map(p => p.trim()).filter(Boolean);
+				for (const part of parts) {
+					const pm = part.match(/^([^:]+):(.+)$/);
+					if (pm) {
+						const tLeft = pm[1].trim();
+						const tRight = pm[2].trim();
+						const isTypeFirst = /^[A-Z]/.test(tLeft) && (tRight === '' || /^[a-z]/.test(tRight));
+						const pName = isTypeFirst ? (tRight || 'param') : tLeft;
+						const pType = isTypeFirst ? tLeft : (tRight || 'any');
+						params.push({ name: pName, type: pType });
+					} else {
+						params.push({ name: part || 'param', type: 'any' });
+					}
+				}
+			}
+			cbFuncs.push({ name, params, section: headingRaw });
+		}
+		if (cbFuncs.length > 0) {
+			page.functions = cbFuncs;
+			page.classes = [];
+			page.libraries = [];
 		}
 	}
 
@@ -177,6 +240,24 @@ export function parseDocumentationPage(html, url) {
 			});
 		}
 	}
+
+	// Additional constant scrape from full content (upper-case tokens)
+	const constAllMatches = page.content.matchAll(/([A-Z_]{3,}[A-Z0-9_]*)/g);
+	for (const match of constAllMatches) {
+		const name = match[1];
+		// Heuristic: ignore pure HTML attributes
+		if (name.length > 2 && !name.startsWith('HTTP') && !name.startsWith('SVG')) {
+			page.constants.push({ name, value: 'nil' });
+		}
+	}
+
+	// Deduplicate constants
+	const seenConst = new Set();
+	page.constants = page.constants.filter(c => {
+		if (seenConst.has(c.name)) return false;
+		seenConst.add(c.name);
+		return true;
+	});
 
 	return page;
 }
