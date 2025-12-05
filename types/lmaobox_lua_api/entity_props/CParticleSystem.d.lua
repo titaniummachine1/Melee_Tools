@@ -2,7 +2,7 @@
 
 -- Entity Props: CParticleSystem
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:55.284Z
+-- Last updated: 2025-12-05T10:33:23.276Z
 
 ---@class CParticleSystem
 ---@field m_vecOrigin Vector3

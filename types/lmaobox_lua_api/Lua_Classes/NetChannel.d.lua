@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: NetChannel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetChannel/
 -- Path: Lua_Classes/NetChannel
--- Last updated: 2025-12-05T09:57:52.859Z
+-- Last updated: 2025-12-05T10:33:20.054Z
 
 ---@class NetChannel
 ---@return any

@@ -2,7 +2,7 @@
 
 -- Entity Props: CSporeTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:54.961Z
+-- Last updated: 2025-12-05T10:33:23.079Z
 
 ---@class CSporeTrail
 ---@field m_flSpawnRate number

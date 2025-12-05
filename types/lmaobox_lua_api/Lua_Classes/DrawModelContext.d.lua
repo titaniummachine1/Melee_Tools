@@ -3,39 +3,49 @@
 -- Lmaobox Lua API: DrawModelContext - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/DrawModelContext/
 -- Path: Lua_Classes/DrawModelContext
--- Last updated: 2025-12-05T09:57:52.826Z
+-- Last updated: 2025-12-05T10:33:19.992Z
 
 ---@class DrawModelContext
----@return any
----@field Methods fun(self: DrawModelContext): any
----@return any
----@field Examples fun(self: DrawModelContext): any
+-- Returns entity linked to the drawn model, can be nil.
 ---@return Entity|nil
 ---@field GetEntity fun(self: DrawModelContext): Entity|nil
+-- Returns the name of the model being drawn.
 ---@return string
 ---@field GetModelName fun(self: DrawModelContext): string
+-- Replace material used to draw the model. Material can be found or created via materials. API
 ---@return any
 ---@field ForcedMaterialOverride fun(self: DrawModelContext): any
+-- Redraws the model. Can be used to achieve various effects with different materials.
 ---@return any
 ---@field DrawExtraPass fun(self: DrawModelContext): any
+-- Sets the color modulation of the model via StudioRender. Only works for models rendered using STUDIO_RENDER flag.
 ---@return any
 ---@field StudioSetColorModulation fun(self: DrawModelContext): any
+-- Sets the alpha modulation of the model via StudioRender. Only works for models rendered using STUDIO_RENDER flag.
 ---@return any
 ---@field StudioSetAlphaModulation fun(self: DrawModelContext): any
+-- Sets the color modulation of the model via RenderView.
 ---@return any
 ---@field SetColorModulation fun(self: DrawModelContext): any
+-- Sets the alpha modulation of the model via RenderView.
 ---@return any
 ---@field SetAlphaModulation fun(self: DrawModelContext): any
+-- Sets the depth range of the scene. Useful for drawing models in the background or other various effects. Should be reset to the default (0,1) when done.
 ---@return any
 ---@field DepthRange fun(self: DrawModelContext): any
+-- Suppresses the engine lighting when drawing the model.
 ---@return any
 ---@field SuppressEngineLighting fun(self: DrawModelContext): any
+-- Draw the model immediately in the current state. Can be called multiple times. A model will be always drawn even without calling Execute, so calling it 1 time will result in 2 Execute calls, calling this 0 times will result in 1 Execute call. The use case for this is stacking material force overr...
 ---@return any
 ---@field Execute fun(self: DrawModelContext): any
+-- Returns true if anti aim indicator model is being drawn.
 ---@return boolean
 ---@field IsDrawingAntiAim fun(self: DrawModelContext): boolean
+-- Returns true if backtrack indicator model is being drawn.
 ---@return boolean
 ---@field IsDrawingBackTrack fun(self: DrawModelContext): boolean
+-- Returns true if glow model is being drawn.
 ---@return boolean
 ---@field IsDrawingGlow fun(self: DrawModelContext): boolean
 local DrawModelContext = {}

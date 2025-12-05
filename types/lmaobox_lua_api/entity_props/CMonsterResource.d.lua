@@ -2,7 +2,7 @@
 
 -- Entity Props: CMonsterResource
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:54.915Z
+-- Last updated: 2025-12-05T10:33:23.041Z
 
 ---@class CMonsterResource
 ---@field m_iBossHealthPercentageByte number

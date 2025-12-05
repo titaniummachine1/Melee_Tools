@@ -2,7 +2,7 @@
 
 -- Entity Props: CRagdoll
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:55.111Z
+-- Last updated: 2025-12-05T10:33:23.124Z
 
 ---@class CRagdoll
 ---@field m_ragAngles any

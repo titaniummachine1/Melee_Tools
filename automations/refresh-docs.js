@@ -54,8 +54,12 @@ async function runSinglePage(target) {
 		console.log('═══════════════════════════════════════════════════════════\n');
 		console.log(`[Single] Using cache: ${cachePath}`);
 		console.log(`[Single] Generating type for: ${parsed.path}`);
+		console.log(`[Single] Description: ${parsed.description || '(none)'}`);
+		console.log(`[Single] Functions: ${parsed.functions.length}`);
+		console.log(`[Single] Examples: ${parsed.examples.length}`);
 
-		await generateTypeForPage(parsed);
+		const result = await generateTypeForPage(parsed);
+		console.log(`[Single] Generated file: ${result.filePath || '(skipped)'}`);
 		await generateDocsIndex();
 
 		console.log('\n[Single] ✅ Done.');

@@ -87,23 +87,38 @@ export function parseDocumentationPage(html, url) {
 	}
 
 	// Extract code blocks (examples)
-	const codeMatches = page.content.matchAll(/<pre[^>]*><code[^>]*>([\s\S]*?)<\/code><\/pre>/gi);
+	// Handle both <pre><code> and <div class="highlight"><pre><code> formats
+	const codeMatches = page.content.matchAll(/(?:<div[^>]*class="[^"]*highlight[^"]*"[^>]*>)?<pre[^>]*><code[^>]*>([\s\S]*?)<\/code><\/pre>/gi);
 	for (const match of codeMatches) {
+		// Extract text content from nested HTML tags
 		let code = match[1]
+			// Remove line number anchors first
+			.replace(/<a[^>]*>[\s\S]*?<\/a>/gi, '')
+			// Extract text from span tags (preserve content, remove tags)
+			.replace(/<span[^>]*>([\s\S]*?)<\/span>/gi, '$1')
+			// Remove all remaining HTML tags
+			.replace(/<[^>]+>/g, '')
+			// Decode HTML entities
 			.replace(/&lt;/g, '<')
 			.replace(/&gt;/g, '>')
 			.replace(/&amp;/g, '&')
 			.replace(/&quot;/g, '"')
 			.replace(/&nbsp;/g, ' ')
+			// Clean up whitespace
+			.replace(/\n\s*\n/g, '\n')
 			.trim();
 
-		if (code.match(/(function|local|callbacks|entities|client|draw|engine|print|if|then|end)/i)) {
+		if (code && code.length > 0 && code.match(/(function|local|callbacks|entities|client|draw|engine|print|if|then|end|aimbot|GetByIndex|targetID|target)/i)) {
 			page.examples.push(code);
 		}
 	}
 
 	// Extract class/library description from h1
-	const h1Match = html.match(/<h1[^>]*id="[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
+	// Try with id first, then without
+	let h1Match = html.match(/<h1[^>]*id="[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
+	if (!h1Match) {
+		h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+	}
 	if (h1Match) {
 		const h1End = h1Match.index + h1Match[0].length;
 		const afterH1 = html.slice(h1End, h1End + 500);
@@ -126,7 +141,9 @@ export function parseDocumentationPage(html, url) {
 		}
 	}
 
-	// Extract function signatures (h3 headings)
+	// Extract function signatures
+	// h2 can be constructors (like "Vector3( x, y, z )") or section headers (like "Fields", "Methods")
+	// h3/h4 are usually functions
 	const headingPatterns = [
 		/<h2[^>]*>(.*?)<\/h2>/gi,
 		/<h3[^>]*>(.*?)<\/h3>/gi,
@@ -134,11 +151,20 @@ export function parseDocumentationPage(html, url) {
 	];
 
 	function tryExtractFunctions(sourceMatches) {
+		// Skip common section headings that aren't functions
+		const skipHeadings = new Set(['Functions', 'Examples', 'Methods', 'Fields']);
+
 		for (const match of sourceMatches) {
 			const heading = extractText(match[1]);
+			// Only match if it looks like a function signature (has parentheses) or is a single word
 			const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
 			if (funcMatch) {
 				const funcName = funcMatch[1];
+				const hasParams = funcMatch[2] !== undefined;
+
+				// Skip section headings (only if they don't have parentheses - constructors have params)
+				if (!hasParams && skipHeadings.has(funcName)) continue;
+
 				const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
 
 				const params = [];
@@ -157,15 +183,23 @@ export function parseDocumentationPage(html, url) {
 				}
 
 				// Extract description: find the next <p> tag after this heading in the full HTML
+				// Only extract if this is a real function (has params or is h3/h4, not a section header)
 				let description = '';
-				const headingEnd = match.index + match[0].length;
-				const afterHeading = html.slice(headingEnd, headingEnd + 500);
-				const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
-				if (pMatch) {
-					description = extractText(pMatch[1]).trim();
-					// Limit description length
-					if (description.length > 300) {
-						description = description.slice(0, 297) + '...';
+				if (hasParams || match[0].includes('<h3') || match[0].includes('<h4')) {
+					const headingEnd = match.index + match[0].length;
+					const afterHeading = html.slice(headingEnd, headingEnd + 500);
+					const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+					if (pMatch) {
+						description = extractText(pMatch[1]).trim();
+						// Skip if description is just a type name (like "number", "string")
+						if (description.length > 1 && !/^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description)) {
+							// Limit description length
+							if (description.length > 300) {
+								description = description.slice(0, 297) + '...';
+							}
+						} else {
+							description = '';
+						}
 					}
 				}
 
@@ -184,9 +218,13 @@ export function parseDocumentationPage(html, url) {
 		tryExtractFunctions(matches);
 	}
 
-	// Fallback: scan full HTML headings if still empty
+	// Fallback: scan full HTML headings if still empty (only h3/h4, not h2)
 	if (page.functions.length === 0) {
-		for (const pattern of headingPatterns) {
+		const fallbackPatterns = [
+			/<h3[^>]*>(.*?)<\/h3>/gi,
+			/<h4[^>]*>(.*?)<\/h4>/gi
+		];
+		for (const pattern of fallbackPatterns) {
 			const matches = html.matchAll(pattern);
 			tryExtractFunctions(matches);
 		}

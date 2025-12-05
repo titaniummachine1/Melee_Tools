@@ -1,0 +1,42 @@
+---@meta
+
+-- Lmaobox Lua API: LobbyPlayer - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/LobbyPlayer/
+-- Path: Lua_Classes/LobbyPlayer
+-- Last updated: 2025-12-05T10:33:20.035Z
+
+---@class LobbyPlayer
+-- Returns the SteamID of the player as a string.
+---@return any
+---@field Methods fun(self: LobbyPlayer): any
+---@return any
+---@field Examples fun(self: LobbyPlayer): any
+-- Returns the SteamID of the player as a string.
+---@return any
+---@field GetSteamID fun(self: LobbyPlayer): any
+-- Returns the GC assigned team of the player.
+---@return any
+---@field GetTeam fun(self: LobbyPlayer): any
+-- Returns the GC assigned player type of this player.
+---@return Entity|nil
+---@field GetPlayerType fun(self: LobbyPlayer): Entity|nil
+-- Returns the steam name of the player.
+---@return string
+---@field GetName fun(self: LobbyPlayer): string
+-- Returns the last time the player connected to the server as a unix timestamp.
+---@return number
+---@field GetLastConnectTime fun(self: LobbyPlayer): number
+-- Returns the normalized rating of the player - a measure of the player's skill?
+---@return any
+---@field GetNormalizedRating fun(self: LobbyPlayer): any
+-- Returns the normalized uncertainty of the player - a measure of how confident the GC is in the player's rating.
+---@return any
+---@field GetNormalizedUncertainty fun(self: LobbyPlayer): any
+-- Returns the rank of the player. Integer representing the player's rank.
+---@return any
+---@field GetRank fun(self: LobbyPlayer): any
+-- Returns true if the player is chat suspended.
+---@return boolean
+---@field IsChatSuspended fun(self: LobbyPlayer): boolean
+local LobbyPlayer = {}
+

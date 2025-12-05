@@ -1,0 +1,64 @@
+---@meta
+
+-- Lmaobox Lua API: Item - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Item/
+-- Path: Lua_Classes/Item
+-- Last updated: 2025-12-05T10:33:20.024Z
+
+---@class Item
+-- Returns true if the item is valid. There are instances where an item in the inventory is not valid and you should account for them. Otherwise, methods will return nil.
+---@return any
+---@field Methods fun(self: Item): any
+---@return any
+---@field Examples fun(self: Item): any
+-- Returns true if the item is valid. There are instances where an item in the inventory is not valid and you should account for them. Otherwise, methods will return nil.
+---@return boolean
+---@field IsValid fun(self: Item): boolean
+-- Returns the name of the item. This is the name that is displayed in the inventory and can be custom.
+---@return string
+---@field GetName fun(self: Item): string
+-- Returns the item's definition index. Can be used to get the item's definition.
+---@return number
+---@field GetDefIndex fun(self: Item): number
+-- Returns the item's definition as the ItemDefinition object.
+---@return any
+---@field GetItemDefinition fun(self: Item): any
+-- Returns the item's level.
+---@return any
+---@field GetLevel fun(self: Item): any
+-- Returns the item's ID. This is a unique 64bit ID for the item that identifies it across the economy.
+---@return any
+---@field GetItemID fun(self: Item): any
+-- Returns the item's position in the inventory.
+---@return Vector3
+---@field GetInventoryPosition fun(self: Item): Vector3
+-- Returns true if the item is equipped for the given class.
+---@param classid number
+---@return boolean
+---@field IsEquippedForClass fun(self: Item, classid: number): boolean
+-- Returns the item's backpack image texture ID. Some items may not have it, in which case, result is -1.
+---@return string
+---@field GetImageTextureID fun(self: Item): string
+-- Returns the item's attributes as a table where keys are AttributeDefinition objects and values are the values of the attributes.
+---@return any
+---@field GetAttributes fun(self: Item): any
+-- Sets the value of the given attribute by it's definition. The value must be the correct type for the given attribute definition.
+---@param attrDef any
+---@param value any
+---@return any
+---@field SetAttribute fun(self: Item, attrDef: any, value: any): any
+-- Sets the value of the given attribute by it's name. The value must be the correct type for the given attribute definition.
+---@param attrName string
+---@param value any
+---@return any
+---@field SetAttribute fun(self: Item, attrName: string, value: any): any
+-- Removes the given attribute by it's definition.
+---@param attrDef any
+---@return any
+---@field RemoveAttribute fun(self: Item, attrDef: any): any
+-- Removes the given attribute by it's name.
+---@param attrName string
+---@return any
+---@field RemoveAttribute fun(self: Item, attrName: string): any
+local Item = {}
+

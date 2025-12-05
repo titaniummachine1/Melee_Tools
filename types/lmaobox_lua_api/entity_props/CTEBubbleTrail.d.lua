@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBubbleTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:55.832Z
+-- Last updated: 2025-12-05T10:33:23.570Z
 
 ---@class CTEBubbleTrail
 ---@field m_vecMins Vector3

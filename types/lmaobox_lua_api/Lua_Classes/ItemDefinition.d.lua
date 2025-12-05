@@ -1,0 +1,57 @@
+---@meta
+
+-- Lmaobox Lua API: ItemDefinition - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ItemDefinition/
+-- Path: Lua_Classes/ItemDefinition
+-- Last updated: 2025-12-05T10:33:20.028Z
+
+---@class ItemDefinition
+-- Returns the name of the item.
+---@return any
+---@field Methods fun(self: ItemDefinition): any
+---@return any
+---@field Examples fun(self: ItemDefinition): any
+-- Returns the name of the item.
+---@return string
+---@field GetName fun(self: ItemDefinition): string
+-- Returns the definition ID of the item.
+---@return any
+---@field GetID fun(self: ItemDefinition): any
+-- Returns the class of the item.
+---@return any
+---@field GetClass fun(self: ItemDefinition): any
+-- Returns the loadout slot that the item should be placed in.
+---@return any
+---@field GetLoadoutSlot fun(self: ItemDefinition): any
+-- Returns true if the item is hidden.
+---@return boolean
+---@field IsHidden fun(self: ItemDefinition): boolean
+-- Returns true if the item is a tool, such as a key.
+---@return boolean
+---@field IsTool fun(self: ItemDefinition): boolean
+-- Returns true if the item is a base item, such as a stock weapon.
+---@return boolean
+---@field IsBaseItem fun(self: ItemDefinition): boolean
+-- Returns true if the item is a wearable.
+---@return boolean
+---@field IsWearable fun(self: ItemDefinition): boolean
+-- Returns the name of the item in the language of the current player.
+---@return string
+---@field GetNameTranslated fun(self: ItemDefinition): string
+-- Returns the type name of the item.
+---@return string
+---@field GetTypeName fun(self: ItemDefinition): string
+-- Returns the description of the item.
+---@return any
+---@field GetDescription fun(self: ItemDefinition): any
+-- Returns the icon name of the item.
+---@return string
+---@field GetIconName fun(self: ItemDefinition): string
+-- Returns the base item name of the item.
+---@return string
+---@field GetBaseItemName fun(self: ItemDefinition): string
+-- Returns the static item attributes as a table where keys are AttributeDefinition objects and values are the values of the attributes.
+---@return any
+---@field GetAttributes fun(self: ItemDefinition): any
+local ItemDefinition = {}
+

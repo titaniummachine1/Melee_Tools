@@ -3,11 +3,9 @@
 -- Lmaobox Lua API: PhysicsObjectParameters - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObjectParameters/
 -- Path: Lua_Classes/PhysicsObjectParameters
--- Last updated: 2025-12-05T09:57:52.884Z
+-- Last updated: 2025-12-05T10:33:20.288Z
 
 ---@class PhysicsObjectParameters
----@return any
----@field Fields fun(self: PhysicsObjectParameters): any
 ---@return any
 ---@field mass fun(self: PhysicsObjectParameters): any
 ---@return any

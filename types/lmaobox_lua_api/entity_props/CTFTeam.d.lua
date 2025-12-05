@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFTeam
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:54.859Z
+-- Last updated: 2025-12-05T10:33:22.966Z
 
 ---@class CTFTeam
 ---@field m_nFlagCaptures number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFPlayer
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T09:57:54.865Z
+-- Last updated: 2025-12-05T10:33:22.981Z
 
 ---@class CTFPlayer
 ---@field m_bSaveMeParity number
