@@ -7,7 +7,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932373329
+    "last_updated": 1764932932122
   },
   "Lua_Constants": {
     "url": "https://lmaobox.net/lua/Lua_Constants/",
@@ -17,7 +17,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932374352
+    "last_updated": 1764932933167
   },
   "Lua_Globals": {
     "url": "https://lmaobox.net/lua/Lua_Globals/",
@@ -27,7 +27,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932375342
+    "last_updated": 1764932934152
   },
   "TF2_props": {
     "url": "https://lmaobox.net/lua/TF2_props/",
@@ -37,7 +37,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932376398
+    "last_updated": 1764932935198
   },
   "AttributeDefinition": {
     "url": "https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/",
@@ -47,7 +47,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932377383,
+    "last_updated": 1764932936181,
     "classes": [
       "AttributeDefinition"
     ]
@@ -60,7 +60,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764931569689,
+    "last_updated": 1764932937205,
     "classes": [
       "BitBuffer"
     ]
@@ -73,7 +73,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764931570678,
+    "last_updated": 1764932938196,
     "classes": [
       "DrawModelContext"
     ]
@@ -229,7 +229,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932391482,
+    "last_updated": 1764932950338,
     "classes": [
       "Model"
     ]
@@ -242,7 +242,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932392512,
+    "last_updated": 1764932951355,
     "classes": [
       "NetChannel"
     ]
@@ -255,7 +255,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932393524,
+    "last_updated": 1764932952584,
     "classes": [
       "NetMessage"
     ]
@@ -268,7 +268,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932394541,
+    "last_updated": 1764932953574,
     "classes": [
       "PartyMemberActivity"
     ]
@@ -281,7 +281,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932395525,
+    "last_updated": 1764932954798,
     "classes": [
       "PhysicsCollisionModel"
     ]
@@ -294,7 +294,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932396539,
+    "last_updated": 1764932955388,
     "classes": [
       "PhysicsEnvironment"
     ]
@@ -307,7 +307,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932397554,
+    "last_updated": 1764932956402,
     "classes": [
       "PhysicsObject"
     ]
@@ -320,7 +320,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932398567,
+    "last_updated": 1764932957398,
     "classes": [
       "PhysicsObjectParameters"
     ]
@@ -333,7 +333,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764931590953,
+    "last_updated": 1764932958405,
     "classes": [
       "PhysicsSolid"
     ]
@@ -476,7 +476,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932410682,
+    "last_updated": 1764932969597,
     "classes": [
       "Vector3"
     ]
@@ -489,7 +489,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932411659,
+    "last_updated": 1764932970548,
     "classes": [
       "ViewSetup"
     ]
@@ -502,7 +502,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932412694,
+    "last_updated": 1764932971559,
     "classes": [
       "WeaponData"
     ]
@@ -515,7 +515,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932413706,
+    "last_updated": 1764932972587,
     "functions": [
       "aimbot.GetAimbotTarget"
     ],
@@ -531,7 +531,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932414692,
+    "last_updated": 1764932973591,
     "functions": [
       "callbacks.Register",
       "callbacks.Register",
@@ -549,7 +549,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932415716,
+    "last_updated": 1764932974576,
     "functions": [
       "client.GetExtraInventorySlots",
       "client.IsFreeTrialAccount",
@@ -583,7 +583,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932416738,
+    "last_updated": 1764932975568,
     "functions": [
       "clientstate.ForceFullUpdate",
       "clientstate.GetClientSignonState",
@@ -605,7 +605,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932417710,
+    "last_updated": 1764932976625,
     "functions": [
       "draw.Color",
       "draw.Line",
@@ -641,7 +641,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932418740,
+    "last_updated": 1764932977612,
     "functions": [
       "engine.Con_IsVisible",
       "engine.IsGameUIVisible",
@@ -924,7 +924,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932430838,
+    "last_updated": 1764932989737,
     "functions": [
       "models.GetModel",
       "models.GetModelIndex",
@@ -946,7 +946,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932431820,
+    "last_updated": 1764932990721,
     "functions": [
       "party.GetLeader",
       "party.GetMembers",
@@ -980,7 +980,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932432868,
+    "last_updated": 1764932991765,
     "functions": [
       "physics.CreateEnvironment",
       "physics.DestroyEnvironment",
@@ -1001,7 +1001,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932433926,
+    "last_updated": 1764932992753,
     "functions": [
       "playerlist.GetPriority",
       "playerlist.GetPriority",
@@ -1028,7 +1028,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932434915,
+    "last_updated": 1764932993750,
     "functions": [
       "render.Push3DView",
       "render.PopView",
@@ -1075,7 +1075,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932435878,
+    "last_updated": 1764932994770,
     "functions": [
       "steam.GetSteamID",
       "steam.GetPlayerName",
@@ -1095,7 +1095,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932436872,
+    "last_updated": 1764932995784,
     "functions": [
       "vector.Add",
       "vector.Subtract",
@@ -1124,7 +1124,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932437886,
+    "last_updated": 1764932996817,
     "functions": [
       "warp.GetChargedTicks",
       "warp.IsWarping",

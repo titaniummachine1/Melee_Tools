@@ -2,7 +2,7 @@
 
 -- Entity Props: CSmokeStack
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.307Z
+-- Last updated: 2025-12-05T11:09:58.245Z
 
 ---@class CSmokeStack
 ---@field m_SpreadSpeed number

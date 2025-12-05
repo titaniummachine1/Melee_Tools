@@ -2,7 +2,7 @@
 
 -- Entity Props: CFireTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.311Z
+-- Last updated: 2025-12-05T11:09:58.263Z
 
 ---@class CFireTrail
 ---@field m_nAttachment number

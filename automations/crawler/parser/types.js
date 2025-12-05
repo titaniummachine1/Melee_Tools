@@ -43,12 +43,6 @@ function inferReturnType(funcName, params, description = '') {
 			return 'number, Entity|nil';
 		}
 	}
-	// Also check for "Returns 2 values" (capitalized)
-	if (description.includes('Returns 2 values') || description.includes('Returns 2')) {
-		if (description.includes('mask') && (description.includes('entity') || description.includes('Entity'))) {
-			return 'number, Entity|nil';
-		}
-	}
 	if (desc.includes('returns 3 values') || desc.includes('returns 3') ||
 		desc.includes('3 return values') || desc.includes('3 values') ||
 		desc.includes('3 separate') || desc.includes('as 3 return')) {

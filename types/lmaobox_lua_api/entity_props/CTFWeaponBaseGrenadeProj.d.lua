@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponBaseGrenadeProj
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:40.509Z
+-- Last updated: 2025-12-05T11:09:58.003Z
 
 ---@class CTFWeaponBaseGrenadeProj
 ---@field m_vInitialVelocity Vector3

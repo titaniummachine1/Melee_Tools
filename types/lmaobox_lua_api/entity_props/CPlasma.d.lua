@@ -2,7 +2,7 @@
 
 -- Entity Props: CPlasma
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:43.999Z
+-- Last updated: 2025-12-05T11:09:58.362Z
 
 ---@class CPlasma
 ---@field m_flStartScale number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFFlameManager
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:41.690Z
+-- Last updated: 2025-12-05T11:09:58.132Z
 
 ---@class CTFFlameManager
 ---@field m_hWeapon number

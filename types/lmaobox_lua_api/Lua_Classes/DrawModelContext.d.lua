@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: DrawModelContext - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/DrawModelContext/
 -- Path: Lua_Classes/DrawModelContext
--- Last updated: 2025-12-05T11:00:38.136Z
+-- Last updated: 2025-12-05T11:09:57.197Z
 
 ---@class DrawModelContext
 ---@return Entity|nil

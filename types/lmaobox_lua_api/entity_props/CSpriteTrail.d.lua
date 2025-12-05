@@ -2,7 +2,7 @@
 
 -- Entity Props: CSpriteTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.452Z
+-- Last updated: 2025-12-05T11:09:58.309Z
 
 ---@class CSpriteTrail
 ---@field m_flLifetime number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBeamPoints
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:47.472Z
+-- Last updated: 2025-12-05T11:09:58.508Z
 
 ---@class CTEBeamPoints
 ---@field m_vecStartPoint Vector3

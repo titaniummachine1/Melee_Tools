@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseBeam
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.289Z
+-- Last updated: 2025-12-05T11:09:58.222Z
 
 ---@class CBaseBeam
 ---@field m_nModelIndex number

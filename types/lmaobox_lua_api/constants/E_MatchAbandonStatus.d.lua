@@ -2,7 +2,7 @@
 
 -- Constants: E_MatchAbandonStatus
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:00:48.069Z
+-- Last updated: 2025-12-05T11:09:58.744Z
 
 ---@type any
 MATCHABANDON_SAFE = 0

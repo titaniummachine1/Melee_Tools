@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsObject - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObject/
 -- Path: Lua_Classes/PhysicsObject
--- Last updated: 2025-12-05T11:00:38.254Z
+-- Last updated: 2025-12-05T11:09:57.300Z
 
 ---@class PhysicsObject
 ---@return any

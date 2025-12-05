@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFBaseProjectile
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:41.279Z
+-- Last updated: 2025-12-05T11:09:58.121Z
 
 ---@class CTFBaseProjectile
 ---@field m_vInitialVelocity Vector3

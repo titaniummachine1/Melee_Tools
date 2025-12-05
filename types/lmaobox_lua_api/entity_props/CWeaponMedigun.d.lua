@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponMedigun
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:40.748Z
+-- Last updated: 2025-12-05T11:09:58.055Z
 
 ---@class CWeaponMedigun
 ---@field m_hHealingTarget number

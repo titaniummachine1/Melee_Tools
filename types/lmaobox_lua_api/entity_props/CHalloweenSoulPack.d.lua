@@ -2,7 +2,7 @@
 
 -- Entity Props: CHalloweenSoulPack
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:41.602Z
+-- Last updated: 2025-12-05T11:09:58.128Z
 
 ---@class CHalloweenSoulPack
 ---@field m_hTarget number

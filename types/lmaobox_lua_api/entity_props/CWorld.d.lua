@@ -2,7 +2,7 @@
 
 -- Entity Props: CWorld
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.607Z
+-- Last updated: 2025-12-05T11:09:58.323Z
 
 ---@class CWorld
 ---@field m_flWaveHeight number

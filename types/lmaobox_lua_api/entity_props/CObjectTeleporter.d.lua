@@ -2,7 +2,7 @@
 
 -- Entity Props: CObjectTeleporter
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:42.009Z
+-- Last updated: 2025-12-05T11:09:58.150Z
 
 ---@class CObjectTeleporter
 ---@field m_iState number

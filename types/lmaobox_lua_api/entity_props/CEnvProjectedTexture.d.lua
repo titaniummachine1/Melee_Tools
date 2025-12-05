@@ -2,7 +2,7 @@
 
 -- Entity Props: CEnvProjectedTexture
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:45.279Z
+-- Last updated: 2025-12-05T11:09:58.416Z
 
 ---@class CEnvProjectedTexture
 ---@field m_hTargetEntity number

@@ -2,7 +2,7 @@
 
 -- Constants: E_ProjectileType
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:00:48.122Z
+-- Last updated: 2025-12-05T11:09:58.886Z
 
 ---@type any
 TF_PROJECTILE_NONE = 0

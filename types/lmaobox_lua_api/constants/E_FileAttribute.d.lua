@@ -2,7 +2,7 @@
 
 -- Constants: E_FileAttribute
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:00:48.078Z
+-- Last updated: 2025-12-05T11:09:58.747Z
 
 ---@type any
 FILE_ATTRIBUTE_READONLY = 0x1

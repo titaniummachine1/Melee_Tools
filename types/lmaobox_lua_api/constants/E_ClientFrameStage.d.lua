@@ -2,7 +2,7 @@
 
 -- Constants: E_ClientFrameStage
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:00:48.175Z
+-- Last updated: 2025-12-05T11:09:58.966Z
 
 ---@type any
 FRAME_UNDEFINED = -1

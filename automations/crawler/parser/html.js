@@ -234,15 +234,18 @@ export function parseDocumentationPage(html, url) {
 			const params = [];
 			if (paramsStr) {
 				// Handle complex parameter lists with optional params and function types
-				// Split by comma, but be careful with nested brackets
+				// Split by comma, but be careful with nested brackets AND parentheses
 				const parts = [];
 				let current = '';
-				let depth = 0;
+				let bracketDepth = 0;
+				let parenDepth = 0;
 				for (let i = 0; i < paramsStr.length; i++) {
 					const char = paramsStr[i];
-					if (char === '[') depth++;
-					else if (char === ']') depth--;
-					else if (char === ',' && depth === 0) {
+					if (char === '[') bracketDepth++;
+					else if (char === ']') bracketDepth--;
+					else if (char === '(') parenDepth++;
+					else if (char === ')') parenDepth--;
+					else if (char === ',' && bracketDepth === 0 && parenDepth === 0) {
 						parts.push(current.trim());
 						current = '';
 						continue;
@@ -283,8 +286,26 @@ export function parseDocumentationPage(html, url) {
 						continue;
 					}
 
+					// Handle generic types like "Table<TempEntity, EventInfo> entEvtTable"
+					// First decode HTML entities
+					const decodedPart = cleanPart
+						.replace(/&lt;/g, '<')
+						.replace(/&gt;/g, '>')
+						.replace(/&amp;/g, '&');
+
+					// Check for generic type pattern: "Type<A, B> name" or "Table<A, B> name"
+					const genericMatch = decodedPart.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*<\s*([^>]+)\s*>\s+([A-Za-z_][A-Za-z0-9_]*)$/);
+					if (genericMatch) {
+						const typeName = genericMatch[1];
+						const genericParams = genericMatch[2].split(',').map(p => p.trim()).join(',');
+						const paramName = genericMatch[3];
+						const luaType = typeName.toLowerCase() === 'table' ? `table<${genericParams}>` : `${typeName}<${genericParams}>`;
+						params.push({ name: paramName, type: luaType, optional: isOptional });
+						continue;
+					}
+
 					// Regular parameter: "name:type" or "Type:name"
-					const paramMatch = cleanPart.match(/^(\w+)\s*:\s*(\w+)$/);
+					const paramMatch = decodedPart.match(/^(\w+)\s*:\s*(\w+)$/);
 					if (paramMatch) {
 						const left = paramMatch[1];
 						const right = paramMatch[2];
@@ -292,9 +313,9 @@ export function parseDocumentationPage(html, url) {
 						const name = isTypeFirst ? (right || 'param') : left;
 						const type = isTypeFirst ? left : (right || 'any');
 						params.push({ name, type: mapTypeToLua(type), optional: isOptional });
-					} else if (cleanPart.match(/^\w+$/)) {
+					} else if (decodedPart.match(/^\w+$/)) {
 						// Just a name, no type
-						params.push({ name: cleanPart, type: 'any', optional: isOptional });
+						params.push({ name: decodedPart, type: 'any', optional: isOptional });
 					}
 				}
 			}

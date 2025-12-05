@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseDoor
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:46.478Z
+-- Last updated: 2025-12-05T11:09:58.452Z
 
 ---@class CBaseDoor
 ---@field m_flWaveHeight number

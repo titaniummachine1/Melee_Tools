@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBloodSprite
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:47.444Z
+-- Last updated: 2025-12-05T11:09:58.504Z
 
 ---@class CTEBloodSprite
 ---@field m_vecOrigin Vector3

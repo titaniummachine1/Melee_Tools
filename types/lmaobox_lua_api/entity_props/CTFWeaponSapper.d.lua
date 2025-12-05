@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponSapper
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:00:40.961Z
+-- Last updated: 2025-12-05T11:09:58.079Z
 
 ---@class CTFWeaponSapper
 ---@field m_flChargeBeginTime number

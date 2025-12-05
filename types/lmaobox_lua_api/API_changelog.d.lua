@@ -3,5 +3,5 @@
 -- Lmaobox Lua API: API Changelog - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/API_changelog/
 -- Path: API_changelog
--- Last updated: 2025-12-05T11:00:38.112Z
+-- Last updated: 2025-12-05T11:09:57.143Z
 
