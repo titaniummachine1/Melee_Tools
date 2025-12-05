@@ -2,7 +2,7 @@
 
 -- Entity Props: CFogController
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.898Z
+-- Last updated: 2025-12-05T04:07:54.453Z
 
 ---@class CFogController
 ---@field enable number

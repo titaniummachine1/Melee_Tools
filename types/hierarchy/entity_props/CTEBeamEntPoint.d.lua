@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBeamEntPoint
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.941Z
+-- Last updated: 2025-12-05T04:07:54.497Z
 
 ---@class CTEBeamEntPoint
 ---@field m_nStartEntity number

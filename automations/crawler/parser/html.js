@@ -292,25 +292,22 @@ export function parseDocumentationPage(html, url) {
 		}
 	}
 
-	// Extract constants from code examples (fallback)
-	for (const example of page.examples) {
-		const constMatches = example.matchAll(/([A-Z_][A-Z0-9_]*)\s*=\s*([^\n,;]+)/g);
-		for (const match of constMatches) {
-			page.constants.push({
-				name: match[1],
-				value: match[2].trim()
-			});
-		}
-	}
-
-	// Additional constant scrape from full content (upper-case tokens) - only if no constants found yet
-	if (page.constants.length === 0) {
-		const constAllMatches = page.content.matchAll(/([A-Z_]{3,}[A-Z0-9_]*)/g);
-		for (const match of constAllMatches) {
-			const name = match[1];
-			// Heuristic: ignore pure HTML attributes
-			if (name.length > 2 && !name.startsWith('HTTP') && !name.startsWith('SVG')) {
-				page.constants.push({ name, value: 'nil' });
+	// Extract constants from code examples (fallback - only for non-constants pages)
+	// Constants page uses table parsing above, so skip this for constants page
+	if (!url.toLowerCase().includes('lua_constants')) {
+		for (const example of page.examples) {
+			const constMatches = example.matchAll(/([A-Z_][A-Z0-9_]*)\s*=\s*([^\n,;]+)/g);
+			for (const match of constMatches) {
+				// Only extract if it looks like a real constant definition (has a value)
+				const name = match[1];
+				const value = match[2].trim();
+				// Skip if value is just whitespace or common false positives
+				if (value && value !== 'nil' && !value.match(/^(API|HTTP|SVG|XML|HTML)/i)) {
+					page.constants.push({
+						name: name,
+						value: value
+					});
+				}
 			}
 		}
 	}

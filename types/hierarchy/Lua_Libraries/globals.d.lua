@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: globals - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/globals/
 -- Path: Lua_Libraries/globals
--- Last updated: 2025-12-05T04:04:19.392Z
+-- Last updated: 2025-12-05T04:07:53.863Z
 
 ---@class globals
 globals = {}

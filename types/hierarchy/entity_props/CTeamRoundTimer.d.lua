@@ -2,7 +2,7 @@
 
 -- Entity Props: CTeamRoundTimer
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.849Z
+-- Last updated: 2025-12-05T04:07:54.407Z
 
 ---@class CTeamRoundTimer
 ---@field m_bTimerPaused number

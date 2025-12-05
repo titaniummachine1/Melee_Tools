@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: AttributeDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/
 -- Path: Lua_Classes/AttributeDefinition
--- Last updated: 2025-12-05T04:04:19.116Z
+-- Last updated: 2025-12-05T04:07:53.662Z
 
 ---@class AttributeDefinition
 ---@return any

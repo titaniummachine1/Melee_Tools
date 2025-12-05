@@ -312,12 +312,27 @@ function generateTypeDefinition(page) {
 		}
 	}
 
-	// Generate constants
+	// Generate constants (filter out false positives)
 	if (page.constants && page.constants.length > 0) {
-		content += `-- Constants:\n`;
-		for (const constant of page.constants) {
-			content += `---@type any\n`;
-			content += `${constant.name} = ${constant.value}\n\n`;
+		// Filter out useless constants (short names, common false positives, or nil values from fallback)
+		const validConstants = page.constants.filter(c => {
+			// Skip if value is nil (from fallback extraction)
+			if (c.value === 'nil' || c.value === '') return false;
+			// Skip very short names that are likely false positives
+			if (c.name.length < 4) return false;
+			// Skip common false positives
+			if (['API', 'API_', 'HTTP', 'SVG', 'XML', 'HTML', 'CSS', 'URL', 'DOM'].includes(c.name)) return false;
+			// Skip if name doesn't look like a constant (needs underscore or all caps)
+			if (!c.name.includes('_') && !c.name.match(/^[A-Z]{3,}$/)) return false;
+			return true;
+		});
+
+		if (validConstants.length > 0) {
+			content += `-- Constants:\n`;
+			for (const constant of validConstants) {
+				content += `---@type any\n`;
+				content += `${constant.name} = ${constant.value}\n\n`;
+			}
 		}
 	}
 

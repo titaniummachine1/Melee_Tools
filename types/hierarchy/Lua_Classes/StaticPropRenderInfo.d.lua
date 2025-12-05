@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StaticPropRenderInfo - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StaticPropRenderInfo/
 -- Path: Lua_Classes/StaticPropRenderInfo
--- Last updated: 2025-12-05T04:04:19.239Z
+-- Last updated: 2025-12-05T04:07:53.766Z
 
 ---@class StaticPropRenderInfo
 ---@return any

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: gamecoordinator - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gamecoordinator/
 -- Path: Lua_Libraries/gamecoordinator
--- Last updated: 2025-12-05T04:04:19.370Z
+-- Last updated: 2025-12-05T04:07:53.852Z
 
 ---@class gamecoordinator
 gamecoordinator = {}

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEFireBullets
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.919Z
+-- Last updated: 2025-12-05T04:07:54.471Z
 
 ---@class CTEFireBullets
 ---@field m_vecOrigin Vector3

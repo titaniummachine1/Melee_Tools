@@ -2,7 +2,7 @@
 
 -- Entity Props: CDynamicLight
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.901Z
+-- Last updated: 2025-12-05T04:07:54.454Z
 
 ---@class CDynamicLight
 ---@field m_Flags number

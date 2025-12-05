@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: filesystem - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/filesystem/
 -- Path: Lua_Libraries/filesystem
--- Last updated: 2025-12-05T04:04:19.363Z
+-- Last updated: 2025-12-05T04:07:53.848Z
 
 ---@class filesystem
 filesystem = {}

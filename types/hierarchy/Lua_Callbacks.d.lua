@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-05T04:04:19.108Z
+-- Last updated: 2025-12-05T04:07:53.657Z
 
 ---@return any
 function Draw() end

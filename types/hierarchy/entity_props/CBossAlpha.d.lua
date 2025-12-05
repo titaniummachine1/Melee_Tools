@@ -2,7 +2,7 @@
 
 -- Entity Props: CBossAlpha
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.796Z
+-- Last updated: 2025-12-05T04:07:54.342Z
 
 ---@class CBossAlpha
 ---@field m_isNuking number

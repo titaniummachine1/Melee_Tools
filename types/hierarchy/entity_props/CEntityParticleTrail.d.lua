@@ -2,7 +2,7 @@
 
 -- Entity Props: CEntityParticleTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:04:19.899Z
+-- Last updated: 2025-12-05T04:07:54.453Z
 
 ---@class CEntityParticleTrail
 ---@field m_iMaterialName number
