@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 set "SCRIPT_DIR=%~dp0"
 set "TITLEFILE=title.txt"
 set "BUILD_DIR=%BUNDLE_OUTPUT_DIR%"
-if "%BUILD_DIR%"=="" set "BUILD_DIR=%TEMP%\Melee_Tools-bundles"
+if "%BUILD_DIR%"=="" set "BUILD_DIR=%SCRIPT_DIR%build"
 
 rem Ensure build directory exists
 if not exist "%BUILD_DIR%\" mkdir "%BUILD_DIR%"
