@@ -88,8 +88,8 @@ function MovementControl.walkInDirection(cmd, direction, opts)
 		local desiredViewYaw = (targetYaw - inputAngle) * MATH.RAD_TO_DEG
 		desiredViewYaw = DirectionUtils.normalizeYaw(desiredViewYaw)
 
-		local viewAngles = engine.GetViewAngles()
-		engine.SetViewAngles(EulerAngles(viewAngles.x, desiredViewYaw, 0))
+		local viewPitch = select(1, cmd:GetViewAngles())
+		engine.SetViewAngles(EulerAngles(viewPitch, desiredViewYaw, 0))
 	else
 		local targetYaw = (math.atan(dy, dx) + MATH.TWO_PI) % MATH.TWO_PI
 		local _, currentYaw = cmd:GetViewAngles()

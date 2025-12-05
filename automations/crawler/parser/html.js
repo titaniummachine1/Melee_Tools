@@ -396,7 +396,30 @@ export function parseDocumentationPage(html, url) {
 							params.push({ name, type });
 						}
 					}
-					page.functions.push({ name: funcMatch[1], params, section: heading });
+					
+					// Extract description for fallback path too
+					let description = '';
+					const headingEnd = match.index + match[0].length;
+					const afterHeading = html.slice(headingEnd, headingEnd + 1500);
+					const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
+					const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
+					const searchArea = afterHeading.slice(0, searchLimit);
+					const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+					if (pMatches && pMatches.length > 0) {
+						description = pMatches.map(p => extractText(p)).join(' ').trim();
+						if (description.length > 1) {
+							const isJustType = /^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description.trim());
+							if (isJustType) {
+								description = '';
+							} else if (description.length > 500) {
+								description = description.slice(0, 497) + '...';
+							}
+						} else {
+							description = '';
+						}
+					}
+					
+					page.functions.push({ name: funcMatch[1], params, section: heading, description });
 				}
 			}
 		}

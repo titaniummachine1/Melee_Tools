@@ -22,7 +22,15 @@ end
 
 local function healthWeight(player)
 	local hp = player:GetHealth() or 0
-	local maxHp = player:GetPropInt and player:GetPropInt("m_iMaxHealth") or hp
+	local maxHp = hp
+
+	if player.GetPropInt then
+		local value = player:GetPropInt("m_iMaxHealth")
+		if value and value > 0 then
+			maxHp = value
+		end
+	end
+
 	local missing = (maxHp > 0) and ((maxHp - hp) / maxHp) or 0
 	return 1 + missing
 end
