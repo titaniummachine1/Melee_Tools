@@ -21,8 +21,9 @@ local function resolveMaxSpeed(params)
 		return params.maxSpeed
 	end
 
-	if params.classMaxSpeeds and params.classId then
-		return params.classMaxSpeeds[params.classId]
+	local classSpeeds = params.classMaxSpeeds or SimConstants.DEFAULT_CLASS_MAX_SPEEDS
+	if classSpeeds and params.classId then
+		return classSpeeds[params.classId]
 	end
 
 	if params.classId then
@@ -52,8 +53,8 @@ function MovementSim.simulate(params)
 
 	local traceHull = params.traceHull
 	local shouldHit = params.shouldHitEntity
-	local hull = params.hull or HULL
-	local vUp = params.upVector or Vector3(0, 0, 1)
+	local hull = params.hull or SimConstants.DEFAULT_HULL or HULL
+	local vUp = params.upVector or SimConstants.DEFAULT_UP
 	local onGround = params.onGround ~= false
 
 	local pos = Vector3(params.startPos.x, params.startPos.y, params.startPos.z)
@@ -67,9 +68,22 @@ function MovementSim.simulate(params)
 			wishdir = DirectionUtils.normalizeVector(wishdir)
 		end
 
-		vel = Physics.applyFriction(vel, onGround, tickInterval, params.stopSpeed, params.groundFriction)
+		vel = Physics.applyFriction(
+			vel,
+			onGround,
+			tickInterval,
+			params.stopSpeed or SimConstants.DEFAULT_STOP_SPEED,
+			params.groundFriction or SimConstants.DEFAULT_GROUND_FRICTION
+		)
 		if wishdir then
-			vel = Physics.accelerateGround(vel, wishdir, maxSpeed, tickInterval, params.acceleration, onGround)
+			vel = Physics.accelerateGround(
+				vel,
+				wishdir,
+				maxSpeed,
+				tickInterval,
+				params.acceleration or SimConstants.DEFAULT_ACCELERATION,
+				onGround
+			)
 		end
 
 		local step = vel * tickInterval
@@ -78,7 +92,11 @@ function MovementSim.simulate(params)
 		if traceHull then
 			local wallTrace = traceHull(pos, nextPos, hull.MIN, hull.MAX, params.collisionMask, shouldHit)
 			if wallTrace and wallTrace.fraction and wallTrace.fraction < 1 then
-				nextPos.x, nextPos.y = Physics.handleForwardCollision(vel, wallTrace, params.forwardCollisionAngle)
+				nextPos.x, nextPos.y = Physics.handleForwardCollision(
+					vel,
+					wallTrace,
+					params.forwardCollisionAngle or SimConstants.DEFAULT_FORWARD_COLLISION_ANGLE
+				)
 			end
 
 			local groundTrace = traceHull(
@@ -90,8 +108,13 @@ function MovementSim.simulate(params)
 				shouldHit
 			)
 			if groundTrace and groundTrace.fraction and groundTrace.fraction < 1 then
-				nextPos, onGround =
-					Physics.handleGroundCollision(vel, groundTrace, vUp, params.groundAngleLow, params.groundAngleHigh)
+				nextPos, onGround = Physics.handleGroundCollision(
+					vel,
+					groundTrace,
+					vUp,
+					params.groundAngleLow or SimConstants.DEFAULT_GROUND_ANGLE_LOW,
+					params.groundAngleHigh or SimConstants.DEFAULT_GROUND_ANGLE_HIGH
+				)
 			end
 		end
 

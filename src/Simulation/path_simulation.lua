@@ -20,7 +20,7 @@ function PathSimulation.simulateDash(params)
 	assert(params.ticks and params.ticks > 0, "simulateDash: ticks must be > 0")
 
 	local tickInterval = params.tickInterval or globals.TickInterval() or SimConstants.TICK_INTERVAL_DEFAULT
-	local gravity = params.gravity or (client.GetConVar and client.GetConVar("sv_gravity")) or 800
+	local gravity = params.gravity or SimConstants.DEFAULT_GRAVITY
 	local maxSpeed = params.maxSpeed
 
 	if not maxSpeed then
@@ -31,8 +31,8 @@ function PathSimulation.simulateDash(params)
 	local traceHull = params.traceHull
 	local shouldHit = params.shouldHitEntity
 	local canBackstab = params.canBackstab
-	local hull = params.hull or HULL
-	local vUp = params.upVector or Vector3(0, 0, 1)
+	local hull = params.hull or SimConstants.DEFAULT_HULL or HULL
+	local vUp = params.upVector or SimConstants.DEFAULT_UP
 	local wishdir = DirectionUtils.normalizeVector(params.wishdir)
 	local onGround = params.onGround ~= false
 	local pos = Vector3(params.startPos.x, params.startPos.y, params.startPos.z)
@@ -44,8 +44,21 @@ function PathSimulation.simulateDash(params)
 	local closestBackstab
 
 	for tick = 1, params.ticks do
-		vel = Physics.applyFriction(vel, onGround, tickInterval, TF2.STOP_SPEED, TF2.GROUND_FRICTION)
-		vel = Physics.accelerateGround(vel, wishdir, maxSpeed, tickInterval, TF2.ACCELERATION, onGround)
+		vel = Physics.applyFriction(
+			vel,
+			onGround,
+			tickInterval,
+			TF2.STOP_SPEED or SimConstants.DEFAULT_STOP_SPEED,
+			TF2.GROUND_FRICTION or SimConstants.DEFAULT_GROUND_FRICTION
+		)
+		vel = Physics.accelerateGround(
+			vel,
+			wishdir,
+			maxSpeed,
+			tickInterval,
+			TF2.ACCELERATION or SimConstants.DEFAULT_ACCELERATION,
+			onGround
+		)
 
 		local step = vel * tickInterval
 		local nextPos = pos + step
@@ -139,8 +152,21 @@ function PathSimulation.simulateBonusTicks(params)
 		local toTargetLen = toTarget:Length()
 		local wishdir = (toTargetLen > 1) and (toTarget / toTargetLen) or Vector3(1, 0, 0)
 
-		local vel = Physics.applyFriction(lastVel, lastGround, tickInterval, TF2.STOP_SPEED, TF2.GROUND_FRICTION)
-		vel = Physics.accelerateGround(vel, wishdir, maxSpeed, tickInterval, TF2.ACCELERATION, lastGround)
+		local vel = Physics.applyFriction(
+			lastVel,
+			lastGround,
+			tickInterval,
+			TF2.STOP_SPEED or SimConstants.DEFAULT_STOP_SPEED,
+			TF2.GROUND_FRICTION or SimConstants.DEFAULT_GROUND_FRICTION
+		)
+		vel = Physics.accelerateGround(
+			vel,
+			wishdir,
+			maxSpeed,
+			tickInterval,
+			TF2.ACCELERATION or SimConstants.DEFAULT_ACCELERATION,
+			lastGround
+		)
 		vel = Physics.capHorizontalSpeed(vel, maxSpeed)
 
 		local pos = lastPos + vel * tickInterval
