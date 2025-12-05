@@ -2,7 +2,7 @@
 
 -- Entity Props: CFunc_Dust
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.638Z
+-- Last updated: 2025-12-05T11:44:43.391Z
 
 ---@class CFunc_Dust
 ---@field m_Color number

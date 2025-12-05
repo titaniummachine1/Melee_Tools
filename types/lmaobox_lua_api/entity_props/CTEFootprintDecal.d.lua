@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEFootprintDecal
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.880Z
+-- Last updated: 2025-12-05T11:44:43.733Z
 
 ---@class CTEFootprintDecal
 ---@field m_vecOrigin Vector3

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Item - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Item/
 -- Path: Lua_Classes/Item
--- Last updated: 2025-12-05T11:20:20.670Z
+-- Last updated: 2025-12-05T11:44:38.349Z
 
 ---@class Item
 -- Returns true if the item is valid. There are instances where an item in the inventory is not valid and you should account for them. Otherwise, methods will return nil.

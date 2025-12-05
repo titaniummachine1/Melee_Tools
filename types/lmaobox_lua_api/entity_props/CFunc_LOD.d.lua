@@ -2,7 +2,7 @@
 
 -- Entity Props: CFunc_LOD
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.636Z
+-- Last updated: 2025-12-05T11:44:43.386Z
 
 ---@class CFunc_LOD
 ---@field m_fDisappearDist number

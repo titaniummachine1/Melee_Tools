@@ -3,17 +3,10 @@
 -- Lmaobox Lua API: materials - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/materials/
 -- Path: Lua_Libraries/materials
--- Last updated: 2025-12-05T11:20:21.023Z
+-- Last updated: 2025-12-05T11:44:38.873Z
 
 ---@class materials
 materials = {}
-
--- Find a material by name
----@return any
-function materials.Functions() end
-
----@return any
-function materials.Examples() end
 
 -- Find a material by name
 ---@param name string

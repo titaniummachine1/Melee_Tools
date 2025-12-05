@@ -2,7 +2,7 @@
 
 -- Constants: E_MoveType
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:43:34.063Z
+-- Last updated: 2025-12-05T11:44:48.780Z
 
 ---@type any
 MOVETYPE_NONE = 0

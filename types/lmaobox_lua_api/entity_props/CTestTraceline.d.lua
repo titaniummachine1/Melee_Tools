@@ -2,7 +2,7 @@
 
 -- Entity Props: CTestTraceline
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.448Z
+-- Last updated: 2025-12-05T11:44:46.833Z
 
 ---@class CTestTraceline
 ---@field m_clrRender number

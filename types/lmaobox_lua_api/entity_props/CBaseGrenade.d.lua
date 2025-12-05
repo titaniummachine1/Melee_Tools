@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseGrenade
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.747Z
+-- Last updated: 2025-12-05T11:44:43.581Z
 
 ---@class CBaseGrenade
 ---@field m_flDamage number

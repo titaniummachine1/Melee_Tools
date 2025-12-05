@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: UserMessage - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/UserMessage/
 -- Path: Lua_Classes/UserMessage
--- Last updated: 2025-12-05T11:44:09.618Z
-
--- Received as the only argument in DispatchUserMessage callback.
+-- Last updated: 2025-12-05T11:44:38.614Z
 
 ---@class UserMessage
 ---@return any

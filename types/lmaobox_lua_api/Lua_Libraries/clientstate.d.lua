@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: clientstate - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/clientstate/
 -- Path: Lua_Libraries/clientstate
--- Last updated: 2025-12-05T11:44:16.523Z
-
--- The clientstate library is used to get information about the internal client state.
+-- Last updated: 2025-12-05T11:44:38.713Z
 
 ---@class clientstate
 clientstate = {}

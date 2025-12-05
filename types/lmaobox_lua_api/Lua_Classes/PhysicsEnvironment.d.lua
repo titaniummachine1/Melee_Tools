@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
 -- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T11:43:56.491Z
-
--- PhysicsEnvironment is a class that represents a physics environment. It has its own gravity, air resistance, and collision rules. It contains physics objects that can be simulated in time.
+-- Last updated: 2025-12-05T11:44:38.474Z
 
 ---@class PhysicsEnvironment
 -- Sets the gravity of the physics environment.

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFPlayerResource
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.379Z
+-- Last updated: 2025-12-05T11:44:46.693Z
 
 ---@class CTFPlayerResource
 ---@field m_iTotalScore any

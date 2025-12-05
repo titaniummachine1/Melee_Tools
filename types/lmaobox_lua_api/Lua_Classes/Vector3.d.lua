@@ -3,14 +3,9 @@
 -- Lmaobox Lua API: Vector3 - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Vector3/
 -- Path: Lua_Classes/Vector3
--- Last updated: 2025-12-05T11:44:10.474Z
-
--- Represents a point in 3D space. X and Y are the horizontal coordinates, Z is the vertical coordinate.
+-- Last updated: 2025-12-05T11:44:38.623Z
 
 ---@class Vector3
----@field x number
----@field y number
----@field z number
 ---@param x any
 ---@param y any
 ---@param z any

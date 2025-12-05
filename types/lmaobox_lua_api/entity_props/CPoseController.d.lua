@@ -2,7 +2,7 @@
 
 -- Entity Props: CPoseController
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.515Z
+-- Last updated: 2025-12-05T11:44:47.274Z
 
 ---@class CPoseController
 ---@field m_hProps any

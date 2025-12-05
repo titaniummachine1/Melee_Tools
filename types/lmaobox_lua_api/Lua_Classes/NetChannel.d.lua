@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: NetChannel - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetChannel/
 -- Path: Lua_Classes/NetChannel
--- Last updated: 2025-12-05T11:43:52.357Z
-
--- The NetChannel object is used to get information about the network channel.
+-- Last updated: 2025-12-05T11:44:38.430Z
 
 ---@class NetChannel
 -- Returns the name of the channel.

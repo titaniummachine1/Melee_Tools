@@ -2,7 +2,7 @@
 
 -- Constants: E_ButtonCode
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:43:33.988Z
+-- Last updated: 2025-12-05T11:44:48.748Z
 
 ---@type any
 BUTTON_CODE_INVALID = -1

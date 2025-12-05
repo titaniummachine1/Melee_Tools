@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: PhysicsObject - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObject/
 -- Path: Lua_Classes/PhysicsObject
--- Last updated: 2025-12-05T11:43:57.416Z
-
--- PhysicsObject is a class that represents a physics object. It has a position, angle, velocity, angular velocity, and is affected by gravity and air resistance. It can be simulated in time. Other parameters include class PhysicsObjectParameters .
+-- Last updated: 2025-12-05T11:44:38.492Z
 
 ---@class PhysicsObject
 -- Wakes up the physics object. It will become active in the physics environment and will be simulated in time if the physics environment is simulating.

@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: AttributeDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/
 -- Path: Lua_Classes/AttributeDefinition
--- Last updated: 2025-12-05T11:43:37.173Z
-
--- The AttributeDefinition object contains information about an attribute in TF2.
+-- Last updated: 2025-12-05T11:44:38.233Z
 
 ---@class AttributeDefinition
 -- Returns the name of the attribute.

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTESprite
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.787Z
+-- Last updated: 2025-12-05T11:44:43.630Z
 
 ---@class CTESprite
 ---@field m_vecOrigin Vector3

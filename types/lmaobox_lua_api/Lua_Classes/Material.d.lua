@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: Material - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Material/
 -- Path: Lua_Classes/Material
--- Last updated: 2025-12-05T11:43:50.380Z
-
--- Represents a material in source engine. For more information about materials see the Material page.
+-- Last updated: 2025-12-05T11:44:38.404Z
 
 ---@class Material
 -- Returns the material name

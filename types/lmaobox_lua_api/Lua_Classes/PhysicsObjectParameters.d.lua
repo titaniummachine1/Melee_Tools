@@ -3,19 +3,9 @@
 -- Lmaobox Lua API: PhysicsObjectParameters - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsObjectParameters/
 -- Path: Lua_Classes/PhysicsObjectParameters
--- Last updated: 2025-12-05T11:43:58.570Z
-
--- This is a class that contains parameters for a physics object. You can use this to set the mass, drag, and other parameters of a physics object.
+-- Last updated: 2025-12-05T11:44:38.500Z
 
 ---@class PhysicsObjectParameters
----@field mass number
----@field inertia number
----@field damping number
----@field rotdamping number
----@field rotInertiaLimit number
----@field volume number
----@field dragCoefficient number
----@field enableCollisions boolean
 -- number The mass of the physics object.
 ---@return any
 ---@field mass fun(self: PhysicsObjectParameters): any

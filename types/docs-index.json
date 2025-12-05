@@ -7,7 +7,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933554540
+    "last_updated": 1764935012923
   },
   "Lua_Constants": {
     "url": "https://lmaobox.net/lua/Lua_Constants/",
@@ -17,7 +17,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933555566
+    "last_updated": 1764935013949
   },
   "Lua_Globals": {
     "url": "https://lmaobox.net/lua/Lua_Globals/",
@@ -27,7 +27,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933556562
+    "last_updated": 1764935014953
   },
   "TF2_props": {
     "url": "https://lmaobox.net/lua/TF2_props/",
@@ -37,7 +37,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933557614
+    "last_updated": 1764935015989
   },
   "AttributeDefinition": {
     "url": "https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/",
@@ -47,7 +47,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933558590,
+    "last_updated": 1764935017130,
     "classes": [
       "AttributeDefinition"
     ]
@@ -60,7 +60,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933559606,
+    "last_updated": 1764935018114,
     "classes": [
       "BitBuffer"
     ]
@@ -216,7 +216,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932390507,
+    "last_updated": 1764935030310,
     "classes": [
       "Material"
     ]
@@ -229,7 +229,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932950338,
+    "last_updated": 1764935031391,
     "classes": [
       "Model"
     ]
@@ -242,7 +242,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932951355,
+    "last_updated": 1764935032344,
     "classes": [
       "NetChannel"
     ]
@@ -255,7 +255,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932952584,
+    "last_updated": 1764935033350,
     "classes": [
       "NetMessage"
     ]
@@ -268,7 +268,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933575707,
+    "last_updated": 1764935034365,
     "classes": [
       "PartyMemberActivity"
     ]
@@ -281,7 +281,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933576710,
+    "last_updated": 1764935035504,
     "classes": [
       "PhysicsCollisionModel"
     ]
@@ -294,7 +294,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933577741,
+    "last_updated": 1764935036367,
     "classes": [
       "PhysicsEnvironment"
     ]
@@ -307,7 +307,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933578744,
+    "last_updated": 1764935037406,
     "classes": [
       "PhysicsObject"
     ]
@@ -320,7 +320,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764933579742,
+    "last_updated": 1764935038474,
     "classes": [
       "PhysicsObjectParameters"
     ]
@@ -463,7 +463,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764929985782,
+    "last_updated": 1764935049562,
     "classes": [
       "UserMessage"
     ]
@@ -476,7 +476,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932969597,
+    "last_updated": 1764935050457,
     "classes": [
       "Vector3"
     ]
@@ -489,7 +489,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932970548,
+    "last_updated": 1764935051489,
     "classes": [
       "ViewSetup"
     ]
@@ -502,7 +502,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932971559,
+    "last_updated": 1764935052511,
     "classes": [
       "WeaponData"
     ]
@@ -515,7 +515,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932972587,
+    "last_updated": 1764935053497,
     "functions": [
       "aimbot.GetAimbotTarget"
     ],
@@ -531,7 +531,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932973591,
+    "last_updated": 1764935054496,
     "functions": [
       "callbacks.Register",
       "callbacks.Register",
@@ -549,7 +549,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932974576,
+    "last_updated": 1764935055519,
     "functions": [
       "client.GetExtraInventorySlots",
       "client.IsFreeTrialAccount",
@@ -583,7 +583,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932975568,
+    "last_updated": 1764935056494,
     "functions": [
       "clientstate.ForceFullUpdate",
       "clientstate.GetClientSignonState",
@@ -854,10 +854,8 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764930003913,
+    "last_updated": 1764935067650,
     "functions": [
-      "inventory.Functions",
-      "inventory.Examples",
       "inventory.Enumerate",
       "inventory.GetItemByPosition",
       "inventory.GetMaxItemCount",
@@ -878,10 +876,8 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764930004917,
+    "last_updated": 1764935068649,
     "functions": [
-      "itemschema.Functions",
-      "itemschema.Examples",
       "itemschema.GetItemDefinitionByID",
       "itemschema.GetItemDefinitionByName",
       "itemschema.Enumerate",
@@ -900,10 +896,8 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764930005947,
+    "last_updated": 1764935069695,
     "functions": [
-      "materials.Functions",
-      "materials.Examples",
       "materials.Find",
       "materials.Enumerate",
       "materials.Create",
@@ -922,7 +916,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932989737,
+    "last_updated": 1764935070718,
     "functions": [
       "models.GetModel",
       "models.GetModelIndex",
@@ -944,7 +938,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932990721,
+    "last_updated": 1764935071698,
     "functions": [
       "party.GetLeader",
       "party.GetMembers",
@@ -978,7 +972,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932991765,
+    "last_updated": 1764935072718,
     "functions": [
       "physics.CreateEnvironment",
       "physics.DestroyEnvironment",
@@ -999,7 +993,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932992753,
+    "last_updated": 1764935073712,
     "functions": [
       "playerlist.GetPriority",
       "playerlist.GetPriority",
@@ -1026,7 +1020,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932993750,
+    "last_updated": 1764935074714,
     "functions": [
       "render.Push3DView",
       "render.PopView",
@@ -1073,7 +1067,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932994770,
+    "last_updated": 1764935075759,
     "functions": [
       "steam.GetSteamID",
       "steam.GetPlayerName",
@@ -1093,7 +1087,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932995784,
+    "last_updated": 1764935076783,
     "functions": [
       "vector.Add",
       "vector.Subtract",
@@ -1122,7 +1116,7 @@
     "depth": 0,
     "parent_url": null,
     "has_type_definition": true,
-    "last_updated": 1764932996817,
+    "last_updated": 1764935077781,
     "functions": [
       "warp.GetChargedTicks",
       "warp.IsWarping",

@@ -2,7 +2,7 @@
 
 -- Constants: E_GCResults
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T11:43:34.066Z
+-- Last updated: 2025-12-05T11:44:48.784Z
 
 ---@type any
 k_EGCResultOK = 0

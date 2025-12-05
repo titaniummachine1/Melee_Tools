@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/callbacks/
 -- Path: Lua_Libraries/callbacks
--- Last updated: 2025-12-05T11:44:14.508Z
-
--- Callbacks are functions that are called when a certain event occurs. Yiu can use them to add custom functionality to your scripts. To see the list of available callbacks, see the callbacks page.
+-- Last updated: 2025-12-05T11:44:38.682Z
 
 ---@class callbacks
 callbacks = {}

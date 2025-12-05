@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: PhysicsSolid - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsSolid/
 -- Path: Lua_Classes/PhysicsSolid
--- Last updated: 2025-12-05T11:20:20.774Z
+-- Last updated: 2025-12-05T11:44:38.513Z
 
 ---@class PhysicsSolid
 ---@return string

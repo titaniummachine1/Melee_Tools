@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseAnimating
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.729Z
+-- Last updated: 2025-12-05T11:44:43.551Z
 
 ---@class CBaseAnimating
 ---@field m_nSequence number

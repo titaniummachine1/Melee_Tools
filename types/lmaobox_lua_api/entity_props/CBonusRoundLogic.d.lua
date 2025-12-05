@@ -2,7 +2,7 @@
 
 -- Entity Props: CBonusRoundLogic
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.342Z
+-- Last updated: 2025-12-05T11:44:46.466Z
 
 ---@class CBonusRoundLogic
 ---@field m_hBonusWinner number

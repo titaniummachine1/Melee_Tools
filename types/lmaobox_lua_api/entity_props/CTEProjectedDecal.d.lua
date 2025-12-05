@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEProjectedDecal
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.814Z
+-- Last updated: 2025-12-05T11:44:43.659Z
 
 ---@class CTEProjectedDecal
 ---@field m_vecOrigin Vector3

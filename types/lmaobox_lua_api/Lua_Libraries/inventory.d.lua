@@ -3,22 +3,14 @@
 -- Lmaobox Lua API: inventory - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/inventory/
 -- Path: Lua_Libraries/inventory
--- Last updated: 2025-12-05T11:20:21.003Z
+-- Last updated: 2025-12-05T11:44:38.838Z
 
 ---@class inventory
 inventory = {}
 
 -- Callback is called for each item in the inventory. The item is passed as the first argument and is of type Item .
 ---@return any
-function inventory.Functions() end
-
----@return any
-function inventory.Examples() end
-
--- Callback is called for each item in the inventory. The item is passed as the first argument and is of type Item .
----@param callback function
----@return any
-function inventory.Enumerate(callback) end
+function inventory.Enumerate() end
 
 -- Returns the item at the given position in the inventory.
 ---@param position number
@@ -41,12 +33,13 @@ function inventory.GetItemByItemID(itemID) end
 function inventory.GetItemInLoadout(classid, slot) end
 
 -- Equips the item that is in the given slot in the given class' loadout slot. The item is of type Item
----@param item Item|nil
+---@param item any
 ---@param classid number
 ---@param slot number
 ---@return any
 function inventory.EquipItemInLoadout(item, classid, slot) end
 
+-- Creates a fake item with the given parameters. The item definition is of type ItemDefinition . The pickupOrPosition parameter is the pickup method, if isNewItem parameter is true, and the inventory position of the item if isNewItem parameter is false. The itemID64 is the unique 64bit item ID of the item, you can use -1 to generate a random ID. For quality and origin you can use constants. The level is the item's level.
 ---@param itemdef any
 ---@param pickupOrPosition number
 ---@param itemID64 number

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: ItemDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ItemDefinition/
 -- Path: Lua_Classes/ItemDefinition
--- Last updated: 2025-12-05T11:20:20.677Z
+-- Last updated: 2025-12-05T11:44:38.364Z
 
 ---@class ItemDefinition
 -- Returns the name of the item.

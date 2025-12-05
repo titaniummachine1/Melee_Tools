@@ -3,9 +3,7 @@
 -- Lmaobox Lua API: Lua Globals - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Globals/
 -- Path: Lua_Globals
--- Last updated: 2025-12-05T11:43:34.969Z
-
--- This page describes the Lua globals that are available.
+-- Last updated: 2025-12-05T11:44:38.664Z
 
 -- Prints message to console. Each argument is printed on a new line.
 ---@param msg any

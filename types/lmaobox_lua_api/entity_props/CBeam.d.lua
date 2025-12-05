@@ -2,7 +2,7 @@
 
 -- Entity Props: CBeam
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T11:43:36.743Z
+-- Last updated: 2025-12-05T11:44:43.560Z
 
 ---@class CBeam
 ---@field m_nBeamType number
