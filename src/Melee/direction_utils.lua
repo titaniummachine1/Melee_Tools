@@ -117,7 +117,16 @@ local function scaleCorner(corner, distance)
 	)
 end
 
-local function calculateOptimalWishdir(startPos, startVel, offsetFromEnemy, enemyPos, ticks, maxSpeed, hitboxSize, verticalRange)
+local function calculateOptimalWishdir(
+	startPos,
+	startVel,
+	offsetFromEnemy,
+	enemyPos,
+	ticks,
+	maxSpeed,
+	hitboxSize,
+	verticalRange
+)
 	assert(startPos and startVel and offsetFromEnemy and enemyPos, "calculateOptimalWishdir: positions are invalid")
 	assert(ticks and ticks > 0, "calculateOptimalWishdir: ticks is invalid")
 	assert(maxSpeed and maxSpeed > 0, "calculateOptimalWishdir: maxSpeed is invalid")
