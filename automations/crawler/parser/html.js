@@ -183,32 +183,32 @@ export function parseDocumentationPage(html, url) {
 	let currentSection = null;
 	const skipHeadings = new Set(['Functions', 'Examples', 'Methods', 'Fields', 'Constructor']);
 
-		for (const heading of allHeadings) {
-			const headingText = heading.text;
-			const isH2 = heading.level === 2;
-			
-			// Extract heading ID from the match if available
-			const headingIdMatch = heading.match[0].match(/id="([^"]*)"/i);
-			const headingId = headingIdMatch ? headingIdMatch[1] : null;
-			
-			// Track section headers
-			if (isH2 && skipHeadings.has(headingText)) {
-				currentSection = headingText;
-				continue;
-			}
-			
-			// Only match if it looks like a function signature (has parentheses) or is a single word
-			const funcMatch = headingText.match(/^(\w+)\s*\(([^)]*)\)/) || headingText.match(/^(\w+)\s*$/);
-			if (funcMatch) {
-				const funcName = funcMatch[1];
-				const hasParams = funcMatch[2] !== undefined;
+	for (const heading of allHeadings) {
+		const headingText = heading.text;
+		const isH2 = heading.level === 2;
+
+		// Extract heading ID from the match if available
+		const headingIdMatch = heading.match[0].match(/id="([^"]*)"/i);
+		const headingId = headingIdMatch ? headingIdMatch[1] : null;
+
+		// Track section headers
+		if (isH2 && skipHeadings.has(headingText)) {
+			currentSection = headingText;
+			continue;
+		}
+
+		// Only match if it looks like a function signature (has parentheses) or is a single word
+		const funcMatch = headingText.match(/^(\w+)\s*\(([^)]*)\)/) || headingText.match(/^(\w+)\s*$/);
+		if (funcMatch) {
+			const funcName = funcMatch[1];
+			const hasParams = funcMatch[2] !== undefined;
 
 			// Skip section headings (only if they don't have parentheses - constructors have params)
 			if (!hasParams && skipHeadings.has(funcName)) {
 				currentSection = funcName;
 				continue;
 			}
-			
+
 			// If we're in a Fields section and this has no params, it's a field, not a function
 			if (currentSection === 'Fields' && !hasParams) {
 				// Extract field type from description
@@ -331,13 +331,13 @@ export function parseDocumentationPage(html, url) {
 				// Since we're matching from full HTML, we can use the match index directly
 				const headingEnd = heading.index + heading.match[0].length;
 				const afterHeading = html.slice(headingEnd, headingEnd + 1500);
-				
+
 				// Try to get all consecutive <p> tags (description might span multiple paragraphs)
 				// Stop at next heading
 				const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
 				const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
 				const searchArea = afterHeading.slice(0, searchLimit);
-				
+
 				const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
 				if (pMatches && pMatches.length > 0) {
 					// Combine all paragraphs
@@ -396,7 +396,7 @@ export function parseDocumentationPage(html, url) {
 							params.push({ name, type });
 						}
 					}
-					
+
 					// Extract description for fallback path too
 					let description = '';
 					const headingEnd = match.index + match[0].length;
@@ -418,7 +418,7 @@ export function parseDocumentationPage(html, url) {
 							description = '';
 						}
 					}
-					
+
 					page.functions.push({ name: funcMatch[1], params, section: heading, description });
 				}
 			}

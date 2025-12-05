@@ -24,23 +24,23 @@ if (headingMatch) {
 	console.log('Match index:', headingMatch.index);
 	console.log('Match length:', headingMatch[0].length);
 	console.log('Match content:', headingMatch[0].substring(0, 200));
-	
+
 	const headingEnd = headingMatch.index + headingMatch[0].length;
 	const afterHeading = html.slice(headingEnd, headingEnd + 1500);
-	
+
 	console.log('\nAfter heading (first 500 chars):');
 	console.log(afterHeading.substring(0, 500));
-	
+
 	const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
 	const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
 	const searchArea = afterHeading.slice(0, searchLimit);
-	
+
 	console.log('\nSearch area (first 500 chars):');
 	console.log(searchArea.substring(0, 500));
-	
+
 	const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
 	console.log('\nParagraph matches found:', pMatches ? pMatches.length : 0);
-	
+
 	if (pMatches && pMatches.length > 0) {
 		const description = pMatches.map(p => extractText(p)).join(' ').trim();
 		console.log('\nExtracted description:', description);

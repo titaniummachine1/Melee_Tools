@@ -19,19 +19,19 @@ while ((match = headingPattern.exec(html)) !== null) {
 		console.log('Match index:', match.index);
 		console.log('Match length:', match[0].length);
 		console.log('Full match:', match[0]);
-		
+
 		const headingEnd = match.index + match[0].length;
 		const afterHeading = html.slice(headingEnd, headingEnd + 200);
 		console.log('\nAfter heading (first 200 chars):');
 		console.log(afterHeading);
-		
+
 		const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
 		const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
 		const searchArea = afterHeading.slice(0, searchLimit);
-		
+
 		console.log('\nSearch area:');
 		console.log(searchArea);
-		
+
 		const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
 		console.log('\nParagraph matches:', pMatches ? pMatches.length : 0);
 		if (pMatches) {
