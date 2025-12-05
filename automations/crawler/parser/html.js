@@ -332,13 +332,13 @@ export function parseDocumentationPage(html, url) {
 				// Since we're matching from full HTML, we can use the match index directly
 				const headingEnd = heading.index + heading.match[0].length;
 				const afterHeading = html.slice(headingEnd, headingEnd + 1500);
-				
+
 				// Try to get all consecutive <p> tags (description might span multiple paragraphs)
 				// Stop at next heading
 				const nextHeadingMatch = afterHeading.match(/<h[1-6][^>]*>/i);
 				const searchLimit = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
 				const searchArea = afterHeading.slice(0, searchLimit);
-				
+
 				const pMatches = searchArea.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
 				if (pMatches && pMatches.length > 0) {
 					// Combine all paragraphs

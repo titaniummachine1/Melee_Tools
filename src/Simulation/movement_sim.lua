@@ -47,8 +47,10 @@ function MovementSim.simulate(params)
 	assert(params.startPos and params.startVel, "simulate: missing start positions")
 	assert(params.ticks and params.ticks > 0, "simulate: ticks must be > 0")
 
+	SimConstants.refresh()
+
 	local tickInterval = getTickInterval(params.tickInterval)
-	local gravity = params.gravity or (client.GetConVar and client.GetConVar("sv_gravity")) or 800
+	local gravity = params.gravity or SimConstants.DEFAULT_GRAVITY
 	local maxSpeed = resolveMaxSpeed(params)
 
 	local traceHull = params.traceHull
