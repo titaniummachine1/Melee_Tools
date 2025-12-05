@@ -4,6 +4,26 @@ This folder contains all automation scripts for building, deploying, and maintai
 
 ## Scripts
 
+### `crawl-docs.js` ⭐ **NEW - Comprehensive Crawler**
+
+- **Purpose**: Crawl entire documentation site starting from sitemap.xml, build graph of all docs, parse everything
+- **When it runs**:
+  - ✅ Automatically when `update-types.js` runs (on workspace load)
+  - ✅ Manually via: `node automations/crawl-docs.js`
+- **What it does**:
+  - Fetches `https://lmaobox.net/lua/sitemap.xml`
+  - Discovers all documentation pages (only follows links with `https://lmaobox.net/lua/` prefix)
+  - Builds a graph/hierarchy of all documentation pages
+  - Fetches and parses each page (with rate limiting and caching)
+  - Extracts:
+    - All libraries, classes, functions, methods
+    - All callbacks, globals, constants
+    - All code examples
+  - Organizes type definitions by URL hierarchy in `types/hierarchy/`
+  - Caches HTML pages in `.cache/docs/` for faster subsequent runs
+- **Rate limiting**: Fetches limited to once per hour (uses cached data otherwise)
+- **Self-healing**: Automatically adapts to new pages, new categories, structure changes
+
 ### `auto-generate-types.js`
 
 - **Purpose**: Automatically parse the Lmaobox API documentation and generate comprehensive type definitions with examples

@@ -55,7 +55,7 @@ async function fetchWithRetry(url, retries = 3) {
 async function parseSitemap(sitemapXml) {
 	const urls = [];
 	const urlMatches = sitemapXml.matchAll(/<loc>(.*?)<\/loc>/g);
-	
+
 	for (const match of urlMatches) {
 		const url = match[1];
 		// Only include URLs that start with our base URL
@@ -63,38 +63,38 @@ async function parseSitemap(sitemapXml) {
 			urls.push(url);
 		}
 	}
-	
+
 	return urls;
 }
 
 // Build URL hierarchy
 function buildHierarchy(urls) {
 	const hierarchy = {};
-	
+
 	for (const url of urls) {
 		// Remove base URL prefix
 		const relativePath = url.replace(API_BASE_URL, '');
-		
+
 		// Split into path segments
 		const segments = relativePath.split('/').filter(s => s);
-		
+
 		// Build nested structure
 		let current = hierarchy;
 		for (let i = 0; i < segments.length; i++) {
 			const segment = segments[i];
 			const isLast = i === segments.length - 1;
-			
+
 			if (!current[segment]) {
 				current[segment] = isLast ? { _url: url, _type: 'page' } : {};
 			} else if (isLast) {
 				current[segment]._url = url;
 				current[segment]._type = 'page';
 			}
-			
+
 			current = current[segment];
 		}
 	}
-	
+
 	return hierarchy;
 }
 
@@ -112,13 +112,13 @@ function parseHTMLContent(html, url) {
 		constants: {},
 		examples: []
 	};
-	
+
 	// Extract title
 	const titleMatch = html.match(/<title>(.*?)<\/title>/i);
 	if (titleMatch) {
 		apiInfo.title = titleMatch[1].trim();
 	}
-	
+
 	// Extract code examples
 	const codeMatches = html.matchAll(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/gi);
 	for (const match of codeMatches) {
@@ -132,18 +132,18 @@ function parseHTMLContent(html, url) {
 			apiInfo.examples.push(code);
 		}
 	}
-	
+
 	// Extract function signatures (look for patterns like functionName(param:type))
 	const funcMatches = html.matchAll(/(\w+)\s*\(([^)]*)\)/g);
 	for (const match of funcMatches) {
 		const funcName = match[1];
 		const paramsStr = match[2];
-		
+
 		// Skip if it's clearly not an API function
 		if (funcName.length < 2 || funcName.startsWith('http') || funcName.includes('.')) {
 			continue;
 		}
-		
+
 		const params = [];
 		if (paramsStr.trim()) {
 			const paramPattern = /\[?(\w+):(\w+)\]?/g;
@@ -155,10 +155,10 @@ function parseHTMLContent(html, url) {
 				});
 			}
 		}
-		
+
 		apiInfo.functions.push({ name: funcName, params });
 	}
-	
+
 	// Extract headings to identify sections
 	const h2Matches = html.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi);
 	for (const match of h2Matches) {
@@ -173,7 +173,7 @@ function parseHTMLContent(html, url) {
 			}
 		}
 	}
-	
+
 	return apiInfo;
 }
 
@@ -221,7 +221,7 @@ function generateTypeDefinition(apiInfo, category, pathSegments) {
 	content += `-- Lmaobox Lua API: ${apiInfo.title || category}\n`;
 	content += `-- Auto-generated from: ${apiInfo.url}\n`;
 	content += `-- Last updated: ${new Date().toISOString()}\n\n`;
-	
+
 	if (apiInfo.examples.length > 0) {
 		content += `-- Examples from documentation:\n`;
 		apiInfo.examples.slice(0, 2).forEach((example, idx) => {
@@ -236,51 +236,51 @@ function generateTypeDefinition(apiInfo, category, pathSegments) {
 			content += `\n`;
 		});
 	}
-	
+
 	// Generate library definitions
 	for (const libName of Object.keys(apiInfo.libraries)) {
 		content += `---@class ${libName}\n`;
 		content += `${libName} = {}\n\n`;
-		
+
 		// Add functions for this library
 		apiInfo.functions.forEach(func => {
 			func.params.forEach(param => {
 				const luaType = mapTypeToLua(param.type);
 				content += `---@param ${param.name} ${luaType}\n`;
 			});
-			
+
 			const returnType = inferReturnType(func.name, func.params);
 			if (returnType !== 'void') {
 				content += `---@return ${returnType}\n`;
 			}
-			
+
 			const paramList = func.params.map(p => p.name).join(', ');
 			content += `function ${libName}.${func.name}(${paramList}) end\n\n`;
 		});
 	}
-	
+
 	// Generate class definitions
 	for (const className of Object.keys(apiInfo.classes)) {
 		content += `---@class ${className}\n`;
-		
+
 		apiInfo.methods.forEach(method => {
 			method.params.forEach(param => {
 				const luaType = mapTypeToLua(param.type);
 				content += `---@param ${param.name} ${luaType}\n`;
 			});
-			
+
 			const returnType = inferReturnType(method.name, method.params);
 			if (returnType !== 'void') {
 				content += `---@return ${returnType}\n`;
 			}
-			
+
 			const paramTypes = method.params.map(p => `${p.name}: ${mapTypeToLua(p.type)}`).join(', ');
 			content += `---@field ${method.name} fun(self: ${className}${method.params.length > 0 ? ', ' : ''}${paramTypes})${returnType !== 'void' ? `: ${returnType}` : ''}\n`;
 		});
-		
+
 		content += `local ${className} = {}\n\n`;
 	}
-	
+
 	return content;
 }
 
@@ -306,13 +306,13 @@ async function loadCachedHTML(url) {
 // Crawl all documentation pages
 async function crawlDocumentation() {
 	console.log('[Crawl] Starting documentation crawl...\n');
-	
+
 	// Check rate limiting
 	const shouldFetch = await shouldFetch();
 	if (!shouldFetch) {
 		console.log('[Crawl] Rate limited, using cached data if available');
 	}
-	
+
 	// Fetch sitemap
 	console.log('[Crawl] Fetching sitemap...');
 	const sitemapXml = await fetchWithRetry(SITEMAP_URL);
@@ -320,24 +320,24 @@ async function crawlDocumentation() {
 		console.error('[Crawl] Failed to fetch sitemap');
 		return null;
 	}
-	
+
 	// Parse URLs
 	const urls = await parseSitemap(sitemapXml);
 	console.log(`[Crawl] Found ${urls.length} documentation pages`);
-	
+
 	// Build hierarchy
 	const hierarchy = buildHierarchy(urls);
 	console.log('[Crawl] Built URL hierarchy');
-	
+
 	// Fetch and parse each page
 	const allApiInfo = [];
 	let fetched = 0;
 	let cached = 0;
-	
+
 	for (const url of urls) {
 		// Check cache first
 		let html = await loadCachedHTML(url);
-		
+
 		if (!html) {
 			if (shouldFetch) {
 				console.log(`[Crawl] Fetching: ${url}`);
@@ -355,26 +355,26 @@ async function crawlDocumentation() {
 		} else {
 			cached++;
 		}
-		
+
 		if (html) {
 			const apiInfo = parseHTMLContent(html, url);
 			allApiInfo.push(apiInfo);
 		}
 	}
-	
+
 	console.log(`\n[Crawl] Fetched: ${fetched}, Cached: ${cached}, Total: ${allApiInfo.length}`);
-	
+
 	if (shouldFetch) {
 		await updateSession();
 	}
-	
+
 	return { hierarchy, allApiInfo };
 }
 
 // Generate type definitions organized by hierarchy
 async function generateHierarchicalTypes(hierarchy, allApiInfo) {
 	console.log('\n[Crawl] Generating type definitions by hierarchy...');
-	
+
 	// Group API info by path
 	const apiByPath = {};
 	for (const apiInfo of allApiInfo) {
@@ -385,12 +385,12 @@ async function generateHierarchicalTypes(hierarchy, allApiInfo) {
 		}
 		apiByPath[dirPath].push(apiInfo);
 	}
-	
+
 	// Generate type files organized by hierarchy
 	for (const [dirPath, apiInfos] of Object.entries(apiByPath)) {
 		const typeDir = path.join(TYPES_DIR, dirPath);
 		await fs.mkdir(typeDir, { recursive: true });
-		
+
 		// Merge all API info for this directory
 		const merged = {
 			title: dirPath,
@@ -400,7 +400,7 @@ async function generateHierarchicalTypes(hierarchy, allApiInfo) {
 			classes: {},
 			examples: []
 		};
-		
+
 		for (const apiInfo of apiInfos) {
 			merged.functions.push(...apiInfo.functions);
 			merged.methods.push(...apiInfo.methods);
@@ -408,16 +408,16 @@ async function generateHierarchicalTypes(hierarchy, allApiInfo) {
 			Object.assign(merged.libraries, apiInfo.libraries);
 			Object.assign(merged.classes, apiInfo.classes);
 		}
-		
+
 		// Generate type file
 		const fileName = dirPath === '.' ? 'index.d.lua' : path.basename(dirPath) + '.d.lua';
 		const filePath = path.join(typeDir, fileName);
 		const content = generateTypeDefinition(merged, dirPath, dirPath.split('/'));
-		
+
 		await fs.writeFile(filePath, content, 'utf8');
 		console.log(`[Crawl] Generated: ${filePath}`);
 	}
-	
+
 	console.log('\n[Crawl] ✅ All type definitions generated by hierarchy');
 }
 
