@@ -47,7 +47,7 @@ exit /b 1
 
 :bundle_ready
 
-set "DEPLOY_DIR=%localappdata%"
+set "DEPLOY_DIR=%localappdata%\lua"
 if not exist "%DEPLOY_DIR%" (
   echo [BundleAndDeploy] Creating %DEPLOY_DIR%
   mkdir "%DEPLOY_DIR%"
@@ -60,6 +60,12 @@ if errorlevel 1 (
 )
 
 echo [BundleAndDeploy] Deployed to %DEPLOY_DIR%\%OUTFILE%
+
+rem Run auto-commit if changes exceed threshold
+node "%SCRIPT_DIR%auto-commit.js"
+if errorlevel 1 (
+  echo [BundleAndDeploy] Auto-commit step had errors (non-fatal)
+)
 
 endlocal
 exit /b 0
