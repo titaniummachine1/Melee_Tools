@@ -1,6 +1,5 @@
---[[ Imports first --]]
 local G = {}
-G.Menu = require("Cheater_Detection.Utils.DefaultConfig")
+G.Menu = require("Utils.DefaultConfig")
 
 G.AutoVote = {
 	Options = { "Yes", "No" },

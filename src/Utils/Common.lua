@@ -15,11 +15,11 @@ local Common = {
 	Helpers = nil,
 }
 
-local HistoryManager = require("Cheater_Detection.Utils.HistoryManager")
+local HistoryManager = require("Utils.HistoryManager")
 
 -- Move requires here
-Common.Json = require("Cheater_Detection.Libs.Json")
-local G = require("Cheater_Detection.Utils.Globals")
+Common.Json = require("Libs.Json")
+local G = require("Utils.Globals")
 
 if UnloadLib ~= nil then
 	UnloadLib()
@@ -41,7 +41,7 @@ local function loadlib()
 	end
 
 	-- Fallback: Check if it's in the Libs folder
-	local success2, localLib2 = pcall(require, "Cheater_Detection.Libs.lnxLib")
+	local success2, localLib2 = pcall(require, "Libs.lnxLib")
 	if success2 and localLib2 then
 		return localLib2
 	end

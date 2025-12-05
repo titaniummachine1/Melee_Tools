@@ -1,8 +1,8 @@
---[[ Command bridge ]] 
+--[[ Command bridge ]]
 
-local G = require("Cheater_Detection.Utils.Globals")
-local Logger = require("Cheater_Detection.Utils.Logger")
-local Common = require("Cheater_Detection.Utils.Common")
+local G = require("Utils.Globals")
+local Logger = require("Utils.Logger")
+local Common = require("Utils.Common")
 
 local lnxCommands = Common.Lib and Common.Lib.Utils and Common.Lib.Utils.Commands
 

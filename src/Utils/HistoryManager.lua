@@ -5,9 +5,9 @@
      record tables to minimize garbage churn.
 ]]
 
-local PlayerState = require("Cheater_Detection.Utils.PlayerState")
-local Logger = require("Cheater_Detection.Utils.Logger")
-local TickProfiler = require("Cheater_Detection.Utils.TickProfiler")
+local PlayerState = require("Utils.PlayerState")
+local Logger = require("Utils.Logger")
+local TickProfiler = require("Utils.TickProfiler")
 
 ---@class HistoryManager
 local HistoryManager = {}

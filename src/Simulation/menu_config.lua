@@ -1,5 +1,5 @@
 -- Imports
-local okG, G = pcall(require, "Cheater_Detection.Utils.Globals")
+local okG, G = pcall(require, "Utils.Globals")
 if not okG or not G then
 	error("MenuConfig: failed to load Globals")
 end

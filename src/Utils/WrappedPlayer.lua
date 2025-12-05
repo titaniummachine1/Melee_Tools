@@ -3,9 +3,9 @@
 -- A proper wrapper for player entities that extends lnxLib's WPlayer
 
 -- Get required modules
-local Common = require("Cheater_Detection.Utils.Common")
-local PlayerState = require("Cheater_Detection.Utils.PlayerState")
-local G = require("Cheater_Detection.Utils.Globals")
+local Common = require("Utils.Common")
+local PlayerState = require("Utils.PlayerState")
+local G = require("Utils.Globals")
 
 assert(Common, "Common is nil")
 local WPlayer = Common.WPlayer

@@ -3,11 +3,11 @@
 -- Caches self-manage on demand to minimize overhead.
 
 --[[ Imports ]]
-local G = require("Cheater_Detection.Utils.Globals")
-local Common = require("Cheater_Detection.Utils.Common")
-local PlayerState = require("Cheater_Detection.Utils.PlayerState")
-local WrappedPlayer = require("Cheater_Detection.Utils.WrappedPlayer")
-local TickProfiler = require("Cheater_Detection.Utils.TickProfiler")
+local G = require("Utils.Globals")
+local Common = require("Utils.Common")
+local PlayerState = require("Utils.PlayerState")
+local WrappedPlayer = require("Utils.WrappedPlayer")
+local TickProfiler = require("Utils.TickProfiler")
 
 --[[ Module Declaration ]]
 local FastPlayers = {}

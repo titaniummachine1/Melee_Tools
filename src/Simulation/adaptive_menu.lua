@@ -1,10 +1,10 @@
 -- Imports
-local okG, G = pcall(require, "Cheater_Detection.Utils.Globals")
+local okG, G = pcall(require, "Utils.Globals")
 if not okG or not G then
 	error("AdaptiveMenu: failed to load Globals")
 end
 
-local okConfig, Config = pcall(require, "Cheater_Detection.Utils.Config")
+local okConfig, Config = pcall(require, "Utils.Config")
 if not okConfig or not Config then
 	error("AdaptiveMenu: failed to load Config")
 end

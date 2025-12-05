@@ -4,7 +4,7 @@
      players currently in the server.
 ]]
 
-local G = require("Cheater_Detection.Utils.Globals")
+local G = require("Utils.Globals")
 
 local PlayerState = {}
 
