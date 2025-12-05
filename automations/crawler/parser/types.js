@@ -96,7 +96,7 @@ function parseEntityPropsFromHtml(html) {
 	return entities;
 }
 
-function parseConstantsByCategory(html) {
+export function parseConstantsByCategory(html) {
 	const sections = [];
 
 	// Find h3 headings (these are the constant category names like E_UserCmd, E_ButtonCode, etc.)
@@ -122,8 +122,13 @@ function parseConstantsByCategory(html) {
 
 		const constants = [];
 
-		// Find the table after the h3 heading (use non-greedy but ensure we get the full table)
-		const tableMatch = section.match(/<table[^>]*>([\s\S]*?)<\/table>/is);
+		// Find the table after the h3 heading
+		// Try to find table that comes after the h3 tag (may have whitespace/newlines)
+		const h3End = section.indexOf('</h3>');
+		if (h3End === -1) continue;
+
+		const afterH3 = section.slice(h3End + 5); // Content after </h3>
+		const tableMatch = afterH3.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
 		if (tableMatch) {
 			const tableContent = tableMatch[1];
 
@@ -202,6 +207,9 @@ function parseConstantsByCategory(html) {
 		if (constants.length > 0) {
 			const cleanName = current.name.replace(/[^A-Za-z0-9_]/g, '_') || 'constants';
 			sections.push({ name: cleanName, constants });
+		} else {
+			// Debug: log sections with no constants found
+			console.warn(`[ConstantsParser] No constants found for section: ${current.name} (h3 at index ${current.index})`);
 		}
 	}
 
