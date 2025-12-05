@@ -1,13 +1,6 @@
--- Imports
-local okG, G = pcall(require, "Utils.Globals")
-if not okG or not G then
-	error("MenuConfig: failed to load Globals")
-end
-
-local okClassState, ClassState = pcall(require, "Simulation.class_state")
-if not okClassState or not ClassState then
-	error("MenuConfig: failed to load ClassState")
-end
+-- Imports (static requires for luabundle)
+local G = require("Utils.Globals")
+local ClassState = require("Simulation.class_state")
 
 -- Module declaration
 local MenuConfig = {}
@@ -24,13 +17,8 @@ local function getMelee()
 end
 
 local function detectedProfile()
-	local ok, profile = pcall(function()
-		return ClassState.refresh()
-	end)
-	if ok then
-		return profile
-	end
-	return "other"
+	local profile = ClassState.refresh()
+	return profile or "other"
 end
 
 local function resolveProfile(m)

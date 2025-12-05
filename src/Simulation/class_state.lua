@@ -35,10 +35,14 @@ end
 
 local function detectProfile()
 	local lp = entities.GetLocalPlayer()
-	assert(lp, "ClassState.detectProfile: local player missing")
+	if not lp then
+		return "other", nil, false
+	end
 
 	local classId = lp:GetPropInt("m_iClass")
-	assert(classId, "ClassState.detectProfile: m_iClass is nil")
+	if not classId then
+		return "other", nil, false
+	end
 
 	if classId == CLASS_SPY then
 		return "spy", classId, false

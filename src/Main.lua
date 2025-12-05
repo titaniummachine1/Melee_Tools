@@ -1,23 +1,16 @@
 -- Main entry point for Melee_Tools
--- Imports
+-- Imports (static requires for luabundle)
+local AdaptiveMenu = require("Simulation.adaptive_menu")
+-- Register Cheater Detection menu draw callback on load
+require("Visuals.Menu")
 
 -- Module declaration
 local Main = {}
 
--- Local constants / utilities -----
-
+-- Public API ----
 function Main.Initialize()
-	-- Load config (initializes G.Menu)
-	local okConfig, _ = pcall(require, "Utils.Config")
-	if not okConfig then
-		client.ChatPrintf("\x07FF0000Failed to load config!")
-	end
-
-	-- Load adaptive menu - it registers its own Draw callback for TimMenu
-	local okMenu, _ = pcall(require, "Simulation.adaptive_menu")
-	if not okMenu then
-		client.ChatPrintf("\x07FF0000Failed to load adaptive menu!")
-	end
+	-- AdaptiveMenu registers its Draw callback on require
+	-- Nothing else needed here
 end
 
 -- Self-init (optional) ---

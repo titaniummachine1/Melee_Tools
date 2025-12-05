@@ -1,23 +1,15 @@
--- Imports
-local okG, G = pcall(require, "Utils.Globals")
-if not okG or not G then
-	error("AdaptiveMenu: failed to load Globals")
-end
+-- Imports (static requires for luabundle)
+local G = require("Utils.Globals")
+local ClassState = require("Simulation.class_state")
 
-local okConfig, Config = pcall(require, "Utils.Config")
-if not okConfig or not Config then
-	error("AdaptiveMenu: failed to load Config")
+-- External libs (pcall - user must install separately)
+local menuLoaded, TimMenu = pcall(require, "TimMenu")
+if not menuLoaded then
+	client.ChatPrintf("\x07FF0000TimMenu failed to load!")
+	engine.PlaySound("common/bugreporter_failed.wav")
+	return
 end
-
-local okClassState, ClassState = pcall(require, "Simulation.class_state")
-if not okClassState or not ClassState then
-	error("AdaptiveMenu: failed to load ClassState")
-end
-
-local okTimMenu, TimMenu = pcall(require, "TimMenu")
-if not okTimMenu or not TimMenu then
-	error("AdaptiveMenu: TimMenu not found, please install it!")
-end
+assert(menuLoaded, "TimMenu not found, please install it!")
 
 -- Module declaration
 local AdaptiveMenu = {}
@@ -29,12 +21,6 @@ local PROFILE_DEMOKNIGHT = 2
 
 local profileOptions = { "Auto", "Spy", "Demoknight" }
 
-local function getMeleeConfig()
-	assert(G.Menu, "AdaptiveMenu: G.Menu is nil")
-	assert(G.Menu.Melee, "AdaptiveMenu: G.Menu.Melee missing (did you load DefaultConfig?)")
-	return G.Menu.Melee
-end
-
 local function resolveProfile(menuMelee)
 	local manual = menuMelee.Adaptive.ManualProfile or PROFILE_AUTO
 	if manual == PROFILE_SPY then
@@ -43,16 +29,8 @@ local function resolveProfile(menuMelee)
 		return "demoknight"
 	end
 
-	local ok, profile = pcall(function()
-		local detected = ClassState.refresh()
-		return detected
-	end)
-
-	if ok and profile then
-		return profile
-	end
-
-	return "other"
+	local profile = ClassState.refresh()
+	return profile or "other"
 end
 
 local function drawShared(menuMelee, activeProfile)
@@ -131,15 +109,11 @@ end
 
 -- Public API ----
 function AdaptiveMenu.OnDraw()
-	if not G or not G.Menu or not G.Menu.Melee then
+	if not G.Menu or not G.Menu.Melee then
 		return
 	end
 
-	local ok, menuMelee = pcall(getMeleeConfig)
-	if not ok or not menuMelee then
-		return
-	end
-
+	local menuMelee = G.Menu.Melee
 	if not menuMelee.Adaptive.Enabled then
 		return
 	end

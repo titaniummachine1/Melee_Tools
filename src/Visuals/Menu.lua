@@ -1,11 +1,12 @@
 local Menu = {}
 
-local Common = require("Cheater_Detection.Utils.Common")
-local G = require("Cheater_Detection.Utils.Globals")
-local TickProfiler = require("Cheater_Detection.Utils.TickProfiler")
+local Common = require("Utils.Common")
+local G = require("Utils.Globals")
+local TickProfiler = require("Utils.TickProfiler")
 
-local Lib = Common.Lib
-local Fonts = Lib.UI.Fonts
+local Lib = assert(Common.Lib, "Menu: Common.Lib missing")
+local LibUI = assert(Lib.UI, "Menu: Lib.UI missing")
+local Fonts = assert(LibUI.Fonts, "Menu: Lib.UI.Fonts missing")
 
 -- Try to load TimMenu (assumes it's installed globally in Lmaobox)
 local TimMenu = nil
