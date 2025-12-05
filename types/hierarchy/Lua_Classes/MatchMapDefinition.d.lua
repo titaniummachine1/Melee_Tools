@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: MatchMapDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/MatchMapDefinition/
 -- Path: Lua_Classes/MatchMapDefinition
--- Last updated: 2025-12-05T04:14:10.517Z
+-- Last updated: 2025-12-05T05:05:22.736Z
 
 ---@class MatchMapDefinition
 ---@return any

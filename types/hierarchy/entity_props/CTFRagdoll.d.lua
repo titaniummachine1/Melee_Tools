@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFRagdoll
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.160Z
+-- Last updated: 2025-12-05T05:05:24.094Z
 
 ---@class CTFRagdoll
 ---@field m_vecRagdollOrigin Vector3

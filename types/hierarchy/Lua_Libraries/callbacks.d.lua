@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/callbacks/
 -- Path: Lua_Libraries/callbacks
--- Last updated: 2025-12-05T04:14:10.632Z
+-- Last updated: 2025-12-05T05:05:22.971Z
 
 ---@class callbacks
 callbacks = {}

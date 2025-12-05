@@ -2,7 +2,7 @@
 
 -- Entity Props: CEyeballBoss
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.111Z
+-- Last updated: 2025-12-05T05:05:24.054Z
 
 ---@class CEyeballBoss
 ---@field m_lookAtSpot Vector3

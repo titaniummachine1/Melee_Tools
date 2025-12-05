@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponFlameBall
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.070Z
+-- Last updated: 2025-12-05T05:05:24.020Z
 
 ---@class CWeaponFlameBall
 ---@field m_flRechargeScale number

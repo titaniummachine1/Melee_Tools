@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: models - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/models/
 -- Path: Lua_Libraries/models
--- Last updated: 2025-12-05T04:14:10.691Z
+-- Last updated: 2025-12-05T05:05:23.063Z
 
 ---@class models
 models = {}

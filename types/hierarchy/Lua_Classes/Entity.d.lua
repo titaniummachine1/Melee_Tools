@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Entity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Entity/
 -- Path: Lua_Classes/Entity
--- Last updated: 2025-12-05T04:14:10.503Z
+-- Last updated: 2025-12-05T05:05:22.707Z
 
 ---@class Entity
 ---@return any

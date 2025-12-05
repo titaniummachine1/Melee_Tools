@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: draw - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/draw/
 -- Path: Lua_Libraries/draw
--- Last updated: 2025-12-05T04:14:10.647Z
+-- Last updated: 2025-12-05T05:05:22.995Z
 
 ---@class draw
 draw = {}

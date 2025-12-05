@@ -2,7 +2,7 @@
 
 -- Entity Props: CObjectDispenser
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.167Z
+-- Last updated: 2025-12-05T05:05:24.107Z
 
 ---@class CObjectDispenser
 ---@field m_iState number

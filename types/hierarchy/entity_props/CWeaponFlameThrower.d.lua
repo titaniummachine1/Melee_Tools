@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponFlameThrower
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.068Z
+-- Last updated: 2025-12-05T05:05:24.012Z
 
 ---@class CWeaponFlameThrower
 ---@field m_iWeaponState number

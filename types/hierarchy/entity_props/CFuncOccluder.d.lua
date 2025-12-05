@@ -2,7 +2,7 @@
 
 -- Entity Props: CFuncOccluder
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.249Z
+-- Last updated: 2025-12-05T05:05:24.235Z
 
 ---@class CFuncOccluder
 ---@field m_bActive number

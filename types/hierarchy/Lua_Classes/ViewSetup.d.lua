@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: ViewSetup - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ViewSetup/
 -- Path: Lua_Classes/ViewSetup
--- Last updated: 2025-12-05T04:14:10.613Z
+-- Last updated: 2025-12-05T05:05:22.923Z
 
 ---@class ViewSetup
 ---@return any

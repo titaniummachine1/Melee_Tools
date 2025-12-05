@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFDroppedWeapon
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.082Z
+-- Last updated: 2025-12-05T05:05:24.025Z
 
 ---@class CTFDroppedWeapon
 ---@field m_iItemDefinitionIndex number

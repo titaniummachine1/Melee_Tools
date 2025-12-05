@@ -2,7 +2,7 @@
 
 -- Entity Props: CHightower_TeleportVortex
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.108Z
+-- Last updated: 2025-12-05T05:05:24.045Z
 
 ---@class CHightower_TeleportVortex
 ---@field m_iState number

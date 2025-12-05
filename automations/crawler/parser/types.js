@@ -114,6 +114,18 @@ export function parseConstantsByCategory(html) {
 		}
 	}
 
+	// Debug: log found h3 headings for constants page
+	if (h3Positions.length > 20) {
+		console.log(`[ConstantsParser] Found ${h3Positions.length} h3 headings`);
+		const missing = ['E_UserMessage', 'E_TFCOND', 'E_Character', 'E_GCResults'];
+		const found = h3Positions.map(h => h.name);
+		missing.forEach(m => {
+			if (!found.includes(m)) {
+				console.warn(`[ConstantsParser] Missing h3 heading: ${m}`);
+			}
+		});
+	}
+
 	// Process each h3 section
 	for (let i = 0; i < h3Positions.length; i++) {
 		const current = h3Positions[i];
@@ -123,13 +135,13 @@ export function parseConstantsByCategory(html) {
 		const constants = [];
 
 		// Find the table after the h3 heading
-		// Try to find table that comes after the h3 tag (may have whitespace/newlines)
 		const h3End = section.indexOf('</h3>');
 		if (h3End === -1) continue;
 
-		const afterH3 = section.slice(h3End + 5); // Content after </h3>
+		const afterH3 = section.slice(h3End + 5);
+		// Find table using regex
 		const tableMatch = afterH3.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
-		if (tableMatch) {
+		if (tableMatch && tableMatch[1]) {
 			const tableContent = tableMatch[1];
 
 			// Extract table rows (skip the header row)
@@ -175,8 +187,9 @@ export function parseConstantsByCategory(html) {
 						.replace(/&gt;/g, '>')
 						.replace(/&amp;/g, '&');
 
-					// Only add if name looks like a constant (uppercase with underscores)
-					if (name && /^[A-Z_][A-Z0-9_]*$/.test(name)) {
+					// Only add if name looks like a constant
+					// Accept: UPPER_CASE, PascalCase, k_Prefix, or single letters
+					if (name && /^[A-Za-z_]/.test(name)) {
 						constants.push({ name, value });
 					}
 				}
@@ -208,8 +221,19 @@ export function parseConstantsByCategory(html) {
 			const cleanName = current.name.replace(/[^A-Za-z0-9_]/g, '_') || 'constants';
 			sections.push({ name: cleanName, constants });
 		} else {
-			// Debug: log sections with no constants found
-			console.warn(`[ConstantsParser] No constants found for section: ${current.name} (h3 at index ${current.index})`);
+			// Debug: log sections with no constants found (only for known missing ones)
+			const missingOnes = ['E_UserMessage', 'E_TFCOND', 'E_Character', 'E_GCResults'];
+			if (missingOnes.includes(current.name)) {
+				const h3End = section.indexOf('</h3>');
+				const afterH3 = h3End !== -1 ? section.slice(h3End + 5, h3End + 500) : 'no </h3> found';
+				const hasTable = section.includes('<table');
+				const tableMatch = afterH3.match(/<table[^>]*>/i);
+				console.warn(`[ConstantsParser] No constants found for: ${current.name}`);
+				console.warn(`  - Has </h3>: ${h3End !== -1}, Has <table> in section: ${hasTable}, Table match: ${!!tableMatch}`);
+				if (tableMatch) {
+					console.warn(`  - Table found at position: ${tableMatch.index}`);
+				}
+			}
 		}
 	}
 

@@ -2,7 +2,7 @@
 
 -- Constants: E_Flows
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T04:14:11.416Z
+-- Last updated: 2025-12-05T05:05:25.120Z
 
 ---@type any
 FLOW_OUTGOING = 0

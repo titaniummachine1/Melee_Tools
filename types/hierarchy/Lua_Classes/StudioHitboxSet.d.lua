@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: StudioHitboxSet - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StudioHitboxSet/
 -- Path: Lua_Classes/StudioHitboxSet
--- Last updated: 2025-12-05T04:14:10.593Z
+-- Last updated: 2025-12-05T05:05:22.883Z
 
 ---@class StudioHitboxSet
 ---@return any

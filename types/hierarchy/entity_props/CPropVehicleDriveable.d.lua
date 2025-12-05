@@ -2,7 +2,7 @@
 
 -- Entity Props: CPropVehicleDriveable
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.183Z
+-- Last updated: 2025-12-05T05:05:24.137Z
 
 ---@class CPropVehicleDriveable
 ---@field m_hPlayer number

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: TempEntity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/TempEntity/
 -- Path: Lua_Classes/TempEntity
--- Last updated: 2025-12-05T04:14:10.599Z
+-- Last updated: 2025-12-05T05:05:22.896Z
 
 ---@class TempEntity
 ---@return any

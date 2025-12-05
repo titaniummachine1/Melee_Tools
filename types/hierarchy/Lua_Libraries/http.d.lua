@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: http - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/http/
 -- Path: Lua_Libraries/http
--- Last updated: 2025-12-05T04:14:10.681Z
+-- Last updated: 2025-12-05T05:05:23.052Z
 
 ---@class http
 http = {}

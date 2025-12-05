@@ -2,7 +2,7 @@
 
 -- Entity Props: CObjectSentrygun
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.165Z
+-- Last updated: 2025-12-05T05:05:24.106Z
 
 ---@class CObjectSentrygun
 ---@field m_iAmmoShells number

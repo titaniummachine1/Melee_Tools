@@ -2,7 +2,7 @@
 
 -- Entity Props: CTETFExplosion
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T04:14:11.288Z
+-- Last updated: 2025-12-05T05:05:24.342Z
 
 ---@class CTETFExplosion
 ---@field m_vecNormal Vector3
