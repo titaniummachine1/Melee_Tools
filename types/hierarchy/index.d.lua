@@ -1,0 +1,23 @@
+---@meta
+
+-- Lmaobox Lua API: Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/
+-- Path: index
+-- Last updated: 2025-12-05T03:55:13.723Z
+
+---@return any
+function Community() end
+
+---@return any
+function IDE() end
+
+-- Constants:
+---@type any
+IDE = nil
+
+---@type any
+API_ = nil
+
+---@type any
+API = nil
+

@@ -1,0 +1,88 @@
+---@meta
+
+-- Lmaobox Lua API: NetChannel - Lmaobox Lua
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/NetChannel/
+-- Path: Lua_Classes/NetChannel
+-- Last updated: 2025-12-05T03:55:13.778Z
+
+---@class NetChannel
+---@return any
+---@field Methods fun(self: NetChannel): any
+---@return any
+---@field Examples fun(self: NetChannel): any
+---@return string
+---@field GetName fun(self: NetChannel): string
+---@return any
+---@field GetAddress fun(self: NetChannel): any
+---@return number
+---@field GetConnectTime fun(self: NetChannel): number
+---@return number
+---@field GetTimeSinceLastReceived fun(self: NetChannel): number
+---@param flow number
+---@return any
+---@field GetLatency fun(self: NetChannel, flow: number): any
+---@param flow number
+---@return any
+---@field GetAvgLatency fun(self: NetChannel, flow: number): any
+---@param flow number
+---@return any
+---@field GetAvgChoke fun(self: NetChannel, flow: number): any
+---@param flow number
+---@return any
+---@field GetAvgLoss fun(self: NetChannel, flow: number): any
+---@param flow number
+---@return any
+---@field GetAvgData fun(self: NetChannel, flow: number): any
+---@return number
+---@field GetTime fun(self: NetChannel): number
+---@return number
+---@field GetTimeConnected fun(self: NetChannel): number
+---@return number
+---@field GetBufferSize fun(self: NetChannel): number
+---@return any
+---@field GetDataRate fun(self: NetChannel): any
+---@return boolean
+---@field IsLoopback fun(self: NetChannel): boolean
+---@return boolean
+---@field IsTimingOut fun(self: NetChannel): boolean
+---@return boolean
+---@field IsPlayback fun(self: NetChannel): boolean
+---@param rate number
+---@return any
+---@field SetDataRate fun(self: NetChannel, rate: number): any
+---@param seconds number
+---@return number
+---@field SetTimeout fun(self: NetChannel, seconds: number): number
+---@param challenge number
+---@return any
+---@field SetChallengeNr fun(self: NetChannel, challenge: number): any
+---@param msg NetMessage
+---@param forceReliable boolean
+---@param voice boolean
+---@return any
+---@field SendNetMsg fun(self: NetChannel, msg: NetMessage, forceReliable: boolean, voice: boolean): any
+---@param data any
+---@param reliable boolean
+---@return any
+---@field SendData fun(self: NetChannel, data: any, reliable: boolean): any
+---@return any
+---@field GetSequenceData fun(self: NetChannel): any
+---@param outSequenceNr number
+---@param inSequenceNr number
+---@param outSequenceNrAck number
+---@return any
+---@field SetSequenceData fun(self: NetChannel, outSequenceNr: number, inSequenceNr: number, outSequenceNrAck: number): any
+---@param interp number
+---@return number
+---@field SetInterpolationAmount fun(self: NetChannel, interp: number): number
+---@return any
+---@field GetChallengeNr fun(self: NetChannel): any
+local NetChannel = {}
+
+-- Constants:
+---@type any
+API_ = nil
+
+---@type any
+API = nil
+

@@ -11,6 +11,7 @@
 
 import { runCrawler } from './crawler/index.js';
 import { generateDocsIndex } from './crawler/parser/docs-index.js';
+import { generateEntityPropsFromCache, generateConstantsByCategoryFromCache } from './crawler/parser/types.js';
 
 // Check if dependencies are installed
 async function checkDependencies() {
@@ -53,6 +54,22 @@ async function main() {
 			console.log('[Refresh] ✅ Docs index generated\n');
 		} catch (error) {
 			console.log(`[Refresh] ⚠️  Could not generate docs index: ${error.message}\n`);
+		}
+
+		// Generate entity props from cached TF2_props
+		console.log('[Refresh] Generating entity prop types...');
+		try {
+			await generateEntityPropsFromCache();
+		} catch (error) {
+			console.log(`[Refresh] ⚠️  Could not generate entity props: ${error.message}\n`);
+		}
+
+		// Generate constants by category
+		console.log('[Refresh] Generating constants by category...');
+		try {
+			await generateConstantsByCategoryFromCache();
+		} catch (error) {
+			console.log(`[Refresh] ⚠️  Could not generate constants: ${error.message}\n`);
 		}
 
 		console.log('═══════════════════════════════════════════════════════════');

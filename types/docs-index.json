@@ -1,1 +1,852 @@
-{}
+{
+  "index": {
+    "url": "https://lmaobox.net/lua/",
+    "path": "hierarchy/index",
+    "title": "Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906846845
+  },
+  "API_changelog": {
+    "url": "https://lmaobox.net/lua/API_changelog/",
+    "path": "hierarchy/API_changelog",
+    "title": "API Changelog - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906847829
+  },
+  "Lua_Callbacks": {
+    "url": "https://lmaobox.net/lua/Lua_Callbacks/",
+    "path": "hierarchy/Lua_Callbacks",
+    "title": "Lua Callbacks - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906848906
+  },
+  "Lua_Constants": {
+    "url": "https://lmaobox.net/lua/Lua_Constants/",
+    "path": "hierarchy/Lua_Constants",
+    "title": "Predefined constants - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906849831
+  },
+  "Lua_Globals": {
+    "url": "https://lmaobox.net/lua/Lua_Globals/",
+    "path": "hierarchy/Lua_Globals",
+    "title": "Lua Globals - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906850970
+  },
+  "TF2_props": {
+    "url": "https://lmaobox.net/lua/TF2_props/",
+    "path": "hierarchy/TF2_props",
+    "title": "Entity Props - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906851951
+  },
+  "AttributeDefinition": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/AttributeDefinition/",
+    "path": "hierarchy/Lua_Classes/AttributeDefinition",
+    "title": "AttributeDefinition - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906852948,
+    "classes": [
+      "AttributeDefinition"
+    ]
+  },
+  "BitBuffer": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/BitBuffer/",
+    "path": "hierarchy/Lua_Classes/BitBuffer",
+    "title": "BitBuffer - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906853974,
+    "classes": [
+      "BitBuffer"
+    ]
+  },
+  "DrawModelContext": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/DrawModelContext/",
+    "path": "hierarchy/Lua_Classes/DrawModelContext",
+    "title": "DrawModelContext - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906854961,
+    "classes": [
+      "DrawModelContext"
+    ]
+  },
+  "Entity": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/Entity/",
+    "path": "hierarchy/Lua_Classes/Entity",
+    "title": "Entity - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906855981,
+    "classes": [
+      "Entity"
+    ]
+  },
+  "EulerAngles": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/EulerAngles/",
+    "path": "hierarchy/Lua_Classes/EulerAngles",
+    "title": "EulerAngles - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906856987,
+    "classes": [
+      "EulerAngles"
+    ]
+  },
+  "EventInfo": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/EventInfo/",
+    "path": "hierarchy/Lua_Classes/EventInfo",
+    "title": "EventInfo - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906857993,
+    "classes": [
+      "EventInfo"
+    ]
+  },
+  "Model": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/Model/",
+    "path": "hierarchy/Lua_Classes/Model",
+    "title": "Model - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906240650,
+    "classes": [
+      "Model"
+    ]
+  },
+  "NetChannel": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/NetChannel/",
+    "path": "hierarchy/Lua_Classes/NetChannel",
+    "title": "NetChannel - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906241665,
+    "classes": [
+      "NetChannel"
+    ]
+  },
+  "NetMessage": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/NetMessage/",
+    "path": "hierarchy/Lua_Classes/NetMessage",
+    "title": "NetMessage - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906242675,
+    "classes": [
+      "NetMessage"
+    ]
+  },
+  "PartyMemberActivity": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PartyMemberActivity/",
+    "path": "hierarchy/Lua_Classes/PartyMemberActivity",
+    "title": "PartyMemberActivity - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906870108,
+    "classes": [
+      "PartyMemberActivity"
+    ]
+  },
+  "PhysicsCollisionModel": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PhysicsCollisionModel/",
+    "path": "hierarchy/Lua_Classes/PhysicsCollisionModel",
+    "title": "PhysicsCollisionModel - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906871107,
+    "classes": [
+      "PhysicsCollisionModel"
+    ]
+  },
+  "PhysicsEnvironment": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/",
+    "path": "hierarchy/Lua_Classes/PhysicsEnvironment",
+    "title": "PhysicsEnvironment - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906872109,
+    "classes": [
+      "PhysicsEnvironment"
+    ]
+  },
+  "PhysicsObject": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PhysicsObject/",
+    "path": "hierarchy/Lua_Classes/PhysicsObject",
+    "title": "PhysicsObject - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906873110,
+    "classes": [
+      "PhysicsObject"
+    ]
+  },
+  "PhysicsObjectParameters": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PhysicsObjectParameters/",
+    "path": "hierarchy/Lua_Classes/PhysicsObjectParameters",
+    "title": "PhysicsObjectParameters - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906874117,
+    "classes": [
+      "PhysicsObjectParameters"
+    ]
+  },
+  "PhysicsSolid": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/PhysicsSolid/",
+    "path": "hierarchy/Lua_Classes/PhysicsSolid",
+    "title": "PhysicsSolid - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906875152,
+    "classes": [
+      "PhysicsSolid"
+    ]
+  },
+  "StaticPropRenderInfo": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/StaticPropRenderInfo/",
+    "path": "hierarchy/Lua_Classes/StaticPropRenderInfo",
+    "title": "StaticPropRenderInfo - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906876130,
+    "classes": [
+      "StaticPropRenderInfo"
+    ]
+  },
+  "StringCmd": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/StringCmd/",
+    "path": "hierarchy/Lua_Classes/StringCmd",
+    "title": "StringCmd - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906877154,
+    "classes": [
+      "StringCmd"
+    ]
+  },
+  "StudioBBox": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/StudioBBox/",
+    "path": "hierarchy/Lua_Classes/StudioBBox",
+    "title": "StudioBBox - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906878157,
+    "classes": [
+      "StudioBBox"
+    ]
+  },
+  "StudioHitboxSet": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/StudioHitboxSet/",
+    "path": "hierarchy/Lua_Classes/StudioHitboxSet",
+    "title": "StudioHitboxSet - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906879165,
+    "classes": [
+      "StudioHitboxSet"
+    ]
+  },
+  "ViewSetup": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/ViewSetup/",
+    "path": "hierarchy/Lua_Classes/ViewSetup",
+    "title": "ViewSetup - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906260856,
+    "classes": [
+      "ViewSetup"
+    ]
+  },
+  "WeaponData": {
+    "url": "https://lmaobox.net/lua/Lua_Classes/WeaponData/",
+    "path": "hierarchy/Lua_Classes/WeaponData",
+    "title": "WeaponData - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906261858,
+    "classes": [
+      "WeaponData"
+    ]
+  },
+  "aimbot": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/aimbot/",
+    "path": "hierarchy/Lua_Libraries/aimbot",
+    "title": "aimbot - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906262859,
+    "functions": [
+      "aimbot.Functions",
+      "aimbot.Examples",
+      "aimbot.GetAimbotTarget"
+    ],
+    "classes": [
+      "aimbot"
+    ]
+  },
+  "callbacks": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/callbacks/",
+    "path": "hierarchy/Lua_Libraries/callbacks",
+    "title": "callbacks - Lmaobox Lua",
+    "page_type": "callback",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906263867,
+    "functions": [
+      "callbacks.Functions",
+      "callbacks.Examples",
+      "callbacks.Register",
+      "callbacks.Register",
+      "callbacks.Unregister"
+    ],
+    "classes": [
+      "callbacks"
+    ]
+  },
+  "client": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/client/",
+    "path": "hierarchy/Lua_Libraries/client",
+    "title": "client - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906891285,
+    "functions": [
+      "client.Functions",
+      "client.Examples",
+      "client.GetExtraInventorySlots",
+      "client.IsFreeTrialAccount",
+      "client.HasCompetitiveAccess",
+      "client.IsInCoachesList",
+      "client.WorldToScreen",
+      "client.Command",
+      "client.ChatSay",
+      "client.ChatTeamSay",
+      "client.AllowListener",
+      "client.GetPlayerNameByIndex",
+      "client.GetPlayerNameByUserID",
+      "client.GetPlayerInfo",
+      "client.GetPlayerView",
+      "client.GetLocalPlayerIndex",
+      "client.GetConVar",
+      "client.SetConVar",
+      "client.RemoveConVarProtection",
+      "client.ChatPrintf",
+      "client.Localize"
+    ],
+    "classes": [
+      "client"
+    ]
+  },
+  "clientstate": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/clientstate/",
+    "path": "hierarchy/Lua_Libraries/clientstate",
+    "title": "clientstate - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906892280,
+    "functions": [
+      "clientstate.Functions",
+      "clientstate.Examples",
+      "clientstate.ForceFullUpdate",
+      "clientstate.GetClientSignonState",
+      "clientstate.GetDeltaTick",
+      "clientstate.GetLastOutgoingCommand",
+      "clientstate.GetChokedCommands",
+      "clientstate.GetLastCommandAck",
+      "clientstate.GetNetChannel"
+    ],
+    "classes": [
+      "clientstate"
+    ]
+  },
+  "draw": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/draw/",
+    "path": "hierarchy/Lua_Libraries/draw",
+    "title": "draw - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906893300,
+    "functions": [
+      "draw.Functions",
+      "draw.Textures",
+      "draw.Examples",
+      "draw.Color",
+      "draw.Line",
+      "draw.FilledRect",
+      "draw.OutlinedRect",
+      "draw.FilledRectFade",
+      "draw.FilledRectFastFade",
+      "draw.ColoredCircle",
+      "draw.OutlinedCircle",
+      "draw.GetTextSize",
+      "draw.Text",
+      "draw.TextShadow",
+      "draw.GetScreenSize",
+      "draw.CreateFont",
+      "draw.AddFontResource",
+      "draw.SetFont",
+      "draw.CreateTexture",
+      "draw.CreateTextureRGBA",
+      "draw.GetTextureSize",
+      "draw.TexturedRect",
+      "draw.TexturedPolygon",
+      "draw.DeleteTexture"
+    ],
+    "classes": [
+      "draw"
+    ]
+  },
+  "engine": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/engine/",
+    "path": "hierarchy/Lua_Libraries/engine",
+    "title": "engine - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906894301,
+    "functions": [
+      "engine.Functions",
+      "engine.Examples",
+      "engine.Con_IsVisible",
+      "engine.IsGameUIVisible",
+      "engine.IsChatOpen",
+      "engine.IsTakingScreenshot",
+      "engine.TraceLine",
+      "engine.TraceHull",
+      "engine.GetPointContents",
+      "engine.GetMapName",
+      "engine.GetServerIP",
+      "engine.GetViewAngles",
+      "engine.SetViewAngles",
+      "engine.PlaySound",
+      "engine.GetGameDir",
+      "engine.SendKeyValues",
+      "engine.Notification",
+      "engine.RandomSeed",
+      "engine.RandomFloat",
+      "engine.RandomInt",
+      "engine.RandomFloatExp"
+    ],
+    "classes": [
+      "engine"
+    ]
+  },
+  "entities": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/entities/",
+    "path": "hierarchy/Lua_Libraries/entities",
+    "title": "entities - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906895300,
+    "functions": [
+      "entities.Functions",
+      "entities.Examples",
+      "entities.FindByClass",
+      "entities.GetLocalPlayer",
+      "entities.GetByIndex",
+      "entities.GetHighestEntityIndex",
+      "entities.GetByUserID",
+      "entities.GetPlayerResources",
+      "entities.CreateEntityByName",
+      "entities.CreateTempEntityByName"
+    ],
+    "classes": [
+      "entities"
+    ]
+  },
+  "filesystem": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/filesystem/",
+    "path": "hierarchy/Lua_Libraries/filesystem",
+    "title": "filesystem - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906896343,
+    "functions": [
+      "filesystem.Functions",
+      "filesystem.Examples",
+      "filesystem.CreateDirectory",
+      "filesystem.EnumerateDirectory",
+      "filesystem.GetFileTime",
+      "filesystem.GetFileAttributes",
+      "filesystem.SetFileAttributes"
+    ],
+    "classes": [
+      "filesystem"
+    ]
+  },
+  "gamecoordinator": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/gamecoordinator/",
+    "path": "hierarchy/Lua_Libraries/gamecoordinator",
+    "title": "gamecoordinator - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906897335,
+    "functions": [
+      "gamecoordinator.Functions",
+      "gamecoordinator.Examples",
+      "gamecoordinator.ConnectedToGC",
+      "gamecoordinator.InEndOfMatch",
+      "gamecoordinator.HasLiveMatch",
+      "gamecoordinator.IsConnectedToMatchServer",
+      "gamecoordinator.AbandonMatch",
+      "gamecoordinator.GetMatchAbandonStatus",
+      "gamecoordinator.GetDataCenterPingData",
+      "gamecoordinator.GetNumMatchInvites",
+      "gamecoordinator.AcceptMatchInvites",
+      "gamecoordinator.JoinMatchmakingMatch",
+      "gamecoordinator.EnumerateQueueMapsHealth",
+      "gamecoordinator.GetGameServerLobby",
+      "gamecoordinator.GCSendMessage"
+    ],
+    "classes": [
+      "gamecoordinator"
+    ]
+  },
+  "gamerules": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/gamerules/",
+    "path": "hierarchy/Lua_Libraries/gamerules",
+    "title": "gamerules - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906898469,
+    "functions": [
+      "gamerules.Functions",
+      "gamerules.Examples",
+      "gamerules.IsMatchTypeCasual",
+      "gamerules.IsMatchTypeCompetitive",
+      "gamerules.IsManagedMatchEnded",
+      "gamerules.GetTimeLeftInMatch",
+      "gamerules.IsTruceActive",
+      "gamerules.IsMvM",
+      "gamerules.GetCurrentMatchGroup",
+      "gamerules.IsUsingGrapplingHook",
+      "gamerules.IsUsingSpells",
+      "gamerules.GetCurrentNextMapVotingState",
+      "gamerules.GetPlayerVoteState",
+      "gamerules.GetRoundState"
+    ],
+    "classes": [
+      "gamerules"
+    ]
+  },
+  "globals": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/globals/",
+    "path": "hierarchy/Lua_Libraries/globals",
+    "title": "globals - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906899454,
+    "functions": [
+      "globals.Functions",
+      "globals.Examples",
+      "globals.TickInterval",
+      "globals.TickCount",
+      "globals.RealTime",
+      "globals.CurTime",
+      "globals.FrameCount",
+      "globals.FrameTime",
+      "globals.AbsoluteFrameTime",
+      "globals.MaxClients"
+    ],
+    "classes": [
+      "globals"
+    ]
+  },
+  "party": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/party/",
+    "path": "hierarchy/Lua_Libraries/party",
+    "title": "party - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906281004,
+    "functions": [
+      "party.Functions",
+      "party.Examples",
+      "party.GetLeader",
+      "party.GetMembers",
+      "party.GetPendingMembers",
+      "party.GetGroupID",
+      "party.GetQueuedMatchGroups",
+      "party.GetAllMatchGroups",
+      "party.Leave",
+      "party.CanQueueForMatchGroup",
+      "party.QueueUp",
+      "party.CancelQueue",
+      "party.IsInStandbyQueue",
+      "party.CanQueueForStandby",
+      "party.QueueUpStandby",
+      "party.CancelQueueStandby",
+      "party.GetMemberActivity",
+      "party.PromoteMemberToLeader",
+      "party.KickMember",
+      "party.IsCasualMapSelected",
+      "party.SetCasualMapSelected"
+    ],
+    "classes": [
+      "party"
+    ]
+  },
+  "physics": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/physics/",
+    "path": "hierarchy/Lua_Libraries/physics",
+    "title": "physics - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906282016,
+    "functions": [
+      "physics.Functions",
+      "physics.Examples",
+      "physics.CreateEnvironment",
+      "physics.DestroyEnvironment",
+      "physics.DefaultEnvironment",
+      "physics.BBoxToCollisionModel",
+      "physics.ParseModelByName",
+      "physics.DefaultObjectParameters"
+    ],
+    "classes": [
+      "physics"
+    ]
+  },
+  "playerlist": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/playerlist/",
+    "path": "hierarchy/Lua_Libraries/playerlist",
+    "title": "playerlist - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906283027,
+    "functions": [
+      "playerlist.Functions",
+      "playerlist.Examples",
+      "playerlist.GetPriority",
+      "playerlist.GetPriority",
+      "playerlist.GetPriority",
+      "playerlist.SetPriority",
+      "playerlist.SetPriority",
+      "playerlist.SetPriority",
+      "playerlist.GetColor",
+      "playerlist.GetColor",
+      "playerlist.GetColor",
+      "playerlist.SetColor",
+      "playerlist.SetColor",
+      "playerlist.SetColor"
+    ],
+    "classes": [
+      "playerlist"
+    ]
+  },
+  "render": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/render/",
+    "path": "hierarchy/Lua_Libraries/render",
+    "title": "render - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906910610,
+    "functions": [
+      "render.Functions",
+      "render.Examples",
+      "render.Push3DView",
+      "render.PopView",
+      "render.ViewDrawScene",
+      "render.DrawScreenSpaceRectangle",
+      "render.DrawScreenSpaceQuad",
+      "render.GetViewport",
+      "render.Viewport",
+      "render.DepthRange",
+      "render.GetDepthRange",
+      "render.SetRenderTarget",
+      "render.GetRenderTarget",
+      "render.ClearBuffers",
+      "render.ClearColor3ub",
+      "render.ClearColor4ub",
+      "render.OverrideDepthEnable",
+      "render.OverrideAlphaWriteEnable",
+      "render.PushRenderTargetAndViewport",
+      "render.PopRenderTargetAndViewport",
+      "render.SetStencilEnable",
+      "render.SetStencilFailOperation",
+      "render.SetStencilZFailOperation",
+      "render.SetStencilPassOperation",
+      "render.SetStencilCompareFunction",
+      "render.SetStencilReferenceValue",
+      "render.SetStencilTestMask",
+      "render.SetStencilWriteMask",
+      "render.ClearStencilBufferRectangle",
+      "render.ForcedMaterialOverride",
+      "render.SetBlend",
+      "render.GetBlend",
+      "render.SetColorModulation",
+      "render.GetColorModulation"
+    ],
+    "classes": [
+      "render"
+    ]
+  },
+  "steam": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/steam/",
+    "path": "hierarchy/Lua_Libraries/steam",
+    "title": "steam - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906911566,
+    "functions": [
+      "steam.Functions",
+      "steam.GetSteamID",
+      "steam.GetPlayerName",
+      "steam.IsFriend",
+      "steam.GetFriends",
+      "steam.ToSteamID64"
+    ],
+    "classes": [
+      "steam"
+    ]
+  },
+  "vector": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/vector/",
+    "path": "hierarchy/Lua_Libraries/vector",
+    "title": "vector - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906912573,
+    "functions": [
+      "vector.Functions",
+      "vector.Examples",
+      "vector.Add",
+      "vector.Subtract",
+      "vector.Multiply",
+      "vector.Divide",
+      "vector.Length",
+      "vector.LengthSqr",
+      "vector.Distance",
+      "vector.Normalize",
+      "vector.Angles",
+      "vector.AngleForward",
+      "vector.AngleRight",
+      "vector.AngleUp",
+      "vector.AngleVectors",
+      "vector.AngleNormalize"
+    ],
+    "classes": [
+      "vector"
+    ]
+  },
+  "warp": {
+    "url": "https://lmaobox.net/lua/Lua_Libraries/warp/",
+    "path": "hierarchy/Lua_Libraries/warp",
+    "title": "warp - Lmaobox Lua",
+    "page_type": "page",
+    "depth": 0,
+    "parent_url": null,
+    "has_type_definition": true,
+    "last_updated": 1764906913578,
+    "functions": [
+      "warp.Functions",
+      "warp.Examples",
+      "warp.GetChargedTicks",
+      "warp.IsWarping",
+      "warp.CanWarp",
+      "warp.CanDoubleTap",
+      "warp.TriggerWarp",
+      "warp.TriggerDoubleTap",
+      "warp.TriggerCharge"
+    ],
+    "classes": [
+      "warp"
+    ]
+  }
+}

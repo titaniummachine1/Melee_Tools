@@ -230,7 +230,69 @@ export function parseDocumentationPage(html, url) {
 		}
 	}
 
-	// Extract constants
+	// Special handling for constants page: prioritize table extraction
+	if (url.toLowerCase().includes('lua_constants')) {
+		// Clear any constants extracted from other methods first
+		page.constants = [];
+	}
+
+	// Extract constants from HTML tables (for constants page)
+	const tableMatches = page.content.matchAll(/<table[^>]*>([\s\S]*?)<\/table>/gi);
+	for (const tableMatch of tableMatches) {
+		const tableContent = tableMatch[1];
+		
+		// Extract table rows (skip the header row)
+		const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+		let rowMatch;
+		let isFirstRow = true;
+		
+		while ((rowMatch = rowRegex.exec(tableContent)) !== null) {
+			// Skip header row
+			if (isFirstRow) {
+				isFirstRow = false;
+				continue;
+			}
+			
+			const rowContent = rowMatch[1];
+			
+			// Extract table cells
+			const cellRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
+			const cells = [];
+			let cellMatch;
+			
+			while ((cellMatch = cellRegex.exec(rowContent)) !== null) {
+				let cellText = cellMatch[1]
+					.replace(/<[^>]+>/g, '')
+					.replace(/&lt;/g, '<')
+					.replace(/&gt;/g, '>')
+					.replace(/&amp;/g, '&')
+					.replace(/&quot;/g, '"')
+					.replace(/&nbsp;/g, ' ')
+					.replace(/\s+/g, ' ')
+					.trim();
+				cells.push(cellText);
+			}
+			
+			// First cell is name, second cell is value
+			if (cells.length >= 2) {
+				const name = cells[0].trim();
+				let value = cells[1].trim();
+				
+				// Clean up the value - handle HTML entities and expressions
+				value = value
+					.replace(/&lt;/g, '<')
+					.replace(/&gt;/g, '>')
+					.replace(/&amp;/g, '&');
+				
+				// Only add if name looks like a constant (uppercase with underscores)
+				if (name && /^[A-Z_][A-Z0-9_]*$/.test(name)) {
+					page.constants.push({ name, value });
+				}
+			}
+		}
+	}
+
+	// Extract constants from code examples (fallback)
 	for (const example of page.examples) {
 		const constMatches = example.matchAll(/([A-Z_][A-Z0-9_]*)\s*=\s*([^\n,;]+)/g);
 		for (const match of constMatches) {
@@ -241,13 +303,15 @@ export function parseDocumentationPage(html, url) {
 		}
 	}
 
-	// Additional constant scrape from full content (upper-case tokens)
-	const constAllMatches = page.content.matchAll(/([A-Z_]{3,}[A-Z0-9_]*)/g);
-	for (const match of constAllMatches) {
-		const name = match[1];
-		// Heuristic: ignore pure HTML attributes
-		if (name.length > 2 && !name.startsWith('HTTP') && !name.startsWith('SVG')) {
-			page.constants.push({ name, value: 'nil' });
+	// Additional constant scrape from full content (upper-case tokens) - only if no constants found yet
+	if (page.constants.length === 0) {
+		const constAllMatches = page.content.matchAll(/([A-Z_]{3,}[A-Z0-9_]*)/g);
+		for (const match of constAllMatches) {
+			const name = match[1];
+			// Heuristic: ignore pure HTML attributes
+			if (name.length > 2 && !name.startsWith('HTTP') && !name.startsWith('SVG')) {
+				page.constants.push({ name, value: 'nil' });
+			}
 		}
 	}
 

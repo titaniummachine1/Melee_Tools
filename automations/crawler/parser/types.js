@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { TYPES_DIR, API_BASE_URL, CACHE_DIR } from '../config.js';
+import { TYPES_DIR, API_BASE_URL, CACHE_DIR, WORKSPACE_ROOT } from '../config.js';
 import { buildFolderPath } from '../utils/paths.js';
 import { db } from '../database/queries.js';
 import { parseDocumentationPage } from './html.js';
@@ -52,6 +52,164 @@ function inferReturnType(funcName, params) {
 		return 'Entity|nil';
 	}
 	return 'any';
+}
+
+function parseEntityPropsFromHtml(html) {
+	const entities = [];
+	// Find entity sections by h3
+	const h3Regex = /<h3[^>]*>([^<]+)<\/h3>/gi;
+	let match;
+	const positions = [];
+	while ((match = h3Regex.exec(html)) !== null) {
+		positions.push({ name: match[1].trim(), index: match.index });
+	}
+	for (let i = 0; i < positions.length; i++) {
+		const current = positions[i];
+		const end = i + 1 < positions.length ? positions[i + 1].index : html.length;
+		const section = html.slice(current.index, end);
+		// Collect from code blocks first (props are often inside <pre><code>)
+		const codeBlocks = [];
+		const codeRegex = /<pre[^>]*>([\s\S]*?)<\/pre>/gi;
+		let c;
+		while ((c = codeRegex.exec(section)) !== null) {
+			codeBlocks.push(c[1]);
+		}
+		const rawText = codeBlocks.length > 0 ? codeBlocks.join('\n') : section;
+		const sectionText = rawText
+			.replace(/<[^>]+>/g, ' ')
+			.replace(/&nbsp;/g, ' ')
+			.replace(/\s+/g, ' ')
+			.trim();
+		const props = [];
+		const propRegex = /([A-Za-z0-9_]+)\s*:\s*([A-Za-z]+)/g;
+		let pm;
+		while ((pm = propRegex.exec(sectionText)) !== null) {
+			const propName = pm[1];
+			const propType = mapTypeToLua(pm[2]);
+			props.push({ name: propName, type: propType });
+		}
+		if (props.length > 0) {
+			const cleanName = current.name.replace(/[^A-Za-z0-9_]/g, '');
+			entities.push({ name: cleanName, props });
+		}
+	}
+	return entities;
+}
+
+function parseConstantsByCategory(html) {
+	const sections = [];
+	
+	// Find h3 headings (these are the constant category names like E_UserCmd, E_ButtonCode, etc.)
+	const h3Regex = /<h3[^>]*id="([^"]+)"[^>]*>([^<]+)<\/h3>/gi;
+	let h3Match;
+	const h3Positions = [];
+	while ((h3Match = h3Regex.exec(html)) !== null) {
+		const id = h3Match[1].trim();
+		const name = h3Match[2].trim();
+		h3Positions.push({ id, name, index: h3Match.index });
+	}
+	
+	// If no h3 with id found, try h3 without id
+	if (h3Positions.length === 0) {
+		const h3SimpleRegex = /<h3[^>]*>([^<]+)<\/h3>/gi;
+		while ((h3Match = h3SimpleRegex.exec(html)) !== null) {
+			const name = h3Match[1].trim();
+			h3Positions.push({ id: null, name, index: h3Match.index });
+		}
+	}
+	
+	// Process each h3 section
+	for (let i = 0; i < h3Positions.length; i++) {
+		const current = h3Positions[i];
+		const end = i + 1 < h3Positions.length ? h3Positions[i + 1].index : html.length;
+		const section = html.slice(current.index, end);
+		
+		const constants = [];
+		
+		// Find the table after the h3 heading
+		const tableMatch = section.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
+		if (tableMatch) {
+			const tableContent = tableMatch[1];
+			
+			// Extract table rows (skip the header row)
+			const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+			let rowMatch;
+			let isFirstRow = true;
+			
+			while ((rowMatch = rowRegex.exec(tableContent)) !== null) {
+				// Skip header row
+				if (isFirstRow) {
+					isFirstRow = false;
+					continue;
+				}
+				
+				const rowContent = rowMatch[1];
+				
+				// Extract table cells
+				const cellRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
+				const cells = [];
+				let cellMatch;
+				
+				while ((cellMatch = cellRegex.exec(rowContent)) !== null) {
+					let cellText = cellMatch[1]
+						.replace(/<[^>]+>/g, '')
+						.replace(/&lt;/g, '<')
+						.replace(/&gt;/g, '>')
+						.replace(/&amp;/g, '&')
+						.replace(/&quot;/g, '"')
+						.replace(/&nbsp;/g, ' ')
+						.replace(/\s+/g, ' ')
+						.trim();
+					cells.push(cellText);
+				}
+				
+				// First cell is name, second cell is value
+				if (cells.length >= 2) {
+					const name = cells[0].trim();
+					let value = cells[1].trim();
+					
+					// Clean up the value - handle HTML entities and expressions
+					value = value
+						.replace(/&lt;/g, '<')
+						.replace(/&gt;/g, '>')
+						.replace(/&amp;/g, '&');
+					
+					// Only add if name looks like a constant (uppercase with underscores)
+					if (name && /^[A-Z_][A-Z0-9_]*$/.test(name)) {
+						constants.push({ name, value });
+					}
+				}
+			}
+		}
+		
+		// Fallback: try to extract from text if no table found
+		if (constants.length === 0) {
+			const sectionText = section
+				.replace(/<[^>]+>/g, ' ')
+				.replace(/&nbsp;/g, ' ')
+				.replace(/&lt;/g, '<')
+				.replace(/&gt;/g, '>')
+				.replace(/&amp;/g, '&')
+				.replace(/\s+/g, ' ')
+				.trim();
+			const constRegex = /([A-Z_][A-Z0-9_]+)\s*=\s*([^\s,;]+)/g;
+			let cm;
+			while ((cm = constRegex.exec(sectionText)) !== null) {
+				const name = cm[1];
+				const value = cm[2];
+				if (name && value) {
+					constants.push({ name, value });
+				}
+			}
+		}
+		
+		if (constants.length > 0) {
+			const cleanName = current.name.replace(/[^A-Za-z0-9_]/g, '_') || 'constants';
+			sections.push({ name: cleanName, constants });
+		}
+	}
+	
+	return sections;
 }
 
 function generateTypeDefinition(page) {
@@ -166,6 +324,37 @@ function buildPathFromUrl(url) {
 }
 
 export async function generateTypeForPage(parsedDataInput) {
+	// Special case: entity props page emits many per-entity files
+	if (parsedDataInput.url && parsedDataInput.url.toLowerCase().includes('tf2_props')) {
+		try {
+			const rel = parsedDataInput.url.replace(API_BASE_URL, '').replace(/\/$/, '') || 'TF2_props';
+			const cachePath = path.join(CACHE_DIR, rel + '.html');
+			const html = await fs.readFile(cachePath, 'utf8');
+			const entities = parseEntityPropsFromHtml(html);
+			if (entities.length > 0) {
+				const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+				await fs.mkdir(baseDir, { recursive: true });
+				for (const ent of entities) {
+					let content = `---@meta\n\n`;
+					content += `-- Entity Props: ${ent.name}\n`;
+					content += `-- Auto-generated from: ${parsedDataInput.url}\n`;
+					content += `-- Last updated: ${new Date().toISOString()}\n\n`;
+					content += `---@class ${ent.name}\n`;
+					for (const prop of ent.props) {
+						content += `---@field ${prop.name} ${prop.type}\n`;
+					}
+					content += `local ${ent.name} = {}\n`;
+					const filePath = path.join(baseDir, `${ent.name}.d.lua`);
+					await fs.writeFile(filePath, content, 'utf8');
+				}
+			}
+		} catch (e) {
+			console.warn(`[TypeGenerator] Entity props generation failed: ${e.message}`);
+		}
+		// Do not write a single monolith file for TF2_props; handled above
+		return { filePath: null };
+	}
+
 	const pagePath = parsedDataInput.path || buildPathFromUrl(parsedDataInput.url);
 	const dirPath = path.dirname(pagePath) || '.';
 	const sanitizedDir = buildFolderPath(dirPath);
@@ -181,6 +370,73 @@ export async function generateTypeForPage(parsedDataInput) {
 	return { filePath };
 }
 
+export async function generateEntityPropsFromCache() {
+	try {
+		const htmlPath = path.join(WORKSPACE_ROOT, '.cache', 'docs', 'TF2_props.html');
+		const html = await fs.readFile(htmlPath, 'utf8');
+		const entities = parseEntityPropsFromHtml(html);
+		if (!entities || entities.length === 0) {
+			console.log('[TypeGenerator] No entity props found in cache.');
+			return 0;
+		}
+		const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+		await fs.mkdir(baseDir, { recursive: true });
+		let count = 0;
+		for (const ent of entities) {
+			let content = `---@meta\n\n`;
+			content += `-- Entity Props: ${ent.name}\n`;
+			content += `-- Auto-generated from: https://lmaobox.net/lua/TF2_props/\n`;
+			content += `-- Last updated: ${new Date().toISOString()}\n\n`;
+			content += `---@class ${ent.name}\n`;
+			for (const prop of ent.props) {
+				content += `---@field ${prop.name} ${prop.type}\n`;
+			}
+			content += `local ${ent.name} = {}\n`;
+			const filePath = path.join(baseDir, `${ent.name}.d.lua`);
+			await fs.writeFile(filePath, content, 'utf8');
+			count++;
+		}
+		console.log(`[TypeGenerator] Generated ${count} entity prop files`);
+		return count;
+	} catch (e) {
+		console.warn(`[TypeGenerator] Entity props generation failed: ${e.message}`);
+		return 0;
+	}
+}
+
+export async function generateConstantsByCategoryFromCache() {
+	try {
+		const htmlPath = path.join(WORKSPACE_ROOT, '.cache', 'docs', 'Lua_Constants.html');
+		const html = await fs.readFile(htmlPath, 'utf8');
+		const sections = parseConstantsByCategory(html);
+		if (!sections || sections.length === 0) {
+			console.log('[TypeGenerator] No constants found in cache.');
+			return 0;
+		}
+		const baseDir = path.join(TYPES_DIR, 'hierarchy', 'constants');
+		await fs.mkdir(baseDir, { recursive: true });
+		let count = 0;
+		for (const sec of sections) {
+			let content = `---@meta\n\n`;
+			content += `-- Constants: ${sec.name}\n`;
+			content += `-- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/\n`;
+			content += `-- Last updated: ${new Date().toISOString()}\n\n`;
+			for (const c of sec.constants) {
+				content += `---@type any\n`;
+				content += `${c.name} = ${c.value}\n\n`;
+			}
+			const filePath = path.join(baseDir, `${sec.name}.d.lua`);
+			await fs.writeFile(filePath, content, 'utf8');
+			count++;
+		}
+		console.log(`[TypeGenerator] Generated ${count} constants files`);
+		return count;
+	} catch (e) {
+		console.warn(`[TypeGenerator] Constants generation failed: ${e.message}`);
+		return 0;
+	}
+}
+
 export async function generateTypesByShortestPath() {
 	console.log('[TypeGenerator] Generating type definitions by shortest path...');
 
@@ -193,6 +449,37 @@ export async function generateTypesByShortestPath() {
 	let generated = 0;
 
 	const processPage = async (page) => {
+		// Special handling: entity props page emits many files
+		if (page.url.toLowerCase().includes('tf2_props')) {
+			try {
+				const rel = page.url.replace(API_BASE_URL, '').replace(/\/$/, '') || 'TF2_props';
+				const cachePath = path.join(CACHE_DIR, rel + '.html');
+				const html = await fs.readFile(cachePath, 'utf8');
+				const entities = parseEntityPropsFromHtml(html);
+				if (entities.length > 0) {
+					const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+					await fs.mkdir(baseDir, { recursive: true });
+					for (const ent of entities) {
+						let content = `---@meta\n\n`;
+						content += `-- Entity Props: ${ent.name}\n`;
+						content += `-- Auto-generated from: ${page.url}\n`;
+						content += `-- Last updated: ${new Date().toISOString()}\n\n`;
+						content += `---@class ${ent.name}\n`;
+						for (const prop of ent.props) {
+							content += `---@field ${prop.name} ${prop.type}\n`;
+						}
+						content += `local ${ent.name} = {}\n`;
+						const filePath = path.join(baseDir, `${ent.name}.d.lua`);
+						await fs.writeFile(filePath, content, 'utf8');
+						generated++;
+					}
+					return;
+				}
+			} catch (e) {
+				console.warn(`[TypeGenerator] Entity props parse failed: ${e.message}`);
+			}
+		}
+
 		// Determine output path
 		const pagePath = page.path || buildPathFromUrl(page.url);
 		const dirPath = path.dirname(pagePath) || '.';
