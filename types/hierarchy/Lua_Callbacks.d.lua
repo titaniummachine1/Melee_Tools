@@ -85,11 +85,9 @@ function SendNetMsg(msg, reliable, voice) end
 ---@return any
 function DoPostScreenSpaceEffects() end
 
----@param Table< TempEntity any
----@param EventInfo > entEvtTable any
+---@param entEvtTable table<TempEntity, EventInfo>
 ---@return any
-function ProcessTempEntities(Table< TempEntity, EventInfo > entEvtTable) end
+function ProcessTempEntities(entEvtTable) end
 
 ---@return any
 function Unload() end
-

@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { TYPES_DIR } from '../config.js';
+import { TYPES_BASE_DIR } from '../config.js';
 import { buildFolderPath } from '../utils/paths.js';
 import { db } from '../database/queries.js';
 
@@ -25,7 +25,7 @@ export async function generateFolderHierarchy() {
 	
 	// Create directory structure
 	for (const [dirPath, dirPages] of Object.entries(pagesByDir)) {
-		const typeDir = path.join(TYPES_DIR, 'hierarchy', dirPath === '.' ? '' : dirPath);
+		const typeDir = path.join(TYPES_BASE_DIR, dirPath === '.' ? '' : dirPath);
 		await fs.mkdir(typeDir, { recursive: true });
 		console.log(`[Hierarchy] Created directory: ${typeDir} (${dirPages.length} pages)`);
 	}

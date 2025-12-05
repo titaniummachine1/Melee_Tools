@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { TYPES_BASE_DIR, WORKSPACE_ROOT } from './crawler/config.js';
 
 function mapTypeToLua(docType) {
   const t = docType.toLowerCase();
@@ -42,8 +43,8 @@ function parseEntityPropsFromHtml(html) {
 }
 
 (async () => {
-  const htmlPath = path.resolve('../.cache/docs/TF2_props.html');
-  const outDir = path.resolve('../types/hierarchy/entity_props');
+  const htmlPath = path.join(WORKSPACE_ROOT, '.cache', 'docs', 'TF2_props.html');
+  const outDir = path.join(TYPES_BASE_DIR, 'entity_props');
   const html = fs.readFileSync(htmlPath, 'utf8');
   const entities = parseEntityPropsFromHtml(html);
   await fs.promises.mkdir(outDir, { recursive: true });

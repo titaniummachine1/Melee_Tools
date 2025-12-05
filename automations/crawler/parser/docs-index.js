@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { TYPES_DIR } from '../config.js';
+import { TYPES_DIR, TYPES_NAMESPACE } from '../config.js';
 import { db } from '../database/queries.js';
 
 export async function generateDocsIndex() {
@@ -17,7 +17,7 @@ export async function generateDocsIndex() {
 		
 		index[key] = {
 			url: page.url,
-			path: `hierarchy/${page.path}`,
+			path: `${TYPES_NAMESPACE}/${page.path}`,
 			title: page.title || key,
 			page_type: page.page_type || 'page',
 			depth: page.depth || 0,

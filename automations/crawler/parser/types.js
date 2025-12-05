@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { TYPES_DIR, API_BASE_URL, CACHE_DIR, WORKSPACE_ROOT } from '../config.js';
+import { TYPES_DIR, TYPES_BASE_DIR, TYPES_NAMESPACE, API_BASE_URL, CACHE_DIR, WORKSPACE_ROOT } from '../config.js';
 import { buildFolderPath } from '../utils/paths.js';
 import { db } from '../database/queries.js';
 import { parseDocumentationPage } from './html.js';
@@ -375,7 +375,7 @@ export async function generateTypeForPage(parsedDataInput) {
 			const html = await fs.readFile(cachePath, 'utf8');
 			const entities = parseEntityPropsFromHtml(html);
 			if (entities.length > 0) {
-				const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+				const baseDir = path.join(TYPES_BASE_DIR, 'entity_props');
 				await fs.mkdir(baseDir, { recursive: true });
 				for (const ent of entities) {
 					let content = `---@meta\n\n`;
@@ -406,7 +406,7 @@ export async function generateTypeForPage(parsedDataInput) {
 			const html = await fs.readFile(cachePath, 'utf8');
 			const sections = parseConstantsByCategory(html);
 			if (sections.length > 0) {
-				const baseDir = path.join(TYPES_DIR, 'hierarchy', 'constants');
+				const baseDir = path.join(TYPES_BASE_DIR, 'constants');
 				await fs.mkdir(baseDir, { recursive: true });
 				for (const sec of sections) {
 					let content = `---@meta\n\n`;
@@ -431,7 +431,7 @@ export async function generateTypeForPage(parsedDataInput) {
 	const pagePath = parsedDataInput.path || buildPathFromUrl(parsedDataInput.url);
 	const dirPath = path.dirname(pagePath) || '.';
 	const sanitizedDir = buildFolderPath(dirPath);
-	const typeDir = path.join(TYPES_DIR, 'hierarchy', sanitizedDir === '.' ? '' : sanitizedDir);
+	const typeDir = path.join(TYPES_BASE_DIR, sanitizedDir === '.' ? '' : sanitizedDir);
 	await fs.mkdir(typeDir, { recursive: true });
 
 	const fileName = path.basename(pagePath) + '.d.lua';
@@ -452,7 +452,7 @@ export async function generateEntityPropsFromCache() {
 			console.log('[TypeGenerator] No entity props found in cache.');
 			return 0;
 		}
-		const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+		const baseDir = path.join(TYPES_BASE_DIR, 'entity_props');
 		await fs.mkdir(baseDir, { recursive: true });
 		let count = 0;
 		for (const ent of entities) {
@@ -486,7 +486,7 @@ export async function generateConstantsByCategoryFromCache() {
 			console.log('[TypeGenerator] No constants found in cache.');
 			return 0;
 		}
-		const baseDir = path.join(TYPES_DIR, 'hierarchy', 'constants');
+		const baseDir = path.join(TYPES_BASE_DIR, 'constants');
 		await fs.mkdir(baseDir, { recursive: true });
 		let count = 0;
 		for (const sec of sections) {
@@ -504,7 +504,7 @@ export async function generateConstantsByCategoryFromCache() {
 		}
 
 		// Delete the old main Lua_Constants.d.lua file if it exists (we use folder structure now)
-		const oldMainFile = path.join(TYPES_DIR, 'hierarchy', 'Lua_Constants.d.lua');
+		const oldMainFile = path.join(TYPES_BASE_DIR, 'Lua_Constants.d.lua');
 		try {
 			await fs.unlink(oldMainFile);
 			console.log(`[TypeGenerator] Removed old main constants file: ${oldMainFile}`);
@@ -540,7 +540,7 @@ export async function generateTypesByShortestPath() {
 				const html = await fs.readFile(cachePath, 'utf8');
 				const entities = parseEntityPropsFromHtml(html);
 				if (entities.length > 0) {
-					const baseDir = path.join(TYPES_DIR, 'hierarchy', 'entity_props');
+					const baseDir = path.join(TYPES_BASE_DIR, 'entity_props');
 					await fs.mkdir(baseDir, { recursive: true });
 					for (const ent of entities) {
 						let content = `---@meta\n\n`;
@@ -567,7 +567,7 @@ export async function generateTypesByShortestPath() {
 		const pagePath = page.path || buildPathFromUrl(page.url);
 		const dirPath = path.dirname(pagePath) || '.';
 		const sanitizedDir = buildFolderPath(dirPath);
-		const typeDir = path.join(TYPES_DIR, 'hierarchy', sanitizedDir === '.' ? '' : sanitizedDir);
+		const typeDir = path.join(TYPES_BASE_DIR, sanitizedDir === '.' ? '' : sanitizedDir);
 		await fs.mkdir(typeDir, { recursive: true });
 
 		const fileName = path.basename(pagePath) + '.d.lua';
