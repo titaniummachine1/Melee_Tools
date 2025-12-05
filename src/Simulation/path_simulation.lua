@@ -2,6 +2,7 @@
 local SimConstants = require("Simulation.constants")
 local MeleeConstants = require("Melee.melee_constants")
 local DirectionUtils = require("Melee.direction_utils")
+local Physics = require("Simulation.physics")
 
 -- Module declaration
 local PathSimulation = {}
@@ -11,88 +12,6 @@ local TF2 = MeleeConstants.TF2
 local HULL = MeleeConstants.HULL
 local CLASS_MAX_SPEEDS = MeleeConstants.CLASS_MAX_SPEEDS
 local SMOOTH_WARP = MeleeConstants.SMOOTH_WARP
-
-local function applyFriction(velocity, onGround, tickInterval)
-	assert(velocity, "applyFriction: velocity is nil")
-	if not onGround then
-		return velocity
-	end
-
-	local speed = velocity:Length()
-	if speed < TF2.STOP_SPEED then
-		return Vector3(0, 0, 0)
-	end
-
-	local friction = TF2.GROUND_FRICTION * tickInterval
-	local control = (speed < TF2.STOP_SPEED) and TF2.STOP_SPEED or speed
-	local drop = control * friction
-
-	local newSpeed = speed - drop
-	if newSpeed < 0 then
-		newSpeed = 0
-	end
-
-	if newSpeed < speed then
-		local scale = newSpeed / speed
-		return velocity * scale
-	end
-
-	return velocity
-end
-
-local function handleForwardCollision(vel, wallTrace)
-	assert(wallTrace and wallTrace.plane and wallTrace.endpos, "handleForwardCollision: invalid trace")
-
-	local normal = wallTrace.plane
-	local angle = math.deg(math.acos(normal:Dot(Vector3(0, 0, 1))))
-
-	if angle > TF2.FORWARD_COLLISION_ANGLE then
-		local dot = vel:Dot(normal)
-		vel = vel - normal * dot
-	end
-
-	return wallTrace.endpos.x, wallTrace.endpos.y
-end
-
-local function handleGroundCollision(vel, groundTrace, upVector)
-	assert(groundTrace and groundTrace.plane and groundTrace.endpos, "handleGroundCollision: invalid trace")
-
-	local normal = groundTrace.plane
-	local angle = math.deg(math.acos(normal:Dot(upVector)))
-	local onGround = false
-
-	if angle < TF2.GROUND_ANGLE_LOW then
-		onGround = true
-	elseif angle < TF2.GROUND_ANGLE_HIGH then
-		vel.x, vel.y, vel.z = 0, 0, 0
-	else
-		local dot = vel:Dot(normal)
-		vel = vel - normal * dot
-		onGround = true
-	end
-
-	if onGround then
-		vel.z = 0
-	end
-
-	return groundTrace.endpos, onGround
-end
-
--- Private helpers -----
-local function accelerate(velocity, wishdir, maxSpeed, tickInterval, onGround)
-	if not onGround then
-		return velocity
-	end
-
-	local currentSpeed = velocity:Dot(wishdir)
-	local addSpeed = maxSpeed - currentSpeed
-	if addSpeed <= 0 then
-		return velocity
-	end
-
-	local accelSpeed = math.min(TF2.ACCELERATION * maxSpeed * tickInterval, addSpeed)
-	return velocity + wishdir * accelSpeed
-end
 
 -- Public API ----
 function PathSimulation.simulateDash(params)
@@ -125,8 +44,8 @@ function PathSimulation.simulateDash(params)
 	local closestBackstab
 
 	for tick = 1, params.ticks do
-		vel = applyFriction(vel, onGround, tickInterval)
-		vel = accelerate(vel, wishdir, maxSpeed, tickInterval, onGround)
+		vel = Physics.applyFriction(vel, onGround, tickInterval, TF2.STOP_SPEED, TF2.GROUND_FRICTION)
+		vel = Physics.accelerateGround(vel, wishdir, maxSpeed, tickInterval, TF2.ACCELERATION, onGround)
 
 		local step = vel * tickInterval
 		local nextPos = pos + step
@@ -137,7 +56,7 @@ function PathSimulation.simulateDash(params)
 				if wallTrace.entity and wallTrace.entity:GetClass() == "CTFPlayer" then
 					break
 				end
-				nextPos.x, nextPos.y = handleForwardCollision(vel, wallTrace)
+				nextPos.x, nextPos.y = Physics.handleForwardCollision(vel, wallTrace, TF2.FORWARD_COLLISION_ANGLE)
 			end
 
 			local groundTrace = traceHull(
@@ -149,7 +68,8 @@ function PathSimulation.simulateDash(params)
 				shouldHit
 			)
 			if groundTrace and groundTrace.fraction and groundTrace.fraction < 1 then
-				nextPos, onGround = handleGroundCollision(vel, groundTrace, vUp)
+				nextPos, onGround =
+					Physics.handleGroundCollision(vel, groundTrace, vUp, TF2.GROUND_ANGLE_LOW, TF2.GROUND_ANGLE_HIGH)
 			end
 		end
 
@@ -219,14 +139,9 @@ function PathSimulation.simulateBonusTicks(params)
 		local toTargetLen = toTarget:Length()
 		local wishdir = (toTargetLen > 1) and (toTarget / toTargetLen) or Vector3(1, 0, 0)
 
-		local vel = applyFriction(lastVel, lastGround, tickInterval)
-		vel = accelerate(vel, wishdir, maxSpeed, tickInterval, lastGround)
-
-		local horizSpeed = math.sqrt(vel.x * vel.x + vel.y * vel.y)
-		if horizSpeed > maxSpeed then
-			local scale = maxSpeed / horizSpeed
-			vel = Vector3(vel.x * scale, vel.y * scale, vel.z)
-		end
+		local vel = Physics.applyFriction(lastVel, lastGround, tickInterval, TF2.STOP_SPEED, TF2.GROUND_FRICTION)
+		vel = Physics.accelerateGround(vel, wishdir, maxSpeed, tickInterval, TF2.ACCELERATION, lastGround)
+		vel = Physics.capHorizontalSpeed(vel, maxSpeed)
 
 		local pos = lastPos + vel * tickInterval
 
