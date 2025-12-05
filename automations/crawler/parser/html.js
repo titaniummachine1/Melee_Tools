@@ -343,10 +343,17 @@ export function parseDocumentationPage(html, url) {
 					// Combine all paragraphs
 					description = pMatches.map(p => extractText(p)).join(' ').trim();
 					// Skip if description is just a type name (like "number", "string")
-					if (description.length > 1 && !/^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description)) {
-						// Limit description length
-						if (description.length > 500) {
-							description = description.slice(0, 497) + '...';
+					// But allow longer descriptions that start with these words
+					if (description.length > 1) {
+						// Only skip if the entire description is just a single type word
+						const isJustType = /^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description.trim());
+						if (!isJustType) {
+							// Limit description length
+							if (description.length > 500) {
+								description = description.slice(0, 497) + '...';
+							}
+						} else {
+							description = '';
 						}
 					} else {
 						description = '';
