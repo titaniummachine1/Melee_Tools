@@ -1,5 +1,19 @@
 import { API_BASE_URL } from '../config.js';
 
+function mapTypeToLua(docType) {
+	const typeMap = {
+		'integer': 'number', 'int': 'number', 'number': 'number', 'float': 'number',
+		'string': 'string', 'bool': 'boolean', 'boolean': 'boolean',
+		'vector': 'Vector3', 'vector3': 'Vector3', 'eulerangles': 'EulerAngles',
+		'entity': 'Entity|nil', 'item': 'Item|nil', 'material': 'Material|nil',
+		'color': 'Color|nil', 'table': 'table', 'usercmd': 'UserCmd',
+		'gameevent': 'GameEvent', 'drawmodelcontext': 'DrawModelContext',
+		'viewsetup': 'ViewSetup', 'netmessage': 'NetMessage', 'stringcmd': 'string',
+		'any': 'any', 'function': 'function', 'void': 'void', 'trace': 'Trace'
+	};
+	return typeMap[docType.toLowerCase()] || 'any';
+}
+
 export function extractText(html) {
 	return html
 		.replace(/<script[\s\S]*?<\/script>/gi, '')
@@ -21,6 +35,7 @@ export function parseDocumentationPage(html, url) {
 		content: '',
 		links: [],
 		functions: [],
+		fields: [], // For class properties
 		classes: [],
 		libraries: [],
 		examples: [],
@@ -150,72 +165,170 @@ export function parseDocumentationPage(html, url) {
 		/<h4[^>]*>(.*?)<\/h4>/gi
 	];
 
-	function tryExtractFunctions(sourceMatches) {
-		// Skip common section headings that aren't functions
-		const skipHeadings = new Set(['Functions', 'Examples', 'Methods', 'Fields']);
+	// Process all headings in order to maintain section context
 
-		for (const match of sourceMatches) {
-			const heading = extractText(match[1]);
-			// Only match if it looks like a function signature (has parentheses) or is a single word
-			const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
-			if (funcMatch) {
-				const funcName = funcMatch[1];
-				const hasParams = funcMatch[2] !== undefined;
+	// Process all headings in order to maintain section context
+	const allHeadings = [];
+	for (const pattern of headingPatterns) {
+		const matches = page.content.matchAll(pattern);
+		for (const match of matches) {
+			const text = extractText(match[1]);
+			allHeadings.push({ text, index: match.index, level: match[0].includes('<h2') ? 2 : (match[0].includes('<h3') ? 3 : 4), match });
+		}
+	}
+	allHeadings.sort((a, b) => a.index - b.index);
 
-				// Skip section headings (only if they don't have parentheses - constructors have params)
-				if (!hasParams && skipHeadings.has(funcName)) continue;
+	// Process in order with section tracking
+	let currentSection = null;
+	const skipHeadings = new Set(['Functions', 'Examples', 'Methods', 'Fields', 'Constructor']);
 
-				const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+	for (const heading of allHeadings) {
+		const headingText = heading.text;
+		const isH2 = heading.level === 2;
 
-				const params = [];
-				if (paramsStr) {
-					const paramPattern = /\[?(\w+):(\w+)\]?/g;
-					let paramMatch;
-					while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
-						// Support both name:type and Type:name forms
+		// Track section headers
+		if (isH2 && skipHeadings.has(headingText)) {
+			currentSection = headingText;
+			continue;
+		}
+
+		// Only match if it looks like a function signature (has parentheses) or is a single word
+		const funcMatch = headingText.match(/^(\w+)\s*\(([^)]*)\)/) || headingText.match(/^(\w+)\s*$/);
+		if (funcMatch) {
+			const funcName = funcMatch[1];
+			const hasParams = funcMatch[2] !== undefined;
+
+			// Skip section headings (only if they don't have parentheses - constructors have params)
+			// Also skip if it's a section header even with empty params like "Functions()"
+			if ((!hasParams || paramsStr === '') && skipHeadings.has(funcName)) {
+				currentSection = funcName;
+				continue;
+			}
+
+			// If we're in a Fields section and this has no params, it's a field, not a function
+			if (currentSection === 'Fields' && !hasParams) {
+				// Extract field type from description
+				const headingEnd = heading.index + heading.match[0].length;
+				const afterHeading = html.slice(headingEnd, headingEnd + 200);
+				const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+				let fieldType = 'any';
+				if (pMatch) {
+					const typeText = extractText(pMatch[1]).trim().toLowerCase();
+					if (typeText === 'number' || typeText === 'integer' || typeText === 'int') {
+						fieldType = 'number';
+					} else if (typeText === 'string') {
+						fieldType = 'string';
+					} else if (typeText === 'boolean' || typeText === 'bool') {
+						fieldType = 'boolean';
+					} else if (typeText.includes('vector')) {
+						fieldType = 'Vector3';
+					}
+				}
+				// Store as field instead of function
+				if (!page.fields) page.fields = [];
+				page.fields.push({ name: funcName, type: fieldType });
+				continue;
+			}
+
+			const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+			const params = [];
+			if (paramsStr) {
+				// Handle complex parameter lists with optional params and function types
+				// Split by comma, but be careful with nested brackets
+				const parts = [];
+				let current = '';
+				let depth = 0;
+				for (let i = 0; i < paramsStr.length; i++) {
+					const char = paramsStr[i];
+					if (char === '[') depth++;
+					else if (char === ']') depth--;
+					else if (char === ',' && depth === 0) {
+						parts.push(current.trim());
+						current = '';
+						continue;
+					}
+					current += char;
+				}
+				if (current.trim()) parts.push(current.trim());
+
+				for (const part of parts) {
+					const trimmed = part.trim();
+					if (!trimmed) continue;
+
+					// Check if it's optional (wrapped in brackets)
+					const isOptional = trimmed.startsWith('[') && trimmed.endsWith(']');
+					const cleanPart = isOptional ? trimmed.slice(1, -1).trim() : trimmed;
+
+					// Handle function type parameters: "shouldHitEntity(ent:Entity, contentsMask:integer):Function"
+					const funcTypeMatch = cleanPart.match(/^(\w+)\s*\(([^)]*)\)\s*:\s*Function$/i);
+					if (funcTypeMatch) {
+						const funcName = funcTypeMatch[1];
+						const funcParamsStr = funcTypeMatch[2];
+						// Parse function parameters
+						const funcParams = [];
+						if (funcParamsStr) {
+							const funcParamParts = funcParamsStr.split(',').map(p => p.trim());
+							for (const fp of funcParamParts) {
+								const fpMatch = fp.match(/^(\w+)\s*:\s*(\w+)$/);
+								if (fpMatch) {
+									funcParams.push({ name: fpMatch[1], type: mapTypeToLua(fpMatch[2]) });
+								}
+							}
+						}
+						// Create function type signature
+						const funcSig = funcParams.length > 0
+							? `fun(${funcParams.map(p => `${p.name}: ${p.type}`).join(', ')}): boolean`
+							: 'fun(): boolean';
+						params.push({ name: funcName, type: funcSig, optional: isOptional });
+						continue;
+					}
+
+					// Regular parameter: "name:type" or "Type:name"
+					const paramMatch = cleanPart.match(/^(\w+)\s*:\s*(\w+)$/);
+					if (paramMatch) {
 						const left = paramMatch[1];
 						const right = paramMatch[2];
 						const isTypeFirst = /^[A-Z]/.test(left) && (right === '' || /^[a-z]/.test(right));
 						const name = isTypeFirst ? (right || 'param') : left;
 						const type = isTypeFirst ? left : (right || 'any');
-						params.push({ name, type });
+						params.push({ name, type: mapTypeToLua(type), optional: isOptional });
+					} else if (cleanPart.match(/^\w+$/)) {
+						// Just a name, no type
+						params.push({ name: cleanPart, type: 'any', optional: isOptional });
 					}
 				}
-
-				// Extract description: find the next <p> tag after this heading in the full HTML
-				// Only extract if this is a real function (has params or is h3/h4, not a section header)
-				let description = '';
-				if (hasParams || match[0].includes('<h3') || match[0].includes('<h4')) {
-					const headingEnd = match.index + match[0].length;
-					const afterHeading = html.slice(headingEnd, headingEnd + 500);
-					const pMatch = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
-					if (pMatch) {
-						description = extractText(pMatch[1]).trim();
-						// Skip if description is just a type name (like "number", "string")
-						if (description.length > 1 && !/^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description)) {
-							// Limit description length
-							if (description.length > 300) {
-								description = description.slice(0, 297) + '...';
-							}
-						} else {
-							description = '';
-						}
-					}
-				}
-
-				page.functions.push({
-					name: funcName,
-					params: params,
-					section: heading,
-					description: description
-				});
 			}
-		}
-	}
 
-	for (const pattern of headingPatterns) {
-		const matches = page.content.matchAll(pattern);
-		tryExtractFunctions(matches);
+			// Extract description: find the next <p> tag(s) after this heading in the full HTML
+			// Only extract if this is a real function (has params or is h3/h4, not a section header)
+			let description = '';
+			if (hasParams || heading.level === 3 || heading.level === 4) {
+				const headingEnd = heading.index + heading.match[0].length;
+				const afterHeading = html.slice(headingEnd, headingEnd + 1000);
+				// Try to get all consecutive <p> tags (description might span multiple paragraphs)
+				const pMatches = afterHeading.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+				if (pMatches && pMatches.length > 0) {
+					// Combine all paragraphs
+					description = pMatches.map(p => extractText(p)).join(' ').trim();
+					// Skip if description is just a type name (like "number", "string")
+					if (description.length > 1 && !/^(number|string|boolean|table|Vector3|Entity|nil|any)$/i.test(description)) {
+						// Limit description length
+						if (description.length > 500) {
+							description = description.slice(0, 497) + '...';
+						}
+					} else {
+						description = '';
+					}
+				}
+			}
+
+			page.functions.push({
+				name: funcName,
+				params: params,
+				section: headingText,
+				description: description
+			});
+		}
 	}
 
 	// Fallback: scan full HTML headings if still empty (only h3/h4, not h2)
@@ -226,7 +339,27 @@ export function parseDocumentationPage(html, url) {
 		];
 		for (const pattern of fallbackPatterns) {
 			const matches = html.matchAll(pattern);
-			tryExtractFunctions(matches);
+			for (const match of matches) {
+				const heading = extractText(match[1]);
+				const funcMatch = heading.match(/^(\w+)\s*\(([^)]*)\)/) || heading.match(/^(\w+)\s*$/);
+				if (funcMatch && !skipHeadings.has(funcMatch[1])) {
+					const paramsStr = funcMatch[2] ? funcMatch[2].trim() : '';
+					const params = [];
+					if (paramsStr) {
+						const paramPattern = /\[?(\w+):(\w+)\]?/g;
+						let paramMatch;
+						while ((paramMatch = paramPattern.exec(paramsStr)) !== null) {
+							const left = paramMatch[1];
+							const right = paramMatch[2];
+							const isTypeFirst = /^[A-Z]/.test(left) && (right === '' || /^[a-z]/.test(right));
+							const name = isTypeFirst ? (right || 'param') : left;
+							const type = isTypeFirst ? left : (right || 'any');
+							params.push({ name, type });
+						}
+					}
+					page.functions.push({ name: funcMatch[1], params, section: heading });
+				}
+			}
 		}
 	}
 

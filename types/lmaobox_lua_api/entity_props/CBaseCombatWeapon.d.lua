@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseCombatWeapon
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:23.391Z
+-- Last updated: 2025-12-05T11:00:46.766Z
 
 ---@class CBaseCombatWeapon
 ---@field m_iViewModelIndex number

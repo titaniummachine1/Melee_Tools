@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFRobotDestruction_Robot
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:22.832Z
+-- Last updated: 2025-12-05T11:00:41.257Z
 
 ---@class CTFRobotDestruction_Robot
 ---@field m_iHealth number

@@ -3,16 +3,10 @@
 -- Lmaobox Lua API: render - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/render/
 -- Path: Lua_Libraries/render
--- Last updated: 2025-12-05T10:33:20.694Z
+-- Last updated: 2025-12-05T11:00:38.534Z
 
 ---@class render
 render = {}
-
----@return any
-function render.Functions() end
-
----@return any
-function render.Examples() end
 
 ---@param view ViewSetup
 ---@param clearFlags number
@@ -47,7 +41,7 @@ function render.DrawScreenSpaceRectangle(material, destX, destY, width, height, 
 ---@return any
 function render.DrawScreenSpaceQuad(material) end
 
----@return any
+---@return Vector3
 function render.GetViewport() end
 
 ---@param x number
@@ -65,7 +59,6 @@ function render.DepthRange(zNear, zFar) end
 ---@return any
 function render.GetDepthRange() end
 
----@return any
 function render.SetRenderTarget() end
 
 ---@return any
@@ -74,20 +67,17 @@ function render.GetRenderTarget() end
 ---@param clearColor boolean
 ---@param clearDepth boolean
 ---@param clearStencil boolean
----@return any
 function render.ClearBuffers(clearColor, clearDepth, clearStencil) end
 
 ---@param r number
 ---@param g number
 ---@param b number
----@return any
 function render.ClearColor3ub(r, g, b) end
 
 ---@param r number
 ---@param g number
 ---@param b number
 ---@param a number
----@return any
 function render.ClearColor4ub(r, g, b, a) end
 
 ---@param enable boolean
@@ -107,35 +97,27 @@ function render.PushRenderTargetAndViewport() end
 function render.PopRenderTargetAndViewport() end
 
 ---@param enable boolean
----@return any
 function render.SetStencilEnable(enable) end
 
 ---@param failOp number
----@return any
 function render.SetStencilFailOperation(failOp) end
 
 ---@param zFailOp number
----@return any
 function render.SetStencilZFailOperation(zFailOp) end
 
 ---@param passOp number
----@return any
 function render.SetStencilPassOperation(passOp) end
 
 ---@param compareFunc number
----@return any
 function render.SetStencilCompareFunction(compareFunc) end
 
 ---@param comparationValue number
----@return any
 function render.SetStencilReferenceValue(comparationValue) end
 
 ---@param mask number
----@return any
 function render.SetStencilTestMask(mask) end
 
 ---@param mask number
----@return any
 function render.SetStencilWriteMask(mask) end
 
 ---@param xmin number
@@ -143,7 +125,6 @@ function render.SetStencilWriteMask(mask) end
 ---@param xmax number
 ---@param ymax number
 ---@param value number
----@return any
 function render.ClearStencilBufferRectangle(xmin, ymin, xmax, ymax, value) end
 
 ---@param material Material|nil
@@ -151,7 +132,6 @@ function render.ClearStencilBufferRectangle(xmin, ymin, xmax, ymax, value) end
 function render.ForcedMaterialOverride(material) end
 
 ---@param blend number
----@return any
 function render.SetBlend(blend) end
 
 ---@return any
@@ -160,7 +140,6 @@ function render.GetBlend() end
 ---@param r number
 ---@param g number
 ---@param b number
----@return any
 function render.SetColorModulation(r, g, b) end
 
 ---@return any

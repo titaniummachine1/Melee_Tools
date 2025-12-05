@@ -2,7 +2,7 @@
 
 -- Constants: E_UserMessage
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T10:33:23.831Z
+-- Last updated: 2025-12-05T11:00:47.940Z
 
 ---@type any
 Geiger = 0

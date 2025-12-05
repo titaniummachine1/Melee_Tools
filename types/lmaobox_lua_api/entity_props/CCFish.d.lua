@@ -2,7 +2,7 @@
 
 -- Entity Props: CCFish
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:23.292Z
+-- Last updated: 2025-12-05T11:00:44.868Z
 
 ---@class CCFish
 ---@field m_poolOrigin Vector3

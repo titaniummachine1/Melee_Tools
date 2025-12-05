@@ -3,16 +3,10 @@
 -- Lmaobox Lua API: client - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/client/
 -- Path: Lua_Libraries/client
--- Last updated: 2025-12-05T10:33:20.557Z
+-- Last updated: 2025-12-05T11:00:38.413Z
 
 ---@class client
 client = {}
-
----@return any
-function client.Functions() end
-
----@return any
-function client.Examples() end
 
 ---@return any
 function client.GetExtraInventorySlots() end
@@ -72,7 +66,6 @@ function client.GetConVar(name) end
 
 ---@param name string
 ---@param value any
----@return any
 function client.SetConVar(name, value) end
 
 ---@param name string

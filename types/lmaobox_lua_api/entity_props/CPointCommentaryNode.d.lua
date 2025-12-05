@@ -2,7 +2,7 @@
 
 -- Entity Props: CPointCommentaryNode
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:23.251Z
+-- Last updated: 2025-12-05T11:00:43.813Z
 
 ---@class CPointCommentaryNode
 ---@field m_bActive number

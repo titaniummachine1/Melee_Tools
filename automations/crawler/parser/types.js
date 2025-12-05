@@ -32,25 +32,101 @@ function mapTypeToLua(docType) {
 	return typeMap[docType.toLowerCase()] || 'any';
 }
 
-function inferReturnType(funcName, params) {
-	if (funcName.startsWith('Is') || funcName.startsWith('Has') || funcName.startsWith('Can')) {
+function inferReturnType(funcName, params, description = '') {
+	// Check description first for explicit return type info
+	const desc = description.toLowerCase();
+
+	// Multiple return values - check first before other patterns
+	// Must check this before other "returns" patterns
+	if (desc.includes('returns 2 values') || desc.includes('returns 2')) {
+		if (desc.includes('mask') && (desc.includes('entity') || desc.includes('Entity'))) {
+			return 'number, Entity|nil';
+		}
+	}
+	// Also check for "Returns 2 values" (capitalized)
+	if (description.includes('Returns 2 values') || description.includes('Returns 2')) {
+		if (description.includes('mask') && (description.includes('entity') || description.includes('Entity'))) {
+			return 'number, Entity|nil';
+		}
+	}
+	if (desc.includes('returns 3 values') || desc.includes('returns 3') ||
+		desc.includes('3 return values') || desc.includes('3 values') ||
+		desc.includes('3 separate') || desc.includes('as 3 return')) {
+		if (desc.includes('vector') || desc.includes('forward, right, and up')) {
+			return 'Vector3, Vector3, Vector3';
+		}
+		if (desc.includes('coordinates') || desc.includes('x, y, z') || desc.includes('separate variables')) {
+			return 'number, number, number';
+		}
+	}
+
+	// Explicit return type mentions
+	if (desc.includes('returns trace') || desc.includes('returns trace class')) {
+		return 'Trace';
+	}
+	if (desc.includes('returns true') || desc.includes('returns false') || desc.includes('returns true if') ||
+		desc.includes('whether') || desc.includes('returns boolean')) {
+		return 'boolean';
+	}
+	if (desc.includes('returns map name') || desc.includes('returns server ip') ||
+		desc.includes('returns game install directory') || (desc.includes('returns') && desc.includes('ip'))) {
+		return 'string';
+	}
+	if (desc.includes('returns') && desc.includes('string') && !desc.includes('returns 2') && !desc.includes('returns 3')) {
+		return 'string';
+	}
+	if (desc.includes('returns') && desc.includes('number') && !desc.includes('returns 2') && !desc.includes('returns 3')) {
+		return 'number';
+	}
+	if (desc.includes('returns') && desc.includes('integer') && !desc.includes('returns 2') && !desc.includes('returns 3')) {
+		return 'number';
+	}
+	// Check for "Sets" functions that don't return anything (must come before name pattern check)
+	if (desc.includes('sets ') && !desc.includes('returns')) {
+		return 'void';
+	}
+	// Check for "Sends" functions that return boolean
+	if (desc.includes('sends') && desc.includes('returns true')) {
+		return 'boolean';
+	}
+
+	// Function name patterns
+	if (funcName.startsWith('Is') || funcName.startsWith('Has') || funcName.startsWith('Can') ||
+		funcName.startsWith('Con_Is') || funcName.includes('IsVisible') || funcName.includes('IsOpen')) {
 		return 'boolean';
 	}
 	if (funcName.includes('Int') || funcName.includes('Count') || funcName.includes('Index') ||
 		funcName.includes('Time') || funcName.includes('Size') || funcName.includes('Length')) {
 		return 'number';
 	}
+	if (funcName.includes('Float')) {
+		return 'number';
+	}
 	if (funcName.includes('String') || funcName.includes('Name') || funcName.includes('Text') ||
-		funcName.includes('Path') || funcName.includes('Dir')) {
+		funcName.includes('Path') || funcName.includes('Dir') || funcName.includes('IP') ||
+		funcName.includes('GetMap') || funcName.includes('GetGame')) {
 		return 'string';
 	}
 	if (funcName.includes('Vector') || funcName.includes('Origin') || funcName.includes('Position') ||
-		funcName.includes('Angles') || funcName.includes('Velocity')) {
+		funcName.includes('Angles') || funcName.includes('Velocity') || funcName.includes('GetView')) {
 		return 'Vector3';
 	}
 	if (funcName.includes('Entity') || funcName.includes('Player') || funcName.includes('Weapon')) {
 		return 'Entity|nil';
 	}
+	if (funcName.startsWith('Set') && !desc.includes('returns')) {
+		return 'void';
+	}
+	if (funcName.includes('Play') && funcName.includes('Sound')) {
+		return 'void';
+	}
+	if (funcName.includes('Clear') && !desc.includes('returns')) {
+		return 'void';
+	}
+	if (funcName.includes('RandomSeed')) {
+		return 'void';
+	}
+
 	return 'any';
 }
 
@@ -291,7 +367,7 @@ function generateTypeDefinition(page) {
 						content += `---@param ${param.name} ${luaType}\n`;
 					});
 
-					const returnType = inferReturnType(func.name, func.params);
+					const returnType = inferReturnType(func.name, func.params, func.description || '');
 					if (returnType !== 'void') {
 						content += `---@return ${returnType}\n`;
 					}
@@ -308,6 +384,14 @@ function generateTypeDefinition(page) {
 		for (const className of [...new Set(page.classes)]) {
 			content += `---@class ${className}\n`;
 
+			// Add fields first (properties like x, y, z)
+			if (page.fields && page.fields.length > 0) {
+				page.fields.forEach(field => {
+					content += `---@field ${field.name} ${field.type}\n`;
+				});
+			}
+
+			// Then add methods/functions
 			if (page.functions && page.functions.length > 0) {
 				page.functions.forEach(func => {
 					// Add function description if available
@@ -316,16 +400,20 @@ function generateTypeDefinition(page) {
 					}
 
 					func.params.forEach(param => {
-						const luaType = mapTypeToLua(param.type);
-						content += `---@param ${param.name} ${luaType}\n`;
+						const luaType = param.type || mapTypeToLua(param.type);
+						const optional = param.optional ? '?' : '';
+						content += `---@param ${param.name}${optional} ${luaType}\n`;
 					});
 
-					const returnType = inferReturnType(func.name, func.params);
+					const returnType = inferReturnType(func.name, func.params, func.description || '');
 					if (returnType !== 'void') {
 						content += `---@return ${returnType}\n`;
 					}
 
-					const paramTypes = func.params.map(p => `${p.name}: ${mapTypeToLua(p.type)}`).join(', ');
+					const paramTypes = func.params.map(p => {
+						const pType = p.type || mapTypeToLua(p.type);
+						return `${p.name}: ${pType}`;
+					}).join(', ');
 					content += `---@field ${func.name} fun(self: ${className}${func.params.length > 0 ? ', ' : ''}${paramTypes})${returnType !== 'void' ? `: ${returnType}` : ''}\n`;
 				});
 			}
@@ -344,11 +432,12 @@ function generateTypeDefinition(page) {
 				}
 
 				func.params.forEach(param => {
-					const luaType = mapTypeToLua(param.type);
-					content += `---@param ${param.name} ${luaType}\n`;
+					const luaType = param.type || mapTypeToLua(param.type);
+					const optional = param.optional ? '?' : '';
+					content += `---@param ${param.name}${optional} ${luaType}\n`;
 				});
 
-				const returnType = inferReturnType(func.name, func.params);
+				const returnType = inferReturnType(func.name, func.params, func.description || '');
 				if (returnType !== 'void') {
 					content += `---@return ${returnType}\n`;
 				}

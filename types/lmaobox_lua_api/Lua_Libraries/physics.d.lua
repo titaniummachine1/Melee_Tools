@@ -3,16 +3,10 @@
 -- Lmaobox Lua API: physics - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/physics/
 -- Path: Lua_Libraries/physics
--- Last updated: 2025-12-05T10:33:20.685Z
+-- Last updated: 2025-12-05T11:00:38.520Z
 
 ---@class physics
 physics = {}
-
----@return any
-function physics.Functions() end
-
----@return any
-function physics.Examples() end
 
 ---@return any
 function physics.CreateEnvironment() end

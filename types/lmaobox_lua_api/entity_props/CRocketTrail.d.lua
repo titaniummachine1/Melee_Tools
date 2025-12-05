@@ -2,7 +2,7 @@
 
 -- Entity Props: CRocketTrail
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:23.084Z
+-- Last updated: 2025-12-05T11:00:42.336Z
 
 ---@class CRocketTrail
 ---@field m_SpawnRate number

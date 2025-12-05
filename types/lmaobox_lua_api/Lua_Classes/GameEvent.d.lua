@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: GameEvent - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/GameEvent/
 -- Path: Lua_Classes/GameEvent
--- Last updated: 2025-12-05T10:33:20.014Z
+-- Last updated: 2025-12-05T11:00:38.168Z
 
 ---@class GameEvent
 -- Returns the name of the event.
@@ -24,27 +24,23 @@
 ---@field GetInt fun(self: GameEvent, fieldName: string): number
 -- Returns the float value of the given field.
 ---@param fieldName string
----@return any
----@field GetFloat fun(self: GameEvent, fieldName: string): any
+---@return number
+---@field GetFloat fun(self: GameEvent, fieldName: string): number
 -- Sets the string value of the given field.
 ---@param fieldName string
 ---@param value string
----@return string
----@field SetString fun(self: GameEvent, fieldName: string, value: string): string
+---@field SetString fun(self: GameEvent, fieldName: string, value: string)
 -- Sets the int value of the given field.
 ---@param fieldName string
----@param value number
----@return number
----@field SetInt fun(self: GameEvent, fieldName: string, value: number): number
+---@param value int
+---@field SetInt fun(self: GameEvent, fieldName: string, value: int)
 -- Sets the float value of the given field.
 ---@param fieldName string
----@param value number
----@return any
----@field SetFloat fun(self: GameEvent, fieldName: string, value: number): any
+---@param value float
+---@field SetFloat fun(self: GameEvent, fieldName: string, value: float)
 -- Sets the bool value of the given field.
 ---@param fieldName string
----@param value boolean
----@return any
----@field SetBool fun(self: GameEvent, fieldName: string, value: boolean): any
+---@param value bool
+---@field SetBool fun(self: GameEvent, fieldName: string, value: bool)
 local GameEvent = {}
 

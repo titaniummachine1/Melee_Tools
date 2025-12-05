@@ -3,13 +3,9 @@
 -- Lmaobox Lua API: WeaponData - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/WeaponData/
 -- Path: Lua_Classes/WeaponData
--- Last updated: 2025-12-05T10:33:20.397Z
+-- Last updated: 2025-12-05T11:00:38.366Z
 
 ---@class WeaponData
----@return any
----@field Fields fun(self: WeaponData): any
----@return any
----@field Examples fun(self: WeaponData): any
 ---@return any
 ---@field damage fun(self: WeaponData): any
 ---@return any

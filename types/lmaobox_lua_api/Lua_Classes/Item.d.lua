@@ -3,12 +3,12 @@
 -- Lmaobox Lua API: Item - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Item/
 -- Path: Lua_Classes/Item
--- Last updated: 2025-12-05T10:33:20.024Z
+-- Last updated: 2025-12-05T11:00:38.181Z
 
 ---@class Item
 -- Returns true if the item is valid. There are instances where an item in the inventory is not valid and you should account for them. Otherwise, methods will return nil.
----@return any
----@field Methods fun(self: Item): any
+---@return boolean
+---@field Methods fun(self: Item): boolean
 ---@return any
 ---@field Examples fun(self: Item): any
 -- Returns true if the item is valid. There are instances where an item in the inventory is not valid and you should account for them. Otherwise, methods will return nil.
@@ -33,9 +33,9 @@
 ---@return Vector3
 ---@field GetInventoryPosition fun(self: Item): Vector3
 -- Returns true if the item is equipped for the given class.
----@param classid number
+---@param classid integer
 ---@return boolean
----@field IsEquippedForClass fun(self: Item, classid: number): boolean
+---@field IsEquippedForClass fun(self: Item, classid: integer): boolean
 -- Returns the item's backpack image texture ID. Some items may not have it, in which case, result is -1.
 ---@return string
 ---@field GetImageTextureID fun(self: Item): string
@@ -43,19 +43,17 @@
 ---@return any
 ---@field GetAttributes fun(self: Item): any
 -- Sets the value of the given attribute by it's definition. The value must be the correct type for the given attribute definition.
----@param attrDef any
+---@param attrDef AttributeDefinition
 ---@param value any
----@return any
----@field SetAttribute fun(self: Item, attrDef: any, value: any): any
+---@field SetAttribute fun(self: Item, attrDef: AttributeDefinition, value: any)
 -- Sets the value of the given attribute by it's name. The value must be the correct type for the given attribute definition.
 ---@param attrName string
 ---@param value any
----@return any
----@field SetAttribute fun(self: Item, attrName: string, value: any): any
+---@field SetAttribute fun(self: Item, attrName: string, value: any)
 -- Removes the given attribute by it's definition.
----@param attrDef any
+---@param attrDef AttributeDefinition
 ---@return any
----@field RemoveAttribute fun(self: Item, attrDef: any): any
+---@field RemoveAttribute fun(self: Item, attrDef: AttributeDefinition): any
 -- Removes the given attribute by it's name.
 ---@param attrName string
 ---@return any

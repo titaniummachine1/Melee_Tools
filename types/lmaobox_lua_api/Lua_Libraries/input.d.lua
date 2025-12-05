@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: input - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/input/
 -- Path: Lua_Libraries/input
--- Last updated: 2025-12-05T10:33:20.643Z
+-- Last updated: 2025-12-05T11:00:38.483Z
 
 ---@class input
 input = {}
@@ -36,7 +36,7 @@ function input.IsButtonReleased() end
 function input.IsMouseInputEnabled() end
 
 -- Sets whether the mouse is visible on screen and has priority on the topmost panel.
----@return any
+---@return boolean
 function input.SetMouseInputEnabled() end
 
 -- Returns the tick when buttons have last been polled.

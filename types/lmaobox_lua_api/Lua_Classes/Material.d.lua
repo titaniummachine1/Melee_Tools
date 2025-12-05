@@ -3,39 +3,26 @@
 -- Lmaobox Lua API: Material - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Material/
 -- Path: Lua_Classes/Material
--- Last updated: 2025-12-05T10:33:20.047Z
+-- Last updated: 2025-12-05T11:00:38.209Z
 
 ---@class Material
--- Returns the material name
----@return any
----@field Methods fun(self: Material): any
----@return any
----@field Examples fun(self: Material): any
--- Returns the material name
 ---@return string
 ---@field GetName fun(self: Material): string
--- Returns group the material is part of
 ---@return string
 ---@field GetTextureGroupName fun(self: Material): string
--- Modulate transparency of material by given alpha value
 ---@param alpha number
 ---@return any
 ---@field AlphaModulate fun(self: Material, alpha: number): any
--- Modulate color of material by given RGB values
 ---@param red number
 ---@param green number
 ---@param blue number
 ---@return any
 ---@field ColorModulate fun(self: Material, red: number, green: number, blue: number): any
--- Change a material variable flag, see MaterialVarFlags for a list of flags. The flag is the integer value of the flag enum, not the string name.
----@param flag number
----@param set boolean
----@return any
----@field SetMaterialVarFlag fun(self: Material, flag: number, set: boolean): any
--- Set a shader parameter, see ShaderParameters for a list of parameters. Supported values are integer, number, Vector3, string.
+---@param flag integer
+---@param set bool
+---@field SetMaterialVarFlag fun(self: Material, flag: integer, set: bool)
 ---@param param string
 ---@param value any
----@return any
----@field SetShaderParam fun(self: Material, param: string, value: any): any
+---@field SetShaderParam fun(self: Material, param: string, value: any)
 local Material = {}
 

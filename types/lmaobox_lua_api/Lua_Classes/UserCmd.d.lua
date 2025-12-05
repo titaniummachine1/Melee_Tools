@@ -3,15 +3,14 @@
 -- Lmaobox Lua API: UserCmd - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/UserCmd/
 -- Path: Lua_Classes/UserCmd
--- Last updated: 2025-12-05T10:33:20.326Z
+-- Last updated: 2025-12-05T11:00:38.325Z
 
 ---@class UserCmd
 -- Fields are modifiable directly.
 ---@return any
 ---@field Fields fun(self: UserCmd): any
 -- Sets the view angles of the player.
----@return any
----@field Methods fun(self: UserCmd): any
+---@field Methods fun(self: UserCmd)
 ---@return any
 ---@field Examples fun(self: UserCmd): any
 -- integer
@@ -60,38 +59,33 @@
 ---@return any
 ---@field sendpacket fun(self: UserCmd): any
 -- Sets the view angles of the player.
----@return Vector3
----@field SetViewAngles fun(self: UserCmd): Vector3
+---@field SetViewAngles fun(self: UserCmd)
 -- returns: pitch, yaw, roll
 ---@return Vector3
 ---@field GetViewAngles fun(self: UserCmd): Vector3
 -- Sets whether the command should be sent to the server or choked.
----@return any
----@field SetSendPacket fun(self: UserCmd): any
+---@return boolean
+---@field SetSendPacket fun(self: UserCmd): boolean
 -- returns: sendpacket
 ---@return any
 ---@field GetSendPacket fun(self: UserCmd): any
 -- Sets the buttons that are pressed.
----@return any
----@field SetButtons fun(self: UserCmd): any
+---@field SetButtons fun(self: UserCmd)
 -- returns: buttons
 ---@return any
 ---@field GetButtons fun(self: UserCmd): any
 -- Sets the forward movement of the player.
----@return any
----@field SetForwardMove fun(self: UserCmd): any
+---@field SetForwardMove fun(self: UserCmd)
 -- returns: forwardmove
 ---@return any
 ---@field GetForwardMove fun(self: UserCmd): any
 -- Sets the sideways movement of the player.
----@return any
----@field SetSideMove fun(self: UserCmd): any
+---@field SetSideMove fun(self: UserCmd)
 -- returns: sidemove
 ---@return any
 ---@field GetSideMove fun(self: UserCmd): any
 -- Sets the upward movement of the player.
----@return any
----@field SetUpMove fun(self: UserCmd): any
+---@field SetUpMove fun(self: UserCmd)
 -- returns: upmove
 ---@return any
 ---@field GetUpMove fun(self: UserCmd): any

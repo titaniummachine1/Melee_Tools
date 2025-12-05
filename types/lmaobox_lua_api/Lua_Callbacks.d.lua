@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-05T10:33:19.977Z
+-- Last updated: 2025-12-05T11:00:38.119Z
 
 ---@return any
 function Draw() end
@@ -12,7 +12,7 @@ function Draw() end
 ---@return any
 function DrawModel(ctx) end
 
----@param info any
+---@param info StaticPropRenderInfo
 ---@return any
 function DrawStaticProps(info) end
 
@@ -24,15 +24,15 @@ function CreateMove(cmd) end
 ---@return any
 function FireGameEvent(event) end
 
----@param msg any
+---@param msg UserMessage
 ---@return any
 function DispatchUserMessage(msg) end
 
----@param cmd string
+---@param cmd StringCmd
 ---@return string
 function SendStringCmd(cmd) end
 
----@param stage number
+---@param stage integer
 ---@return any
 function FrameStageNotify(stage) end
 
@@ -48,31 +48,30 @@ function PostRenderView(view) end
 ---@return any
 function RenderViewModel(view) end
 
----@param keyvalues string
+---@param keyvalues StringCmd
 ---@return any
 function ServerCmdKeyValues(keyvalues) end
 
----@param crate Item|nil
----@param crateLootList table
+---@param crate Item
+---@param crateLootList Table
 ---@return any
 function OnFakeUncrate(crate, crateLootList) end
 
----@param lobby any
+---@param lobby GameServerLobby
 ---@return any
 function OnLobbyUpdated(lobby) end
 
----@param key string
----@param value string
----@return any
+---@param key String
+---@param value String
 function SetRichPresence(key, value) end
 
----@param typeID number
----@param data string
+---@param typeID integer
+---@param data StringCmd
 ---@return any
 function GCSendMessage(typeID, data) end
 
----@param typeID number
----@param data string
+---@param typeID integer
+---@param data StringCmd
 ---@return any
 function GCRetrieveMessage(typeID, data) end
 
@@ -85,8 +84,8 @@ function SendNetMsg(msg, reliable, voice) end
 ---@return any
 function DoPostScreenSpaceEffects() end
 
----@param TempEntity any
----@param entEvtTable any
+---@param TempEntity table<
+---@param entEvtTable EventInfo>
 ---@return any
 function ProcessTempEntities(TempEntity, entEvtTable) end
 

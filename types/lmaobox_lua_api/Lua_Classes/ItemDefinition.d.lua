@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: ItemDefinition - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ItemDefinition/
 -- Path: Lua_Classes/ItemDefinition
--- Last updated: 2025-12-05T10:33:20.028Z
+-- Last updated: 2025-12-05T11:00:38.187Z
 
 ---@class ItemDefinition
 -- Returns the name of the item.
@@ -42,8 +42,8 @@
 ---@return string
 ---@field GetTypeName fun(self: ItemDefinition): string
 -- Returns the description of the item.
----@return any
----@field GetDescription fun(self: ItemDefinition): any
+---@return string
+---@field GetDescription fun(self: ItemDefinition): string
 -- Returns the icon name of the item.
 ---@return string
 ---@field GetIconName fun(self: ItemDefinition): string

@@ -3,16 +3,10 @@
 -- Lmaobox Lua API: playerlist - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/playerlist/
 -- Path: Lua_Libraries/playerlist
--- Last updated: 2025-12-05T10:33:20.690Z
+-- Last updated: 2025-12-05T11:00:38.528Z
 
 ---@class playerlist
 playerlist = {}
-
----@return any
-function playerlist.Functions() end
-
----@return any
-function playerlist.Examples() end
 
 ---@param player Entity|nil
 ---@return any
@@ -28,17 +22,14 @@ function playerlist.GetPriority(steamID) end
 
 ---@param player Entity|nil
 ---@param priority number
----@return any
 function playerlist.SetPriority(player, priority) end
 
 ---@param userID number
 ---@param priority number
----@return any
 function playerlist.SetPriority(userID, priority) end
 
 ---@param steamID string
 ---@param priority number
----@return any
 function playerlist.SetPriority(steamID, priority) end
 
 ---@param player Entity|nil
@@ -55,16 +46,13 @@ function playerlist.GetColor(steamID) end
 
 ---@param player Entity|nil
 ---@param color number
----@return any
 function playerlist.SetColor(player, color) end
 
 ---@param userID number
 ---@param color number
----@return any
 function playerlist.SetColor(userID, color) end
 
 ---@param steamID string
 ---@param color number
----@return any
 function playerlist.SetColor(steamID, color) end
 

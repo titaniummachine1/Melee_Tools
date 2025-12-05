@@ -3,69 +3,51 @@
 -- Lmaobox Lua API: BitBuffer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/BitBuffer/
 -- Path: Lua_Classes/BitBuffer
--- Last updated: 2025-12-05T10:33:19.987Z
+-- Last updated: 2025-12-05T11:00:38.131Z
 
 ---@class BitBuffer
--- Creates a new BitBuffer object with an empty buffer. You can write to it using methods below or have some other functions write to it for you, such as NetMessage::WriteToBitBuffer .
 ---@return any
 ---@field BitBuffer fun(self: BitBuffer): any
--- Returns the length of the buffer in bits
 ---@return number
 ---@field GetDataBitsLength fun(self: BitBuffer): number
--- Returns the length of the buffer in bytes
 ---@return number
 ---@field GetDataBytesLength fun(self: BitBuffer): number
--- Resets the read position to the beginning of the buffer. This is useful if you want to read the buffer multiple times, but it is not necessary.
 ---@return any
 ---@field Reset fun(self: BitBuffer): any
--- Reads one byte from the buffer. Returns the byte read as first return value, and current bit position as second return value.
 ---@return any
 ---@field ReadByte fun(self: BitBuffer): any
--- Reads a single bit from the buffer. Returns the bit read as first return value, and current bit position as second return value.
 ---@return any
 ---@field ReadBit fun(self: BitBuffer): any
--- Reads 4 bytes from the buffer and returns it as a float. Default bitLength is 32 (4 bytes). For short, use 16, for long, use 64. Returns the float read as first return value, and current bit position as second return value.
----@param bitLength number
----@return any
----@field ReadFloat fun(self: BitBuffer, bitLength: number): any
--- Reads 4 bytes from the buffer and returns it as an integer. Default bitLength is 32 (4 bytes). For short, use 16, for long, use 64. Returns the integer read as first return value, and current bit position as second return value.
----@param bitLength number
+---@param bitLength integer
 ---@return number
----@field ReadInt fun(self: BitBuffer, bitLength: number): number
--- Reads a string from the buffer. You must specify valid maxlen. The string will be truncated if it is longer than maxlen. Returns the string read as first return value, and current bit position as second return value.
----@param maxlen number
+---@field ReadFloat fun(self: BitBuffer, bitLength: integer): number
+---@param bitLength integer
+---@return number
+---@field ReadInt fun(self: BitBuffer, bitLength: integer): number
+---@param maxlen integer
 ---@return string
----@field ReadString fun(self: BitBuffer, maxlen: number): string
--- Returns the current bit position in the buffer.
+---@field ReadString fun(self: BitBuffer, maxlen: integer): string
 ---@return any
 ---@field GetCurBit fun(self: BitBuffer): any
--- Sets the current bit position in the buffer.
----@param bit number
+---@param bit integer
+---@field SetCurBit fun(self: BitBuffer, bit: integer)
+---@param bit integer
 ---@return any
----@field SetCurBit fun(self: BitBuffer, bit: number): any
--- Writes a single bit to the buffer.
----@param bit number
+---@field WriteBit fun(self: BitBuffer, bit: integer): any
+---@param byte integer
 ---@return any
----@field WriteBit fun(self: BitBuffer, bit: number): any
--- Writes a single byte to the buffer.
----@param byte number
----@return any
----@field WriteByte fun(self: BitBuffer, byte: number): any
--- Writes given string to the buffer.
+---@field WriteByte fun(self: BitBuffer, byte: integer): any
 ---@param str string
 ---@return string
 ---@field WriteString fun(self: BitBuffer, str: string): string
--- Writes an integer to the buffer. Default bitLength is 32 (4 bytes). For short, use 16, for long, use 64.
----@param int number
----@param bitLength number
+---@param int integer
+---@param bitLength integer
 ---@return number
----@field WriteInt fun(self: BitBuffer, int: number, bitLength: number): number
--- Writes a float to the buffer. Default bitLength is 32 (4 bytes). For short, use 16, for long, use 64.
+---@field WriteInt fun(self: BitBuffer, int: integer, bitLength: integer): number
 ---@param value number
----@param bitLength number
----@return any
----@field WriteFloat fun(self: BitBuffer, value: number, bitLength: number): any
--- Deletes the buffer.
+---@param bitLength integer
+---@return number
+---@field WriteFloat fun(self: BitBuffer, value: number, bitLength: integer): number
 ---@return any
 ---@field Delete fun(self: BitBuffer): any
 local BitBuffer = {}

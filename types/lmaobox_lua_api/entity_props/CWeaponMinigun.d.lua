@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponMinigun
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:22.686Z
+-- Last updated: 2025-12-05T11:00:40.745Z
 
 ---@class CWeaponMinigun
 ---@field m_iWeaponState number

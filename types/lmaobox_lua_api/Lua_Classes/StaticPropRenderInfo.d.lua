@@ -3,21 +3,17 @@
 -- Lmaobox Lua API: StaticPropRenderInfo - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StaticPropRenderInfo/
 -- Path: Lua_Classes/StaticPropRenderInfo
--- Last updated: 2025-12-05T10:33:20.294Z
+-- Last updated: 2025-12-05T11:00:38.272Z
 
 ---@class StaticPropRenderInfo
--- Replace material used to draw the models. Material can be found or created via materials. API
----@param mat Material|nil
+---@param mat Material
 ---@return any
----@field ForcedMaterialOverride fun(self: StaticPropRenderInfo, mat: Material|nil): any
--- Redraws the models. Can be used to achieve various effects with different materials.
+---@field ForcedMaterialOverride fun(self: StaticPropRenderInfo, mat: Material): any
 ---@return any
 ---@field DrawExtraPass fun(self: StaticPropRenderInfo): any
--- Sets the color modulation of the models via StudioRender.
----@param color Color|nil
+---@param color Color
 ---@return any
----@field StudioSetColorModulation fun(self: StaticPropRenderInfo, color: Color|nil): any
--- Sets the alpha modulation of the models via StudioRender.
+---@field StudioSetColorModulation fun(self: StaticPropRenderInfo, color: Color): any
 ---@param alpha number
 ---@return any
 ---@field StudioSetAlphaModulation fun(self: StaticPropRenderInfo, alpha: number): any

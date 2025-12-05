@@ -3,16 +3,10 @@
 -- Lmaobox Lua API: party - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/party/
 -- Path: Lua_Libraries/party
--- Last updated: 2025-12-05T10:33:20.679Z
+-- Last updated: 2025-12-05T11:00:38.516Z
 
 ---@class party
 party = {}
-
----@return any
-function party.Functions() end
-
----@return any
-function party.Examples() end
 
 ---@return any
 function party.GetLeader() end
@@ -77,6 +71,5 @@ function party.IsCasualMapSelected(map) end
 
 ---@param map any
 ---@param selected boolean
----@return any
 function party.SetCasualMapSelected(map, selected) end
 

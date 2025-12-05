@@ -3,88 +3,64 @@
 -- Lmaobox Lua API: TempEntity - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/TempEntity/
 -- Path: Lua_Classes/TempEntity
--- Last updated: 2025-12-05T10:33:20.312Z
+-- Last updated: 2025-12-05T11:00:38.305Z
 
 ---@class TempEntity
--- Returns the network name of the TempEntity
 ---@return string
 ---@field GetNetworkName fun(self: TempEntity): string
--- Releases the temporary entity - Do not call this for entities you did not create. Only call this if you created this TempEntity to avoid crashes.
 ---@return any
 ---@field Release fun(self: TempEntity): any
--- Triggers the temporary entity. For effects in spawns an effect, like an explosion, for others it will do whatever the TempEntity is programmed to perform.
----@param dataUpdateType number
+---@param dataUpdateType integer
 ---@return any
----@field PostDataUpdate fun(self: TempEntity, dataUpdateType: number): any
--- Returns the float value of the given netvar
----@return any
----@field GetPropFloat fun(self: TempEntity): any
--- Returns the int value of the given netvar
+---@field PostDataUpdate fun(self: TempEntity, dataUpdateType: integer): any
+---@return number
+---@field GetPropFloat fun(self: TempEntity): number
 ---@return number
 ---@field GetPropInt fun(self: TempEntity): number
--- Returns the bool value of the given netvar
 ---@return any
 ---@field GetPropBool fun(self: TempEntity): any
--- Returns the string value of the given netvar
 ---@return string
 ---@field GetPropString fun(self: TempEntity): string
--- Returns the vector value of the given netvar
 ---@return Vector3
 ---@field GetPropVector fun(self: TempEntity): Vector3
--- For entity handle props (m_hXXXXX)
 ---@return Entity|nil
 ---@field GetPropEntity fun(self: TempEntity): Entity|nil
--- Sets the float value of the given netvar.
----@param value number
----@return any
----@field SetPropFloat fun(self: TempEntity, value: number): any
--- Sets the int value of the given netvar.
 ---@param value number
 ---@return number
----@field SetPropInt fun(self: TempEntity, value: number): number
--- Sets the bool value of the given netvar.
----@param value boolean
----@return any
----@field SetPropBool fun(self: TempEntity, value: boolean): any
--- Set the entity value of the given netvar.
----@param value Entity|nil
+---@field SetPropFloat fun(self: TempEntity, value: number): number
+---@param value integer
+---@return number
+---@field SetPropInt fun(self: TempEntity, value: integer): number
+---@param value bool
+---@field SetPropBool fun(self: TempEntity, value: bool)
+---@param value Entity
 ---@return Entity|nil
----@field SetPropEntity fun(self: TempEntity, value: Entity|nil): Entity|nil
--- Set the vector value of the given netvar.
+---@field SetPropEntity fun(self: TempEntity, value: Entity): Entity|nil
 ---@param value Vector3
 ---@return Vector3
 ---@field SetPropVector fun(self: TempEntity, value: Vector3): Vector3
--- Returns a table of floats, index them with integers based on context of the netvar
----@return any
----@field GetPropDataTableFloat fun(self: TempEntity): any
--- Returns a table of bools, index them with integers based on context of the netvar
+---@return number
+---@field GetPropDataTableFloat fun(self: TempEntity): number
 ---@return any
 ---@field GetPropDataTableBool fun(self: TempEntity): any
--- Returns a table of ints, index them with integers based on context of the netvar
 ---@return number
 ---@field GetPropDataTableInt fun(self: TempEntity): number
--- Returns a table of entities, index them with integers based on context of the netvar
 ---@return Entity|nil
 ---@field GetPropDataTableEntity fun(self: TempEntity): Entity|nil
--- Sets the number value of the given netvar at the given index.
 ---@param value number
----@param index number
----@return any
----@field SetPropDataTableFloat fun(self: TempEntity, value: number, index: number): any
--- Sets the bool value of the given netvar at the given index.
----@param value number
----@param index number
----@return any
----@field SetPropDataTableBool fun(self: TempEntity, value: number, index: number): any
--- Sets the integer value of the given netvar at the given index.
----@param value number
----@param index number
+---@param index integer
 ---@return number
----@field SetPropDataTableInt fun(self: TempEntity, value: number, index: number): number
--- Sets the Entity value of the given netvar at the given index.
----@param value Entity|nil
----@param index number
+---@field SetPropDataTableFloat fun(self: TempEntity, value: number, index: integer): number
+---@param value integer
+---@param index integer
+---@field SetPropDataTableBool fun(self: TempEntity, value: integer, index: integer)
+---@param value integer
+---@param index integer
+---@return number
+---@field SetPropDataTableInt fun(self: TempEntity, value: integer, index: integer): number
+---@param value Entity
+---@param index integer
 ---@return Entity|nil
----@field SetPropDataTableEntity fun(self: TempEntity, value: Entity|nil, index: number): Entity|nil
+---@field SetPropDataTableEntity fun(self: TempEntity, value: Entity, index: integer): Entity|nil
 local TempEntity = {}
 

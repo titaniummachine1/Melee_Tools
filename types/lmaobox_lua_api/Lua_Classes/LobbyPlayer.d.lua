@@ -3,17 +3,17 @@
 -- Lmaobox Lua API: LobbyPlayer - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/LobbyPlayer/
 -- Path: Lua_Classes/LobbyPlayer
--- Last updated: 2025-12-05T10:33:20.035Z
+-- Last updated: 2025-12-05T11:00:38.192Z
 
 ---@class LobbyPlayer
 -- Returns the SteamID of the player as a string.
----@return any
----@field Methods fun(self: LobbyPlayer): any
+---@return string
+---@field Methods fun(self: LobbyPlayer): string
 ---@return any
 ---@field Examples fun(self: LobbyPlayer): any
 -- Returns the SteamID of the player as a string.
----@return any
----@field GetSteamID fun(self: LobbyPlayer): any
+---@return string
+---@field GetSteamID fun(self: LobbyPlayer): string
 -- Returns the GC assigned team of the player.
 ---@return any
 ---@field GetTeam fun(self: LobbyPlayer): any
@@ -33,8 +33,8 @@
 ---@return any
 ---@field GetNormalizedUncertainty fun(self: LobbyPlayer): any
 -- Returns the rank of the player. Integer representing the player's rank.
----@return any
----@field GetRank fun(self: LobbyPlayer): any
+---@return number
+---@field GetRank fun(self: LobbyPlayer): number
 -- Returns true if the player is chat suspended.
 ---@return boolean
 ---@field IsChatSuspended fun(self: LobbyPlayer): boolean

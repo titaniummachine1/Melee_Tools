@@ -2,7 +2,7 @@
 
 -- Entity Props: CPointWorldText
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T10:33:23.250Z
+-- Last updated: 2025-12-05T11:00:43.736Z
 
 ---@class CPointWorldText
 ---@field m_szText string
