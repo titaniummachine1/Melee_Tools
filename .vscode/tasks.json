@@ -4,7 +4,7 @@
         {
             "label": "Run BundleAndDeploy.bat",
             "type": "shell",
-            "command": "${workspaceFolder}/BundleAndDeploy.bat",
+            "command": "${workspaceFolder}/automations/BundleAndDeploy.bat",
             "group": {
                 "kind": "build",
                 "isDefault": true

@@ -1,8 +1,45 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
     "Lua.runtime.version": "Lua 5.4",
+    "Lua.runtime.path": [
+        "?.lua",
+        "?/init.lua",
+        "?/?.lua"
+    ],
     "Lua.workspace.library": [
-        "${3rd}/lfs/library"
-    ]
+        "${3rd}/lfs/library",
+        "${workspace}/types"
+    ],
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.diagnostics.globals": [
+        "client",
+        "draw",
+        "engine",
+        "entities",
+        "globals",
+        "gui",
+        "input",
+        "render",
+        "warp",
+        "filesystem",
+        "callbacks",
+        "Lua__fileName",
+        "printc",
+        "KEY_NONE",
+        "KEY_LSHIFT",
+        "KEY_RSHIFT"
+    ],
+    "Lua.diagnostics.disable": [
+        "unused-local",
+        "unused-function"
+    ],
+    "Lua.completion.enable": true,
+    "Lua.completion.callSnippet": "Both",
+    "Lua.completion.keywordSnippet": "Both",
+    "Lua.hint.enable": true,
+    "Lua.hint.paramName": "All",
+    "Lua.hint.setType": true,
+    "Lua.hint.arrayIndex": "Enable",
+    "Lua.telemetry.enable": false
 }
 
