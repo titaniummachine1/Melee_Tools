@@ -135,14 +135,11 @@ function Common.IsCheater(playerInfo)
 		return false
 	end
 
-	-- Check if the player is marked as a cheater based on various criteria
-	-- Use Evidence system instead of deprecated G.PlayerData.info fields
-	local Evidence = require("Cheater_Detection.Core.Evidence_system")
-	local isMarkedCheater = Evidence.IsMarkedCheater(steamId)
-	local inDatabase = G.DataBase[steamId] ~= nil
+	-- Check if the player is marked as a cheater based on database or priority
+	local inDatabase = G.DataBase and G.DataBase[steamId] ~= nil
 	local priorityCheater = playerlist.GetPriority(steamId) == 10
 
-	return isMarkedCheater or inDatabase or priorityCheater
+	return inDatabase or priorityCheater
 end
 
 ---@param entity Entity

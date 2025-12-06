@@ -467,16 +467,6 @@ local function DrawMenu()
 		end
 		TimMenu.EndSector()
 		TimMenu.NextLine()
-
-		if TimMenu.Button("Fetch Database") then
-			local Fetcher = require("Cheater_Detection.Database.Fetcher")
-			Fetcher.Start()
-		end
-
-		TimMenu.NextLine()
-
-		TimMenu.EndSector()
-		TimMenu.NextLine()
 	end
 
 	-- Always end the menu
