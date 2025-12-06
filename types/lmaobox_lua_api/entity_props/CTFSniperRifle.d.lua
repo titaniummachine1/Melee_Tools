@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFSniperRifle
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:37:52.428Z
+-- Last updated: 2025-12-06T07:41:27.035Z
 
 ---@class CTFSniperRifle
 ---@field m_flChargedDamage number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CFuncSmokeVolume
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:37:52.589Z
+-- Last updated: 2025-12-06T07:41:27.259Z
 
 ---@class CFuncSmokeVolume
 ---@field m_Color1 number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTETFParticleEffect
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:37:52.625Z
+-- Last updated: 2025-12-06T07:41:27.296Z
 
 ---@class CTETFParticleEffect
 ---@field m_vecAngles Vector3
