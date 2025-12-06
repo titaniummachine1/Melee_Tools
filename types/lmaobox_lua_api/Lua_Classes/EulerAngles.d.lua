@@ -1,25 +1,61 @@
 ---@meta
 
--- Lmaobox Lua API: EulerAngles - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/EulerAngles/
--- Path: Lua_Classes/EulerAngles
--- Last updated: 2025-12-05T12:04:25.839Z
-
+---A class that represents a set of Euler angles.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/EulerAngles/)
 ---@class EulerAngles
----@return Vector3
----@field EulerAngles fun(self: EulerAngles): Vector3
----@return any
----@field Unpack fun(self: EulerAngles): any
----@field Clear fun(self: EulerAngles)
----@return any
----@field Normalize fun(self: EulerAngles): any
----@return any
----@field Forward fun(self: EulerAngles): any
----@return any
----@field Right fun(self: EulerAngles): any
----@return any
----@field Up fun(self: EulerAngles): any
----@return Vector3
----@field Vectors fun(self: EulerAngles): Vector3
+---@field x number
+---@field y number
+---@field z number
+---@field pitch number
+---@field yaw number
+---@field roll number
+---@operator unm: EulerAngles
+---@operator add: EulerAngles
+---@operator sub: EulerAngles
+---@operator mul: EulerAngles
+---@operator div: EulerAngles
+---@operator idiv: EulerAngles
+---@operator pow: EulerAngles
 local EulerAngles = {}
 
+---Returns the X, Y, and Z coordinates as a separate variables.
+---@return number pitch, number yaw, number roll
+function EulerAngles:Unpack() end
+
+---Reset the angles to 0.
+function EulerAngles:Clear() end
+
+---Get the forward vector of the angle.
+---@return Vector3
+---@nodiscard
+function EulerAngles:Forward() end
+
+---Get the right vector of the angle.
+---@return Vector3
+---@nodiscard
+function EulerAngles:Right() end
+
+---Get the up vector of the angle.
+---@return Vector3
+---@nodiscard
+function EulerAngles:Up() end
+
+---Normalize the angle.
+function EulerAngles:Normalize() end
+
+---Clamp the angle.
+function EulerAngles:Clamp() end
+
+---Creates a new EulerAngles with all values set to 0.
+---@return EulerAngles
+---@nodiscard
+function _G.EulerAngles() end
+
+---Creates a new EulerAngles.
+---@param pitch number
+---@param yaw number
+---@param roll number
+---@return EulerAngles
+---@nodiscard
+function _G.EulerAngles(pitch, yaw, roll) end

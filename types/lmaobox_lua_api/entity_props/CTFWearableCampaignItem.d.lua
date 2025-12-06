@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWearableCampaignItem
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T12:04:27.503Z
+-- Last updated: 2025-12-06T07:37:52.409Z
 
 ---@class CTFWearableCampaignItem
 ---@field m_nState number

@@ -1,70 +1,27 @@
 ---@meta
 
--- Lmaobox Lua API: ViewSetup - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ViewSetup/
--- Path: Lua_Classes/ViewSetup
--- Last updated: 2025-12-05T12:04:25.990Z
-
+---The ViewSetup object is used to get information about the the origin, angles, fov, zNear, zFar, and aspect ratio of the player's view.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/ViewSetup/)
 ---@class ViewSetup
--- integer Left side of view window
----@return any
----@field x fun(self: ViewSetup): any
--- integer Left side of view window without HUD scaling
----@return any
----@field unscaledX fun(self: ViewSetup): any
--- integer Top side of view window
----@return any
----@field y fun(self: ViewSetup): any
--- integer Top side of view window without HUD scaling
----@return any
----@field unscaledY fun(self: ViewSetup): any
--- integer Width of view window
----@return any
----@field width fun(self: ViewSetup): any
--- integer Width of view window without HUD scaling
----@return any
----@field unscaledWidth fun(self: ViewSetup): any
--- integer Height of view window
----@return any
----@field height fun(self: ViewSetup): any
--- integer Height of view window without HUD scaling
----@return any
----@field unscaledHeight fun(self: ViewSetup): any
--- bool Whether the view is orthographic
----@return boolean
----@field ortho fun(self: ViewSetup): boolean
--- number Left side of orthographic view
----@return any
----@field orthoLeft fun(self: ViewSetup): any
--- number Top side of orthographic view
----@return any
----@field orthoTop fun(self: ViewSetup): any
--- number Right side of orthographic view
----@return any
----@field orthoRight fun(self: ViewSetup): any
--- number Bottom side of orthographic view
----@return any
----@field orthoBottom fun(self: ViewSetup): any
--- number Field of view
----@return any
----@field fov fun(self: ViewSetup): any
--- number Field of view of the viewmodel
----@return any
----@field fovViewmodel fun(self: ViewSetup): any
--- Vector3 Origin of the view
----@return any
----@field origin fun(self: ViewSetup): any
--- EulerAngles Angles of the view
----@return any
----@field angles fun(self: ViewSetup): any
--- number Near clipping plane
----@return any
----@field zNear fun(self: ViewSetup): any
--- number Far clipping plane
----@return any
----@field zFar fun(self: ViewSetup): any
--- number Aspect ratio of the view
----@return any
----@field aspectRatio fun(self: ViewSetup): any
+---@field x integer # Left side of view window
+---@field unscaledX integer # Left side of view window without HUD scaling
+---@field y integer # Top side of view window
+---@field unscaledY integer # Top side of view window without HUD scaling
+---@field width integer # Width of view window
+---@field unscaledWidth integer # Width of view window without HUD scaling
+---@field height integer # Height of view window
+---@field unscaledHeight integer # Height of view window without HUD scaling
+---@field ortho boolean # Whether the view is orthographic
+---@field orthoLeft number # Left side of orthographic view
+---@field orthoTop number # Top side of orthographic view
+---@field orthoRight number # Right side of orthographic view
+---@field orthoBottom number # Bottom side of orthographic view
+---@field fov number # Field of view
+---@field fovViewmodel number # Field of view of the viewmodel
+---@field origin Vector3 # Origin of the view
+---@field angles EulerAngles # Angles of the view
+---@field zNear number # Near clipping plane
+---@field zFar number # Far clipping plane
+---@field aspectRatio number # Aspect ratio of the view
 local ViewSetup = {}
-

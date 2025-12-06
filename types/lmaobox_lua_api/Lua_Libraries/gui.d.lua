@@ -1,25 +1,26 @@
 ---@meta
 
--- Lmaobox Lua API: gui - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/gui/
--- Path: Lua_Libraries/gui
--- Last updated: 2025-12-05T12:04:26.069Z
-
+---The gui library provides functions to get and set menu settings.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/gui/)
 ---@class gui
 gui = {}
 
----@param msg string
+---Get current value of a setting.
+---@param name string
 ---@return any
-function gui.GetValue(msg) end
+---@nodiscard
+function gui.GetValue(name) end
 
----@param msg string
----@param index number
-function gui.SetValue(msg, index) end
-
----@param msg string
----@param msg string
-function gui.SetValue(msg, msg) end
-
+---Set current value of a setting.
+---@param name string
+---@param value string|number
 ---@return boolean
+function gui.SetValue(name, value) end
+
+---Returns true if lmaobox menu is open.
+---@return boolean
+---@nodiscard
 function gui.IsMenuOpen() end
 
+return gui

@@ -2,7 +2,7 @@
 
 -- Entity Props: CWeaponGrenadeLauncher
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T12:04:27.598Z
+-- Last updated: 2025-12-06T07:37:52.444Z
 
 ---@class CWeaponGrenadeLauncher
 ---@field m_flDetonateTime number

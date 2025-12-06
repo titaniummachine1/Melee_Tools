@@ -1,46 +1,24 @@
 ---@meta
 
--- Lmaobox Lua API: WeaponData - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/WeaponData/
--- Path: Lua_Classes/WeaponData
--- Last updated: 2025-12-05T12:04:25.994Z
-
+---Contains variables related to specifications of a weapon, such as firing speed, number of projectiles, etc. \
+---Some of them may not be used, or may be wrong.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/WeaponData/)
 ---@class WeaponData
--- integer
----@return any
----@field damage fun(self: WeaponData): any
--- integer
----@return any
----@field bulletsPerShot fun(self: WeaponData): any
----@return any
----@field range fun(self: WeaponData): any
----@return any
----@field spread fun(self: WeaponData): any
----@return any
----@field punchAngle fun(self: WeaponData): any
----@return any
----@field timeFireDelay fun(self: WeaponData): any
----@return any
----@field timeIdle fun(self: WeaponData): any
----@return any
----@field timeIdleEmpty fun(self: WeaponData): any
----@return any
----@field timeReloadStart fun(self: WeaponData): any
----@return any
----@field timeReload fun(self: WeaponData): any
----@return any
----@field drawCrosshair fun(self: WeaponData): any
--- integer Represents projectile id
----@return any
----@field projectile fun(self: WeaponData): any
--- integer
----@return any
----@field ammoPerShot fun(self: WeaponData): any
----@return any
----@field projectileSpeed fun(self: WeaponData): any
----@return any
----@field smackDelay fun(self: WeaponData): any
----@return any
----@field useRapidFireCrits fun(self: WeaponData): any
+---@field damage integer
+---@field bulletsPerShot integer
+---@field range number
+---@field spread number
+---@field punchAngle number
+---@field timeFireDelay number
+---@field timeIdle number
+---@field timeIdleEmpty number
+---@field timeReloadStart number
+---@field timeReload number
+---@field drawCrosshair number
+---@field projectile integer # Represents projectile id
+---@field ammoPerShot integer
+---@field projectileSpeed number
+---@field smackDelay number
+---@field useRapidFireCrits boolean
 local WeaponData = {}
-

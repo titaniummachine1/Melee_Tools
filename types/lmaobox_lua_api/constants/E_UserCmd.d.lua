@@ -2,7 +2,7 @@
 
 -- Constants: E_UserCmd
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.427Z
+-- Last updated: 2025-12-06T07:37:52.678Z
 
 ---@type any
 IN_ATTACK = 1 << 0

@@ -1,16 +1,23 @@
 ---@meta
 
--- Lmaobox Lua API: MatchGroup - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/MatchGroup/
--- Path: Lua_Classes/MatchGroup
--- Last updated: 2025-12-05T12:04:25.876Z
-
+---The MatchGroup object describes a single type of queue in TF2 matchmaking.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/MatchGroup/)
 ---@class MatchGroup
----@return any
----@field GetID fun(self: MatchGroup): any
----@return string
----@field GetName fun(self: MatchGroup): string
----@return boolean
----@field IsCompetitiveMode fun(self: MatchGroup): boolean
-local MatchGroup = {}
+MatchGroup = {}
 
+---Returns the ID of the match group.
+---@return number id
+---@nodiscard
+function MatchGroup:GetID() end
+
+---Returns the name of the match group.
+---@return string name
+---@nodiscard
+function MatchGroup:GetName() end
+
+---Returns whether the match group is a competitive mode. \
+---Can return false if you are using a competitive bypass feature.
+---@return boolean
+---@nodiscard
+function MatchGroup:IsCompetitiveMode() end

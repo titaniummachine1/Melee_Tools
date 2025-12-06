@@ -1,14 +1,16 @@
 ---@meta
 
--- Lmaobox Lua API: StringCmd - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/StringCmd/
--- Path: Lua_Classes/StringCmd
--- Last updated: 2025-12-05T12:04:25.931Z
-
+---Represents a string command.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/StringCmd/)
 ---@class StringCmd
----@return any
----@field Get fun(self: StringCmd): any
----@param string command
----@field Set fun(self: StringCmd, string: command)
 local StringCmd = {}
 
+---Get string from the command.
+---@return string
+---@nodiscard
+function StringCmd:Get() end
+
+---Set the command string.
+---@param command string
+function StringCmd:Set(command) end

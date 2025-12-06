@@ -1,53 +1,71 @@
 ---@meta
 
--- Lmaobox Lua API: PhysicsEnvironment - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/
--- Path: Lua_Classes/PhysicsEnvironment
--- Last updated: 2025-12-05T12:04:25.911Z
-
+---PhysicsEnvironment is a class that represents a physics environment.
+---It has its own gravity, air resistance, and collision rules.
+---It contains physics objects that can be simulated in time.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/PhysicsEnvironment/)
 ---@class PhysicsEnvironment
--- Sets the gravity of the physics environment.
----@param gravity Vector3
----@field SetGravity fun(self: PhysicsEnvironment, gravity: Vector3)
--- Returns the gravity of the physics environment as a Vector3 .
----@return any
----@field GetGravity fun(self: PhysicsEnvironment): any
--- Sets the air density of the physics environment.
----@param airDensity number
----@field SetAirDensity fun(self: PhysicsEnvironment, airDensity: number)
--- Returns the air density of the physics environment.
----@return any
----@field GetAirDensity fun(self: PhysicsEnvironment): any
--- Simulates the physics environment in time by the given delta time.
----@param deltaTime number
----@return any
----@field Simulate fun(self: PhysicsEnvironment, deltaTime: number): any
--- Returns whether the physics environment is currently simulating.
----@return boolean
----@field IsInSimulation fun(self: PhysicsEnvironment): boolean
--- Returns the current simulation time of the physics environment.
----@return number
----@field GetSimulationTime fun(self: PhysicsEnvironment): number
--- Returns the current simulation timestep of the physics environment.
----@return number
----@field GetSimulationTimestep fun(self: PhysicsEnvironment): number
--- Sets the simulation timestep of the physics environment.
----@param timestep number
----@field SetSimulationTimestep fun(self: PhysicsEnvironment, timestep: number)
--- Returns a table of all active physics objects in the physics environment, as PhysicsObject objects.
----@return any
----@field GetActiveObjects fun(self: PhysicsEnvironment): any
--- Resets the simulation clock of the physics environment.
----@field ResetSimulationClock fun(self: PhysicsEnvironment)
--- Creates a physics object from a collision model, surface property name, and physics object parameters. Returns a PhysicsObject object. Objects is created asleep, and must be woken up before simulation by calling PhysicsObject:Wake() .
----@param collisionModel any
----@param surfacePropertyName string
----@param objectParams any
----@return any
----@field CreatePolyObject fun(self: PhysicsEnvironment, collisionModel: any, surfacePropertyName: string, objectParams: any): any
--- Destroys a physics object.
----@param object any
----@return any
----@field DestroyObject fun(self: PhysicsEnvironment, object: any): any
 local PhysicsEnvironment = {}
 
+---Sets the gravity of the physics environment.
+---@param gravity Vector3
+function PhysicsEnvironment:SetGravity(gravity) end
+
+---Returns the gravity of the physics environment as a Vector3.
+---@return Vector3
+---@nodiscard
+function PhysicsEnvironment:GetGravity() end
+
+---Sets the air density of the physics environment.
+---@param airDensity number
+function PhysicsEnvironment:SetAirDensity(airDensity) end
+
+---Returns the air density of the physics environment.
+---@return number
+---@nodiscard
+function PhysicsEnvironment:GetAirDensity() end
+
+---Simulates the physics environment in time by the given delta time.
+---@param deltaTime number
+function PhysicsEnvironment:Simulate(deltaTime) end
+
+---Returns whether the physics environment is currently simulating.
+---@return boolean
+---@nodiscard
+function PhysicsEnvironment:IsInSimulation() end
+
+---Returns the current simulation time of the physics environment.
+---@return number
+---@nodiscard
+function PhysicsEnvironment:GetSimulationTime() end
+
+---Returns the current simulation timestep of the physics environment.
+---@return number
+---@nodiscard
+function PhysicsEnvironment:GetSimulationTimestep() end
+
+---Sets the simulation timestep of the physics environment.
+---@param timestep number
+function PhysicsEnvironment:SetSimulationTimestep(timestep) end
+
+---Returns a table of all active physics objects in the physics environment, as [PhysicsObject](lua://PhysicsObject) objects.
+---@return PhysicsObject[]
+---@nodiscard
+function PhysicsEnvironment:GetActiveObjects() end
+
+---Resets the simulation clock of the physics environment.
+function PhysicsEnvironment:ResetSimulationClock() end
+
+---Creates a [PhysicsObject](lua://PhysicsObject) from a collision model, surface property name, and physics object parameters. \
+---Objects is created asleep, and must be woken up before simulation by calling `PhysicsObject:Wake()`.
+---@param collisionModel PhysicsCollisionModel
+---@param surfacePropertyName string
+---@param objectParams PhysicsObjectParameters
+---@return PhysicsObject
+---@nodiscard
+function PhysicsEnvironment:CreatePolyObject(collisionModel, surfacePropertyName, objectParams) end
+
+---Destroys a [PhysicsObject](lua://PhysicsObject).
+---@param object PhysicsObject
+function PhysicsEnvironment:DestroyObject(object) end

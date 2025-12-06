@@ -1,48 +1,18 @@
 ---@meta
 
--- Lmaobox Lua API: Trace - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Trace/
--- Path: Lua_Classes/Trace
--- Last updated: 2025-12-05T12:04:25.965Z
-
+---Return value of engine.TraceLine and engine.TraceHull functions. \
+---You can read the Valve wiki for more information on [trace result](https://developer.valvesoftware.com/wiki/UTIL_TraceLine#trace_t_.26tr).
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/Trace/)
 ---@class Trace
--- Fields are non-modifiable.
----@return any
----@field Fields fun(self: Trace): any
--- More information can be found at Valve Wiki
----@return any
----@field Extra fun(self: Trace): any
----@return any
----@field Examples fun(self: Trace): any
--- number
----@return any
----@field fraction fun(self: Trace): any
--- Entity
----@return any
----@field entity fun(self: Trace): any
--- Vector3
----@return any
----@field plane fun(self: Trace): any
--- integer
----@return any
----@field contents fun(self: Trace): any
--- integer
----@return any
----@field hitbox fun(self: Trace): any
--- integer
----@return any
----@field hitgroup fun(self: Trace): any
--- boolean
----@return any
----@field allsolid fun(self: Trace): any
--- boolean
----@return any
----@field startsolid fun(self: Trace): any
--- Vector3
----@return any
----@field startpos fun(self: Trace): any
--- Vector3
----@return any
----@field endpos fun(self: Trace): any
+---@field fraction number # Fraction of the trace that was completed.
+---@field entity Entity # The entity that was hit.
+---@field plane Vector3 # Plane normal of the surface hit.
+---@field contents integer # Contents of the surface hit.
+---@field hitbox E_Hitbox # Hitbox that was hit.
+---@field hitgroup integer # Hitgroup that was hit.
+---@field allsolid boolean # Whether the trace completed in all solid.
+---@field startsolid boolean # Whether the trace started in a solid.
+---@field startpos Vector3 # The start position of the trace.
+---@field endpos Vector3 # The end position of the trace.
 local Trace = {}
-

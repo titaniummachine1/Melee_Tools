@@ -2,14 +2,14 @@
 
 -- Constants: E_Flows
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.518Z
+-- Last updated: 2025-12-06T07:37:52.709Z
 
----@type any
+---@type integer
 FLOW_OUTGOING = 0
 
----@type any
+---@type integer
 FLOW_INCOMING = 1
 
----@type any
+---@type integer
 MAX_FLOWS = 2
 

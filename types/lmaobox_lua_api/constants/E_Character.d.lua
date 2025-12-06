@@ -2,32 +2,32 @@
 
 -- Constants: E_Character
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.457Z
+-- Last updated: 2025-12-06T07:37:52.691Z
 
----@type any
+---@type integer
 TF2_Scout = 1
 
----@type any
+---@type integer
 TF2_Soldier = 3
 
----@type any
+---@type integer
 TF2_Pyro = 7
 
----@type any
+---@type integer
 TF2_Demoman = 4
 
----@type any
+---@type integer
 TF2_Heavy = 6
 
----@type any
+---@type integer
 TF2_Engineer = 9
 
----@type any
+---@type integer
 TF2_Medic = 5
 
----@type any
+---@type integer
 TF2_Sniper = 2
 
----@type any
+---@type integer
 TF2_Spy = 8
 

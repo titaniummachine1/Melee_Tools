@@ -1,47 +1,57 @@
 ---@meta
 
--- Lmaobox Lua API: entities - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/entities/
--- Path: Lua_Libraries/entities
--- Last updated: 2025-12-05T12:04:26.052Z
-
+---The entities library provides a way to find entities by their name, or by their class.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/entities/)
 ---@class entities
 entities = {}
 
--- Find and put into table all entities with given class name
+---Find all entities with given class name. \
+---Use `pairs` to iterate through each entity.
 ---@param className string
----@return any
+---@return table<integer, Entity>
+---@nodiscard
 function entities.FindByClass(className) end
 
--- Return local player entity
----@return Entity|nil
+---Returns local player entity.
+---@return Entity? me
+---@nodiscard
 function entities.GetLocalPlayer() end
 
--- Return entity by index
----@param index number
----@return number
+---Returns entity by index.
+---@param index integer
+---@return Entity? entity
+---@nodiscard
 function entities.GetByIndex(index) end
 
--- Return highest entity index
----@return number
+---Return highest entity index.
+---@return integer
 function entities.GetHighestEntityIndex() end
 
--- Return entity by user id
----@param userID number
----@return any
+---Returns entity by user id.
+---@param userID integer
+---@return Entity? entity
+---@nodiscard
 function entities.GetByUserID(userID) end
 
--- Return player resources entity
----@return Entity|nil
+---Returns the player resources entity.
+---@return Entity? pr
+---@nodiscard
 function entities.GetPlayerResources() end
 
--- Creates a non-networkable entity by class name, returns entity. Keep in mind that YOU are responsible for its entire lifecycle and for releasing the entity later by calling entity.Release .
+---Creates a non-networkable entity by class name, returns entity. \
+---Keep in mind that YOU are responsible for its entire lifecycle and for releasing the entity later by calling `entity:Release`.
 ---@param className string
----@return string
+---@return Entity? entity
 function entities.CreateEntityByName(className) end
 
--- Creates a non-networkable temporary entity of type TempEntity . You are responsible for calling tempentity.Release when you are done with the entity. To trigger the entity, call PostDataUpdate.
+---Creates a non-networkable temporary entity of type [TempEntity](lua://TempEntity). \
+---You are responsible for calling tempentity.
+---Release when you are done with the entity.
+---To trigger the entity, call PostDataUpdate.
 ---@param className string
----@return string
+---@return TempEntity
+---@nodiscard
 function entities.CreateTempEntityByName(className) end
 
+return entities

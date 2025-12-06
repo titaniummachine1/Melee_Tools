@@ -1,30 +1,49 @@
 ---@meta
 
--- Lmaobox Lua API: input - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/input/
--- Path: Lua_Libraries/input
--- Last updated: 2025-12-05T12:04:26.080Z
-
+---The input library provides an interface to the user's keyboard and mouse.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/input/)
 ---@class input
 input = {}
 
----@return any
+---Get the current mouse position.
+---@return { [1]:integer, [2]: integer }
+---@nodiscard
 function input.GetMousePos() end
 
----@return boolean
-function input.IsButtonDown() end
+---Checks if a button is down. \
+---[Key Codes](./enums.lua)
+---@param key E_ButtonCode|integer
+---@return boolean state, integer tick
+---@nodiscard
+function input.IsButtonDown(key) end
 
----@return boolean
-function input.IsButtonPressed() end
+---Checks if a button is pressed. \
+---[Key Codes](./enums.lua)
+---@param key E_ButtonCode|integer
+---@return boolean state, integer tick
+---@nodiscard
+function input.IsButtonPressed(key) end
 
----@return boolean
-function input.IsButtonReleased() end
+---Checks if a button is released. \
+---[Key Codes](./enums.lua)
+---@param key E_ButtonCode|integer
+---@return boolean state, integer tick
+---@nodiscard
+function input.IsButtonReleased(key) end
 
+---Checks if mouse input is enabled.
 ---@return boolean
+---@nodiscard
 function input.IsMouseInputEnabled() end
 
-function input.SetMouseInputEnabled() end
+---Sets whether the mouse is visible on screen and has priority on the topmost panel.
+---@param enabled boolean
+function input.SetMouseInputEnabled(enabled) end
 
----@return any
+---Returns the tick when buttons have last been polled.
+---@return number
+---@nodiscard
 function input.GetPollTick() end
 
+return input

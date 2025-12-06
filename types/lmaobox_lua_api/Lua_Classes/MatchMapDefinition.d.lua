@@ -1,16 +1,22 @@
 ---@meta
 
--- Lmaobox Lua API: MatchMapDefinition - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/MatchMapDefinition/
--- Path: Lua_Classes/MatchMapDefinition
--- Last updated: 2025-12-05T12:04:25.880Z
-
+---Represents a map that is playable in a matchmaking match.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/MatchMapDefinition/)
 ---@class MatchMapDefinition
----@return string
----@field GetName fun(self: MatchMapDefinition): string
----@return any
----@field GetID fun(self: MatchMapDefinition): any
----@return string
----@field GetNameLocKey fun(self: MatchMapDefinition): string
 local MatchMapDefinition = {}
 
+---Returns the name of the map.
+---@return string
+---@nodiscard
+function MatchMapDefinition:GetName() end
+
+---Returns the ID of the map.
+---@return integer
+---@nodiscard
+function MatchMapDefinition:GetID() end
+
+---Returns the map name localization key.
+---@return string
+---@nodiscard
+function MatchMapDefinition:GetNameLocKey() end

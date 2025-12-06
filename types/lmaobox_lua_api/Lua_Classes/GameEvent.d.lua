@@ -1,46 +1,51 @@
 ---@meta
 
--- Lmaobox Lua API: GameEvent - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/GameEvent/
--- Path: Lua_Classes/GameEvent
--- Last updated: 2025-12-05T12:04:25.851Z
-
+---Represents a game event that was sent from the server. \
+---For a list of game events for Source games and TF2 see the [GameEvent list](https://wiki.alliedmods.net/Team_Fortress_2_Events).
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/GameEvent/)
 ---@class GameEvent
--- Returns the name of the event.
----@return any
----@field Methods fun(self: GameEvent): any
----@return any
----@field Examples fun(self: GameEvent): any
--- Returns the name of the event.
----@return string
----@field GetName fun(self: GameEvent): string
--- Returns the string value of the given field.
----@param fieldName string
----@return string
----@field GetString fun(self: GameEvent, fieldName: string): string
--- Returns the int value of the given field.
----@param fieldName string
----@return number
----@field GetInt fun(self: GameEvent, fieldName: string): number
--- Returns the float value of the given field.
----@param fieldName string
----@return number
----@field GetFloat fun(self: GameEvent, fieldName: string): number
--- Sets the string value of the given field.
----@param fieldName string
----@param value string
----@field SetString fun(self: GameEvent, fieldName: string, value: string)
--- Sets the int value of the given field.
----@param fieldName string
----@param value int
----@field SetInt fun(self: GameEvent, fieldName: string, value: int)
--- Sets the float value of the given field.
----@param fieldName string
----@param value float
----@field SetFloat fun(self: GameEvent, fieldName: string, value: float)
--- Sets the bool value of the given field.
----@param fieldName string
----@param value bool
----@field SetBool fun(self: GameEvent, fieldName: string, value: bool)
 local GameEvent = {}
 
+---Get the name of the game event.
+---@return string
+---@nodiscard
+function GameEvent:GetName() end
+
+---Get the string from the game event.
+---@param field string
+---@return string
+---@nodiscard
+function GameEvent:GetString(field) end
+
+---Get the int from the game event.
+---@param field string
+---@return integer
+---@nodiscard
+function GameEvent:GetInt(field) end
+
+---Get the float from the game event.
+---@param field string
+---@return number
+---@nodiscard
+function GameEvent:GetFloat(field) end
+
+---Set the string from the game event.
+---@param field string
+---@param value string
+function GameEvent:SetString(field, value) end
+
+---Set the int from the game event.
+---@param field string
+---@param value integer
+function GameEvent:SetInt(field, value) end
+
+---Set the float from the game event.
+---@param field string
+---@param value number
+function GameEvent:SetFloat(field, value) end
+
+---Set the boolean from the game event.
+---@param field string
+---@param value boolean
+function GameEvent:SetBool(field, value) end

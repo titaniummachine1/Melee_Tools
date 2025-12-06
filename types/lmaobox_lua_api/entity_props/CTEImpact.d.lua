@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEImpact
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T12:04:28.304Z
+-- Last updated: 2025-12-06T07:37:52.641Z
 
 ---@class CTEImpact
 ---@field m_vecOrigin Vector3

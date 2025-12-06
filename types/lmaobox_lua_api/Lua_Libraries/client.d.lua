@@ -1,101 +1,119 @@
 ---@meta
 
--- Lmaobox Lua API: client - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/client/
--- Path: Lua_Libraries/client
--- Last updated: 2025-12-05T12:04:26.018Z
-
+---The client library is used to get information about the client.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/client/)
 ---@class client
 client = {}
 
--- Returns the number of extra inventory slots the user has.
----@return number
+---Returns the number of extra inventory slots the user has.
+---@return integer
+---@nodiscard
 function client.GetExtraInventorySlots() end
 
--- Returns whether the user is a free trial account.
+---Returns whether the user is a free trial account.
 ---@return boolean
+---@nodiscard
 function client.IsFreeTrialAccount() end
 
--- Returns whether the user has competitive access.
+---Returns whether the user has competitive access.
 ---@return boolean
+---@nodiscard
 function client.HasCompetitiveAccess() end
 
--- Returns whether the user is in the coaches list.
+---Returns whether the user is in the coaches list.
 ---@return boolean
+---@nodiscard
 function client.IsInCoachesList() end
 
--- Translate world position into screen position (x,y). view is optional, and of type ViewSetup
----@param worldPos Vector3
----@param view ViewSetup
----@return any
-function client.WorldToScreen(worldPos, view) end
+---Translate world position into screen position (x, y).
+---@param position Vector3
+---@param view ViewSetup?
+---@return { [1]: integer, [2]: integer }?
+---@nodiscard
+function client.WorldToScreen(position, view) end
 
--- Run command in game console
----@param command string
+---Run command in game console.
+---@param cmd string
 ---@param unrestrict boolean
----@return any
-function client.Command(command, unrestrict) end
+function client.Command(cmd, unrestrict) end
 
--- Say text on chat
+---Say text in chat.
 ---@param msg string
----@return any
 function client.ChatSay(msg) end
 
--- Say text on team chat
+---Say text in team chat.
 ---@param msg string
----@return any
 function client.ChatTeamSay(msg) end
 
--- DOES NOTHING. All events are allowed by default. This function is deprecated and it's only there to not cause errors in existing scripts.
----@param eventName string
----@return any
-function client.AllowListener(eventName) end
+---@deprecated DOES NOTHING. All events are allowed by default.
+---@param event string
+function client.AllowListener(event) end
 
--- Return player name by index
----@param index number
----@return number
-function client.GetPlayerNameByIndex(index) end
-
--- Return player name by user id
----@param userID number
+---Returns player name by player index.
+---@param playerindex integer
 ---@return string
-function client.GetPlayerNameByUserID(userID) end
+---@nodiscard
+function client.GetPlayerNameByIndex(playerindex) end
 
--- Returns the following table:
----@param index number
----@return Entity|nil
+---Returns player name by user id.
+---@param userid integer
+---@return string
+---@nodiscard
+function client.GetPlayerNameByUserID(userid) end
+
+---Returns info about the player. \
+---Note: `UserID` and `SteamID` is only obtainable when client is fully connected.
+---@param index integer
+---@return { Name: string, UserID: integer, SteamID: SteamID3, IsBot: boolean, IsHLTV: boolean }
+---@nodiscard
 function client.GetPlayerInfo(index) end
 
--- Returns the players view setup. See ViewSetup for more information.
----@return Entity|nil
-function client.GetPlayerView() end
-
--- Return local player index
----@return number
-function client.GetLocalPlayerIndex() end
-
--- Get game convar value. Returns integer, number and string if found. Returns nil if not found.
----@param name string
----@return string
-function client.GetConVar(name) end
-
--- Set game convar value. Value can be integer, number, string.
----@param name string
----@param value any
-function client.SetConVar(name, value) end
-
--- Remove convar protection. This is needed for convars that are not allowed to be changed by the server.
----@param name string
----@return any
-function client.RemoveConVarProtection(name) end
-
--- Print text on chat, this text can be colored. Color codes are:
+---Print text on chat, this text can be colored. Color codes are:
+--- * `\x01` - White color
+--- * `\x02` - Old color
+--- * `\x03` - Player name color
+--- * `\x04` - Location color
+--- * `\x05` - Achievement color
+--- * `\x06` - Black color
+--- * `\x07` - Custom color, read from next 6 characters as HEX
+--- * `\x08` - Custom color with alpha, read from next 8 characters as HEX
 ---@param msg string
----@return any
+---@return boolean success
 function client.ChatPrintf(msg) end
 
--- Returns a localized string. The localizable strings usually start with a # character, but there are exceptions. Will return nil on failure.
+---Returns local player index.
+---@return integer
+---@nodiscard
+function client.GetLocalPlayerIndex() end
+
+---Get game convar.
+---@param name string
+---@return integer?, number, string
+---@nodiscard
+function client.GetConVar(name) end
+
+---Set game convar.
+---@param name string
+---@param value string|number
+function client.SetConVar(name, value) end
+
+---Remove convar protection.
+--- * This is needed for convars that are not allowed to be changed by the server.
+---@param name string
+function client.RemoveConVarProtection(name) end
+
+---Returns a localized string. \
+---The localizable strings usually start with a # character, but there are exceptions. \
+---Will return `nil` on failure.
 ---@param key string
----@return string
+---@return string?
+---@nodiscard
 function client.Localize(key) end
 
+---Returns the current view setup for the local player
+---@return ViewSetup
+---@nodiscard
+function client.GetPlayerView() end
+
+return client

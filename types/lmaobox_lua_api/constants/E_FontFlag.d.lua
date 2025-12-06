@@ -2,44 +2,44 @@
 
 -- Constants: E_FontFlag
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.499Z
+-- Last updated: 2025-12-06T07:37:52.696Z
 
----@type any
+---@type integer
 FONTFLAG_NONE = 0
 
----@type any
+---@type integer
 FONTFLAG_ITALIC = 0x001
 
----@type any
+---@type integer
 FONTFLAG_UNDERLINE = 0x002
 
----@type any
+---@type integer
 FONTFLAG_STRIKEOUT = 0x004
 
----@type any
+---@type integer
 FONTFLAG_SYMBOL = 0x008
 
----@type any
+---@type integer
 FONTFLAG_ANTIALIAS = 0x010
 
----@type any
+---@type integer
 FONTFLAG_GAUSSIANBLUR = 0x020
 
----@type any
+---@type integer
 FONTFLAG_ROTARY = 0x040
 
----@type any
+---@type integer
 FONTFLAG_DROPSHADOW = 0x080
 
----@type any
+---@type integer
 FONTFLAG_ADDITIVE = 0x100
 
----@type any
+---@type integer
 FONTFLAG_OUTLINE = 0x200
 
----@type any
+---@type integer
 FONTFLAG_CUSTOM = 0x400
 
----@type any
+---@type integer
 FONTFLAG_BITMAP = 0x800
 

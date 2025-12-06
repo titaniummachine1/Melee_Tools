@@ -2,29 +2,29 @@
 
 -- Constants: E_SignonState
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.447Z
+-- Last updated: 2025-12-06T07:37:52.689Z
 
----@type any
+---@type integer
 SIGNONSTATE_NONE = 0
 
----@type any
+---@type integer
 SIGNONSTATE_CHALLENGE = 1
 
----@type any
+---@type integer
 SIGNONSTATE_CONNECTED = 2
 
----@type any
+---@type integer
 SIGNONSTATE_NEW = 3
 
----@type any
+---@type integer
 SIGNONSTATE_PRESPAWN = 4
 
----@type any
+---@type integer
 SIGNONSTATE_SPAWN = 5
 
----@type any
+---@type integer
 SIGNONSTATE_FULL = 6
 
----@type any
+---@type integer
 SIGNONSTATE_CHANGELEVEL = 7
 

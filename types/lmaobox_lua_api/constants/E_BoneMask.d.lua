@@ -2,44 +2,44 @@
 
 -- Constants: E_BoneMask
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.516Z
+-- Last updated: 2025-12-06T07:37:52.707Z
 
----@type any
+---@type integer
 BONE_USED_BY_ANYTHING = 0x0007FF00
 
----@type any
+---@type integer
 BONE_USED_BY_HITBOX = 0x00000100
 
----@type any
+---@type integer
 BONE_USED_BY_ATTACHMENT = 0x00000200
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_MASK = 0x0003FC00
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD0 = 0x00000400
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD1 = 0x00000800
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD2 = 0x00001000
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD3 = 0x00002000
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD4 = 0x00004000
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD5 = 0x00008000
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD6 = 0x00010000
 
----@type any
+---@type integer
 BONE_USED_BY_VERTEX_LOD7 = 0x00020000
 
----@type any
+---@type integer
 BONE_USED_BY_BONE_MERGE = 0x00040000
 

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponBase
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-05T12:04:27.519Z
+-- Last updated: 2025-12-06T07:37:52.414Z
 
 ---@class CTFWeaponBase
 ---@field m_bLowered number

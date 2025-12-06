@@ -25,6 +25,10 @@ const LUA_RESERVED_KEYWORDS = new Set([
 	'then', 'true', 'until', 'while'
 ]);
 
+const SKIP_BASE_NAMES = new Set(['index', 'API_changelog']);
+
+const MASTER_ANNOTATIONS_ROOT = path.join(WORKSPACE_ROOT, 'types', 'Lmaobox-Annotations-master', 'library');
+
 // Map reserved keywords to safe alternatives
 function sanitizeParameterName(name) {
 	if (LUA_RESERVED_KEYWORDS.has(name.toLowerCase())) {
@@ -70,6 +74,15 @@ function mapTypeToLua(docType) {
 		'any': 'any', 'function': 'function', 'void': 'void'
 	};
 	return typeMap[docType.toLowerCase()] || 'any';
+}
+
+function inferConstantLuaType(value) {
+	const v = (value || '').trim();
+	if (/^(true|false)$/i.test(v)) return 'boolean';
+	if (/^-?0x[0-9a-f]+$/i.test(v)) return 'integer';
+	if (/^-?\d+$/.test(v)) return 'integer';
+	if (/^-?\d+\.\d+$/.test(v)) return 'number';
+	return 'any';
 }
 
 function inferReturnType(funcName, params, description = '') {
@@ -162,6 +175,44 @@ function inferReturnType(funcName, params, description = '') {
 	}
 
 	return 'any';
+}
+
+async function tryLoadMasterAnnotation(parsedData) {
+	const candidates = new Set();
+	const lowerPath = (parsedData.path || '').toLowerCase();
+	const lowerUrl = (parsedData.url || '').toLowerCase();
+
+	// Globals
+	if (lowerPath.includes('lua_globals') || lowerUrl.includes('lua_globals')) {
+		candidates.add(path.join(MASTER_ANNOTATIONS_ROOT, '_G.lua'));
+	}
+
+	// Libraries
+	if (parsedData.libraries && parsedData.libraries.length > 0) {
+		for (const lib of parsedData.libraries) {
+			candidates.add(path.join(MASTER_ANNOTATIONS_ROOT, 'Libraries', `${lib}.lua`));
+			candidates.add(path.join(MASTER_ANNOTATIONS_ROOT, 'Libraries', `${lib.toLowerCase()}.lua`));
+		}
+	}
+
+	// Classes
+	if (parsedData.classes && parsedData.classes.length > 0) {
+		for (const cls of parsedData.classes) {
+			candidates.add(path.join(MASTER_ANNOTATIONS_ROOT, 'Classes', `${cls}.lua`));
+			candidates.add(path.join(MASTER_ANNOTATIONS_ROOT, 'Classes', `${cls.toLowerCase()}.lua`));
+		}
+	}
+
+	for (const candidate of candidates) {
+		try {
+			await fs.access(candidate);
+			const content = await fs.readFile(candidate, 'utf8');
+			return content;
+		} catch {
+			continue;
+		}
+	}
+	return null;
 }
 
 function parseEntityPropsFromHtml(html) {
@@ -389,6 +440,50 @@ function generateTypeDefinition(page) {
 			content += `---@class ${libName}\n`;
 			content += `${libName} = {}\n\n`;
 
+			// Special handling: callbacks library benefits from explicit alias and signatures
+			if (libName === 'callbacks') {
+				content += `---@alias CallbackID\n`;
+				content += `---| "Draw"\n`;
+				content += `---| "DrawModel"\n`;
+				content += `---| "DrawStaticProps"\n`;
+				content += `---| "CreateMove"\n`;
+				content += `---| "FireGameEvent"\n`;
+				content += `---| "DispatchUserMessage"\n`;
+				content += `---| "SendStringCmd"\n`;
+				content += `---| "FrameStageNotify"\n`;
+				content += `---| "PostPropUpdate"\n`;
+				content += `---| "RenderView"\n`;
+				content += `---| "PostRenderView"\n`;
+				content += `---| "RenderViewModel"\n`;
+				content += `---| "ServerCmdKeyValues"\n`;
+				content += `---| "OnFakeUncrate"\n`;
+				content += `---| "OnLobbyUpdated"\n`;
+				content += `---| "SetRichPresence"\n`;
+				content += `---| "GCSendMessage"\n`;
+				content += `---| "GCRetrieveMessage"\n`;
+				content += `---| "SendNetMsg"\n`;
+				content += `---| "DoPostScreenSpaceEffects"\n`;
+				content += `---| "ProcessTempEntities"\n`;
+				content += `---| "Unload"\n\n`;
+
+				content += `---@param id CallbackID\n`;
+				content += `---@param callback fun(...)\n`;
+				content += `---@return boolean success\n`;
+				content += `function callbacks.Register(id, callback) end\n\n`;
+
+				content += `---@param id CallbackID\n`;
+				content += `---@param unique string\n`;
+				content += `---@param callback fun(...)\n`;
+				content += `---@return boolean success\n`;
+				content += `function callbacks.Register(id, unique, callback) end\n\n`;
+
+				content += `---@param id CallbackID\n`;
+				content += `---@param unique string\n`;
+				content += `---@return boolean success\n`;
+				content += `function callbacks.Unregister(id, unique) end\n\n`;
+				continue;
+			}
+
 			if (page.functions && page.functions.length > 0) {
 				page.functions.forEach(func => {
 					// Add function description if available
@@ -398,7 +493,7 @@ function generateTypeDefinition(page) {
 
 					func.params.forEach(param => {
 						const sanitizedName = sanitizeParameterName(param.name);
-						const luaType = mapTypeToLua(param.type);
+						const luaType = param.type ? mapTypeToLua(param.type) : 'any';
 						content += `---@param ${sanitizedName} ${luaType}\n`;
 					});
 
@@ -436,7 +531,7 @@ function generateTypeDefinition(page) {
 
 					func.params.forEach(param => {
 						const sanitizedName = sanitizeParameterName(param.name);
-						const luaType = param.type || mapTypeToLua(param.type);
+						const luaType = param.type ? mapTypeToLua(param.type) : 'any';
 						const optional = param.optional ? '?' : '';
 						content += `---@param ${sanitizedName}${optional} ${luaType}\n`;
 					});
@@ -448,7 +543,7 @@ function generateTypeDefinition(page) {
 
 					const paramTypes = func.params.map(p => {
 						const sanitizedName = sanitizeParameterName(p.name);
-						const pType = p.type || mapTypeToLua(p.type);
+						const pType = p.type ? mapTypeToLua(p.type) : 'any';
 						return `${sanitizedName}: ${pType}`;
 					}).join(', ');
 					content += `---@field ${func.name} fun(self: ${className}${func.params.length > 0 ? ', ' : ''}${paramTypes})${returnType !== 'void' ? `: ${returnType}` : ''}\n`;
@@ -470,7 +565,7 @@ function generateTypeDefinition(page) {
 
 				func.params.forEach(param => {
 					const sanitizedName = sanitizeParameterName(param.name);
-					const luaType = param.type || mapTypeToLua(param.type);
+					const luaType = param.type ? mapTypeToLua(param.type) : 'any';
 					const optional = param.optional ? '?' : '';
 					content += `---@param ${sanitizedName}${optional} ${luaType}\n`;
 				});
@@ -504,7 +599,8 @@ function generateTypeDefinition(page) {
 		if (validConstants.length > 0) {
 			content += `-- Constants:\n`;
 			for (const constant of validConstants) {
-				content += `---@type any\n`;
+				const constType = inferConstantLuaType(constant.value);
+				content += `---@type ${constType}\n`;
 				content += `${constant.name} = ${constant.value}\n\n`;
 			}
 		}
@@ -521,12 +617,10 @@ function buildPathFromUrl(url) {
 
 export async function generateTypeForPage(parsedDataInput) {
 	// Skip non-actionable top-level pages that pollute output
-	const skipNames = new Set(['index', 'API_changelog']);
-	if (parsedDataInput.path) {
-		const base = path.basename(parsedDataInput.path);
-		if (skipNames.has(base)) {
-			return { filePath: null };
-		}
+	const candidatePath = parsedDataInput.path || buildPathFromUrl(parsedDataInput.url);
+	const base = path.basename(candidatePath);
+	if (SKIP_BASE_NAMES.has(base)) {
+		return { filePath: null };
 	}
 
 	// Special case: entity props page emits many per-entity files
@@ -576,7 +670,8 @@ export async function generateTypeForPage(parsedDataInput) {
 					content += `-- Auto-generated from: ${parsedDataInput.url}\n`;
 					content += `-- Last updated: ${new Date().toISOString()}\n\n`;
 					for (const c of sec.constants) {
-						content += `---@type any\n`;
+						const constType = inferConstantLuaType(c.value);
+						content += `---@type ${constType}\n`;
 						content += `${c.name} = ${c.value}\n\n`;
 					}
 					const filePath = path.join(baseDir, `${sec.name}.d.lua`);
@@ -598,6 +693,14 @@ export async function generateTypeForPage(parsedDataInput) {
 
 	const fileName = path.basename(pagePath) + '.d.lua';
 	const filePath = path.join(typeDir, fileName);
+
+	// Prefer master annotations when available; fall back to generated types
+	const masterContent = await tryLoadMasterAnnotation(parsedDataInput);
+	if (masterContent) {
+		await fs.writeFile(filePath, masterContent, 'utf8');
+		db.saveTypeDefinition(parsedDataInput.url, pagePath, masterContent);
+		return { filePath };
+	}
 
 	const content = generateTypeDefinition(parsedDataInput);
 	await fs.writeFile(filePath, content, 'utf8');
@@ -657,7 +760,8 @@ export async function generateConstantsByCategoryFromCache() {
 			content += `-- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/\n`;
 			content += `-- Last updated: ${new Date().toISOString()}\n\n`;
 			for (const c of sec.constants) {
-				content += `---@type any\n`;
+				const constType = inferConstantLuaType(c.value);
+				content += `---@type ${constType}\n`;
 				content += `${c.name} = ${c.value}\n\n`;
 			}
 			const filePath = path.join(baseDir, `${sec.name}.d.lua`);
@@ -727,6 +831,10 @@ export async function generateTypesByShortestPath() {
 
 		// Determine output path
 		const pagePath = page.path || buildPathFromUrl(page.url);
+		const baseName = path.basename(pagePath);
+		if (SKIP_BASE_NAMES.has(baseName)) {
+			return;
+		}
 		const dirPath = path.dirname(pagePath) || '.';
 		const sanitizedDir = buildFolderPath(dirPath);
 		const typeDir = path.join(TYPES_BASE_DIR, sanitizedDir === '.' ? '' : sanitizedDir);
@@ -816,6 +924,13 @@ export async function generateTypesByShortestPath() {
 		}
 
 		const content = generateTypeDefinition(parsedData);
+		const masterContent = await tryLoadMasterAnnotation(parsedData);
+		if (masterContent) {
+			await fs.writeFile(filePath, masterContent, 'utf8');
+			db.saveTypeDefinition(page.url, pagePath, masterContent);
+			generated++;
+			return;
+		}
 		await fs.writeFile(filePath, content, 'utf8');
 		db.saveTypeDefinition(page.url, pagePath, content);
 		generated++;

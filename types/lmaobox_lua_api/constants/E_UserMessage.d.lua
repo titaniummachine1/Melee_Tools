@@ -2,254 +2,254 @@
 
 -- Constants: E_UserMessage
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.434Z
+-- Last updated: 2025-12-06T07:37:52.682Z
 
----@type any
+---@type integer
 Geiger = 0
 
----@type any
+---@type integer
 Train = 1
 
----@type any
+---@type integer
 HudText = 2
 
----@type any
+---@type integer
 SayText = 3
 
----@type any
+---@type integer
 SayText2 = 4
 
----@type any
+---@type integer
 TextMsg = 5
 
----@type any
+---@type integer
 ResetHUD = 6
 
----@type any
+---@type integer
 GameTitle = 7
 
----@type any
+---@type integer
 ItemPickup = 8
 
----@type any
+---@type integer
 ShowMenu = 9
 
----@type any
+---@type integer
 Shake = 10
 
----@type any
+---@type integer
 Fade = 11
 
----@type any
+---@type integer
 VGUIMenu = 12
 
----@type any
+---@type integer
 Rumble = 13
 
----@type any
+---@type integer
 CloseCaption = 14
 
----@type any
+---@type integer
 SendAudio = 15
 
----@type any
+---@type integer
 VoiceMask = 16
 
----@type any
+---@type integer
 RequestState = 17
 
----@type any
+---@type integer
 Damage = 18
 
----@type any
+---@type integer
 HintText = 19
 
----@type any
+---@type integer
 KeyHintText = 20
 
----@type any
+---@type integer
 HudMsg = 21
 
----@type any
+---@type integer
 AmmoDenied = 22
 
----@type any
+---@type integer
 AchievementEvent = 23
 
----@type any
+---@type integer
 UpdateRadar = 24
 
----@type any
+---@type integer
 VoiceSubtitle = 25
 
----@type any
+---@type integer
 HudNotify = 26
 
----@type any
+---@type integer
 HudNotifyCustom = 27
 
----@type any
+---@type integer
 PlayerStatsUpdate = 28
 
----@type any
+---@type integer
 MapStatsUpdate = 29
 
----@type any
+---@type integer
 PlayerIgnited = 30
 
----@type any
+---@type integer
 PlayerIgnitedInv = 31
 
----@type any
+---@type integer
 HudArenaNotify = 32
 
----@type any
+---@type integer
 UpdateAchievement = 33
 
----@type any
+---@type integer
 TrainingMsg = 34
 
----@type any
+---@type integer
 TrainingObjective = 35
 
----@type any
+---@type integer
 DamageDodged = 36
 
----@type any
+---@type integer
 PlayerJarated = 37
 
----@type any
+---@type integer
 PlayerExtinguished = 38
 
----@type any
+---@type integer
 PlayerJaratedFade = 39
 
----@type any
+---@type integer
 PlayerShieldBlocked = 40
 
----@type any
+---@type integer
 BreakModel = 41
 
----@type any
+---@type integer
 CheapBreakModel = 42
 
----@type any
+---@type integer
 BreakModel_Pumpkin = 43
 
----@type any
+---@type integer
 BreakModelRocketDud = 44
 
----@type any
+---@type integer
 CallVoteFailed = 45
 
----@type any
+---@type integer
 VoteStart = 46
 
----@type any
+---@type integer
 VotePass = 47
 
----@type any
+---@type integer
 VoteFailed = 48
 
----@type any
+---@type integer
 VoteSetup = 49
 
----@type any
+---@type integer
 PlayerBonusPoints = 50
 
----@type any
+---@type integer
 RDTeamPointsChanged = 51
 
----@type any
+---@type integer
 SpawnFlyingBird = 52
 
----@type any
+---@type integer
 PlayerGodRayEffect = 53
 
----@type any
+---@type integer
 PlayerTeleportHomeEffect = 54
 
----@type any
+---@type integer
 MVMStatsReset = 55
 
----@type any
+---@type integer
 MVMPlayerEvent = 56
 
----@type any
+---@type integer
 MVMResetPlayerStats = 57
 
----@type any
+---@type integer
 MVMWaveFailed = 58
 
----@type any
+---@type integer
 MVMAnnouncement = 59
 
----@type any
+---@type integer
 MVMPlayerUpgradedEvent = 60
 
----@type any
+---@type integer
 MVMVictory = 61
 
----@type any
+---@type integer
 MVMWaveChange = 62
 
----@type any
+---@type integer
 MVMLocalPlayerUpgradesClear = 63
 
----@type any
+---@type integer
 MVMLocalPlayerUpgradesValue = 64
 
----@type any
+---@type integer
 MVMResetPlayerWaveSpendingStats = 65
 
----@type any
+---@type integer
 MVMLocalPlayerWaveSpendingValue = 66
 
----@type any
+---@type integer
 MVMResetPlayerUpgradeSpending = 67
 
----@type any
+---@type integer
 MVMServerKickTimeUpdate = 68
 
----@type any
+---@type integer
 PlayerLoadoutUpdated = 69
 
----@type any
+---@type integer
 PlayerTauntSoundLoopStart = 70
 
----@type any
+---@type integer
 PlayerTauntSoundLoopEnd = 71
 
----@type any
+---@type integer
 ForcePlayerViewAngles = 72
 
----@type any
+---@type integer
 BonusDucks = 73
 
----@type any
+---@type integer
 EOTLDuckEvent = 74
 
----@type any
+---@type integer
 PlayerPickupWeapon = 75
 
----@type any
+---@type integer
 QuestObjectiveCompleted = 76
 
----@type any
+---@type integer
 SPHapWeapEvent = 77
 
----@type any
+---@type integer
 HapDmg = 78
 
----@type any
+---@type integer
 HapPunch = 79
 
----@type any
+---@type integer
 HapSetDrag = 80
 
----@type any
+---@type integer
 HapSetConst = 81
 
----@type any
+---@type integer
 HapMeleeContact = 82
 

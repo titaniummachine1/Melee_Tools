@@ -2,38 +2,38 @@
 
 -- Constants: E_RoundState
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.497Z
+-- Last updated: 2025-12-06T07:37:52.694Z
 
----@type any
+---@type integer
 ROUND_INIT = 0
 
----@type any
+---@type integer
 ROUND_PREGAME = 1
 
----@type any
+---@type integer
 ROUND_STARTGAME = 2
 
----@type any
+---@type integer
 ROUND_PREROUND = 3
 
----@type any
+---@type integer
 ROUND_RUNNING = 4
 
----@type any
+---@type integer
 ROUND_TEAMWIN = 5
 
----@type any
+---@type integer
 ROUND_RESTART = 6
 
----@type any
+---@type integer
 ROUND_STALEMATE = 7
 
----@type any
+---@type integer
 ROUND_GAMEOVER = 8
 
----@type any
+---@type integer
 ROUND_BONUS = 9
 
----@type any
+---@type integer
 ROUND_BETWEEN_ROUNDS = 10
 

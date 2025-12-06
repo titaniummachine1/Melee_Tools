@@ -2,29 +2,29 @@
 
 -- Constants: E_ClientFrameStage
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.518Z
+-- Last updated: 2025-12-06T07:37:52.710Z
 
----@type any
+---@type integer
 FRAME_UNDEFINED = -1
 
----@type any
+---@type integer
 FRAME_START = 0
 
----@type any
+---@type integer
 FRAME_NET_UPDATE_START = 1
 
----@type any
+---@type integer
 FRAME_NET_UPDATE_POSTDATAUPDATE_START = 2
 
----@type any
+---@type integer
 FRAME_NET_UPDATE_POSTDATAUPDATE_END = 3
 
----@type any
+---@type integer
 FRAME_NET_UPDATE_END = 4
 
----@type any
+---@type integer
 FRAME_RENDER_START = 5
 
----@type any
+---@type integer
 FRAME_RENDER_END = 6
 

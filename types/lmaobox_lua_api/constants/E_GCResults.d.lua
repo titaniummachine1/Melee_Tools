@@ -2,20 +2,20 @@
 
 -- Constants: E_GCResults
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.517Z
+-- Last updated: 2025-12-06T07:37:52.708Z
 
----@type any
+---@type integer
 k_EGCResultOK = 0
 
----@type any
+---@type integer
 k_EGCResultNoMessage = 1
 
----@type any
+---@type integer
 k_EGCResultBufferTooSmall = 2
 
----@type any
+---@type integer
 k_EGCResultNotLoggedOn = 3
 
----@type any
+---@type integer
 k_EGCResultInvalidMessage = 4
 

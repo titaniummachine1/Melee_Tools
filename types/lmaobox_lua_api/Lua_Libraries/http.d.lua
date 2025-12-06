@@ -1,19 +1,18 @@
 ---@meta
 
--- Lmaobox Lua API: http - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/http/
--- Path: Lua_Libraries/http
--- Last updated: 2025-12-05T12:04:26.074Z
-
+---A lightweight HTTP library providing a simple get method for downloading data from the internet.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/http/)
 ---@class http
 http = {}
 
+---Returns string of the body response.
 ---@param url string
----@return any
+---@return string
 function http.Get(url) end
 
+---Performs a asynchronous HTTP GET request to the specified URL that doesn't halt the script.
+---Uses a callback to get the response from the url (BETA)
 ---@param url string
----@param data string
----@return any
-function http.GetAsync(url, data) end
-
+---@param callback fun(response: string)
+function http.GetAsync(url, callback) end

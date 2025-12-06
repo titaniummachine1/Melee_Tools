@@ -1,34 +1,51 @@
 ---@meta
 
--- Lmaobox Lua API: globals - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/globals/
--- Path: Lua_Libraries/globals
--- Last updated: 2025-12-05T12:04:26.065Z
-
+---This library contains global source engine variables.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/globals/)
 ---@class globals
 globals = {}
 
+---Returns server tick interval.
 ---@return number
+---@nodiscard
 function globals.TickInterval() end
 
----@return number
+---Returns client tick count.
+---@return integer
+---@nodiscard
 function globals.TickCount() end
 
+---Returns time since start of the game.
 ---@return number
+---@nodiscard
 function globals.RealTime() end
 
+---Returns current time.
 ---@return number
+---@nodiscard
 function globals.CurTime() end
 
----@return number
+---Returns frame count.
+---@return integer
+---@nodiscard
 function globals.FrameCount() end
 
+---Returns delta time between frames. \
+---FrameTime() might return tick interval in some callbacks. \
+---You can use AbsoluteFrameTime() instead.
 ---@return number
+---@nodiscard
 function globals.FrameTime() end
 
+---Returns delta time between frames.
 ---@return number
+---@nodiscard
 function globals.AbsoluteFrameTime() end
 
----@return any
+---Returns max player count.
+---@return integer
+---@nodiscard
 function globals.MaxClients() end
 
+return globals

@@ -2,62 +2,62 @@
 
 -- Constants: E_LoadoutSlot
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.495Z
+-- Last updated: 2025-12-06T07:37:52.693Z
 
----@type any
+---@type integer
 LOADOUT_POSITION_PRIMARY = 0
 
----@type any
+---@type integer
 LOADOUT_POSITION_SECONDARY = 1
 
----@type any
+---@type integer
 LOADOUT_POSITION_MELEE = 2
 
----@type any
+---@type integer
 LOADOUT_POSITION_UTILITY = 3
 
----@type any
+---@type integer
 LOADOUT_POSITION_BUILDING = 4
 
----@type any
+---@type integer
 LOADOUT_POSITION_PDA = 5
 
----@type any
+---@type integer
 LOADOUT_POSITION_PDA2 = 6
 
----@type any
+---@type integer
 LOADOUT_POSITION_HEAD = 7
 
----@type any
+---@type integer
 LOADOUT_POSITION_MISC = 8
 
----@type any
+---@type integer
 LOADOUT_POSITION_ACTION = 9
 
----@type any
+---@type integer
 LOADOUT_POSITION_MISC2 = 10
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT = 11
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT2 = 12
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT3 = 13
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT4 = 14
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT5 = 15
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT6 = 16
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT7 = 17
 
----@type any
+---@type integer
 LOADOUT_POSITION_TAUNT8 = 18
 

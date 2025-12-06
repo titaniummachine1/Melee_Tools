@@ -1,33 +1,36 @@
 ---@meta
 
--- Lmaobox Lua API: itemschema - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/itemschema/
--- Path: Lua_Libraries/itemschema
--- Last updated: 2025-12-05T12:04:26.093Z
-
+---The itemschema library contains functions for retrieving information about items. \
+---Items referred to in this library are of the [ItemDefinition](lua://ItemDefinition) type.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/itemschema/)
 ---@class itemschema
 itemschema = {}
 
--- Returns the item definition for the item with the given ID.
----@param id number
----@return any
-function itemschema.GetItemDefinitionByID(id) end
+---Returns the item definition for the item with the given ID.
+---@param id integer
+---@return ItemDefinition
+---@nodiscard
+function itemschema.GetItemDefinitionByID( id ) end
 
--- Returns the item definition for the item with the given name.
+---Returns the item definition for the item with the given name.
 ---@param name string
----@return string
-function itemschema.GetItemDefinitionByName(name) end
+---@return ItemDefinition
+---@nodiscard
+function itemschema.GetItemDefinitionByName( name ) end
 
--- Enumerates all item definitions, calling the callback for each one.
----@return any
-function itemschema.Enumerate() end
+---Enumerates all item definitions, calling the callback for each one.
+---@param callback fun(itemDefinition: ItemDefinition)
+function itemschema.Enumerate(callback) end
 
--- Returns the attribute definition for the item with the given name.
+---Returns the attribute definition for the item with the given name.
 ---@param name string
----@return string
-function itemschema.GetAttributeDefinitionByName(name) end
+---@return AttributeDefinition
+---@nodiscard
+function itemschema.GetAttributeDefinitionByName( name ) end
 
--- Enumerates all attribute definitions, calling the callback for each one.
----@return any
-function itemschema.EnumerateAttributes() end
+---Enumerates all attribute definitions, calling the callback for each one.
+---@param callback fun(attributeDefinition: AttributeDefinition)
+function itemschema.EnumerateAttributes( callback ) end
 
+return itemschema

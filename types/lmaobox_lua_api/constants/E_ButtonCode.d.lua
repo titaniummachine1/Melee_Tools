@@ -2,336 +2,336 @@
 
 -- Constants: E_ButtonCode
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.429Z
+-- Last updated: 2025-12-06T07:37:52.679Z
 
----@type any
+---@type integer
 BUTTON_CODE_INVALID = -1
 
----@type any
+---@type integer
 BUTTON_CODE_NONE = 0
 
----@type any
+---@type integer
 KEY_FIRST = 0
 
 ---@type any
 KEY_NONE = KEY_FIRST
 
----@type any
+---@type integer
 KEY_0 = 1
 
----@type any
+---@type integer
 KEY_1 = 2
 
----@type any
+---@type integer
 KEY_2 = 3
 
----@type any
+---@type integer
 KEY_3 = 4
 
----@type any
+---@type integer
 KEY_4 = 5
 
----@type any
+---@type integer
 KEY_5 = 6
 
----@type any
+---@type integer
 KEY_6 = 7
 
----@type any
+---@type integer
 KEY_7 = 8
 
----@type any
+---@type integer
 KEY_8 = 9
 
----@type any
+---@type integer
 KEY_9 = 10
 
----@type any
+---@type integer
 KEY_A = 11
 
----@type any
+---@type integer
 KEY_B = 12
 
----@type any
+---@type integer
 KEY_C = 13
 
----@type any
+---@type integer
 KEY_D = 14
 
----@type any
+---@type integer
 KEY_E = 15
 
----@type any
+---@type integer
 KEY_F = 16
 
----@type any
+---@type integer
 KEY_G = 17
 
----@type any
+---@type integer
 KEY_H = 18
 
----@type any
+---@type integer
 KEY_I = 19
 
----@type any
+---@type integer
 KEY_J = 20
 
----@type any
+---@type integer
 KEY_K = 21
 
----@type any
+---@type integer
 KEY_L = 22
 
----@type any
+---@type integer
 KEY_M = 23
 
----@type any
+---@type integer
 KEY_N = 24
 
----@type any
+---@type integer
 KEY_O = 25
 
----@type any
+---@type integer
 KEY_P = 26
 
----@type any
+---@type integer
 KEY_Q = 27
 
----@type any
+---@type integer
 KEY_R = 28
 
----@type any
+---@type integer
 KEY_S = 29
 
----@type any
+---@type integer
 KEY_T = 30
 
----@type any
+---@type integer
 KEY_U = 31
 
----@type any
+---@type integer
 KEY_V = 32
 
----@type any
+---@type integer
 KEY_W = 33
 
----@type any
+---@type integer
 KEY_X = 34
 
----@type any
+---@type integer
 KEY_Y = 35
 
----@type any
+---@type integer
 KEY_Z = 36
 
----@type any
+---@type integer
 KEY_PAD_0 = 37
 
----@type any
+---@type integer
 KEY_PAD_1 = 38
 
----@type any
+---@type integer
 KEY_PAD_2 = 39
 
----@type any
+---@type integer
 KEY_PAD_3 = 40
 
----@type any
+---@type integer
 KEY_PAD_4 = 41
 
----@type any
+---@type integer
 KEY_PAD_5 = 42
 
----@type any
+---@type integer
 KEY_PAD_6 = 43
 
----@type any
+---@type integer
 KEY_PAD_7 = 44
 
----@type any
+---@type integer
 KEY_PAD_8 = 45
 
----@type any
+---@type integer
 KEY_PAD_9 = 46
 
----@type any
+---@type integer
 KEY_PAD_DIVIDE = 47
 
----@type any
+---@type integer
 KEY_PAD_MULTIPLY = 48
 
----@type any
+---@type integer
 KEY_PAD_MINUS = 49
 
----@type any
+---@type integer
 KEY_PAD_PLUS = 50
 
----@type any
+---@type integer
 KEY_PAD_ENTER = 51
 
----@type any
+---@type integer
 KEY_PAD_DECIMAL = 52
 
----@type any
+---@type integer
 KEY_LBRACKET = 53
 
----@type any
+---@type integer
 KEY_RBRACKET = 54
 
----@type any
+---@type integer
 KEY_SEMICOLON = 55
 
----@type any
+---@type integer
 KEY_APOSTROPHE = 56
 
----@type any
+---@type integer
 KEY_BACKQUOTE = 57
 
----@type any
+---@type integer
 KEY_COMMA = 58
 
----@type any
+---@type integer
 KEY_PERIOD = 59
 
----@type any
+---@type integer
 KEY_SLASH = 60
 
----@type any
+---@type integer
 KEY_BACKSLASH = 61
 
----@type any
+---@type integer
 KEY_MINUS = 62
 
----@type any
+---@type integer
 KEY_EQUAL = 63
 
----@type any
+---@type integer
 KEY_ENTER = 64
 
----@type any
+---@type integer
 KEY_SPACE = 65
 
----@type any
+---@type integer
 KEY_BACKSPACE = 66
 
----@type any
+---@type integer
 KEY_TAB = 67
 
----@type any
+---@type integer
 KEY_CAPSLOCK = 68
 
----@type any
+---@type integer
 KEY_NUMLOCK = 69
 
----@type any
+---@type integer
 KEY_ESCAPE = 70
 
----@type any
+---@type integer
 KEY_SCROLLLOCK = 71
 
----@type any
+---@type integer
 KEY_INSERT = 72
 
----@type any
+---@type integer
 KEY_DELETE = 73
 
----@type any
+---@type integer
 KEY_HOME = 74
 
----@type any
+---@type integer
 KEY_END = 75
 
----@type any
+---@type integer
 KEY_PAGEUP = 76
 
----@type any
+---@type integer
 KEY_PAGEDOWN = 77
 
----@type any
+---@type integer
 KEY_BREAK = 78
 
----@type any
+---@type integer
 KEY_LSHIFT = 79
 
----@type any
+---@type integer
 KEY_RSHIFT = 80
 
----@type any
+---@type integer
 KEY_LALT = 81
 
----@type any
+---@type integer
 KEY_RALT = 82
 
----@type any
+---@type integer
 KEY_LCONTROL = 83
 
----@type any
+---@type integer
 KEY_RCONTROL = 84
 
----@type any
+---@type integer
 KEY_LWIN = 85
 
----@type any
+---@type integer
 KEY_RWIN = 86
 
----@type any
+---@type integer
 KEY_APP = 87
 
----@type any
+---@type integer
 KEY_UP = 88
 
----@type any
+---@type integer
 KEY_LEFT = 89
 
----@type any
+---@type integer
 KEY_DOWN = 90
 
----@type any
+---@type integer
 KEY_RIGHT = 91
 
----@type any
+---@type integer
 KEY_F1 = 92
 
----@type any
+---@type integer
 KEY_F2 = 93
 
----@type any
+---@type integer
 KEY_F3 = 94
 
----@type any
+---@type integer
 KEY_F4 = 95
 
----@type any
+---@type integer
 KEY_F5 = 96
 
----@type any
+---@type integer
 KEY_F6 = 97
 
----@type any
+---@type integer
 KEY_F7 = 98
 
----@type any
+---@type integer
 KEY_F8 = 99
 
----@type any
+---@type integer
 KEY_F9 = 100
 
----@type any
+---@type integer
 KEY_F10 = 101
 
----@type any
+---@type integer
 KEY_F11 = 102
 
----@type any
+---@type integer
 KEY_F12 = 103
 
----@type any
+---@type integer
 KEY_CAPSLOCKTOGGLE = 104
 
----@type any
+---@type integer
 KEY_NUMLOCKTOGGLE = 105
 
----@type any
+---@type integer
 KEY_SCROLLLOCKTOGGLE = 106
 
 ---@type any

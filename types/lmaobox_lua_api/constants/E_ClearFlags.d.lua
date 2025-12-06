@@ -2,23 +2,23 @@
 
 -- Constants: E_ClearFlags
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.517Z
+-- Last updated: 2025-12-06T07:37:52.708Z
 
----@type any
+---@type integer
 VIEW_CLEAR_COLOR = 0x1
 
----@type any
+---@type integer
 VIEW_CLEAR_DEPTH = 0x2
 
----@type any
+---@type integer
 VIEW_CLEAR_FULL_TARGET = 0x4
 
----@type any
+---@type integer
 VIEW_NO_DRAW = 0x8
 
----@type any
+---@type integer
 VIEW_CLEAR_OBEY_STENCIL = 0x10
 
----@type any
+---@type integer
 VIEW_CLEAR_STENCIL = 0x20
 

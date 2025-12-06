@@ -1,16 +1,23 @@
 ---@meta
 
--- Lmaobox Lua API: Texture - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/Texture/
--- Path: Lua_Classes/Texture
--- Last updated: 2025-12-05T12:04:25.962Z
-
+---The Texture object is used to interact with textures loaded from files or created dynamically.
+---
+---[View Wiki](https://developer.valvesoftware.com/wiki/Texture)
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/Texture/)
 ---@class Texture
----@return string
----@field GetName fun(self: Texture): string
----@return any
----@field GetActualHeight fun(self: Texture): any
----@return any
----@field GetActualWidth fun(self: Texture): any
 local Texture = {}
 
+---Returns the name of the texture.
+---@return string
+---@nodiscard
+function Texture:GetName() end
+
+---Returns the actual height of the texture in pixels.
+---@return integer
+---@nodiscard
+function Texture:GetActualHeight() end
+
+---Returns the actual width of the texture in pixels.
+---@return integer
+---@nodiscard
+function Texture:GetActualWidth() end

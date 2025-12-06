@@ -17,7 +17,11 @@ local STENCIL_COMPARE_NOTEQUAL = (
 ) or 6
 local STENCIL_OP_KEEP = (rawget(_G, "E_StencilOperation") and E_StencilOperation.STENCILOPERATION_KEEP) or 1
 local STENCIL_OP_REPLACE = (rawget(_G, "E_StencilOperation") and E_StencilOperation.STENCILOPERATION_REPLACE) or 3
+local FRAME_STAGE_RENDER_START = rawget(_G, "FRAME_RENDER_START") or 5
 local FRAME_STAGE_RENDER_END = rawget(_G, "FRAME_RENDER_END") or 6
+
+local shouldRenderGlow = false
+local lastRenderFrame = -1
 
 --- materials
 local m_pMatGlowColor = nil
@@ -185,7 +189,35 @@ local function GetClass(className, outTable)
 	return count
 end
 
-local function RenderGlow()
+local function GetViewportSize(view)
+	if view then
+		-- ViewSetup may expose width/height as numbers or methods depending on runtime
+		local vw = view.width
+		if type(vw) == "function" then
+			vw = vw(view)
+		end
+
+		local vh = view.height
+		if type(vh) == "function" then
+			vh = vh(view)
+		end
+
+		if type(vw) == "number" and type(vh) == "number" then
+			return vw, vh
+		end
+	end
+
+	return draw.GetScreenSize()
+end
+
+local function RenderGlow(view)
+	shouldRenderGlow = false
+	local frame = globals.FrameCount()
+	if frame == lastRenderFrame then
+		return
+	end
+	lastRenderFrame = frame
+
 	if engine.IsTakingScreenshot() then
 		return
 	end
@@ -211,7 +243,7 @@ local function RenderGlow()
 	local origGlowVal = gui.GetValue("glow")
 	gui.SetValue("glow", 0)
 
-	local w, h = draw.GetScreenSize()
+	local w, h = GetViewportSize(view)
 	if render.OverrideDepthEnable then
 		render.OverrideDepthEnable(true, false)
 	end
@@ -371,26 +403,31 @@ local function RenderGlow()
 end
 
 ---@param ctx DrawModelContext
-local function OnDrawModel(ctx)
-	local entity = ctx:GetEntity()
-	if entity == nil or entity:GetClass() ~= "CTFViewModel" then
-		return
-	end
-
-	--- why does the actual callback work only in 1 update?
-	--- fuck this im not gonna ask lbox fix it again
-	OnDoPostScreenSpaceEffects()
-
-	ctx:Execute()
-end
+--local function OnDrawModel(ctx) end
 
 local function OnFrameStageNotify(stage)
-	if stage ~= FRAME_STAGE_RENDER_END then
+	if stage == FRAME_STAGE_RENDER_START then
+		shouldRenderGlow = true
+	end
+
+	if stage == FRAME_STAGE_RENDER_END then
+		shouldRenderGlow = true
+	end
+end
+
+local function OnPostRenderView(view)
+	if shouldRenderGlow == false then
 		return
 	end
 
-	RenderGlow()
+	RenderGlow(view)
+end
+
+local function OnDoPostScreenSpaceEffects()
+	RenderGlow(nil)
 end
 
 callbacks.Register("FrameStageNotify", OnFrameStageNotify)
+callbacks.Register("PostRenderView", OnPostRenderView)
+callbacks.Register("DoPostScreenSpaceEffects", OnDoPostScreenSpaceEffects)
 --callbacks.Register("DrawModel", OnDrawModel)

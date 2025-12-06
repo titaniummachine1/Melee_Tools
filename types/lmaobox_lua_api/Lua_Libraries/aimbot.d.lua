@@ -1,14 +1,11 @@
 ---@meta
 
--- Lmaobox Lua API: aimbot - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/aimbot/
--- Path: Lua_Libraries/aimbot
--- Last updated: 2025-12-05T12:04:26.009Z
-
+---This library can be used for interacting with aimbot feature.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/aimbot/)
 ---@class aimbot
 aimbot = {}
 
--- Returns index of the player or entity aimbot is currenly targetting
----@return any
+---Returns index of the player or entity aimbot is currenly targetting
+---@return integer
 function aimbot.GetAimbotTarget() end
-

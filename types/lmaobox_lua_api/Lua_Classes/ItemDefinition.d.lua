@@ -1,57 +1,78 @@
 ---@meta
 
--- Lmaobox Lua API: ItemDefinition - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Classes/ItemDefinition/
--- Path: Lua_Classes/ItemDefinition
--- Last updated: 2025-12-05T12:04:25.866Z
-
+---The ItemDefinition object contains static information about an item. \
+---Static information refers to information that is not changed during the course of the game.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Classes/ItemDefinition/)
 ---@class ItemDefinition
--- Returns the name of the item.
----@return any
----@field Methods fun(self: ItemDefinition): any
----@return any
----@field Examples fun(self: ItemDefinition): any
--- Returns the name of the item.
----@return string
----@field GetName fun(self: ItemDefinition): string
--- Returns the definition ID of the item.
----@return any
----@field GetID fun(self: ItemDefinition): any
--- Returns the class of the item.
----@return any
----@field GetClass fun(self: ItemDefinition): any
--- Returns the loadout slot that the item should be placed in.
----@return any
----@field GetLoadoutSlot fun(self: ItemDefinition): any
--- Returns true if the item is hidden.
----@return boolean
----@field IsHidden fun(self: ItemDefinition): boolean
--- Returns true if the item is a tool, such as a key.
----@return boolean
----@field IsTool fun(self: ItemDefinition): boolean
--- Returns true if the item is a base item, such as a stock weapon.
----@return boolean
----@field IsBaseItem fun(self: ItemDefinition): boolean
--- Returns true if the item is a wearable.
----@return boolean
----@field IsWearable fun(self: ItemDefinition): boolean
--- Returns the name of the item in the language of the current player.
----@return string
----@field GetNameTranslated fun(self: ItemDefinition): string
--- Returns the type name of the item.
----@return string
----@field GetTypeName fun(self: ItemDefinition): string
--- Returns the description of the item.
----@return string
----@field GetDescription fun(self: ItemDefinition): string
--- Returns the icon name of the item.
----@return string
----@field GetIconName fun(self: ItemDefinition): string
--- Returns the base item name of the item.
----@return string
----@field GetBaseItemName fun(self: ItemDefinition): string
--- Returns the static item attributes as a table where keys are AttributeDefinition objects and values are the values of the attributes.
----@return any
----@field GetAttributes fun(self: ItemDefinition): any
 local ItemDefinition = {}
 
+---Returns the name of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetName() end
+
+---Returns the definition ID of the item.
+---@return integer
+---@nodiscard
+function ItemDefinition:GetID() end
+
+---Returns the class of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetClass() end
+
+---Returns the loadout slot that the item should be placed in.
+---@return E_LoadoutSlot
+---@nodiscard
+function ItemDefinition:GetLoadoutSlot() end
+
+---Returns true if the item is hidden.
+---@return boolean
+---@nodiscard
+function ItemDefinition:IsHidden() end
+
+---Returns true if the item is a tool, such as a key.
+---@return boolean
+---@nodiscard
+function ItemDefinition:IsTool() end
+
+---Returns true if the item is a base item, such as a stock weapon.
+---@return boolean
+---@nodiscard
+function ItemDefinition:IsBaseItem() end
+
+---Returns true if the item is a wearable.
+---@return boolean
+---@nodiscard
+function ItemDefinition:IsWearable() end
+
+---Returns the name of the item in the language of the current player.
+---@return string
+---@nodiscard
+function ItemDefinition:GetNameTranslated() end
+
+---Returns the type name of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetTypeName() end
+
+---Returns the description of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetDescription() end
+
+---Returns the icon name of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetIconName() end
+
+---Returns the base item name of the item.
+---@return string
+---@nodiscard
+function ItemDefinition:GetBaseItemName() end
+
+---Returns the static item attributes as a table where keys are [AttributeDefinition](lua://AttributeDefinition) objects and values are the values of the attributes.
+---@return table<AttributeDefinition, any>
+---@nodiscard
+function ItemDefinition:GetAttributes() end

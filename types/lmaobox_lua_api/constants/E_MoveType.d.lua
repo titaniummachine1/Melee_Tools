@@ -2,41 +2,41 @@
 
 -- Constants: E_MoveType
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-05T12:04:28.514Z
+-- Last updated: 2025-12-06T07:37:52.706Z
 
----@type any
+---@type integer
 MOVETYPE_NONE = 0
 
----@type any
+---@type integer
 MOVETYPE_ISOMETRIC = 1
 
----@type any
+---@type integer
 MOVETYPE_WALK = 2
 
----@type any
+---@type integer
 MOVETYPE_STEP = 3
 
----@type any
+---@type integer
 MOVETYPE_FLY = 4
 
----@type any
+---@type integer
 MOVETYPE_FLYGRAVITY = 5
 
----@type any
+---@type integer
 MOVETYPE_VPHYSICS = 6
 
----@type any
+---@type integer
 MOVETYPE_PUSH = 7
 
----@type any
+---@type integer
 MOVETYPE_NOCLIP = 8
 
----@type any
+---@type integer
 MOVETYPE_LADDER = 9
 
----@type any
+---@type integer
 MOVETYPE_OBSERVER = 10
 
----@type any
+---@type integer
 MOVETYPE_CUSTOM = 11
 

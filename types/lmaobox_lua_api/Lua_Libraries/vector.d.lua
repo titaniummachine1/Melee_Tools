@@ -1,85 +1,98 @@
 ---@meta
 
--- Lmaobox Lua API: vector - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Libraries/vector/
--- Path: Lua_Libraries/vector
--- Last updated: 2025-12-05T12:04:26.128Z
-
+---The vector library provides a simple way to manipulate 3D vectors. \
+---You can use both Lua tables and [Vector3](lua://Vector3)|[ArrayVector](lua://ArrayVector) instances as arguments. \
+---The functions below showcase only the table-based option.
+---
+---[View Docs](https://lmaobox.net/lua/Lua_Libraries/vector/)
 ---@class vector
 vector = {}
 
--- Add two vectors
----@param a Vector3
----@param b Vector3
----@return any
+---@alias ArrayVector { [1]: integer, [2]: integer, [3]: integer }
+
+---Add two vectors.
+---@param a Vector3|ArrayVector
+---@param b Vector3|ArrayVector
+---@return Vector3
+---@nodiscard
 function vector.Add(a, b) end
 
--- Subtract two vectors
----@param a Vector3
----@param b Vector3
----@return any
+---Subtract two vectors.
+---@param a Vector3|ArrayVector
+---@param b Vector3|ArrayVector
+---@return Vector3
+---@nodiscard
 function vector.Subtract(a, b) end
 
--- Multiply vector by scalar
----@param vec Vector3
+---Multiply vector by scalar.
+---@param vec Vector3|ArrayVector
 ---@param scalar number
----@return any
+---@return Vector3
+---@nodiscard
 function vector.Multiply(vec, scalar) end
 
--- Divide vector by scalar
----@param vec Vector3
+---Divide vector by scalar.
+---@param vec Vector3|ArrayVector
 ---@param scalar number
----@return any
+---@return Vector3
+---@nodiscard
 function vector.Divide(vec, scalar) end
 
--- Get vector length
----@param vec Vector3
----@return number
+---Get vector length.
+---@param vec Vector3|ArrayVector
+---@return integer
+---@nodiscard
 function vector.Length(vec) end
 
--- Get vector squared length
----@param vec Vector3
----@return number
+---Get vector squared length.
+---@param vec Vector3|ArrayVector
+---@return integer
+---@nodiscard
 function vector.LengthSqr(vec) end
 
--- Get distance between two vectors
----@param a Vector3
----@param b Vector3
----@return any
+---Get distance between two vectors.
+---@param a Vector3|ArrayVector
+---@param b Vector3|ArrayVector
+---@return integer
+---@nodiscard
 function vector.Distance(a, b) end
 
--- Normalize vector
----@param vec Vector3
----@return any
+---Normalize vector in place; modifies the vector directly without returning it.
+---@param vec Vector3|ArrayVector
 function vector.Normalize(vec) end
 
--- Get vector angles
----@param angles EulerAngles
----@return Vector3
-function vector.Angles(angles) end
+---Get vector angles.
+---@param vec Vector3
+---@return EulerAngles
+---@nodiscard
+function vector.Angles(vec) end
 
--- Get forward vector angle
----@param angles EulerAngles
----@return any
-function vector.AngleForward(angles) end
+---Get forward vector angle.
+---@param vec Vector3
+---@return EulerAngles
+---@nodiscard
+function vector.AngleForward(vec) end
 
--- Get right vector angle
----@param angles EulerAngles
----@return any
-function vector.AngleRight(angles) end
+---Get right vector angle.
+---@param vec Vector3
+---@return EulerAngles
+---@nodiscard
+function vector.AngleRight(vec) end
 
--- Get up vector angle
----@param angles EulerAngles
----@return any
-function vector.AngleUp(angles) end
+---Get up vector angle.
+---@param vec Vector3
+---@return EulerAngles
+---@nodiscard
+function vector.AngleUp(vec) end
 
--- Get forward, right, and up vector angles as 3 return values
+---Normalize vector angles.
+---@param vec Vector3
+---@return EulerAngles
+---@nodiscard
+function vector.AngleNormalize(vec) end
+
+---Returns the forward, right and up vectors
 ---@param angles EulerAngles
 ---@return Vector3, Vector3, Vector3
+---@nodiscard
 function vector.AngleVectors(angles) end
-
--- Normalize vector angles
----@param angles EulerAngles
----@return any
-function vector.AngleNormalize(angles) end
-
