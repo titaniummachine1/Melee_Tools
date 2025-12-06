@@ -7,8 +7,9 @@
         "?/?.lua"
     ],
     "Lua.workspace.library": [
-        "${3rd}/lfs/library",
-        "${workspace}/types"
+        "${workspace}/types/Lmaobox-Annotations-master/library",
+        "${workspace}/types",
+        "${3rd}/lfs/library"
     ],
     "Lua.workspace.checkThirdParty": false,
     "Lua.diagnostics.globals": [

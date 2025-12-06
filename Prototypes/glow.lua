@@ -8,8 +8,16 @@
 local stencil = 1
 local glow = 2
 
---- helpers
-local unpack = table.unpack or unpack
+--- enum fallbacks (Lmaobox types do not ship these)
+local STENCIL_COMPARE_ALWAYS = (
+	rawget(_G, "E_StencilComparisonFunction") and E_StencilComparisonFunction.STENCILCOMPARISONFUNCTION_ALWAYS
+) or 8
+local STENCIL_COMPARE_NOTEQUAL = (
+	rawget(_G, "E_StencilComparisonFunction") and E_StencilComparisonFunction.STENCILCOMPARISONFUNCTION_NOTEQUAL
+) or 6
+local STENCIL_OP_KEEP = (rawget(_G, "E_StencilOperation") and E_StencilOperation.STENCILOPERATION_KEEP) or 1
+local STENCIL_OP_REPLACE = (rawget(_G, "E_StencilOperation") and E_StencilOperation.STENCILOPERATION_REPLACE) or 3
+local FRAME_STAGE_RENDER_END = rawget(_G, "FRAME_RENDER_END") or 6
 
 --- materials
 local m_pMatGlowColor = nil
@@ -136,7 +144,7 @@ local function DrawEntities(players)
 	for index, color in pairs(players) do
 		local player = entities.GetByIndex(index)
 		if player then
-			render.SetColorModulation(unpack(color))
+			render.SetColorModulation(table.unpack(color))
 			player:DrawModel(STUDIO_RENDER | STUDIO_NOSHADOWS)
 		end
 	end
@@ -177,7 +185,7 @@ local function GetClass(className, outTable)
 	return count
 end
 
-local function OnDoPostScreenSpaceEffects()
+local function RenderGlow()
 	if engine.IsTakingScreenshot() then
 		return
 	end
@@ -204,6 +212,9 @@ local function OnDoPostScreenSpaceEffects()
 	gui.SetValue("glow", 0)
 
 	local w, h = draw.GetScreenSize()
+	if render.OverrideDepthEnable then
+		render.OverrideDepthEnable(true, false)
+	end
 
 	--- Stencil Pass
 	do
@@ -214,10 +225,10 @@ local function OnDoPostScreenSpaceEffects()
 		render.SetBlend(0)
 
 		render.SetStencilReferenceValue(1)
-		render.SetStencilCompareFunction(E_StencilComparisonFunction.STENCILCOMPARISONFUNCTION_ALWAYS)
-		render.SetStencilPassOperation(E_StencilOperation.STENCILOPERATION_REPLACE)
-		render.SetStencilFailOperation(E_StencilOperation.STENCILOPERATION_KEEP)
-		render.SetStencilZFailOperation(E_StencilOperation.STENCILOPERATION_REPLACE)
+		render.SetStencilCompareFunction(STENCIL_COMPARE_ALWAYS)
+		render.SetStencilPassOperation(STENCIL_OP_REPLACE)
+		render.SetStencilFailOperation(STENCIL_OP_KEEP)
+		render.SetStencilZFailOperation(STENCIL_OP_REPLACE)
 
 		DrawEntities(glowEnts)
 
@@ -275,11 +286,11 @@ local function OnDoPostScreenSpaceEffects()
 		render.SetStencilTestMask(0xFF)
 
 		render.SetStencilReferenceValue(1)
-		render.SetStencilCompareFunction(E_StencilComparisonFunction.STENCILCOMPARISONFUNCTION_NOTEQUAL)
+		render.SetStencilCompareFunction(STENCIL_COMPARE_NOTEQUAL)
 
-		render.SetStencilPassOperation(E_StencilOperation.STENCILOPERATION_KEEP)
-		render.SetStencilFailOperation(E_StencilOperation.STENCILOPERATION_KEEP)
-		render.SetStencilZFailOperation(E_StencilOperation.STENCILOPERATION_KEEP)
+		render.SetStencilPassOperation(STENCIL_OP_KEEP)
+		render.SetStencilFailOperation(STENCIL_OP_KEEP)
+		render.SetStencilZFailOperation(STENCIL_OP_KEEP)
 
 		--- my code to make the glow work
 		--- not used anymore :(
@@ -295,12 +306,12 @@ local function OnDoPostScreenSpaceEffects()
 		--- pasted from amalgam
 		--- https://github.com/rei-2/Amalgam/blob/fce4740bf3af0799064bf6c8fbeaa985151b708c/Amalgam/src/Features/Visuals/Glow/Glow.cpp#L65
 		if stencil > 0 then
-			local iSide = math.floor((stencil + 1) / 2)
+			local iSide = (stencil + 1) // 2
 			render.DrawScreenSpaceRectangle(m_pMatHaloAddToScreen, -iSide, 0, w, h, 0, 0, w - 1, h - 1, w, h)
 			render.DrawScreenSpaceRectangle(m_pMatHaloAddToScreen, 0, -iSide, w, h, 0, 0, w - 1, h - 1, w, h)
 			render.DrawScreenSpaceRectangle(m_pMatHaloAddToScreen, iSide, 0, w, h, 0, 0, w - 1, h - 1, w, h)
 			render.DrawScreenSpaceRectangle(m_pMatHaloAddToScreen, 0, iSide, w, h, 0, 0, w - 1, h - 1, w, h)
-			local iCorner = math.floor(stencil / 2)
+			local iCorner = stencil // 2
 			if iCorner > 0 then
 				render.DrawScreenSpaceRectangle(
 					m_pMatHaloAddToScreen,
@@ -352,6 +363,10 @@ local function OnDoPostScreenSpaceEffects()
 		render.SetStencilEnable(false)
 	end
 
+	if render.OverrideDepthEnable then
+		render.OverrideDepthEnable(false, false)
+	end
+
 	gui.SetValue("glow", origGlowVal)
 end
 
@@ -369,5 +384,13 @@ local function OnDrawModel(ctx)
 	ctx:Execute()
 end
 
-callbacks.Register("DoPostScreenSpaceEffects", OnDoPostScreenSpaceEffects)
+local function OnFrameStageNotify(stage)
+	if stage ~= FRAME_STAGE_RENDER_END then
+		return
+	end
+
+	RenderGlow()
+end
+
+callbacks.Register("FrameStageNotify", OnFrameStageNotify)
 --callbacks.Register("DrawModel", OnDrawModel)

@@ -10,14 +10,14 @@ callbacks = {}
 
 -- Registers a callback function to be called when the event with the given id occurs.
 ---@param id any
----@param callback any
+---@param callback fun(...)
 ---@return any
 function callbacks.Register(id, callback) end
 
 -- Registers a callback function to be called when the event with the given id occurs. If the callback function is already registered, it will not be registered again.
 ---@param id any
 ---@param unique any
----@param callback any
+---@param callback fun(...)
 ---@return any
 function callbacks.Register(id, unique, callback) end
 
@@ -26,4 +26,3 @@ function callbacks.Register(id, unique, callback) end
 ---@param unique any
 ---@return any
 function callbacks.Unregister(id, unique) end
-
