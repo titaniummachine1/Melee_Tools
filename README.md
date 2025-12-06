@@ -26,6 +26,14 @@ Endpoints:
 - `/smart_context?symbol=Symbol.Name` → `{symbol, path, content}` or 404
   - Nearest-definition search in `data/smart_context/` (e.g., `Foo.Bar.Baz.md`, `Foo.Bar.md`, `Foo.md`), then fuzzy `*symbol*.md`.
 
+### Quick sanity check
+1) Start the server (task: **Start MCP Server (bg)**).
+2) Run the VS Code task **Test get_types (sample)** or execute:
+   ```powershell
+   pwsh -File scripts/test-get-types.ps1
+   ```
+   Optional envs: `MCP_HOST`, `MCP_PORT`, `MCP_TEST_SYMBOL` (default symbol: `Draw`).
+
 ## Adding smart context (API or custom helpers)
 1. Create a markdown file in `data/smart_context/` named after the symbol, e.g. `render.text.md` or `custom.normalize_vector.md`.
 2. Include signature and minimal curated examples (keep it short; 1–3 examples).

@@ -58,39 +58,79 @@ def _load_symbol_from_db(conn: sqlite3.Connection, symbol: str):
 
 
 def _extract_signature_line(text: str, symbol: str, short_symbol: str) -> str | None:
-	for raw in text.splitlines():
-		if symbol in raw or short_symbol in raw:
+	"""Extract signature, prioritizing function definitions over comments."""
+	lines = text.splitlines()
+	
+	# For symbols with dots (like engine.TraceLine), require function keyword
+	has_namespace = "." in symbol
+	
+	# First pass: look for function definitions (highest priority)
+	for raw in lines:
+		trimmed = raw.strip()
+		if trimmed.startswith("---") or trimmed.startswith("--"):
+			continue  # Skip all comments
+		if "function" in trimmed:
+			# Check if this line contains our symbol
+			if symbol in trimmed or (not has_namespace and short_symbol in trimmed):
+				return trimmed
+	
+	# Second pass: only for symbols without namespace (globals)
+	if not has_namespace:
+		for raw in lines:
 			trimmed = raw.strip()
-			if trimmed.startswith("---"):
+			if trimmed.startswith("---") or trimmed.startswith("--"):
 				continue
-			return trimmed
+			if short_symbol in trimmed:
+				return trimmed
+	
 	return None
 
 
 def _scan_types_for_symbol(symbol: str):
 	"""Fallback scanner that looks through generated type files for a quick signature hint."""
 	short_symbol = symbol.split(".")[-1]
+	parts = symbol.split(".")
+	
+	# Prioritize more specific files (e.g., engine.d.lua for engine.TraceLine)
+	candidate_files = []
 	search_roots = [
 		TYPES_DIR / "lmaobox_lua_api",
 		TYPES_DIR,
 	]
 
+	# First: look in specific library/class files if symbol has dots (highest priority)
+	if len(parts) > 1:
+		lib_or_class = parts[0]
+		for base in search_roots:
+			lib_file = base / "Lua_Libraries" / f"{lib_or_class}.d.lua"
+			if lib_file.exists() and lib_file not in candidate_files:
+				candidate_files.append(lib_file)  # Add to prioritized list
+			class_file = base / "Lua_Classes" / f"{lib_or_class}.d.lua"
+			if class_file.exists() and class_file not in candidate_files:
+				candidate_files.append(class_file)
+
+	# Then: scan all other files (lower priority)
 	for base in search_roots:
 		if not base.exists():
 			continue
 		for path in base.rglob("*.lua"):
-			try:
-				text = path.read_text(encoding=DEFAULT_ENCODING, errors="ignore")
-			except Exception:
-				continue
-			signature = _extract_signature_line(text, symbol, short_symbol)
-			if signature:
-				return {
-					"symbol": symbol,
-					"signature": signature,
-					"required_constants": [],
-					"source": f"types:{path.relative_to(ROOT_DIR)}"
-				}
+			if path not in candidate_files:
+				candidate_files.append(path)
+
+	# Search candidate files in priority order
+	for path in candidate_files:
+		try:
+			text = path.read_text(encoding=DEFAULT_ENCODING, errors="ignore")
+		except Exception:
+			continue
+		signature = _extract_signature_line(text, symbol, short_symbol)
+		if signature:
+			return {
+				"symbol": symbol,
+				"signature": signature,
+				"required_constants": [],
+				"source": f"types:{path.relative_to(ROOT_DIR)}"
+			}
 	return None
 
 

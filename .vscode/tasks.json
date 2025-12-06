@@ -2,18 +2,24 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run BundleAndDeploy.bat",
+            "label": "Start MCP Server (bg)",
             "type": "shell",
-            "command": "${workspaceFolder}/automations/BundleAndDeploy.bat",
+            "command": "python -m src.mcp_server.server",
+            "isBackground": true,
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
         },
         {
-            "label": "Check Type Definitions",
+            "label": "Test get_types (sample)",
             "type": "shell",
-            "command": "node ${workspaceFolder}/automations/update-types.js",
+            "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/scripts/test-get-types.ps1",
             "group": "test",
             "presentation": {
                 "reveal": "always",

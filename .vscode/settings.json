@@ -35,10 +35,10 @@
     "emeraldwalk.runonsave": {
         "commands": [
             {
-                "match": "\\.lua$",
+                "match": "\\.(lua|py)$",
                 "isAsync": true,
-                "cmd": "${workspaceFolder}/automations/BundleAndDeploy.bat",
-                "message": "Attempting to run default build task for ${fileBasename}...",
+                "cmd": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/scripts/restart-mcp.ps1",
+                "message": "Restarting MCP server on save...",
                 "autoShowOutputPanel": "error"
             }
         ]
