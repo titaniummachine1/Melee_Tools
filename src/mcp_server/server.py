@@ -232,20 +232,30 @@ def _suggest_symbols(conn: sqlite3.Connection, symbol: str, limit: int = 10):
     try:
         rows = conn.execute("SELECT full_name FROM symbols").fetchall()
         candidates = [r[0] for r in rows] if rows else []
-        ranked = difflib.get_close_matches(symbol, candidates, n=limit * 2, cutoff=0)
-        # Deduplicate and prefer callable-like names (with a dot)
+        ranked = difflib.get_close_matches(
+            symbol, candidates, n=limit * 4, cutoff=0
+        )
+        # Deduplicate and prefer callable-like names (with a dot). If we have
+        # too few, backfill with remaining ranked items to reach at least 5.
         seen = set()
-        filtered: list[str] = []
+        with_dot: list[str] = []
+        extras: list[str] = []
         for name in ranked:
             if name in seen:
                 continue
             seen.add(name)
-            if "." not in name:
-                continue  # skip bare namespaces like "engine"
-            filtered.append(name)
-            if len(filtered) >= limit:
-                break
-        return filtered
+            if "." in name:
+                if len(with_dot) < limit:
+                    with_dot.append(name)
+            else:
+                extras.append(name)
+        min_needed = 5
+        if len(with_dot) < min_needed:
+            for name in extras:
+                if len(with_dot) >= min(limit, min_needed):
+                    break
+                with_dot.append(name)
+        return with_dot[:limit]
     except Exception:
         return []
 
