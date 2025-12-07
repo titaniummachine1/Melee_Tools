@@ -174,6 +174,40 @@ def _parse_docblock(doc: str) -> dict:
     }
 
 
+def _load_constants_group(symbol: str):
+    """If symbol matches a constants group (e.g., E_TraceLine), return its members."""
+    constants_dir = TYPES_DIR / "lmaobox_lua_api" / "constants"
+    path = constants_dir / f"{symbol}.d.lua"
+    if not path.exists():
+        return None
+
+    desc_lines: list[str] = []
+    names: list[str] = []
+    for line in path.read_text(encoding=DEFAULT_ENCODING, errors="ignore").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("---"):
+            desc_lines.append(stripped.lstrip("- ").strip())
+            continue
+        m = re.match(r"^([A-Z0-9_]+)\s*=", stripped)
+        if m:
+            names.append(m.group(1))
+
+    # Deduplicate names preserving order
+    seen = set()
+    constants = []
+    for n in names:
+        if n in seen:
+            continue
+        seen.add(n)
+        constants.append(n)
+
+    desc = "\n".join(desc_lines).strip() if desc_lines else None
+    return {
+        "desc": desc,
+        "constants": constants,
+    }
+
+
 def _scan_types_for_symbol(symbol: str):
     """Fallback scanner that looks through generated type files for a quick signature hint."""
     short_symbol = symbol.split(".")[-1]
@@ -294,6 +328,11 @@ def get_types(symbol: str):
         response = dict(fallback)
         response.pop("source", None)  # not needed for the model
         return response
+
+    # Constant group lookup (e.g., E_TraceLine)
+    consts = _load_constants_group(symbol)
+    if consts:
+        return consts
 
     # Not found: include fuzzy suggestions to help correction
     suggestions = _suggest_symbols(conn, symbol, limit=10)
