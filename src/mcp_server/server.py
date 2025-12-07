@@ -176,22 +176,22 @@ def get_types(symbol: str):
 
     from_db = _load_symbol_from_db(conn, symbol)
     if from_db:
-		# Re-validate to avoid stale/false-positive cache entries
-		recheck = _scan_types_for_symbol(symbol)
-		if recheck:
-			return recheck
-		# Cache was stale; drop it
-		conn.execute("DELETE FROM symbol_metadata WHERE symbol = ?", (symbol,))
-		conn.commit()
+        # Re-validate to avoid stale/false-positive cache entries
+        recheck = _scan_types_for_symbol(symbol)
+        if recheck:
+            return recheck
+        # Cache was stale; drop it
+        conn.execute("DELETE FROM symbol_metadata WHERE symbol = ?", (symbol,))
+        conn.commit()
 
     fallback = _scan_types_for_symbol(symbol)
     if fallback:
         _ensure_db(conn)
         conn.execute(
             """
-			INSERT OR REPLACE INTO symbol_metadata (symbol, signature, required_constants, source, updated_at)
-			VALUES (?, ?, ?, ?, strftime('%s','now'))
-			""",
+            INSERT OR REPLACE INTO symbol_metadata (symbol, signature, required_constants, source, updated_at)
+            VALUES (?, ?, ?, ?, strftime('%s','now'))
+            """,
             (symbol, fallback["signature"], json.dumps(
                 fallback["required_constants"]), fallback["source"]),
         )

@@ -3,7 +3,7 @@
 -- Lmaobox Lua API: Predefined constants - Lmaobox Lua
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
 -- Path: Lua_Constants
--- Last updated: 2025-12-06T23:59:04.790Z
+-- Last updated: 2025-12-07T00:01:06.832Z
 
 ---@return any
 function E_UserCmd() end

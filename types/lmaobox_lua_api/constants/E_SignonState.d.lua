@@ -2,7 +2,7 @@
 
 -- Constants: E_SignonState
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-06T23:59:01.084Z
+-- Last updated: 2025-12-07T00:01:00.772Z
 
 ---@type integer
 SIGNONSTATE_NONE = 0

@@ -2,7 +2,7 @@
 
 -- Constants: E_TFCOND
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-06T23:59:01.083Z
+-- Last updated: 2025-12-07T00:01:00.766Z
 
 ---@type integer
 TFCond_Slowed = 0

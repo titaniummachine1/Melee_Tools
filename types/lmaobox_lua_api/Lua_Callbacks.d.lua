@@ -1,9 +1,9 @@
 ---@meta
 
 -- Lmaobox Lua API: Lua Callbacks - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks/
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Callbacks
 -- Path: Lua_Callbacks
--- Last updated: 2025-12-06T23:59:04.635Z
+-- Last updated: 2025-12-07T00:03:42.597Z
 
 ---@return any
 function Draw() end
