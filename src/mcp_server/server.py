@@ -101,30 +101,6 @@ def _fuzzy_constants_for_symbol(symbol: str):
     return candidates
 
 
-def _expand_constants_group(group: str) -> list[str]:
-    """Expand a constants group like E_TraceLine into the full list of constant names."""
-    constants_dir = TYPES_DIR / "lmaobox_lua_api" / "constants"
-    path = constants_dir / f"{group}.d.lua"
-    if not path.exists():
-        return [group]
-    names: list[str] = []
-    for line in path.read_text(encoding=DEFAULT_ENCODING, errors="ignore").splitlines():
-        stripped = line.strip()
-        if stripped.startswith("---"):
-            continue
-        m = re.match(r"^([A-Z0-9_]+)\s*=", stripped)
-        if m:
-            names.append(m.group(1))
-    seen = set()
-    result = []
-    for n in names:
-        if n in seen:
-            continue
-        seen.add(n)
-        result.append(n)
-    return result or [group]
-
-
 def _extract_docblock(text: str, signature_line: str) -> str | None:
     """Pull contiguous comment block immediately above the signature line."""
     lines = text.splitlines()
@@ -239,10 +215,7 @@ def _scan_types_for_symbol(symbol: str):
         if signature:
             doc = _extract_docblock(text, signature)
             parsed_doc = _parse_docblock(doc) if doc else {}
-            groups = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
-            constants: list[str] = []
-            for grp in groups:
-                constants.extend(_expand_constants_group(grp))
+            constants = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
             return {
                 "signature": signature,
                 "params": parsed_doc.get("params"),
