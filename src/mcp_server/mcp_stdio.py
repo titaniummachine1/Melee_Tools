@@ -74,9 +74,14 @@ def handle_tools_call(name: str, arguments: dict) -> dict:
 		if not symbol:
 			raise ValueError("symbol is required")
 		result = get_smart_context(symbol)
-		if result:
+		# Check if we got content or suggestions
+		if result.get("content"):
 			return {"content": [{"type": "text", "text": result["content"]}]}
-		return {"content": [{"type": "text", "text": "Context not found"}]}
+		# Return suggestions if no content found
+		suggestions = result.get("suggestions", [])
+		did_you_mean = result.get("did_you_mean")
+		suggestion_text = f"Did you mean: {did_you_mean}\n\nSuggestions:\n" + "\n".join(suggestions) if did_you_mean else "No smart context found. Suggestions:\n" + "\n".join(suggestions)
+		return {"content": [{"type": "text", "text": suggestion_text}]}
 
 	else:
 		raise ValueError(f"Unknown tool: {name}")

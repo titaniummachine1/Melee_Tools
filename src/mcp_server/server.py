@@ -186,8 +186,13 @@ def _load_constants_group(symbol: str):
     for line in path.read_text(encoding=DEFAULT_ENCODING, errors="ignore").splitlines():
         stripped = line.strip()
         if stripped.startswith("---"):
-            desc_lines.append(stripped.lstrip("- ").strip())
+            cleaned = stripped.lstrip("- ").strip()
+            if cleaned.startswith("@"):
+                continue
+            desc_lines.append(cleaned)
             continue
+        if stripped.startswith("@"):
+            continue  # skip annotations
         m = re.match(r"^([A-Z0-9_]+)\s*=", stripped)
         if m:
             names.append(m.group(1))
@@ -202,6 +207,8 @@ def _load_constants_group(symbol: str):
         constants.append(n)
 
     desc = "\n".join(desc_lines).strip() if desc_lines else None
+    if not desc:
+        desc = f"Constants group {symbol}"
     return {
         "desc": desc,
         "constants": constants,
@@ -298,6 +305,11 @@ def get_types(symbol: str):
     if not symbol:
         raise ValueError("symbol is required")
 
+    # Constant group lookup first (e.g., E_TraceLine) - highest priority
+    consts = _load_constants_group(symbol)
+    if consts:
+        return consts
+
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
 
@@ -329,11 +341,6 @@ def get_types(symbol: str):
         response.pop("source", None)  # not needed for the model
         return response
 
-    # Constant group lookup (e.g., E_TraceLine)
-    consts = _load_constants_group(symbol)
-    if consts:
-        return consts
-
     # Not found: include fuzzy suggestions to help correction
     suggestions = _suggest_symbols(conn, symbol, limit=10)
     return {
@@ -360,21 +367,28 @@ def get_smart_context(symbol: str):
 
     for candidate in _smart_context_candidates(symbol):
         if candidate.exists():
-            return {
-                "symbol": symbol,
-                "path": str(candidate),
-                "content": candidate.read_text(encoding=DEFAULT_ENCODING)
-            }
+            try:
+                content = candidate.read_text(encoding=DEFAULT_ENCODING)
+                return {
+                    "symbol": symbol,
+                    "path": str(candidate),
+                    "content": content
+                }
+            except Exception:
+                continue  # try next candidate
 
     normalized = symbol.strip().replace("::", ".").replace("/", ".")
     partial_hits = list(SMART_CONTEXT_DIR.glob(f"*{normalized}*.md"))
     if partial_hits:
         target = partial_hits[0]
-        return {
-            "symbol": symbol,
-            "path": str(target),
-            "content": target.read_text(encoding=DEFAULT_ENCODING)
-        }
+        try:
+            return {
+                "symbol": symbol,
+                "path": str(target),
+                "content": target.read_text(encoding=DEFAULT_ENCODING)
+            }
+        except Exception:
+            pass  # fall through to suggestions
 
     # No direct hit: return suggestions from symbols to guide the caller
     conn = sqlite3.connect(DB_PATH)
