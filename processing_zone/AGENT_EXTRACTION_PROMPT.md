@@ -25,11 +25,25 @@ For every function, method, callback, constant, or global you see:
 - Keep surrounding context if it clarifies parameters/returns
 - Preserve comments if they explain the usage
 
-### 3. Use MCP server for verification
+### 3. Use MCP server and cached documentation for verification
 Before extracting a symbol:
 - Call `get_types(symbol)` to verify it's a real API function
 - If not found, it's likely a custom function (still extract it)
 - Use `get_smart_context(symbol)` to understand context if needed
+- **Check cached HTML examples**: Use `scripts/query_examples.py` to see official examples from documentation
+- **Check database examples**: The crawler has already extracted examples from HTML; query them for reference
+
+**Querying examples:**
+```bash
+# Get examples from database and HTML cache
+python scripts/query_examples.py engine.TraceLine
+
+# Get all examples from HTML cache only
+python scripts/query_examples.py engine.TraceLine --html-only
+
+# View cached HTML directly
+# Files are in: .cache/docs/Lua_Libraries/ and .cache/docs/Lua_Classes/
+```
 
 ### 4. Extract patterns, not just function calls
 Look for:

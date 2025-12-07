@@ -72,6 +72,21 @@ Move next batch from `01_TO_PROCESS` → `02_IN_PROGRESS`:
 python scripts/batch_extract.py --max-files 20
 ```
 
+### 2.5 Query Examples from Documentation
+During extraction, agents can check official examples:
+```bash
+# Get examples for a symbol from database and HTML cache
+python scripts/query_examples.py engine.TraceLine
+
+# View all examples
+python scripts/query_examples.py --all --html-only
+```
+
+**Cached HTML locations:**
+- Library functions: `.cache/docs/Lua_Libraries/<library>.html`
+- Class methods: `.cache/docs/Lua_Classes/<Class>.html`
+- Constants: `.cache/docs/Lua_Constants.html`
+
 ## Phase 3: Consolidation (Single Agent)
 
 ### 3.1 Preparation
@@ -139,6 +154,18 @@ python scripts/mcp_insert_custom.py md \
   --file "data/smart_context/custom/name.md" \
   --symbol custom.name \
   --allow-create
+```
+
+### Query Examples from Documentation
+```bash
+# Get examples for a symbol
+python scripts/query_examples.py engine.TraceLine
+
+# Get all examples (HTML cache only)
+python scripts/query_examples.py --all --html-only
+
+# Database only
+python scripts/query_examples.py engine.TraceLine --db-only
 ```
 
 ### MCP CLI
