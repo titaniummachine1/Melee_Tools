@@ -2,7 +2,7 @@
 
 -- Entity Props: CCBonusDuckPickup
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.166Z
+-- Last updated: 2025-12-06T23:51:21.868Z
 
 ---@class CCBonusDuckPickup
 ---@field m_bSpecial number

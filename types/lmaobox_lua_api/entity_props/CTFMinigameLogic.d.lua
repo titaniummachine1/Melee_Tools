@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFMinigameLogic
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.159Z
+-- Last updated: 2025-12-06T23:51:21.863Z
 
 ---@class CTFMinigameLogic
 ---@field m_hActiveMinigame number

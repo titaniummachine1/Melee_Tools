@@ -2,7 +2,7 @@
 
 -- Entity Props: CMannVsMachineStats
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.112Z
+-- Last updated: 2025-12-06T23:51:21.847Z
 
 ---@class CMannVsMachineStats
 ---@field m_iCurrentWaveIdx number

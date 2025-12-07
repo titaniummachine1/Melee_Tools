@@ -2,7 +2,7 @@
 
 -- Entity Props: CFuncRotating
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.260Z
+-- Last updated: 2025-12-06T23:51:21.917Z
 
 ---@class CFuncRotating
 ---@field m_vecOrigin Vector3

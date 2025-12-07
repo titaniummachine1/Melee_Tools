@@ -2,7 +2,7 @@
 
 -- Entity Props: CEmbers
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.209Z
+-- Last updated: 2025-12-06T23:51:21.885Z
 
 ---@class CEmbers
 ---@field m_nDensity number

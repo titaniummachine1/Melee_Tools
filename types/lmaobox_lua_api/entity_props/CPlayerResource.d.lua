@@ -2,7 +2,7 @@
 
 -- Entity Props: CPlayerResource
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.252Z
+-- Last updated: 2025-12-06T23:51:21.912Z
 
 ---@class CPlayerResource
 ---@field m_iPing any

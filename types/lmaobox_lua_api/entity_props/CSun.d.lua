@@ -2,7 +2,7 @@
 
 -- Entity Props: CSun
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.241Z
+-- Last updated: 2025-12-06T23:51:21.904Z
 
 ---@class CSun
 ---@field m_clrRender number

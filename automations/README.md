@@ -92,3 +92,16 @@ npm install
 ## Crawler System
 
 See `crawler/README.md` for detailed information about the crawler architecture and internals.
+
+### `fast-refresh.js` (no crawl; reuse cache/parsed data)
+**Purpose**: Regenerate types, docs index, and materialized symbols graph without hitting the network (uses cached HTML and stored parsed_data).
+
+**Usage**:
+```bash
+node automations/fast-refresh.js
+```
+
+**What it does**:
+1. Regenerates types from existing DB/cache (no fetch).
+2. Regenerates `types/docs-index.json`.
+3. Materializes the symbols graph (functions/classes/constants/examples) into SQLite for Smart Context reuse.

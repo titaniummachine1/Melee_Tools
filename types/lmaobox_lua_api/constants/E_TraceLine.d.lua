@@ -2,7 +2,7 @@
 
 -- Constants: E_TraceLine
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-06T07:41:27.386Z
+-- Last updated: 2025-12-06T23:59:01.086Z
 
 ---@type integer
 CONTENTS_EMPTY = 0

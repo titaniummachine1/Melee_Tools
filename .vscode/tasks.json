@@ -30,7 +30,23 @@
         {
             "label": "🔄 Refresh Documentation Types",
             "type": "shell",
-            "command": "npm install; node refresh-docs.js",
+            "command": "powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -Command \"npm install; npm run refresh\"",
+            "options": {
+                "cwd": "${workspaceFolder}/automations"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "⚡ Fast Refresh (no crawl)",
+            "type": "shell",
+            "command": "powershell -ExecutionPolicy Bypass -NoLogo -NonInteractive -Command \"npm install; npm run fast-refresh\"",
             "options": {
                 "cwd": "${workspaceFolder}/automations"
             },

@@ -2,7 +2,7 @@
 
 -- Entity Props: CBaseTeamObjectiveResource
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.239Z
+-- Last updated: 2025-12-06T23:51:21.902Z
 
 ---@class CBaseTeamObjectiveResource
 ---@field m_iTimerToShowInHUD number

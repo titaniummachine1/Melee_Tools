@@ -2,7 +2,7 @@
 
 -- Constants: E_BoneMask
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-06T07:41:27.399Z
+-- Last updated: 2025-12-06T23:59:01.096Z
 
 ---@type integer
 BONE_USED_BY_ANYTHING = 0x0007FF00

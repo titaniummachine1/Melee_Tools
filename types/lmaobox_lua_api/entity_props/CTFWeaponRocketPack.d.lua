@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponRocketPack
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.041Z
+-- Last updated: 2025-12-06T23:51:21.832Z
 
 ---@class CTFWeaponRocketPack
 ---@field m_flInitLaunchTime number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFPasstimeLogic
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.171Z
+-- Last updated: 2025-12-06T23:51:21.870Z
 
 ---@class CTFPasstimeLogic
 ---@field m_hBall number

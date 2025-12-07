@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEEffectDispatch
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.341Z
+-- Last updated: 2025-12-06T23:51:21.982Z
 
 ---@class CTEEffectDispatch
 ---@field m_vAngles Vector3

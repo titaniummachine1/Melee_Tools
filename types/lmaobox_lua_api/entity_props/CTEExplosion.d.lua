@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEExplosion
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.337Z
+-- Last updated: 2025-12-06T23:51:21.981Z
 
 ---@class CTEExplosion
 ---@field m_nModelIndex number

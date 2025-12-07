@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponKnife
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.057Z
+-- Last updated: 2025-12-06T23:51:21.837Z
 
 ---@class CTFWeaponKnife
 ---@field m_bReadyToBackstab number

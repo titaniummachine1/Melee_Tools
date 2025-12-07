@@ -187,5 +187,98 @@ export const db = {
 			VALUES (?, ?, ?, ?)
 		`);
 		return stmt.run(Date.now(), updateType, pagesUpdated, durationMs);
+	},
+
+	// Symbols graph (materialized)
+	clearMaterializedSymbols() {
+		const db = getDatabase();
+		db.exec(`
+			DELETE FROM signatures;
+			DELETE FROM examples;
+			DELETE FROM constants;
+			DELETE FROM docs;
+			DELETE FROM symbols;
+		`);
+	},
+
+	upsertSymbol(symbol) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO symbols (full_name, kind, parent_full_name, page_url, path, title, description)
+			VALUES (@full_name, @kind, @parent_full_name, @page_url, @path, @title, @description)
+			ON CONFLICT(full_name) DO UPDATE SET
+				kind=excluded.kind,
+				parent_full_name=excluded.parent_full_name,
+				page_url=excluded.page_url,
+				path=excluded.path,
+				title=excluded.title,
+				description=excluded.description
+		`);
+		return stmt.run(symbol);
+	},
+
+	upsertSignature(sig) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO signatures (symbol_full_name, signature, returns, params_json)
+			VALUES (@symbol_full_name, @signature, @returns, @params_json)
+			ON CONFLICT(symbol_full_name) DO UPDATE SET
+				signature=excluded.signature,
+				returns=excluded.returns,
+				params_json=excluded.params_json
+		`);
+		return stmt.run(sig);
+	},
+
+	insertExample(example) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO examples (symbol_full_name, example_text, source_url)
+			VALUES (@symbol_full_name, @example_text, @source_url)
+		`);
+		return stmt.run(example);
+	},
+
+	insertConstant(constant) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO constants (symbol_full_name, name, value, description, category)
+			VALUES (@symbol_full_name, @name, @value, @description, @category)
+		`);
+		return stmt.run(constant);
+	},
+
+	upsertDoc(doc) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO docs (symbol_full_name, summary, notes)
+			VALUES (@symbol_full_name, @summary, @notes)
+			ON CONFLICT(symbol_full_name) DO UPDATE SET
+				summary=excluded.summary,
+				notes=excluded.notes
+		`);
+		return stmt.run(doc);
+	},
+
+	clearDocsIndex() {
+		const db = getDatabase();
+		db.exec(`DELETE FROM docs_index;`);
+	},
+
+	insertDocsIndex(entry) {
+		const db = getDatabase();
+		const stmt = db.prepare(`
+			INSERT INTO docs_index (url, path, title, page_type, depth, parent_url, has_type_definition, last_updated)
+			VALUES (@url, @path, @title, @page_type, @depth, @parent_url, @has_type_definition, @last_updated)
+			ON CONFLICT(url) DO UPDATE SET
+				path=excluded.path,
+				title=excluded.title,
+				page_type=excluded.page_type,
+				depth=excluded.depth,
+				parent_url=excluded.parent_url,
+				has_type_definition=excluded.has_type_definition,
+				last_updated=excluded.last_updated
+		`);
+		return stmt.run(entry);
 	}
 };

@@ -2,7 +2,7 @@
 
 -- Entity Props: CPhysicsPropMultiplayer
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.247Z
+-- Last updated: 2025-12-06T23:51:21.909Z
 
 ---@class CPhysicsPropMultiplayer
 ---@field m_iPhysicsMode number

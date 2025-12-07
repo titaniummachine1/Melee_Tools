@@ -13,15 +13,11 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 
-import { runCrawler } from './crawler/index.js';
-import { generateDocsIndex } from './crawler/parser/docs-index.js';
-import {
-	generateEntityPropsFromCache,
-	generateConstantsByCategoryFromCache,
-	generateTypeForPage
-} from './crawler/parser/types.js';
+import { generateTypeForPage } from './crawler/parser/types.js';
 import { parseDocumentationPage } from './crawler/parser/html.js';
 import { API_BASE_URL, CACHE_DIR } from './crawler/config.js';
+import { runRefresh } from './refresh-runner.js';
+import { materializeSymbolsFromParsedData } from './crawler/graph/materialize.js';
 
 // Check if dependencies are installed
 async function checkDependencies() {
@@ -101,43 +97,7 @@ async function main() {
 	console.log('═══════════════════════════════════════════════════════════\n');
 
 	try {
-		// Force a full crawl (bypasses 24-hour check)
-		console.log('[Refresh] Starting forced crawl...\n');
-		const result = await runCrawler(true);
-
-		if (result.type === 'skip') {
-			console.log('[Refresh] ⚠️  Crawler skipped (unexpected)');
-		} else {
-			console.log(`\n[Refresh] ✅ Crawler completed successfully!`);
-			console.log(`[Refresh] 📄 Pages updated: ${result.pagesUpdated || 0}`);
-			console.log(`[Refresh] 📝 Type files generated: ${result.generated || 0}`);
-			console.log(`[Refresh] ⏱️  Duration: ${result.duration || 0}ms\n`);
-		}
-
-		// Generate docs index for AI
-		console.log('[Refresh] Generating docs index for AI...');
-		try {
-			await generateDocsIndex();
-			console.log('[Refresh] ✅ Docs index generated\n');
-		} catch (error) {
-			console.log(`[Refresh] ⚠️  Could not generate docs index: ${error.message}\n`);
-		}
-
-		// Generate entity props from cached TF2_props
-		console.log('[Refresh] Generating entity prop types...');
-		try {
-			await generateEntityPropsFromCache();
-		} catch (error) {
-			console.log(`[Refresh] ⚠️  Could not generate entity props: ${error.message}\n`);
-		}
-
-		// Generate constants by category
-		console.log('[Refresh] Generating constants by category...');
-		try {
-			await generateConstantsByCategoryFromCache();
-		} catch (error) {
-			console.log(`[Refresh] ⚠️  Could not generate constants: ${error.message}\n`);
-		}
+		await runRefresh({ mode: 'full' });
 
 		console.log('═══════════════════════════════════════════════════════════');
 		console.log('  ✅ Refresh Complete!');

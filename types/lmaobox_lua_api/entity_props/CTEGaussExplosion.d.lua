@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEGaussExplosion
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.363Z
+-- Last updated: 2025-12-06T23:51:22.000Z
 
 ---@class CTEGaussExplosion
 ---@field m_nType number

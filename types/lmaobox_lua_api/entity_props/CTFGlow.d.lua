@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFGlow
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.176Z
+-- Last updated: 2025-12-06T23:51:21.872Z
 
 ---@class CTFGlow
 ---@field m_iMode number

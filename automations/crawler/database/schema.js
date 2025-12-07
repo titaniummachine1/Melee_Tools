@@ -54,6 +54,66 @@ export function createDatabase() {
 			FOREIGN KEY (url) REFERENCES pages(url)
 		);
 
+		-- Docs index (DB-based, replaces legacy JSON for internal use)
+		CREATE TABLE IF NOT EXISTS docs_index (
+			url TEXT PRIMARY KEY,
+			path TEXT,
+			title TEXT,
+			page_type TEXT,
+			depth INTEGER,
+			parent_url TEXT,
+			has_type_definition INTEGER DEFAULT 0,
+			last_updated INTEGER
+		);
+
+		-- Materialized symbols graph (for smart context reuse)
+		CREATE TABLE IF NOT EXISTS symbols (
+			full_name TEXT PRIMARY KEY,
+			kind TEXT,
+			parent_full_name TEXT,
+			page_url TEXT,
+			path TEXT,
+			title TEXT,
+			description TEXT
+		);
+
+		CREATE TABLE IF NOT EXISTS signatures (
+			symbol_full_name TEXT PRIMARY KEY,
+			signature TEXT,
+			returns TEXT,
+			params_json TEXT,
+			FOREIGN KEY (symbol_full_name) REFERENCES symbols(full_name) ON DELETE CASCADE
+		);
+
+		CREATE TABLE IF NOT EXISTS examples (
+			example_id INTEGER PRIMARY KEY AUTOINCREMENT,
+			symbol_full_name TEXT,
+			example_text TEXT,
+			source_url TEXT,
+			FOREIGN KEY (symbol_full_name) REFERENCES symbols(full_name) ON DELETE CASCADE
+		);
+
+		CREATE TABLE IF NOT EXISTS constants (
+			constant_id INTEGER PRIMARY KEY AUTOINCREMENT,
+			symbol_full_name TEXT,
+			name TEXT,
+			value TEXT,
+			description TEXT,
+			category TEXT,
+			FOREIGN KEY (symbol_full_name) REFERENCES symbols(full_name) ON DELETE CASCADE
+		);
+
+		CREATE TABLE IF NOT EXISTS docs (
+			symbol_full_name TEXT PRIMARY KEY,
+			summary TEXT,
+			notes TEXT,
+			FOREIGN KEY (symbol_full_name) REFERENCES symbols(full_name) ON DELETE CASCADE
+		);
+
+		CREATE INDEX IF NOT EXISTS idx_symbols_parent ON symbols(parent_full_name);
+		CREATE INDEX IF NOT EXISTS idx_examples_symbol ON examples(symbol_full_name);
+		CREATE INDEX IF NOT EXISTS idx_constants_symbol ON constants(symbol_full_name);
+
 		CREATE TABLE IF NOT EXISTS update_log (
 			update_id INTEGER PRIMARY KEY AUTOINCREMENT,
 			timestamp INTEGER,

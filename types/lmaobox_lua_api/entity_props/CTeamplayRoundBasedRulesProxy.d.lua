@@ -2,7 +2,7 @@
 
 -- Entity Props: CTeamplayRoundBasedRulesProxy
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T07:41:27.215Z
+-- Last updated: 2025-12-06T23:51:21.889Z
 
 ---@class CTeamplayRoundBasedRulesProxy
 ---@field m_iRoundState number
