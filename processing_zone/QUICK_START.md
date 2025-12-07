@@ -82,6 +82,10 @@ python scripts/validate_extractions.py
 python scripts/mcp_cli.py get_types <symbol>
 python scripts/mcp_cli.py get_smart_context <symbol>
 
+# Query examples from documentation (HTML cache + database)
+python scripts/query_examples.py engine.TraceLine
+python scripts/query_examples.py --all --html-only  # All examples
+
 # Insert custom symbols
 python scripts/mcp_insert_custom.py md --file <path> --symbol <name> --allow-create
 ```
