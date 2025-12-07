@@ -101,6 +101,30 @@ def _fuzzy_constants_for_symbol(symbol: str):
     return candidates
 
 
+def _expand_constants_group(group: str) -> list[str]:
+    """Expand a constants group like E_TraceLine into the full list of constant names."""
+    constants_dir = TYPES_DIR / "lmaobox_lua_api" / "constants"
+    path = constants_dir / f"{group}.d.lua"
+    if not path.exists():
+        return [group]
+    names: list[str] = []
+    for line in path.read_text(encoding=DEFAULT_ENCODING, errors="ignore").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("---"):
+            continue
+        m = re.match(r"^([A-Z0-9_]+)\s*=", stripped)
+        if m:
+            names.append(m.group(1))
+    seen = set()
+    result = []
+    for n in names:
+        if n in seen:
+            continue
+        seen.add(n)
+        result.append(n)
+    return result or [group]
+
+
 def _extract_docblock(text: str, signature_line: str) -> str | None:
     """Pull contiguous comment block immediately above the signature line."""
     lines = text.splitlines()
@@ -127,6 +151,51 @@ def _extract_docblock(text: str, signature_line: str) -> str | None:
     while doc_lines and doc_lines[-1] == "":
         doc_lines.pop()
     return "\n".join(doc_lines) if doc_lines else None
+
+
+def _parse_docblock(doc: str) -> dict:
+    """Parse docblock into human-friendly summary/params/returns."""
+    if not doc:
+        return {}
+    lines = [ln.strip() for ln in doc.splitlines()]
+    summary: list[str] = []
+    params: list[str] = []
+    returns: list[str] = []
+
+    for ln in lines:
+        if ln.startswith("@param"):
+            # Format: @param name? rest...
+            _, *rest = ln.split(maxsplit=2)
+            if not rest:
+                continue
+            name = rest[0]
+            optional = name.endswith("?")
+            name = name.rstrip("?")
+            detail = rest[1] if len(rest) > 1 else ""
+            if detail:
+                params.append(f"{name} ({'optional' if optional else 'required'}): {detail}")
+            else:
+                params.append(f"{name} ({'optional' if optional else 'required'})")
+            continue
+        if ln.startswith("@return"):
+            _, *rest = ln.split(maxsplit=1)
+            returns.append(rest[0] if rest else "")
+            continue
+        if ln.startswith("@"):
+            continue  # ignore other annotations like @nodiscard
+        summary.append(ln)
+
+    # Clean summary
+    while summary and not summary[0]:
+        summary.pop(0)
+    while summary and not summary[-1]:
+        summary.pop()
+
+    return {
+        "desc": "\n".join(summary) if summary else None,
+        "params": params or None,
+        "returns": returns or None,
+    }
 
 
 def _scan_types_for_symbol(symbol: str):
@@ -169,11 +238,16 @@ def _scan_types_for_symbol(symbol: str):
         signature = _extract_signature_line(text, symbol, short_symbol)
         if signature:
             doc = _extract_docblock(text, signature)
-            constants = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
+            parsed_doc = _parse_docblock(doc) if doc else {}
+            groups = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
+            constants: list[str] = []
+            for grp in groups:
+                constants.extend(_expand_constants_group(grp))
             return {
-                "symbol": symbol,
                 "signature": signature,
-                "doc": doc,
+                "params": parsed_doc.get("params"),
+                "returns": parsed_doc.get("returns"),
+                "desc": parsed_doc.get("desc"),
                 "required_constants": constants,
                 "source": f"types:{path.relative_to(ROOT_DIR)}"
             }
@@ -215,7 +289,9 @@ def get_types(symbol: str):
         # Re-validate to avoid stale/false-positive cache entries
         recheck = _scan_types_for_symbol(symbol)
         if recheck:
-            return recheck
+            resp = dict(recheck)
+            resp.pop("source", None)
+            return resp
         # Cache was stale; drop it
         conn.execute("DELETE FROM symbol_metadata WHERE symbol = ?", (symbol,))
         conn.commit()
@@ -229,10 +305,12 @@ def get_types(symbol: str):
             VALUES (?, ?, ?, ?, strftime('%s','now'))
             """,
             (symbol, fallback["signature"], json.dumps(
-                fallback["required_constants"]), fallback["source"]),
+                fallback["required_constants"]), fallback.get("source")),
         )
         conn.commit()
-        return fallback
+        response = dict(fallback)
+        response.pop("source", None)  # not needed for the model
+        return response
 
     # Not found: include fuzzy suggestions to help correction
     suggestions = _suggest_symbols(conn, symbol, limit=10)
