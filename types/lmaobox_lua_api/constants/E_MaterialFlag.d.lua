@@ -2,7 +2,7 @@
 
 -- Constants: E_MaterialFlag
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-07T00:01:00.782Z
+-- Last updated: 2025-12-07T00:20:56.423Z
 
 ---@type any
 MATERIAL_VAR_DEBUG = 1 << 0

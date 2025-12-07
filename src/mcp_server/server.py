@@ -141,7 +141,7 @@ def _scan_types_for_symbol(symbol: str):
         signature = _extract_signature_line(text, symbol, short_symbol)
         if signature:
             # Try to enrich with constants hints
-            constants = _fuzzy_constants_for_symbol(symbol)
+            constants = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
             return {
                 "symbol": symbol,
                 "signature": signature,
@@ -152,19 +152,14 @@ def _scan_types_for_symbol(symbol: str):
 
 
 def _suggest_symbols(conn: sqlite3.Connection, symbol: str, limit: int = 10):
-	"""Return fuzzy symbol suggestions from the symbols table."""
-	try:
-		short = symbol.split(".")[-1]
-		rows = conn.execute(
-			"SELECT full_name FROM symbols WHERE full_name LIKE ? LIMIT ?",
-			(f"%{short}%", limit * 4)
-		).fetchall()
-		candidates = [r[0] for r in rows] if rows else []
-		# Rank with difflib for better ordering
-		ranked = difflib.get_close_matches(symbol, candidates, n=limit, cutoff=0)
-		return ranked[:limit]
-	except Exception:
-		return []
+    """Return fuzzy symbol suggestions from the symbols table."""
+    try:
+        rows = conn.execute("SELECT full_name FROM symbols").fetchall()
+        candidates = [r[0] for r in rows] if rows else []
+        ranked = difflib.get_close_matches(symbol, candidates, n=limit, cutoff=0)
+        return ranked[:limit]
+    except Exception:
+        return []
 
 
 def get_types(symbol: str):

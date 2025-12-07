@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CEntityParticleTrail
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.931Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.559Z
 
 ---@class CEntityParticleTrail
 ---@field m_iMaterialName number

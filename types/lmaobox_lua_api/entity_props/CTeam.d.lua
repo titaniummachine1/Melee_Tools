@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CTeam
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.903Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.516Z
 
 ---@class CTeam
 ---@field m_iTeamNum number

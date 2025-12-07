@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CParticleFire
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.884Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.489Z
 
 ---@class CParticleFire
 ---@field m_vOrigin Vector3

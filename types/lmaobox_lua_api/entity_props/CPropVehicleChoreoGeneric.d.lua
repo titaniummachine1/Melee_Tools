@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CPropVehicleChoreoGeneric
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.898Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.509Z
 
 ---@class CPropVehicleChoreoGeneric
 ---@field m_hPlayer number

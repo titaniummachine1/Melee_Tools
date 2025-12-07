@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CBaseGrenade
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.963Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.576Z
 
 ---@class CBaseGrenade
 ---@field m_flDamage number

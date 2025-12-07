@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CRopeKeyframe
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.908Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.522Z
 
 ---@class CRopeKeyframe
 ---@field m_iRopeMaterialModelIndex number

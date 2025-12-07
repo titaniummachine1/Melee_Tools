@@ -1,9 +1,9 @@
 ---@meta
 
 -- Lmaobox Lua API: Predefined constants - Lmaobox Lua
--- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
+-- Auto-generated from: https://lmaobox.net/lua/Lua_Constants
 -- Path: Lua_Constants
--- Last updated: 2025-12-07T00:01:06.832Z
+-- Last updated: 2025-12-07T00:28:31.176Z
 
 ---@return any
 function E_UserCmd() end

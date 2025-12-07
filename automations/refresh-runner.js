@@ -12,6 +12,7 @@ import { generateTypesByShortestPath } from './crawler/parser/types.js';
 import { generateDocsIndexDb } from './crawler/parser/docs-index-db.js';
 import { materializeSymbolsFromParsedData } from './crawler/graph/materialize.js';
 import { DB_PATH, WORKSPACE_ROOT } from './crawler/config.js';
+import { seedPagesFromCache } from './crawler/cache-seed.js';
 
 function resetDb() {
 	// Remove docs-graph.db to avoid stale/invalid state; it will be recreated.
@@ -37,7 +38,7 @@ export async function runRefresh({ mode = 'fast' } = {}) {
 		throw new Error('materializeSymbolsFromParsedData missing');
 	}
 
-	// Always reset DB to avoid FK/parsed_data corruption
+	// Reset DB for both modes to avoid FK/parsed_data corruption; fast uses cache seed
 	resetDb();
 
 	if (mode === 'full') {
@@ -46,6 +47,10 @@ export async function runRefresh({ mode = 'fast' } = {}) {
 		console.log('[RefreshRunner] Full crawl done');
 	} else {
 		console.log('[RefreshRunner] Fast mode (no crawl)');
+		const seeded = seedPagesFromCache();
+		if (seeded === 0) {
+			throw new Error('Fast mode: no cached pages to seed DB; run full refresh once.');
+		}
 	}
 
 	console.log('[RefreshRunner] Generating types...');

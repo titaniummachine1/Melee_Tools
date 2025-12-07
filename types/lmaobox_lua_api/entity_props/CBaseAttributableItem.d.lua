@@ -1,8 +1,8 @@
 ---@meta
 
 -- Entity Props: CBaseAttributableItem
--- Auto-generated from: https://lmaobox.net/lua/TF2_props/
--- Last updated: 2025-12-06T23:51:21.888Z
+-- Auto-generated from: https://lmaobox.net/lua/TF2_props
+-- Last updated: 2025-12-07T00:28:31.493Z
 
 ---@class CBaseAttributableItem
 ---@field m_hOuter number

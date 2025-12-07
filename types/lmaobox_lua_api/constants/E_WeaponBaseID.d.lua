@@ -2,7 +2,7 @@
 
 -- Constants: E_WeaponBaseID
 -- Auto-generated from: https://lmaobox.net/lua/Lua_Constants/
--- Last updated: 2025-12-07T00:01:00.764Z
+-- Last updated: 2025-12-07T00:20:56.413Z
 
 ---@type integer
 TF_WEAPON_NONE = 0
