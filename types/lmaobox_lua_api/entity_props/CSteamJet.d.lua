@@ -2,7 +2,7 @@
 
 -- Entity Props: CSteamJet
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.483Z
+-- Last updated: 2025-12-07T00:41:41.578Z
 
 ---@class CSteamJet
 ---@field m_SpreadSpeed number

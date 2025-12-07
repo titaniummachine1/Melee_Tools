@@ -101,6 +101,34 @@ def _fuzzy_constants_for_symbol(symbol: str):
     return candidates
 
 
+def _extract_docblock(text: str, signature_line: str) -> str | None:
+    """Pull contiguous comment block immediately above the signature line."""
+    lines = text.splitlines()
+    try:
+        idx = lines.index(signature_line)
+    except ValueError:
+        return None
+    doc_lines: list[str] = []
+    for j in range(idx - 1, -1, -1):
+        t = lines[j].strip()
+        if t.startswith("---") or t.startswith("--"):
+            doc_lines.append(t.lstrip("- ").strip())
+            continue
+        if t == "" or t.isspace():
+            doc_lines.append("")
+            continue
+        break  # stop when hitting non-comment, non-blank
+    if not doc_lines:
+        return None
+    doc_lines.reverse()
+    # trim leading/trailing blanks
+    while doc_lines and doc_lines[0] == "":
+        doc_lines.pop(0)
+    while doc_lines and doc_lines[-1] == "":
+        doc_lines.pop()
+    return "\n".join(doc_lines) if doc_lines else None
+
+
 def _scan_types_for_symbol(symbol: str):
     """Fallback scanner that looks through generated type files for a quick signature hint."""
     short_symbol = symbol.split(".")[-1]
@@ -140,11 +168,12 @@ def _scan_types_for_symbol(symbol: str):
             continue
         signature = _extract_signature_line(text, symbol, short_symbol)
         if signature:
-            # Try to enrich with constants hints
+            doc = _extract_docblock(text, signature)
             constants = list(dict.fromkeys(_fuzzy_constants_for_symbol(symbol)))
             return {
                 "symbol": symbol,
                 "signature": signature,
+                "doc": doc,
                 "required_constants": constants,
                 "source": f"types:{path.relative_to(ROOT_DIR)}"
             }
@@ -156,8 +185,20 @@ def _suggest_symbols(conn: sqlite3.Connection, symbol: str, limit: int = 10):
     try:
         rows = conn.execute("SELECT full_name FROM symbols").fetchall()
         candidates = [r[0] for r in rows] if rows else []
-        ranked = difflib.get_close_matches(symbol, candidates, n=limit, cutoff=0)
-        return ranked[:limit]
+        ranked = difflib.get_close_matches(symbol, candidates, n=limit * 2, cutoff=0)
+        # Deduplicate and prefer callable-like names (with a dot)
+        seen = set()
+        filtered: list[str] = []
+        for name in ranked:
+            if name in seen:
+                continue
+            seen.add(name)
+            if "." not in name:
+                continue  # skip bare namespaces like "engine"
+            filtered.append(name)
+            if len(filtered) >= limit:
+                break
+        return filtered
     except Exception:
         return []
 
@@ -194,12 +235,10 @@ def get_types(symbol: str):
         return fallback
 
     # Not found: include fuzzy suggestions to help correction
+    suggestions = _suggest_symbols(conn, symbol, limit=10)
     return {
-        "symbol": symbol,
-        "signature": None,
-        "required_constants": [],
-        "source": "not_found",
-        "suggestions": _suggest_symbols(conn, symbol, limit=10)
+        "did_you_mean": suggestions[0] if suggestions else None,
+        "suggestions": suggestions
     }
 
 
@@ -241,9 +280,7 @@ def get_smart_context(symbol: str):
     conn = sqlite3.connect(DB_PATH)
     suggestions = _suggest_symbols(conn, symbol, limit=5)
     return {
-        "symbol": symbol,
-        "path": None,
-        "content": None,
+        "did_you_mean": suggestions[0] if suggestions else None,
         "suggestions": suggestions
     }
 

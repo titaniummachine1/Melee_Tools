@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBSPDecal
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.596Z
+-- Last updated: 2025-12-07T00:41:41.825Z
 
 ---@class CTEBSPDecal
 ---@field m_vecOrigin Vector3

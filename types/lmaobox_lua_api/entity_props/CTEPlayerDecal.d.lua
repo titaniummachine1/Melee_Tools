@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEPlayerDecal
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.585Z
+-- Last updated: 2025-12-07T00:41:41.758Z
 
 ---@class CTEPlayerDecal
 ---@field m_vecOrigin Vector3

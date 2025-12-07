@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEFizz
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.591Z
+-- Last updated: 2025-12-07T00:41:41.791Z
 
 ---@class CTEFizz
 ---@field m_nEntity number

@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFRobotDestruction_RobotGroup
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.429Z
+-- Last updated: 2025-12-07T00:41:41.511Z
 
 ---@class CTFRobotDestruction_RobotGroup
 ---@field m_pszHudIcon string

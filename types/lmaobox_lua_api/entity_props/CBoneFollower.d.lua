@@ -2,7 +2,7 @@
 
 -- Entity Props: CBoneFollower
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.570Z
+-- Last updated: 2025-12-07T00:41:41.718Z
 
 ---@class CBoneFollower
 ---@field m_modelIndex number

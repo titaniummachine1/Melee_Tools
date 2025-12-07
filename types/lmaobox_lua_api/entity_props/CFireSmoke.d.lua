@@ -2,7 +2,7 @@
 
 -- Entity Props: CFireSmoke
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.544Z
+-- Last updated: 2025-12-07T00:41:41.683Z
 
 ---@class CFireSmoke
 ---@field m_flStartScale number

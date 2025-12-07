@@ -2,7 +2,7 @@
 
 -- Entity Props: CSpotlightEnd
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.519Z
+-- Last updated: 2025-12-07T00:41:41.634Z
 
 ---@class CSpotlightEnd
 ---@field m_flLightScale number

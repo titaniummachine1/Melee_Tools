@@ -2,7 +2,7 @@
 
 -- Entity Props: CTEBeamFollow
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.601Z
+-- Last updated: 2025-12-07T00:41:41.858Z
 
 ---@class CTEBeamFollow
 ---@field m_iEntIndex number

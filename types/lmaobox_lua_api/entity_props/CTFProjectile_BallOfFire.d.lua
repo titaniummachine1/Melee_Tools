@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFProjectile_BallOfFire
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.425Z
+-- Last updated: 2025-12-07T00:41:41.507Z
 
 ---@class CTFProjectile_BallOfFire
 ---@field m_vecInitialVelocity Vector3

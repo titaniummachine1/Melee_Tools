@@ -2,7 +2,7 @@
 
 -- Entity Props: CEnvTonemapController
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.547Z
+-- Last updated: 2025-12-07T00:41:41.685Z
 
 ---@class CEnvTonemapController
 ---@field m_bUseCustomAutoExposureMin number

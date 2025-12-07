@@ -2,7 +2,7 @@
 
 -- Entity Props: CTFWeaponBuilder
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.400Z
+-- Last updated: 2025-12-07T00:41:41.467Z
 
 ---@class CTFWeaponBuilder
 ---@field m_iBuildState number

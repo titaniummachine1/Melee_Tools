@@ -2,7 +2,7 @@
 
 -- Entity Props: CVGuiScreen
 -- Auto-generated from: https://lmaobox.net/lua/TF2_props
--- Last updated: 2025-12-07T00:28:31.506Z
+-- Last updated: 2025-12-07T00:41:41.624Z
 
 ---@class CVGuiScreen
 ---@field m_flWidth number
